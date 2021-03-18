@@ -1,0 +1,16 @@
+\chapter{Možnosti rozšírenia}
+Rozobrať čo všetko sa dá urobiť s tými dátami, ktoré už mám uložené v pamati, ale momentálne sa s nimi nič nedeje
+\section{Ukladanie výstupu do súboru}
+výstup analýzy do súboru(textového)
+\section{Iná vizuálna reprezentácia dát}
+Momentálne vyzobrazujem dáta prevažne v QTreeView alebo QTableView, ale vdaka tomu ako ich mám uložené + to že nad nimi operuje nejaký model ktorý vie vrátiť dáta na základe indexu, by nemuselo byť taká zložité pridať inú vizualizáciu dát(napríklad obrázkovú ako tu : https://www.usbmadesimple.co.uk/ums\_5.htm)
+\section{Pridávanie nových interpreterov pre descripory}
+pridanie nových druhov descriptorov - pridať nový interpreter do factory
+\section{Pridanie intepreteru na interrupt tranfser}
+pridanie analyzi interrupt transferu aj pre ine ako hid zariadenia
+\subsection{Pridanie nových HID zariední}
+nove HID zariadenie - pridanie do interrupt ''factory''
+\section{Pridanie analýzy pre isochronous a bulk transfer}
+semanticka analyza aj inych ako interrupt alebo control transferov - momentalne su rozpoznavane len v hexdumpe
+\section{?Možnosť rozšírenia na iné platformy?}
+uprava aplikacie aby bola prenositelna aj na ine platformy, co vsetko by tam bolo treba upravit(pravdepodobne nie vela, kedze qt je prenosne, a prakticky jedine co pouzivam spojene s windowsom su jeho structy na rozne descriptory)

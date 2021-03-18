@@ -1,0 +1,29 @@
+\chapter{USB a Windows}
+\section{USB zbernica}
+Plug and Play device tree(sposob akym si windows udrziava strom zariadeni na zbernici)(https://docs.microsoft.com/sk-sk/windows-hardware/drivers/gettingstarted/device-nodes-and-device-stacks)
+\section{Device object a device stack}
+PDO,FDO, Device object(https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/introduction-to-device-objects)
+https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/creating-a-device-object
+\subsection{Drivery}
+windows driver model(WDM) : https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/types-of-wdm-drivers
+bus driver(https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/bus-drivers), function driver(https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/function-drivers) a filter driver(https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/filter-drivers)
+\section{Komunikacia s USB zariadenim}
+sposob komunikacie operacneho systemu so zariadenim pripojenym na USB zbernicu : IRP(https://docs.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/i-o-request-packets) , URB (https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/communicating-with-a-usb-device) a pod.
+https://docs.microsoft.com/en-us/windows-hardware/drivers/kernel/handling-irps
+\section{USB descriptory}
+opis zakladnych USB descriporov, hlavne tych ktore neskor aj vyuzivam v program(Device, Interface, Endpoint, Configuration, String, Setup) : https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-descriptors
+https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-control-transfer
+\subsection{Rozlozenie USB zariadenia z hladiska descriptorov}
+https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-layout
+\section{HID zariadenia}
+hid zariadenie obecne, priklady
+https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/
+\subsection{Reporty}
+Input/Output/Feature reporty.
+\subsection{Report Descriptor}
+Opis report descriptoru, k comu sluzi, pripadne ako z neho vycitat zaujimave data (neskor vyuzite v programe pri parsovani HID Report Descriptoru na naslednu semanticku analyzu dat ktore posiela zariadenie)
+
+
+
+
+

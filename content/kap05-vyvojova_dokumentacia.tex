@@ -1,0 +1,59 @@
+\chapter{Vývojová dokumentácia}
+\section{Architekrúra aplikácie}
+\section{Jadro aplikácie}
+\subsection{USB\_Packet\_Analyzer}
+riadi celkovy beh programu, reaguje na input od uzivatela
+\subsection{Item Manager}
+spracovanie samostatneho packetu a ulozenie dat o nom
+\subsection{DataViewer}
+trieda ktora ma na starosti vyskakovacie okno po dvojkliku a item a nasledne reaguje na input od uzivatela v okne
+\subsection{TreeItem}
+reprezentuje jednotlive nody v stromovej strukture ktora sa potom vyuziva na zobrazenie dat v QTreeView
+\section{Modely}
+\subsection{AdditionaldataModel}
+model na spravovanie zvysnych dat(data ktore nie su sucastou hlavicky packetu)
+\subsection{ColorMapModel}
+vyobrazenie pomocnej mapy na lepsie sa zorientovanie v zvyraznemom hexdumpe
+\subsection{DataViewerModel}
+model na hexdump - prenasa hex/printable a zaroven o co vlastne ide(konkretny descriptor, interrupt data, ...)
+\subsection{TreeItemBaseModel}
+model na QTreeView ktorz vyuziva TreeItem
+\subsection{USBPcapHeaderModel}
+model na QTreeView ale specialne pre USBPcap hlavicku packetu
+\section{Interpretery}
+\subsection{BaseInterpreter}
+abstractna trieda od ktorej dedia vsetkz interpretery
+\subsection{Interpreter factory}
+facory trieda na pridelenie konkretneho interpreteru za runtimu kvoli jednoduchosti na lepsie rozsirenie programu do buducnosti
+\subsection{Interpretery descriptorov}
+Config,Device,Setup,String,...
+\subsection{Interrupt transfer interpretery}
+obecne interrupt transfer interpreter - sluzi skor ako factory na rozne doteraz implementovane HID zariadenia
+\subsubsection{Joystick interpreter}
+\subsubsection{Mouse interpreter}
+\subsubsection{Keyboard interpreter}
+\section{Delegáti}
+\subsubsection{DataViewerDelegate}
+Qt delegat - stara sa o highlight hexdumpu
+\section{HID}
+\subsection{HIDDevices}
+staticka trieda, drzi vsetky rozpoznane HID zariadenia a obsahuje funkcie specificke nich - parsovanie HID Report descriptoru
+\section{Práca so súbormi}
+\subsection{FileReader}
+praca zo suborom a predavanie precitanych dat, offline/online capture, QFile vs std::istream
+\section{Globálne dáta}
+\subsection{ConstDataHolder}
+staticka trieda na drzanie si konstant ktore su potrebne napriec celym programom. Mapovanie z enumu do jeho stringovej reprezentacie
+\subsection{PacketExternStructs}
+obsahuje definiciu vsetkych dolezitych USBPcap structov, pcap structov, enumov a vsetkych structov ktore pouzivam v aplikacii
+
+
+
+
+
+
+
+
+
+
+
