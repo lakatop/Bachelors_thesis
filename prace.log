@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  30 MAR 2021 12:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  30 MAR 2021 17:11
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -828,7 +828,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  (content/kap01-uvod.tex
 Kapitola 1.
 
-Overfull \hbox (82.30746pt too wide) in paragraph at lines 8--9
+Overfull \hbox (82.30746pt too wide) in paragraph at lines 13--14
 \T1/lmr/m/n/12 plug and play(https://docs.microsoft.com/en-us/windows-hardware/
 drivers/kernel/introduction-|
  []
@@ -837,18 +837,24 @@ drivers/kernel/introduction-|
 
 
 ]
-<img/uvod_byte_detail.png, id=420, 125.7498pt x 56.8524pt>
+<img/uvod_byte_detail.png, id=419, 125.7498pt x 56.8524pt>
 File: img/uvod_byte_detail.png Graphic file (type png)
 <use img/uvod_byte_detail.png>
-Package pdftex.def Info: img/uvod_byte_detail.png  used on input line 26.
+Package pdftex.def Info: img/uvod_byte_detail.png  used on input line 31.
 (pdftex.def)             Requested size: 412.56496pt x 186.56898pt.
  [4 <./img/uvod_byte_detail.png>]
 <img/uvod_treeview.png, id=430, 130.5678pt x 181.8795pt>
 File: img/uvod_treeview.png Graphic file (type png)
 <use img/uvod_treeview.png>
-Package pdftex.def Info: img/uvod_treeview.png  used on input line 43.
+Package pdftex.def Info: img/uvod_treeview.png  used on input line 48.
 (pdftex.def)             Requested size: 412.56496pt x 574.71901pt.
- [5 <./img/uvod_treeview.png>] [6])
+ [5 <./img/uvod_treeview.png>]
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
+7.
+
+(C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+) [6])
 [7]
 \openout2 = `content/kap02-USB_a_Windows.aux'.
 
@@ -1058,21 +1064,22 @@ Package rerunfilecheck Info: File `prace.out' has not changed.
 (rerunfilecheck)             Checksum: 30CF395DB4896C92BCEC48FC7E5F998A;11131.
  ) 
 Here is how much of TeX's memory you used:
- 17165 strings out of 479334
- 256571 string characters out of 2857084
- 571655 words of memory out of 3000000
- 34092 multiletter control sequences out of 15000+200000
- 461085 words of font info for 64 fonts, out of 3000000 for 9000
+ 17214 strings out of 479334
+ 257771 string characters out of 2857084
+ 572187 words of memory out of 3000000
+ 34135 multiletter control sequences out of 15000+200000
+ 461460 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,6n,90p,847b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<C
-:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C
-:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:
-/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/
-Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb>
-Output written on prace.pdf (27 pages, 554460 bytes).
+{C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{
+C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<C:/U
+sers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/U
+sers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Us
+ers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Use
+rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb>
+Output written on prace.pdf (27 pages, 556765 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 119 named destinations out of 1000 (max. 500000)
+ 581 PDF objects out of 1000 (max. 8388607)
+ 121 named destinations out of 1000 (max. 500000)
  604 words of extra memory for PDF output out of 10000 (max. 10000000)
 
