@@ -99,7 +99,12 @@ Poděkování.
 
 % Abstrakt (doporučený rozsah cca 80-200 slov; nejedná se o zadání práce)
 \def\Abstrakt{%
-Abstrakt.
+USB zbernica je dnes jedným z najrozšírenejších spôsobov pripojenia periférií k počítaču. 
+Cieľom práce bolo vytvoriť software, ktorý analyzuje zachytenú komunikáciu medzi zariadnením pripojeným na danú zbernicu a počítačom.
+
+Aplikácia následne rozumným spôsobom vizuálne zobrazuje zanalyzované dáta. Počiatočná verzia sa špecificky zameriava na HID triedu zariadení a ponúka aj sémantický význam jej úzkej podmnožiny do ktorej patria myš, klávesnica a joystick. Pri vizuálnej reprezentácii dát sa práca sa inšpiruje rôznymi dostupnými softwarmi, pričom rozlične kombinuje resp. dopĺňa ich vlastnosti a implementuje z nich tie, ktoré vníma ako najlepšie riešenie v danej situácii.
+
+Ďalšie vlastnosti aplikácie sú napríklad parsovanie HID Report Descriptoru vďaka ktorému je jednoduchšie pridať sémantickú analýzu rôznym ďalším HID zariadeniam. Celkový návrh aplikácie by mal ponúknuť možnosť budúcej implementácie ďalších USB tried pre prípadné rozšírenie.
 }
 \def\AbstraktEN{%
 Abstract.
@@ -107,7 +112,7 @@ Abstract.
 
 % 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
 \def\KlicovaSlova{%
-{klíčová} {slova}
+{USB} {HID}
 }
 \def\KlicovaSlovaEN{%
 {key} {words}
@@ -134,7 +139,6 @@ Abstract.
 \include{content/kap01-uvod}
 \include{content/kap02-USB_a_Windows}
 \include{content/kap03-analyza_technickych_rieseni}
-\include{content/kap04-analyza_navrhu}
 \include{content/kap05-vyvojova_dokumentacia}
 \include{content/kap06-moznosti_rozsirenia}
 \include{content/kap07-uzivatelska_dokumentacia}

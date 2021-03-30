@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  18 MAR 2021 19:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  29 MAR 2021 21:05
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -527,8 +527,8 @@ Package: paralist 2017/01/22 v2.7 Extended list environments
 \plparsep=\skip63
 \pl@lab=\toks32
 )
-Package hyperref Info: Option `unicode' set `true' on input line 119.
-Package hyperref Info: Option `breaklinks' set `true' on input line 120.
+Package hyperref Info: Option `unicode' set `true' on input line 124.
+Package hyperref Info: Option `breaklinks' set `true' on input line 125.
 \@input{makra.aux}
 \openout2 = `makra.aux'.
 
@@ -542,29 +542,32 @@ File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count290
 \l__pdf_internal_box=\box52
 ) (prace.aux (intro/titulka.aux) (content/kap01-uvod.aux)
-(content/kap02.aux) (content/kap03.aux) (content/kap04.aux) (content/kap05.aux)
-(content/kap06.aux) (content/kap07.aux) (content/kap08.aux)
+(content/kap02-USB_a_Windows.aux)
+(content/kap03-analyza_technickych_rieseni.aux)
+(content/kap05-vyvojova_dokumentacia.aux)
+(content/kap06-moznosti_rozsirenia.aux)
+(content/kap07-uzivatelska_dokumentacia.aux) (content/kap08-zaver.aux)
 (outro/literatura.aux) (outro/prilohy.aux))
 \openout1 = `prace.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 126.
-LaTeX Font Info:    ... okay on input line 126.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 131.
+LaTeX Font Info:    ... okay on input line 131.
 
 (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -587,7 +590,7 @@ Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
 )
-Package hyperref Info: Link coloring OFF on input line 126.
+Package hyperref Info: Link coloring OFF on input line 131.
 
 (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -601,9 +604,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count297
 )
-LaTeX Info: Redefining \ref on input line 126.
-LaTeX Info: Redefining \pageref on input line 126.
-LaTeX Info: Redefining \nameref on input line 126.
+LaTeX Info: Redefining \ref on input line 131.
+LaTeX Info: Redefining \pageref on input line 131.
+LaTeX Info: Redefining \nameref on input line 131.
  (prace.out) (prace.out)
 \@outlinefile=\write5
 \openout5 = `prace.out'.
@@ -612,7 +615,7 @@ LaTeX Info: Redefining \nameref on input line 126.
 
  (intro/titulka.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
-<img/logo-cs.pdf, id=298, 506.4591pt x 156.49065pt>
+<img/logo-cs.pdf, id=294, 506.4591pt x 156.49065pt>
 File: img/logo-cs.pdf Graphic file (type pdf)
 <use img/logo-cs.pdf>
 Package pdftex.def Info: img/logo-cs.pdf  used on input line 10.
@@ -689,18 +692,35 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
  (content/kap01-uvod.tex
 Kapitola 1.
 
-Overfull \hbox (82.30746pt too wide) in paragraph at lines 5--6
+Overfull \hbox (82.30746pt too wide) in paragraph at lines 8--9
 \T1/lmr/m/n/12 plug and play(https://docs.microsoft.com/en-us/windows-hardware/
 drivers/kernel/introduction-|
  []
 
-) [3
+[3
 
 
 ]
+
+LaTeX Warning: No positions in optional float specifier.
+               Default added (so using `tbp') on input line 24.
+
+<img/uvod_byte_detail.png, id=420, 125.7498pt x 56.8524pt>
+File: img/uvod_byte_detail.png Graphic file (type png)
+<use img/uvod_byte_detail.png>
+Package pdftex.def Info: img/uvod_byte_detail.png  used on input line 25.
+(pdftex.def)             Requested size: 412.56496pt x 186.56898pt.
+[4 <./img/uvod_byte_detail.png>]
+<img/uvod_treeview.png, id=430, 130.5678pt x 181.8795pt>
+File: img/uvod_treeview.png Graphic file (type png)
+<use img/uvod_treeview.png>
+Package pdftex.def Info: img/uvod_treeview.png  used on input line 41.
+(pdftex.def)             Requested size: 412.56496pt x 574.71901pt.
+) [5 <./img/uvod_treeview.png>] [6]
 \openout2 = `content/kap02-USB_a_Windows.aux'.
 
- (content/kap02-USB_a_Windows.tex
+
+(content/kap02-USB_a_Windows.tex
 Kapitola 2.
 
 Overfull \hbox (82.43552pt too wide) in paragraph at lines 3--4
@@ -774,36 +794,26 @@ Overfull \hbox (22.38132pt too wide) in paragraph at lines 17--18
 on/usb-device-|
  []
 
-[4
+[7
 
 
 
 
-]) [5]
+]) [8]
 \openout2 = `content/kap03-analyza_technickych_rieseni.aux'.
 
  (content/kap03-analyza_technickych_rieseni.tex
 Kapitola 3.
-[6
+[9
 
 
 
 
-]) [7]
-\openout2 = `content/kap04-analyza_navrhu.aux'.
-
- (content/kap04-analyza_navrhu.tex
-Kapitola 4.
-) [8
-
-
-
-
-]
+]) [10]
 \openout2 = `content/kap05-vyvojova_dokumentacia.aux'.
 
  (content/kap05-vyvojova_dokumentacia.tex
-Kapitola 5.
+Kapitola 4.
 
 Overfull \hbox (6.84537pt too wide) in paragraph at lines 14--15
 []\T1/lmr/m/n/12 model na spra-vo-va-nie zvysnych dat(data ktore nie su su-cas-
@@ -816,22 +826,22 @@ Overfull \hbox (6.32361pt too wide) in paragraph at lines 18--19
 lastne ide(konkretny|
  []
 
-[9
+[11
 
 
 
 
-] [10]
+] [12]
 Overfull \hbox (12.64926pt too wide) in paragraph at lines 48--49
 []\T1/lmr/m/n/12 obsahuje de-fi-ni-ciu vse-tkych do-le-zi-tych USBP-cap struc-t
 ov, pcap struc-tov, enumov|
  []
 
-) [11]
+) [13]
 \openout2 = `content/kap06-moznosti_rozsirenia.aux'.
 
  (content/kap06-moznosti_rozsirenia.tex
-Kapitola 6.
+Kapitola 5.
 
 Overfull \hbox (3.19191pt too wide) in paragraph at lines 6--7
 \T1/lmr/m/n/12 dát(napríklad ob-ráz-kovú ako tu : https://www.usbmadesimple.co.
@@ -839,11 +849,16 @@ uk/ums_5.htm) |
  []
 
 
+Overfull \hbox (4.08572pt too wide) in paragraph at lines 7--7
+[]\T1/lmr/bx/n/17.28 Pridávanie no-vých in-ter-pre-te-rov pre de-scrip-|
+ []
+
+
 Overfull \hbox (33.20036pt too wide) in paragraph at lines 13--13
 []\T1/lmr/bx/n/17.28 Pridanie ana-lýzy pre isochro-nous a bulk transfer |
  []
 
-) [12
+) [14
 
 
 
@@ -852,8 +867,8 @@ Overfull \hbox (33.20036pt too wide) in paragraph at lines 13--13
 \openout2 = `content/kap07-uzivatelska_dokumentacia.aux'.
 
  (content/kap07-uzivatelska_dokumentacia.tex
-Kapitola 7.
-) [13
+Kapitola 6.
+) [15
 
 
 
@@ -862,8 +877,8 @@ Kapitola 7.
 \openout2 = `content/kap08-zaver.aux'.
 
  (content/kap08-zaver.tex
-Kapitola 8.
-) [14
+Kapitola 7.
+) [16
 
 
 
@@ -875,7 +890,7 @@ Kapitola 8.
 \tf@lof=\write7
 \openout7 = `prace.lof'.
 
- [15
+ [17
 
 
 
@@ -886,45 +901,45 @@ Kapitola 8.
 \tf@lot=\write8
 \openout8 = `prace.lot'.
 
- [16
+ [18
 
-] [17
+] [19
 
 ]
 \openout2 = `outro/prilohy.aux'.
 
 
-(outro/prilohy.tex) [18
+(outro/prilohy.tex) [20
 
 
-] [19
+] [21
 
 
 ] (prace.aux (intro/titulka.aux)
 (content/kap01-uvod.aux) (content/kap02-USB_a_Windows.aux)
 (content/kap03-analyza_technickych_rieseni.aux)
-(content/kap04-analyza_navrhu.aux) (content/kap05-vyvojova_dokumentacia.aux)
+(content/kap05-vyvojova_dokumentacia.aux)
 (content/kap06-moznosti_rozsirenia.aux)
 (content/kap07-uzivatelska_dokumentacia.aux) (content/kap08-zaver.aux)
 (outro/literatura.aux) (outro/prilohy.aux))
 Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: 1635B80B13DD2018A97B8C7436EDA0EA;11284.
+(rerunfilecheck)             Checksum: 3E38A27152654D2D543A0092DE8B9A42;11129.
  ) 
 Here is how much of TeX's memory you used:
- 15325 strings out of 479334
- 221825 string characters out of 2857084
- 531159 words of memory out of 3000000
- 32290 multiletter control sequences out of 15000+200000
+ 15321 strings out of 479334
+ 222081 string characters out of 2857084
+ 532971 words of memory out of 3000000
+ 32292 multiletter control sequences out of 15000+200000
  456823 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,6n,90p,505b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 88i,6n,90p,847b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<C
 :/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C
 :/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:
 /Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb>
-Output written on prace.pdf (24 pages, 477259 bytes).
+Output written on prace.pdf (26 pages, 534416 bytes).
 PDF statistics:
- 530 PDF objects out of 1000 (max. 8388607)
- 102 named destinations out of 1000 (max. 500000)
- 602 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 549 PDF objects out of 1000 (max. 8388607)
+ 107 named destinations out of 1000 (max. 500000)
+ 604 words of extra memory for PDF output out of 10000 (max. 10000000)
 

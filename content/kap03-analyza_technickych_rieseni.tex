@@ -1,6 +1,4 @@
-\chapter{Analýza technických riešení}
-\section{Voľba frameworku}
-dovod preco som si zvolil qt namiesto inych c++ GUI frameworkov(napriklad sfml)
+\chapter{Analýza}
 \section{Získanie USB packetov}
 \subsection{Windows exclusive mód}
 opisat co to je, a dolezite je spomenut, ze windows otvara v exclusive mode zakladne HID zariadenia ako mys a klavesnica
@@ -10,6 +8,12 @@ opisat zakladne kniznice na sledovanie USB zbernice a preco som ich nemohol pouz
 opisat odkial nakoniec ziskavam packety - USBPcap a Wireshark
 \section{Spracovávanie pcap súborov}
 moznosti ako citat pcap subory : bud pouzit uz existujucu kniznicu : na linuxe Libpcap, windows NPcap(deprecated WinPcap), alebo citat subory manualne : std::istream alebo QFile
+\section{Sémantická reprezentácia dát}
+ako si z dat vytiahnut udaje ktore su potom pouzite na semanticku analyzu implementovanych HID zariadeni : HID Report parser, InputValues a EndpointDevice struct.
+Nasledne sparovanie - ako vybrat spravny report pre konkretny input
+\section{Voľba frameworku}
+obecne co by som od toho GUI priblizne chcel, potom opisat preco som si vybral prave Qt a v nasledujucich kapitolach opisat rozhodnutia uz v Qt
+dovod preco som si zvolil qt namiesto inych c++ GUI frameworkov(napriklad sfml)
 \section{Zobrazenie základných informácií}
 ako zobrazovat zakladne info o packete : pouzit QListWidget alebo QTableWidget (pripadne nieco ine ako nejaky abstract viewmodel), narok na zakladne funkcionality : lahka rozsiritenlnost o dalsie ''stlpceky'' , moznost jednoduchej interakcie(doubleClick na polozku). Mat vsetky info na jednom okne / mat pop-up okna.
 \section{Zobrazenie sémantického významu dát}
