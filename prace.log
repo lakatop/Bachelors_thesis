@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  30 MAR 2021 17:11
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  5 APR 2021 13:21
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -827,127 +827,176 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  (content/kap01-uvod.tex
 Kapitola 1.
-
-Overfull \hbox (82.30746pt too wide) in paragraph at lines 13--14
-\T1/lmr/m/n/12 plug and play(https://docs.microsoft.com/en-us/windows-hardware/
-drivers/kernel/introduction-|
- []
-
 [3
 
 
 ]
-<img/uvod_byte_detail.png, id=419, 125.7498pt x 56.8524pt>
+<img/uvod_wireshark_hexdump.png, id=425, 73.35405pt x 11.5632pt>
+File: img/uvod_wireshark_hexdump.png Graphic file (type png)
+<use img/uvod_wireshark_hexdump.png>
+Package pdftex.def Info: img/uvod_wireshark_hexdump.png  used on input line 35.
+
+(pdftex.def)             Requested size: 412.56496pt x 65.04372pt.
+<img/uvod_tree_structure.png, id=428, 67.57245pt x 19.87425pt>
+File: img/uvod_tree_structure.png Graphic file (type png)
+<use img/uvod_tree_structure.png>
+Package pdftex.def Info: img/uvod_tree_structure.png  used on input line 44.
+(pdftex.def)             Requested size: 412.56496pt x 121.36005pt.
+ [4 <./img/uvod_wireshark_hexdump.png> <./img/uvod_tree_structure.png>]
+<img/uvod_endpoint.png, id=440, 43.6029pt x 17.46526pt>
+File: img/uvod_endpoint.png Graphic file (type png)
+<use img/uvod_endpoint.png>
+Package pdftex.def Info: img/uvod_endpoint.png  used on input line 55.
+(pdftex.def)             Requested size: 412.56496pt x 165.28815pt.
+<img/uvod_byte_detail.png, id=442, 40.4712pt x 7.227pt>
 File: img/uvod_byte_detail.png Graphic file (type png)
 <use img/uvod_byte_detail.png>
-Package pdftex.def Info: img/uvod_byte_detail.png  used on input line 31.
-(pdftex.def)             Requested size: 412.56496pt x 186.56898pt.
- [4 <./img/uvod_byte_detail.png>]
-<img/uvod_treeview.png, id=430, 130.5678pt x 181.8795pt>
+Package pdftex.def Info: img/uvod_byte_detail.png  used on input line 64.
+(pdftex.def)             Requested size: 412.56496pt x 73.6764pt.
+<img/uvod_treeview.png, id=444, 130.5678pt x 112.0185pt>
 File: img/uvod_treeview.png Graphic file (type png)
 <use img/uvod_treeview.png>
-Package pdftex.def Info: img/uvod_treeview.png  used on input line 48.
-(pdftex.def)             Requested size: 412.56496pt x 574.71901pt.
- [5 <./img/uvod_treeview.png>]
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 8
-7.
+Package pdftex.def Info: img/uvod_treeview.png  used on input line 79.
+(pdftex.def)             Requested size: 412.56496pt x 353.96596pt.
 
+[5 <./img/uvod_endpoint.png> <./img/uvod_byte_detail.png>]
+<img/uvod_hhd_analyza.png, id=456, 622.12425pt x 131.89275pt>
+File: img/uvod_hhd_analyza.png Graphic file (type png)
+<use img/uvod_hhd_analyza.png>
+Package pdftex.def Info: img/uvod_hhd_analyza.png  used on input line 91.
+(pdftex.def)             Requested size: 412.56496pt x 87.46806pt.
+ [6 <./img/uvod_treeview.png> <./img/uvod_hhd_analyza.png>]
+<img/uvod_hhd_urb.png, id=465, 340.6326pt x 49.3845pt>
+File: img/uvod_hhd_urb.png Graphic file (type png)
+<use img/uvod_hhd_urb.png>
+Package pdftex.def Info: img/uvod_hhd_urb.png  used on input line 102.
+(pdftex.def)             Requested size: 412.56496pt x 59.8142pt.
+<img/uvod_hhd_interface.png, id=467, 462.528pt x 251.4996pt>
+File: img/uvod_hhd_interface.png Graphic file (type png)
+<use img/uvod_hhd_interface.png>
+Package pdftex.def Info: img/uvod_hhd_interface.png  used on input line 115.
+(pdftex.def)             Requested size: 412.56496pt x 224.34433pt.
+ [7 <./img/uvod_hhd_urb.png> <./img/uvod_hhd_interface.png>] [8]
+
+LaTeX Warning: Reference `uvod:poz:platforma' on page 9 undefined on input line
+ 161.
+
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
+64.
 (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [6])
-[7]
+)) [9]
 \openout2 = `content/kap02-USB_a_Windows.aux'.
 
- (content/kap02-USB_a_Windows.tex
+
+(content/kap02-USB_a_Windows.tex
 Kapitola 2.
 
-Overfull \hbox (82.43552pt too wide) in paragraph at lines 3--4
+Overfull \hbox (82.30746pt too wide) in paragraph at lines 2--3
+\T1/lmr/m/n/12 plug and play(https://docs.microsoft.com/en-us/windows-hardware/
+drivers/kernel/introduction-|
+ []
+
+
+Overfull \hbox (82.43552pt too wide) in paragraph at lines 4--5
 \T1/lmr/m/n/12 na zbernici)(https://docs.microsoft.com/sk-sk/windows-hardware/d
 rivers/gettingstarted/device-|
  []
 
 
-Overfull \hbox (161.11917pt too wide) in paragraph at lines 5--7
+Overfull \hbox (161.11917pt too wide) in paragraph at lines 6--8
 []\T1/lmr/m/n/12 PDO,FDO, De-vice object(https://docs.microsoft.com/en-us/windo
 ws-hardware/drivers/kernel/introduction-|
  []
 
 
-Overfull \hbox (80.73782pt too wide) in paragraph at lines 5--7
+Overfull \hbox (80.73782pt too wide) in paragraph at lines 6--8
 \T1/lmr/m/n/12 to-device-objects) https://docs.microsoft.com/en-us/windows-hard
 ware/drivers/kernel/creating-|
  []
 
 
-Overfull \hbox (43.53094pt too wide) in paragraph at lines 8--10
-\T1/lmr/m/n/12 hardware/drivers/kernel/types-of-wdm-drivers bus driver(https://
-docs.microsoft.com/en-|
+Overfull \hbox (16.65945pt too wide) in paragraph at lines 9--12
+[]\T1/lmr/m/n/12 Opisat ako teda bezne ana-ly-za-tory/sniffery fun-guju win-dow
+s dri-ver mo-del(WDM)|
  []
 
 
-Overfull \hbox (88.63956pt too wide) in paragraph at lines 8--10
-\T1/lmr/m/n/12 us/windows-hardware/drivers/kernel/bus-drivers), function driver
-(https://docs.microsoft.com/en-|
+Overfull \hbox (21.66322pt too wide) in paragraph at lines 9--12
+\T1/lmr/m/n/12 : https://docs.microsoft.com/en-us/windows-hardware/drivers/kern
+el/types-of-wdm-|
  []
 
 
-Overfull \hbox (100.3223pt too wide) in paragraph at lines 8--10
-\T1/lmr/m/n/12 us/windows-hardware/drivers/kernel/function-drivers) a fil-ter d
-river(https://docs.microsoft.com/en-|
+Overfull \hbox (56.39107pt too wide) in paragraph at lines 9--12
+\T1/lmr/m/n/12 drivers bus driver(https://docs.microsoft.com/en-us/windows-hard
+ware/drivers/kernel/bus-|
  []
 
 
-Overfull \hbox (68.33148pt too wide) in paragraph at lines 11--13
+Overfull \hbox (113.0534pt too wide) in paragraph at lines 9--12
+\T1/lmr/m/n/12 drivers), function driver(https://docs.microsoft.com/en-us/windo
+ws-hardware/drivers/kernel/function-|
+ []
+
+
+Overfull \hbox (82.37044pt too wide) in paragraph at lines 9--12
+\T1/lmr/m/n/12 drivers) a fil-ter driver(https://docs.microsoft.com/en-us/windo
+ws-hardware/drivers/kernel/filter-|
+ []
+
+
+Overfull \hbox (68.33148pt too wide) in paragraph at lines 13--15
 \T1/lmr/m/n/12 zber-nicu : IRP(https://docs.microsoft.com/en-us/windows-hardwar
 e/drivers/gettingstarted/i-|
  []
 
 
-Overfull \hbox (163.76424pt too wide) in paragraph at lines 11--13
+Overfull \hbox (163.76424pt too wide) in paragraph at lines 13--15
 \T1/lmr/m/n/12 o-request-packets) , URB (https://docs.microsoft.com/en-us/windo
 ws-hardware/drivers/usbcon/communicating-|
  []
 
 
-Overfull \hbox (121.87346pt too wide) in paragraph at lines 11--13
+Overfull \hbox (121.87346pt too wide) in paragraph at lines 13--15
 \T1/lmr/m/n/12 with-a-usb-device) a pod. https://docs.microsoft.com/en-us/windo
 ws-hardware/drivers/kernel/handling-|
  []
 
 
-Overfull \hbox (78.84998pt too wide) in paragraph at lines 14--16
+Overfull \hbox (78.84998pt too wide) in paragraph at lines 16--18
 \T1/lmr/m/n/12 gram(Device, In-ter-face, En-d-point, Con-fi-gu-ration, String, 
 Setup) : https://docs.microsoft.com/en-|
  []
 
 
-Overfull \hbox (27.40773pt too wide) in paragraph at lines 14--16
+Overfull \hbox (27.40773pt too wide) in paragraph at lines 16--18
 \T1/lmr/m/n/12 us/windows-hardware/drivers/usbcon/usb-descriptors https://docs.
 microsoft.com/en-|
  []
 
 
-Overfull \hbox (22.38132pt too wide) in paragraph at lines 17--18
+Overfull \hbox (22.38132pt too wide) in paragraph at lines 19--20
 []\T1/lmr/m/n/12 https://docs.microsoft.com/en-us/windows-hardware/drivers/usbc
 on/usb-device-|
  []
 
-[8
-
-
-
-
-]) [9]
-\openout2 = `content/kap03-analyza_technickych_rieseni.aux'.
-
- (content/kap03-analyza_technickych_rieseni.tex
-Kapitola 3.
 [10
 
 
 
 
 ]) [11]
+\openout2 = `content/kap03-analyza_technickych_rieseni.aux'.
+
+ (content/kap03-analyza_technickych_rieseni.tex
+Kapitola 3.
+[12
+
+
+
+
+]) [13]
 \openout2 = `content/kap05-vyvojova_dokumentacia.aux'.
 
  (content/kap05-vyvojova_dokumentacia.tex
@@ -964,18 +1013,18 @@ Overfull \hbox (6.32361pt too wide) in paragraph at lines 18--19
 lastne ide(konkretny|
  []
 
-[12
+[14
 
 
 
 
-] [13]
+] [15]
 Overfull \hbox (12.64926pt too wide) in paragraph at lines 48--49
 []\T1/lmr/m/n/12 obsahuje de-fi-ni-ciu vse-tkych do-le-zi-tych USBP-cap struc-t
 ov, pcap struc-tov, enumov|
  []
 
-) [14]
+) [16]
 \openout2 = `content/kap06-moznosti_rozsirenia.aux'.
 
  (content/kap06-moznosti_rozsirenia.tex
@@ -996,7 +1045,7 @@ Overfull \hbox (33.20036pt too wide) in paragraph at lines 13--13
 []\T1/lmr/bx/n/17.28 Pridanie ana-lýzy pre isochro-nous a bulk transfer |
  []
 
-) [15
+) [17
 
 
 
@@ -1006,7 +1055,7 @@ Overfull \hbox (33.20036pt too wide) in paragraph at lines 13--13
 
  (content/kap07-uzivatelska_dokumentacia.tex
 Kapitola 6.
-) [16
+) [18
 
 
 
@@ -1016,7 +1065,7 @@ Kapitola 6.
 
  (content/kap08-zaver.tex
 Kapitola 7.
-) [17
+) [19
 
 
 
@@ -1028,7 +1077,7 @@ Kapitola 7.
 \tf@lof=\write7
 \openout7 = `prace.lof'.
 
- [18
+ [20
 
 
 
@@ -1039,18 +1088,18 @@ Kapitola 7.
 \tf@lot=\write8
 \openout8 = `prace.lot'.
 
- [19
+ [21
 
-] [20
+] [22
 
 ]
 \openout2 = `outro/prilohy.aux'.
 
 
-(outro/prilohy.tex) [21
+(outro/prilohy.tex) [23
 
 
-] [22
+] [24
 
 
 ] (prace.aux (intro/titulka.aux)
@@ -1060,26 +1109,47 @@ Kapitola 7.
 (content/kap06-moznosti_rozsirenia.aux)
 (content/kap07-uzivatelska_dokumentacia.aux) (content/kap08-zaver.aux)
 (outro/literatura.aux) (outro/prilohy.aux))
-Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: 30CF395DB4896C92BCEC48FC7E5F998A;11131.
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `prace.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+Package rerunfilecheck Info: Checksums for `prace.out':
+(rerunfilecheck)             Before: 0C4D94F2291C0C099B0826895E829CCB;11195
+(rerunfilecheck)             After:  DEE3EADAF899EF04CF4EB238209B5E52;11195.
  ) 
 Here is how much of TeX's memory you used:
- 17214 strings out of 479334
- 257771 string characters out of 2857084
- 572187 words of memory out of 3000000
- 34135 multiletter control sequences out of 15000+200000
+ 17288 strings out of 479334
+ 259424 string characters out of 2857084
+ 572731 words of memory out of 3000000
+ 34185 multiletter control sequences out of 15000+200000
  461460 words of font info for 65 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 88i,6n,90p,847b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{
-C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<C:/U
-sers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/U
-sers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/Us
-ers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Use
-rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb>
-Output written on prace.pdf (27 pages, 556765 bytes).
+ 88i,6n,90p,1099b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{appendix*.28} has been referenced but does not ex
+ist, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter*.27} has been referenced but does not exist
+, replaced by a fixed one
+
+pdfTeX warning (dest): name{chapter*.26} has been referenced but does not exist
+, replaced by a fixed one
+
+{C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:
+/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}<C:/Use
+rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/Use
+rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr12.pfb><C:/User
+s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Users
+/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb>
+Output written on prace.pdf (29 pages, 705092 bytes).
 PDF statistics:
- 581 PDF objects out of 1000 (max. 8388607)
- 121 named destinations out of 1000 (max. 500000)
- 604 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 632 PDF objects out of 1000 (max. 8388607)
+ 139 named destinations out of 1000 (max. 500000)
+ 634 words of extra memory for PDF output out of 10000 (max. 10000000)
 
