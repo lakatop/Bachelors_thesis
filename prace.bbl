@@ -1,0 +1,45 @@
+\begin{thebibliography}{1}
+
+\bibitem{ps2_port}
+{PS/2 port}.
+\newblock \url{https://en.wikipedia.org/wiki/PS/2_port}.
+
+\bibitem{parallel_port}
+{Paralelný port}.
+\newblock \url{https://en.wikipedia.org/wiki/Parallel_port}.
+
+\bibitem{rs232_port}
+{RS-232 port}.
+\newblock \url{https://en.wikipedia.org/wiki/RS-232}.
+
+\bibitem{scsi_hub}
+{Paralelná SCSI zbernica}.
+\newblock \url{https://en.wikipedia.org/wiki/Parallel_SCSI}.
+
+\bibitem{usb_topology}
+{USB 2.0 Specification}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, Figure 4-1].
+
+\bibitem{usbhid}
+{USB Human Interface Device Class}.
+\newblock
+  \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
+\newblock [str. 9].
+
+\bibitem{usbclientdriver}
+{USB Client Driver}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-driver-development-guide}.
+\newblock [sekcia \uv{Where applicable}].
+
+\bibitem{usbdoc}
+{USB 2.0 Specification}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf].
+
+\bibitem{genius_mouse}
+{Genius myš použitá v úvode pri porovnaní existujúcich analyzátorov}.
+\newblock \url{https://us.geniusnet.com/product/dx-120/}.
+
+\end{thebibliography}

@@ -1,59 +1,123 @@
 \chapter{Úvod}
 
-USB je najrozšírenejší sériový spôsob prenášania dát. Vznikol v druhej polovici 90. rokov 20. storočia kedy sa na pripojenie periférií k počítaču  používalo viacero rozličných portov (sériový a paralelný port, PS/2, ...). Na pripojenie základných zariadení ako myš alebo klávesnica slúžil napríklad port PS/2. Jeden z najznámejších sériových portov RS-232 zase mohol slúžiť na pripojenie tlačiarne. USB vzniklo za účelom nahradiť a zjednotiť tieto spôsoby pripojenia bežných periférií k počítaču. Zároveň ale ponúklo aj možnosť prenosu dát zo zariadení ako externé HDD. Z toho vylýva, že USB protokol je jeden z najkomplexnejších protokolov na komunikáciu aký existuje. Pre účel lepšieho pochopenia daného protokolu alebo v prípade implementácie vlastného zariadenia nám môžu pomôcť tvz. USB paket analyzátory. Ich zmysel je určitým spôsobom priblížiť a vyobraziť komunikáciu na danej zbernici. Cieľom tejto práce bude práve taktýto analyzátor zostrojiť.
+USB je najrozšírenejšia zbernica na pripojenie rôznych periférií k počítaču. Vznikla v druhej polovici 90. rokov 20. storočia, kedy boli rôzne zariadenia a ich porty veľmi úzko mapované. Na pripojenie základných zariadení ako myš alebo klávesnica slúžil napríklad sériový port PS/2~\cite{ps2_port}. K pripojeniu tlačiarne sa často používal paralelný port Centronics~\cite{parallel_port}. Ešte pred PS/2 portom sa myš pripájala cez veľmi známy sériový port RS-232~\cite{rs232_port}. Všetky tieto porty boli typu \textit{point-to-point} -- na jeden port je možné pripojiť len jedno zariadenie. Toto sa paralelným portom dalo čiastočné obísť tým, že niektoré zariadenia podporovali tzv. \textit{daisy chain} -- do pripojeného zariadenia sa pripojí ďalšie zariadenie, do toho sa pripojí ďalšie, atď. (napríklad typická tlačiareň toto nepodporovala, takže musela byť pripojená na konci \textit{daisy chainu}). Existovala takisto paralelná \textit{SCSI} zbernica~\cite{scsi_hub}, ktorej návrh bol prispôsobený aby podporoval  \textit{daisy chain}. Tá fungovala dobre na zariadeniach ako externé HDD a skenery, ale bola nepraktická pre zariadenia ako myš a klávesnica.
+
+USB vzniklo za účelom nahradiť a zjednotiť tieto spôsoby pripojenia bežných periférií k počítaču. Návrh zbernice je založený na hviezdicovej topológii, ktorá umožňuje cez jeden port pripojiť až 127 zariadení súčasne. Z toho vylýva, že USB interface v sebe zahŕňa obrovskú množinu protokolov, ktoré sú hierarchicky usporiadané. K analýze paketov ktoré sa pohybujú na danej zbernici nám slúžia tzv. USB paket analyzátory. Tie môžu mať podobu hardwarového zariadenia, alebo softwarovej aplikácie. Môžu slúžiť napríklad ako učebná pomôcka pre účel lepšieho pochopenia jednotlivých protokolov. Takisto sa často využívajú pri implementácii vlastného USB zariadenia na ladenie komunikácie medzi daným zariadením a driverom. Využitie ale majú aj v opačnom prípade, keď implementujeme vlastný driver a potrebujeme sledovať jeho komunikáciu s konkrétnym zariadením. Cieľom tejto práce bude naprogramovať funkčný USB analyzátor, ktorý by mal presnejšie slúžiť práve ako učebná pomôcka pre lepšie pochopenie určitej množiny protokolov.
 
 \section{Základné pojmy}
 
 V tejto sekcii si vysvetlíme niektoré základné pojmy ktoré budeme neskôr v~texte používať.
 
-\subsubsection{Master/slave}
-\subsubsection{Paket}
-\subsubsection{URB}
-\subsubsection{Analyzátor vs sniffer}
-\subsubsection{USB zariadenie}
-+HID
-\subsubsection{Typy prenosov}
-control,interrupt,isochornous,bulk (str. 20,21)
-\subsubsection{USB deskriptor}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/uvod_usb_topology}
+	\caption{USB topológia vyobrazená v špecifikácii USB 2.0~\cite{usb_topology}.}
+	\label{obr:uvod:usb_topology}
+\end{figure}
+
+Ako sme už vyššie spomínali a ako ilustruje obrázok~\ref{obr:uvod:usb_topology}, USB zbernica je založená na vstevnatej hviezdicovej topológii. Na vrchu všetkého sa nachádza \textbf{USB Host} čo je systém do ktorého sa pripájajú ostatné USB zariadenia (v našom prípade je \textit{USB Host} počítač). USB zariadenie je buď:
+\begin{itemize}
+\item \textbf{Hub} -- poskytuje dodatočné pripojenia k USB zbernici.
+\item \textbf{Funkcia} -- poskytuje novú funkcionalitu systému (napríklad joystick, repráky, myš a pod.)
+\end{itemize}
+
+ V každom USB systéme sa nachádza práve jeden \textit{USB Host}. Ten má integrovaný tzv. \textbf{RootHub}, ktorý poskytuje možné body pripojenia pre ďalšie zariadenia. Interface medzi hostom a USB sa nazýva \textbf{Host Controller}. Vzhľadom na niektoré časové obmedzenia USB je maximálny počet vrstiev 7 (vrátane \textit{USB Host} vrstvy). Každý káblový segment je \textit{point-to-point} spojenie medzi:
+\begin{itemize}
+\item \textit{host} <---> \textit{hub}/\textit{funkcia}
+\item \textit{hub} <---> \textit{hub}/\textit{funkcia}
+\end{itemize}
+
+\textit{USB zariadenia} sa delia na rôzne triedy:
+\begin{itemize}
+\item \textbf{Display} (monitor)
+\item \textbf{Audio} (repráky)
+\item \textbf{Mass storage} (harddisk)
+\item \textbf{Human interface} (myš)
+\item atd.
+\end{itemize}
+
+Podľa dodatku k USB špecifikácii~\cite{usbhid} je HID (z anglického \uv{Human Interface Device}) USB trieda pozostávajúca prevažne zo zariadení, ktoré sú využívané človekom na riadenie určitých systémovových aplikácií. Medzi najpoužívanejšie príklady patrí myš, klávesnica alebo joystick.
+
+USB zariadenia využívajú tzv. \textbf{descriptory} na predávanie informácií o sebe samých. \textbf{Descriptor} je dátová štruktúra s predom definovaným formátom. Existuje viacero typov \textit{USB descriptorov} (device, endpoint, interface, ...), ktorých význam si vysvetlíme neskôr.
+
+\textbf{Paket} je súbor dát zoskupený na prenos po zbernici. Typicky sa skladá z troch častí:
+\begin{itemize}
+\item základné informácie o danom pakete (napríklad zdroj, cieľ, dĺžka), takisto nazývaný hlavička paketu
+\item samotné dáta
+\item detekcia chýb, opravné bity
+\end{itemize}
+
+Komunikácia na zbernici medzi \textit{USB hostom} a \textit{zariadením} prebieha práve pomocou prenosu \textit{USB paketov}.   Existujú 4 typy takýchto prenosov:
+\begin{itemize}
+\item \textbf{Control Transfer} -- používa sa na nakonfigurovanie USB zariadenia v momente keď je prvýkrát pripojené na zbernicu.
+\item \textbf{Bulk Data Transfer} --typicky pozostáva z väčšieho množstva dát ktoré sú posielané nárazovo (využívajú ho najmä tlačiarne alebo skener). Vďaka detekcii chýb na hardwarovej úrovni je zaistená správnosť prenesených dát.
+\item \textbf{Interrupt Data Transfer} --spoľahlivý prenos ktorý sa využíva hlavne na odovzdávanie aktuálnych informácií (ako napríklad pohyb myšou). Tieto informácie musia byť doručené USB zbernicou za čas kratší ako má špecifikované dané zariadenie.
+\item \textbf{Isochronous Data Transfer} --takisto nazývaný ako streaming v reálnom čase. Typický príklad je prenos zvuku.
+\end{itemize}
+
+Našu aplikáciu by sme chceli zamerať na Windows a tak si vysvetlíme ešte zopár špecifických pojmov, ktoré sa viažu na túto kokrétnu platformu.
+
+Podľa MSDN dokumentácie~\cite{usbclientdriver} je \textbf{USB client driver} software nainštalovaný na počítači, ktorý komunikuje s USB zariadením aby spojazdnil jeho funkcionalitu. Žiaden \textit{USB client driver} ale nemôže priamo komunikovať so svojím zariadením. Namiesto toho vytvorí požiadavku, súčasťou ktorej je dátová štruktúra nazývaná \textbf{URB} (USB Request Block). Tá opisuje detaily požiadavku, takisto ako aj status o jeho vykonaní.
+
+Na záver si ešte zadefinujeme rozdiel medzi \textit{USB paket analyzátorom} a \textit{USB paket snifferom}. Pod pojmom \textbf{USB paket sniffer} budeme rozumieť aplikáciu, ktorá monitoruje dianie na USB zbernici a je schopná ho rozumným spôsobom ukladať v predom definovanom formáte. Ako \textbf{USB paket analyzátor} budeme brať aplikáciu ktorá je schopná rozanalyzovať USB pakety (istým spôsobom ich vyobraziť alebo ukázať ich sémantický význam) uložené v predom definovanom formáte. Bežne sa tieto pojmy označujú za jednu a tú istú vec, aj keď ich funkcionalita spolu nijako priamočiaro nesúvisí a existujú nástroje, ktoré vedia len jedno alebo druhé. Preto dáva zmysel ich od seba explicitne oddeliť.
 
 \section{Existujúce aplikácie}
 
-Našu aplikáciu chceme hlavne zamerať na analýzu základných USB deskriptorov a komunikáciu so základnými perifériami. Konkrétne na užšiu podmnožinu HID zariadení ako sú myš, klávesnica a joystick.
+Našu aplikáciu zameriavame výukovým smerom pre programátorov, ktorí chcú lepšie pochopiť komunikáciu na USB zbernici. Z toho dôvodu by sme v nej určite chceli zahrnúť analýzu základných USB deskriptorov, ktoré sú bližšie definované v špecifikácii USB 2.0~\cite{usbdoc} v~kapitole 9.6. Keďže chceme bližšie priblížiť komunikáciu na danej zbernici, potrebujeme konkrétne zariadenia, s ktorými ju budeme analyzovať. Dáva dobrý zmysel si zvoliť zariadenia, ktoré každý z nás dobre pozná, má ich k dispozícii a bežne ich využíva. Zároveň by ale mali mať dostatočne jednoduchý komunikačný protokol. Práve preto sa s našou aplikáciou zameriame na užšiu podmnožinu HID zariadení, konkrétne myš, klávesnica a joystick. 
 
-Momentálne existuje niekoľko známych aplikácií ktoré slúžia na analýzu USB paketov. V tejto kapitole si ich zopár ukážeme a rozoberieme si niektoré ich funkcie a spôsob, akým analyzujú dané pakety.
+Momentálne existuje niekoľko známych aplikácií ktoré slúžia na analýzu USB paketov. Ich predbežným skúmaním a používaním sme ale zistili, že úplne nevyhovujú našim konkrétnym požiadavkám. Avšak mnohé ich funkcie nám prídu užitočné a môžu nám poslúžiť ako inšpirácia v implementovaní našej aplikácie. V tejto kapitole si ukážeme výhody a nevýhody zopár aplikácií, ktoré sme si zvolili ako príklady v oblasti paket analyzátorov. Ich výber spočíval v tom, že sú veľmi rozšírené medzi verejnosťou a sú najbližšie k tomu čo by sme chceli od našej aplikácie.
 
-Je nutné upozorniť, že väčšina dnešných analyzátorov sú platené aplikácie, prípadne majú odomknuté len základné vlastnosti s~možnosťou dokúpenia si plnej verzie. Práve preto sme nemali možnosť si pri všetkých vyskúšať ich celú funkcionalitu a na niektoré platené funkcie máme len veľmi high-level pohľad.
+Je nutné upozorniť, že väčšina dnešných analyzátorov sú platené aplikácie, prípadne majú odomknuté len základné vlastnosti s~možnosťou dokúpenia si plnej verzie. Práve preto sme nemali možnosť si pri všetkých vyskúšať ich celú funkcionalitu a na niektoré platené funkcie máme tak len ilustračný pohľad.
+
 
 \subsection*{Wireshark}
 
-Pravdepodobne najznámejšia third-party aplikácia na~analýzu sieťových paketov. Jeho funkcionalita je veľmi rozsiahla, a~vzhľadom na~to, že sa jedná o~open-source projekt, neustále rastie. Napriek tomu, že sa zameriava hlavne na sieťové pakety, podporuje spoluprácu s~rôznymi inými sniffermi. Jeden z~takýchto snifferov je \textit{USBPcap}, ktorý zachytáva USB komunikáciu. Tým pádom je Wireshark schopný analyzovať pakety aj nad~touto zbernicou. 
+Aplikácia, ktorá na prvý pohľad nesúvisí s USB zbernicou. Wireshark je pravdepodobne najznámejší analyzátor a sniffer sieťových paketov. Jeho funkcionalita je veľmi rozsiahla, a~vzhľadom na~to, že sa jedná o~open-source projekt, neustále rastie. Vďaka jeho obecnému návrhu podporuje spoluprácu s~rôznymi inými sniffermi (LANalyzer, NetXRay, a pod.). Jeden z~takýchto snifferov je \textit{USBPcap}, ktorý zachytáva USB komunikáciu a tým pádom je Wireshark schopný analyzovať pakety aj nad~touto zbernicou. 
 
-Teraz si postupne ukážeme niektoré funkcie Wiresharku na konkrétnom príklade (presnejšie na zachytenej komunikácii s myšou). Medzi tie úplne základné určite patrí hexdump dát nad~ktorými prebieha analýza, ktorý je vyobrazený na obrázku~\ref{obr:uvod:wireshark_hexdump}. 
+Pre priblíženie niektorých funkcií Wiresharku si ukážeme analýzu komunikácie s USB myšou (Genius DX\=/120~\cite{genius_mouse}). Medzi tie úplne základné funkcie určite patrí hexdump dát nad~ktorými prebieha analýza, ktorý je vyobrazený na obrázku~\ref{obr:uvod:wireshark_hexdump}. 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\textwidth]{img/uvod_wireshark_hexdump}
-	\caption{Ukážka hexdumpu so zvýrazneným endpoint deskriptorom.}
+	\includegraphics[width=12cm]{img/uvod_wireshark_hexdump}
+	\caption{Ukážka hexdumpu vo Wiresharku.}
 	\label{obr:uvod:wireshark_hexdump}
 \end{figure}
 
-Tento hexdump je tvorený dátami z jedného control prenosu, kde zariadenie posiela informácie o sebe v podobe rôznych deskriptorov. Pri pohybe myšou nad daným hexdumpom ponúka Wireshark interaktívnu odozvu, pričom farebne oddeľuje jednotlivé byty podľa ich významu. Zvýraznené byty na predchádzajúcom obrázku reprezentujú jeden endpoint deskriptor. Ďalšia užitočná vlastnosť je označenie nie len číselnej reprezentácie dát, ale takisto im odpovedajúcim tlačiteľným znakom. Tie isté dáta sa ale dajú reprezentovať viacerými spôsobmi. Môžu byť vyobrazené pomocou stromovej štruktúry, ktorá už jednotlivým bytom pridáva ich sémantický význam v slovnom tvare ako je ukázané na obrázku~\ref{obr:uvod:tree_structure} nižšie.
+Tento hexdump je tvorený dátami z jedného control prenosu, kde zariadenie posiela informácie o sebe samom v podobe rôznych deskriptorov. 
+
+V hexdumpe si takisto vieme pomocou kliknutia a ťahania myšou označiť ľubovoľné dáta, ktoré chceme. Zvýraznené byty na obrázku~\ref{obr:uvod:wireshark_hexdump_endpoint} reprezentujú jeden \textit{endpoint deskriptor}.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\textwidth]{img/uvod_tree_structure}
+	\includegraphics[width=12cm]{img/uvod_wireshark_hexdump_endpoint}
+	\caption{Ukážka hexdumpu so zvýrazneným endpoint deskriptorom.}
+	\label{obr:uvod:wireshark_hexdump_endpoint}
+\end{figure}
+
+Pri pohybe myšou nad daným hexdumpom ponúka Wireshark interaktívnu odozvu, pričom farebne oddeľuje jednotlivé byty podľa ich významu. Na obrázku~\ref{obr:uvod:wireshark_hexdump_data_selection} vidíme konkrétny príklad -- ak podržíme myš nad hexa časťou bytu 00, automaticky nám to označí aj byte 04 pred ním, pretože spoločne reprezentujú jednotnú informáciu, a to položku \textit{wMaxPacketSize} v \textit{endpoint descriptore}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=12cm]{img/uvod_wireshark_data_selection}
+	\caption{Ukážka hexdumpu s farebným oddelením na základe významu.}
+	\label{obr:uvod:wireshark_hexdump_data_selection}
+\end{figure}
+
+Ďalšia užitočná vlastnosť je, že pri označení hexa znakov v hexdumpe, sa samé označia aj im odpovedajúce tlačiteľné znaky (obdobne to funguje aj opačným smerom). To, že vyššie označených 7 bytov na obrázku~\ref{obr:uvod:wireshark_hexdump_endpoint} reprezentujú \textit{endpoint deskriptor} sme zistili vďaka špecifikácii jednotlivých descriptorov a vlastnou analýzou bytov v hexdumpe. Práve preto Wireshark ponúka rozličné zobrazenie tých istých dát, napríklad pomocou stromovej štruktúry, ktorá už jednotlivým bytom pridáva ich sémantický význam v slovnom tvare ako je ukázané na obrázku~\ref{obr:uvod:tree_structure} nižšie.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=11cm]{img/uvod_tree_structure}
 	\caption{Ukážka reprezentácie dát pomocou stromovej štruktúry.}
 	\label{obr:uvod:tree_structure}
 \end{figure}
 
-\newpage
-
- Jednotlivé položky si môžeme bližšie rozbaliť. Napríklad, vyššie zvýraznených 7 bytov reprezentujú endpoint deskriptor s konkrétnymi hodnotami čo ukazuje obrázok~\ref{obr:uvod:endpoint}.
+ Jednotlivé položky si môžeme bližšie rozbaliť. Napríklad vyššie zvýraznených 7 bytov reprezentujú konkrétny \textit{endpoint deskriptor}, ktorý je ukázaný na obrázku~\ref{obr:uvod:endpoint}.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\textwidth]{img/uvod_endpoint}
-	\caption{Endpoint deskriptor reprezentovaný dátami zvýraznenými na obrázku vyššie.}
+	\includegraphics[width=8cm]{img/uvod_endpoint}
+	\caption{Endpoint deskriptor reprezentovaný dátami zvýraznenými na obrázku~\ref{obr:uvod:wireshark_hexdump} vyššie.}
 	\label{obr:uvod:endpoint}
 \end{figure}
 
@@ -61,30 +125,74 @@ Medzi viac špecifické funkcie patrí detailnejšie vyobrazenie jednotlivých b
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\textwidth]{img/uvod_byte_detail}
+	\includegraphics[width=8cm]{img/uvod_byte_detail}
 	\caption{Ukážka vyobrazenia jednotlivých bytov.}
 	\label{obr:uvod:byte_detail_foto}
 \end{figure}
 
-Jeho výhoda je hlavne v~tom, že podporuje širokú škálu deskriptorov a~plná verzia programu je dostupná úplne zadarmo. Z~pohľadu užívateľa je až prekvapivé, že aj~napriek rozsiahlosti programu je aplikácia veľmi user-friendly orientovaná a~dopĺňa ju veľmi intuitívne užívateľské rozhranie.
+Wireshark ponúka interaktívne užívateľské rozhranie. V prípade kliknutia na konkrétny byte v hexdumpe sa nám označí jemu odpovedajúca položka v stromovej štruktúre. Príklad je ukázaný na obrázku~\ref{obr:uvod:hexdump_click}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/uvod_wireshark_hexdump_click}
+	\caption{Ukážka kliknutia na položku v hexdumpe.}
+	\label{obr:uvod:hexdump_click}
+\end{figure}
+
+Podobne to funguje aj opačne, takže ak klikneme na položku v stromovej štruktúre, označí sa jej odpovedajúca časť v hexdumpe. Príklad kliknutia na \textit{endpoint deskriptor} v stromovej štruktúre a označenia jemu odpovedajúcej časti hexumpu je vidieť na obrázku~\ref{obr:uvod:tree_click}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/uvod_wireshark_tree_click}
+	\caption{Ukážka kliknutia na položku \textit{endpoint deskriptoru} v stromovej štruktúre.}
+	\label{obr:uvod:tree_click}
+\end{figure}
+
+Obecné vyobrazenie pohybu paketov na zbernici bez hlbšej analýzy je ukázané na obrázku~\ref{obr:uvod:wireshark_listview} nižšie.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/uvod_wireshark_listview}
+	\caption{Príklad obecného vyobrazenia jednotlivých paketov vo Wiresharku.}
+	\label{obr:uvod:wireshark_listview}
+\end{figure}
+
+Výhoda Wiresharku je hlavne v~tom, že podporuje širokú škálu deskriptorov a~plná verzia programu je dostupná úplne zadarmo. Z~pohľadu užívateľa je až prekvapivé, že aj~napriek rozsiahlosti programu je aplikácia veľmi user-friendly orientovaná a~dopĺňa ju intuitívne užívateľské rozhranie.
+
+Naopak, jeho nevýhodou je sčasti neprehľadný hexdump. Ako môžeme vidieť na obrázku~\ref{obr:uvod:wireshark_hexdump}, jedná sa o obyčajný hexdump, ktorý nijakým spôsobom neoddeľuje význam dát bez interakcie užívateľa. Preto v momente ak by sme nemali stromovú štruktúru k odpovedajúcemu hexdumpu, museli by sme sa riadiť špecifikáciou a vlastnou analýzou. V prípade rozsiahlejšieho hexdumpu môže byť veľmi obtiažné sa v ňom potom zorientovať. Ďalšia vec ktorá nám nevyhovuje, je chýbajúca sémantická analýza inputu rôznych zariadení. Ten je vyobrazený len pomocou hexdumpu a popisu \uv{Leftover Capture Data} ako je ukázané na obrázku~\ref{obr:uvod:wireshark_input}. Vôbec teda netušíme, čo jednotlivé dáta znamenajú.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=12cm]{img/uvod_wireshark_input}
+	\caption{Príklad inputu myši vo Wiresharku.}
+	\label{obr:uvod:wireshark_input}
+\end{figure}
 
 \subsection*{Device Monitoring Studio}
 
 Aplikácia ponúka analýzu sieťových a~USB paketov, tak ako aj~analýzu komunikácie prebiehajúcej cez~sériový port.
 
-Ako prvé na~aplikácii zaujme spôsob zvolenia si zariadenia s~ktorým bude sledovaná komunikácia. Je implementovaný štýlom stromovej štruktúry ako je ukázané na~obrázku~\ref{obr:uvod:treeview_foto}~nižšie, kde máme konkrétne označenú rovnakú myš s ktorou komunikáciu sme sledovali predchádzajúcim programom. 
+Ako prvé na~aplikácii zaujme spôsob zvolenia si zariadenia s~ktorým bude sledovaná komunikácia. Je implementovaný štýlom stromovej štruktúry ako je ukázané na~obrázku~\ref{obr:uvod:hhd_treeview_foto}~nižšie, kde máme konkrétne označenú rovnakú myš s ktorou komunikáciu sme sledovali predchádzajúcim programom. 
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\textwidth]{img/uvod_treeview}
+	\includegraphics{img/uvod_hhd_treeview}
 	\caption{Ukážka stromovej štruktúry na~zvolenie si zariadenia s~ktorým bude zachytávaná komunikácia.}
-	\label{obr:uvod:treeview_foto}
+	\label{obr:uvod:hhd_treeview_foto}
 \end{figure}
 
-\newpage
-
 Základná verzia programu ponúka vizuálne zobrazenie \textit{URB}, tak ako aj analýzu jednotlivých paketov.
-Pod analýzou si tu môžeme predstaviť ale len obyčajný hexdump ktorý neposkytuje žiadne významové oddelenie dát, tým pádom je obtiažnejšie sa v ňom zorientovať. Takisto tu nemáme žiadne sémantické vysvetlenie čo znamenajú poslané dáta (napríklad pomocou stromovej štruktúry ako to rieši konkurencia). Príklad takejto analýzy môžeme vidieť na obrázku~\ref{obr:uvod:hhd_analyza}~nižšie.
+Pod analýzou si tu môžeme predstaviť ale len obyčajný hexdump ktorý neposkytuje žiadne významové oddelenie dát, tým pádom je obtiažnejšie sa v ňom zorientovať. Príklad môžeme vidieť na obrázku~\ref{obr:uvod:hhd_hexdump}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=12cm]{img/uvod_hhd_hexdump}
+	\caption{Príklad hexdumpu v Device Monitoring Studio.}
+	\label{obr:uvod:hhd_hexdump}
+\end{figure}
+
+
+Takisto tu nemáme kompletné sémantické vysvetlenie čo dané dáta znamenajú (napríklad pomocou stromovej štruktúry ako to rieši konkurencia). K dispozícii máme len veľmi obmedzený popis jednotlivých paketov (číslo paketu, device request, a pod.), pričom ani nie je veľmi jasné odkiaľ sa tieto informácie vzali. Príklad takéhoto popisu aj s hexdumpom je ukázaný na obrázku~\ref{obr:uvod:hhd_analyza}~nižšie.
 
 \begin{figure}[!htb]
 	\centering
@@ -93,9 +201,8 @@ Pod analýzou si tu môžeme predstaviť ale len obyčajný hexdump ktorý nepos
 	\label{obr:uvod:hhd_analyza}
 \end{figure}
 
-\newpage
 
-Vyobrazenie URB (obrázok~\ref{obr:uvod:hhd_urb}~) tak ponúka trochu obecnejší prehľad o tom, čo sa na danej zbernici deje.
+Vyobrazenie \textit{URB} (obrázok~\ref{obr:uvod:hhd_urb}~) tak ponúka súhrn týchto popisov jednotlivých paketov, ktoré sú postupne zachytené počas komunikácie na zbernici.
 
 \begin{figure}[!htb]
 	\centering
@@ -106,51 +213,75 @@ Vyobrazenie URB (obrázok~\ref{obr:uvod:hhd_urb}~) tak ponúka trochu obecnejš�
 
 Pričom pri dvojkliku na šedé časti textu (napríklad \textit{Setup Packet} alebo \textit{Endpoint Address}) sa užívateľovi rozbalí okno s detailnejším popisom.
  
-Zaujímavá funkcionalita ktorú ale program ponúka len v platenej verzii, je umožnenie užívateľovi priamo komunikovať so zvoleným zariadením. Môžeme mu tak posielať rôzne požiadavky (niektoré z nich sú spomenuté v USB dokumentácii v kapitole 9.4 (ODKAZ) ) ako napríklad \textit{GET\_REPORT} kde špecifikujeme \textit{Report ID} a prípadné ďalšie parametre, a zariadenie nám patrične odpovie.
+Analýza inputu myši, ktorú môžeme vidieť na obrázku~\ref{obr:uvod:hhd_input}, je riešená podobým spôsbom ako pri analýze descriptorov.
 
-Medzi zachytenými paketami sa prvotne nezobrazujú tie, ktoré označujú nakonfigurovanie daného zariadenia (je nutné ho odpojiť a~znova napojiť počas monitorovania). Užívateľské rozhranie vyobrazené nižšie pomocou obrázku~\ref{obr:uvod:hhd_interface}~,pozostáva z pomerne veľa ikoniek a celkovo sa javí ako trochu neprehľadné. Pri prvotnej interakcii s programom chvíľu trvá, kým človek nájde čo~i~len základné informácie ako napríklad hlavičky ku~jednotlivým paketom. Nepoteší ani fakt, že verzia zadarmo nedovoľuje monitorovanie dlhšie ako 10 minút a~maximálny počet monitorovaní za~jeden deň je taktiež 10.
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/uvod_hhd_input}
+	\caption{Príklad inputu myši v Device Monitoring Studio.}
+	\label{obr:uvod:hhd_input}
+\end{figure}
+
+Obecné vyobrazenie jednotlivých paketov bez bližšej analýzy je riešené podobne ako u konkurencie, pričom pakety sú farebne oddelené podľa ich smeru pohybu na zbernici (posielané smerom host -> zariadenie/smerom zariadenie -> host). Príklad je ukázaný na obrázku~\ref{obr:uvod:hhd_listview}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/uvod_hhd_listview}
+	\caption{Príklad obecného vyobrazenia jednotlivých paketov v Device Monitoring Studio.}
+	\label{obr:uvod:hhd_listview}
+\end{figure}
+
+Zaujímavá funkcionalita, ktorú ale program ponúka len v platenej verzii, je umožnenie užívateľovi priamo komunikovať so zvoleným zariadením. Môžeme mu tak posielať rôzne požiadavky (niektoré z nich sú spomenuté v USB 2.0 špecfikácii\cite{usbdoc} v kapitole 9.4) ako napríklad \textit{GET\_REPORT} kde špecifikujeme \textit{Report ID} a prípadné ďalšie parametre, a zariadenie nám patrične odpovie.
+
+Užívateľské rozhranie vyobrazené nižšie pomocou obrázku~\ref{obr:uvod:hhd_interface}~,pozostáva z pomerne veľa ikoniek a celkovo sa javí ako trochu neprehľadné. Pri prvotnej interakcii s programom chvíľu trvá, kým človek nájde čo~i~len základné informácie ako napríklad hlavičky ku~jednotlivým paketom. Nepoteší ani fakt, že verzia zadarmo nedovoľuje monitorovanie dlhšie ako 10 minút a~maximálny počet monitorovaní za~jeden deň je taktiež 10.
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{img/uvod_hhd_interface}
-	\caption{Užívateľské rozhranie Device Monitoring Studio}
+	\caption{Užívateľské rozhranie Device Monitoring Studio.}
 	\label{obr:uvod:hhd_interface}
 \end{figure}
 
-\newpage
-
 \section{Požadované funkcie}
-Na~základe minulých príkladov už existujúcich aplikácií sme si mohli všimnúť, že všetky obsahujú niekoľko základných funkcií, ktoré by mal obsahovať každý analyzátor. V~tejto sekcii zhrnieme funkcie, ktoré sme si zvolili pre našu aplikáciu. Zo~základných funkcií sme si vybrali tie, ktoré považujeme za~absolútne nevyhnutné pre každý analyzátor. Následne sme sa niekoľko z~nich pokúsili akýmsi spôsobom vylepšiť tak, aby maximalizovali ich využiteľnosť a~zároveň čo najlepšie zlepšili prácu s~aplikáciou jej užívateľovi. Zároveň ich dopĺňame o~pokročilejšie funkcie z~ktorých sú niektoré viac špecificky zamerané pre účely ktoré by sme chceli dosiahnuť v našej aplikácii.
 
 Ako prvé by sme si mali zadefinovať platformu na ktorú budeme cieliť s našou aplikáciou:
 \begin{enumerate}[label=\textbf{P\arabic*}]
 	\item \label{uvod:poz:platforma} Cieľová platforma našej aplikácie by mala byť Windows. 
 \end{enumerate}
 
-Našu aplikáciu by sme chceli zamerať už na jednotlivú analýzu paketov a nie ich zachytávaniu. Z toho vyplývajú nasledujúce požiadavky:
+Keďže má naša aplikácia mať výukový charakter, tak sa pozrieme na typický výukový scénár jej používania. Učiteľ si dopredu do súboru zachytí komunikáciu s určitým zariadením na ktorej overí, že je didakticky dobrá a ilustruje to čo má. Následne daný súbor posunie študentom aby si mohli zobraziť analýzu konkrétnych paketov. Dôležitá je ale aj priama interakcia užívateľa s jeho konkrétnym zariadením, preto by sme zároveň chceli podporovať aby si študenti mohli pripojiť vlastné zariadenie a skúmať s ním komunikáciu v reálnom čase. Z toho nám vyplývajú naledujúce požiadavky:
 \begin{enumerate}[label=\textbf{P\arabic*},resume]
 	\item \label{uvod:poz:analyza} Mala by byť schopná analyzovať USB pakety zachytené do~súboru v~rozumnom formáte pomocou predom definovaného snifferu.
 	\item \label{uvod:poz:analyza_real_time} Mala by byť schopná analýzy paketov v reálnom čase. To znamená, že bude podporovať čítanie súboru súvisle s tým ako do neho bude zapisovať iný software (za predpokladu, že to daný software povoľuje).
 \end{enumerate}
 
-Vzhľadiska zamerania našej aplikácie na základnú podmnožinu USB deskriptorov si zadefinujeme nasledujúcu požiadavku:
+Ako sme mohli vidieť aj na predchádzajúcich príkladoch, hexdump je jednou zo základných funkcií na analýzu paketov. Zároveň sa nám ale nepáčilo, že väčšina hexdumpov je neprehľadná a ťažko sa v nich orientuje. Preto si zadefinujeme nasledujúce požiadavky:
 \begin{enumerate}[label=\textbf{P\arabic*},resume]
-	\item \label{uvod:poz:deskriptory} Mala by podporovať sémantickú analýzu (vyobrazenie pomocou stromovej štruktúry) pre~všetky základné USB deskriptory spomenuté v~USB 2.0 dokumentácii(ODKAZ kapitola 9.6)~(ako napríklad \textit{Device descriptor}, \textit{Interface descriptor}, \textit{Endpoint descriptor},...).
+	\item \label{uvod:poz:hexdump} Mala by pomocou hexdumpu vedieť zobraziť dáta ktoré daný sniffer zachytí a~uloží.
+	\item \label{uvod:poz:data_highlight} Mala by mať prehľadnejší hexdump a užívateľovi uľahčiť orientáciu v~ňom. Jednotlivé znaky by mali byť farebne označené na~základe ich významu (hlavička paketu, rôzne typy deskriptorov, ...).
 \end{enumerate}
 
-Požiadavky na samotnú analýzu sú:
+K sémantickej analýze sa nám môže hodiť vedieť zobraziť dáta a ich význam pomocou stromovej štruktúry. Pretože sa s našou aplikáciou budeme snažiť vysvetliť základy komunikácie na USB zbernici, mali by sme podporovať sémantickú analýzu všetkých základných USB descriptorov a takisto inputu určitej podmnožiny HID zariadení. Ako posledné by sa nám zišlo vedieť pomocou stromovej štruktúry vyobraziť hlavičku jednotlivých paketov. Z toho celého dostávame nasledovné:
 \begin{enumerate}[label=\textbf{P\arabic*},resume]
-	\item \label{uvod:poz:hexdump} Mala by vedieť rozumne zobraziť dáta ktoré daný sniffer zachytí a~uloží. Pod pojmom rozumne myslíme spôsob zobrazenia pomocou hexdumpu.
-	\item \label{uvod:poz:data_highlight} Mala by uľahčiť používateľovi orientáciu v~hexdumpe. Jednotlivé znaky budú farebne označené na~základe ich významu (hlavička paketu, rôzne typy deskriptorov, ...).
+	\item \label{uvod:poz:deskriptory} Mala by podporovať sémantickú analýzu (vyobrazenie pomocou stromovej štruktúry) pre~všetky základné USB deskriptory spomenuté v~USB 2.0 špecifikácii\cite{usbdoc} v kapitole 9.6~(ako napríklad \textit{Device descriptor}, \textit{Interface descriptor}, \textit{Endpoint descriptor},...).
+	\item \label{uvod:poz:hid_analyza} Mala by byť schopná pomocou stromovej štruktúry zobraziť sémantický význam dát posielaných danou podmnožinou HID zariadení, do~ktorej patrí myš, klávesnica a~joystick.
+	\item \label{uvod:poz:paket_hlavicka} Mala by byť schopná pomocou stromovej štruktúry zobraziť sémantický význam jednotlivých hlavičiek paketov.
+\end{enumerate}
+
+Vyššie v texte sme označili funkciu Wiresharku vyobraziť sémantický význam dát na bitovej úrovni (obrázok~\ref{obr:uvod:byte_detail_foto}) za zaujímavú funkciu. Preto by sme ju chceli implementovať aj v našej aplikácii, z čoho vyplýva:
+\begin{enumerate}[label=\textbf{P\arabic*},resume]
+\item \label{uvod:poz:show_bits} V~miestach kde to dáva zmysel, by aplikácia mala byť schopná zobrazovať význam dát až na~úrovni jednotlivých bitov.
+\end{enumerate}
+
+Nechceme užívateľov hneď zaplaviť všetkými detailnými informáciami o paketoch. Preto by sme mali vedieť zobraziť zopár obecných vecí ku každému paketu a vyobraziť tak pohyb na zbernici, a až v prípade interakcie užívateľa s aplikáciou zobraziť podrobný popis jednotlivých paketov. Z dostávame nasledujúce požiadavky:
+\begin{enumerate}[label=\textbf{P\arabic*},resume]
 	\item \label{uvod:poz:zobrazenie_paketov} Mala by na prvý pohľad jasne zobraziť základné informácie o~každom analyzovanom pakete (ako napr. dĺžka paketu, typ prenosu, ...) a~pri~bližšom skúmaní jednotlivých paketov detailnejšie zobraziť celú jeho hlavičku.
 	\item \label{uvod:poz:paket_detail} Detailnejšie informácie o~pakete budú zobrazované na~základe interakcie užívateľa s~aplikáciou.
-	\item \label{uvod:poz:show_bits} V~miestach kde to dáva zmysel, by aplikácia mala byť schopná zobrazovať význam dát až na~úrovni jednotlivých bitov.
 \end{enumerate}
 
-Vzhľadom na zamerianie sa na užšiu podmnožinu HID zariadení doplníme nasledujúce požiadavky:
+Aby sme boli schopní sémantickej analýzy dát myšky, klávesnice alebo joysticku podľa osobného výberu užívateľa, musíme si získať informácie o ich inpute z \textit{HID Report Descriptoru}, takže naša ďalšia požiadavka je:
 \begin{enumerate}[label=\textbf{P\arabic*},resume]
-	\item \label{uvod:poz:report_desk_parser} Mala by byť schopná rozparsovať \textit{HID Report Descriptor} takým štýlom, aby bolo neskôr možné sématnicky reprezentovať input určitých HID zariadení.
-	\item \label{uvod:poz:hid_analyza} Mala by byť schopná vhodným spôsobom vizuálne zobraziť sémantický význam dát posielaných danou podmnožinou HID zariadení, do~ktorej patrí myš, klávesnica a~joystick.
+	\item \label{uvod:poz:report_desk_parser} Mala by byť schopná rozparsovať \textit{HID Report Descriptor} takým štýlom, aby bolo neskôr možné sématnicky reprezentovať input nami zvolených HID zariadení -- myš, klávesnica a joystick.
 \end{enumerate}
 
 \section{Ciele práce}
@@ -158,7 +289,7 @@ Vzhľadom na zamerianie sa na užšiu podmnožinu HID zariadení doplníme nasle
 Celkové ciele tejto práce sú následovné :
 
 \begin{enumerate}[label=\textbf{C\arabic*}]
-	\item \label{uvod:ciel:aplikacia} Vytvoriť funkčný analyzátor ktorý spĺňa všetky požadované funkcie~\ref{uvod:poz:platforma}\=/\ref{uvod:poz:hid_analyza}
+	\item \label{uvod:ciel:aplikacia} Vytvoriť funkčný analyzátor, ktorý spĺňa všetky požadované funkcie~\ref{uvod:poz:platforma}\=/\ref{uvod:poz:report_desk_parser}
 	\item \label{uvod:ciel:rozsiritelnost} Návrh programu musí byť dostatočne obecný aby splňoval nasledujúce:
 	\begin{itemize}
 		\item \label{uvod:ciel:roz_USB} Jednoduché rozšírenie o~analýzu ďalších typov USB prenosov.
