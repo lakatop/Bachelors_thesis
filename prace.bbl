@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{ps2_port}
 {PS/2 port}.
@@ -21,17 +21,66 @@
 \newblock \url{https://www.usb.org/document-library/usb-20-specification}.
 \newblock [súbor usb\_20.pdf, Figure 4-1].
 
+\bibitem{usb_host}
+{USB 2.0 Specification -- definícia USB Host a s ním súvisiace pojmy }.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 4.1.1.1].
+
+\bibitem{usb_device}
+{USB 2.0 Specification -- USB zariadenie definícia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 4.1.1.2].
+
+\bibitem{usb_hub}
+{USB 2.0 Specification -- USB Hub definícia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, str. 6].
+
+\bibitem{usb_function}
+{USB 2.0 Specification -- USB Function definícia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, str. 6].
+
+\bibitem{usb_bus_topology}
+{USB 2.0 Specification -- USB topológia zbernice}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 4.1.1].
+
+\bibitem{usb_classes}
+{Zoznam definovaných USB tried}.
+\newblock \url{https://www.usb.org/defined-class-codes}.
+
 \bibitem{usbhid}
 {USB Human Interface Device Class}.
 \newblock
   \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
 \newblock [str. 9].
 
+\bibitem{usb_descriptor}
+{USB 2.0 Specification -- USB descriptor definícia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.5].
+
+\bibitem{usb_packet}
+{USB 2.0 Specification -- USB paket definícia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, str. 7].
+
+\bibitem{usb_type_transfers}
+{USB 2.0 Specification -- USB typy prenosov definícia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 4.7].
+
 \bibitem{usbclientdriver}
 {USB Client Driver}.
 \newblock
   \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-driver-development-guide}.
 \newblock [sekcia \uv{Where applicable}].
+
+\bibitem{usburb}
+{USB Request Block}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/communicating-with-a-usb-device}.
 
 \bibitem{usbdoc}
 {USB 2.0 Specification}.
@@ -41,5 +90,21 @@
 \bibitem{genius_mouse}
 {Genius myš použitá v úvode pri porovnaní existujúcich analyzátorov}.
 \newblock \url{https://us.geniusnet.com/product/dx-120/}.
+
+\bibitem{hid_opening_collections}
+{Komunikácia HID Clienta s HID Class driverom}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/opening-hid-collections}.
+
+\bibitem{hid_api}
+{HID Application Programming Interface (API)}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/introduction-to-hid-concepts}.
+
+\bibitem{hid_access}
+{Tabuľka HID zariadení a ich Access Mode}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture}.
+\newblock [sekcia \uv{HID Clients Supported in Windows}].
 
 \end{thebibliography}
