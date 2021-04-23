@@ -46,20 +46,14 @@
 \newblock \url{https://www.usb.org/document-library/usb-20-specification}.
 \newblock [súbor usb\_20.pdf, kap. 4.1.1].
 
-\bibitem{usb_classes}
-{Zoznam definovaných USB tried}.
-\newblock \url{https://www.usb.org/defined-class-codes}.
-
-\bibitem{usbhid}
-{USB Human Interface Device Class}.
-\newblock
-  \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
-\newblock [str. 9].
-
 \bibitem{usb_descriptor}
 {USB 2.0 Specification -- USB descriptor definícia}.
 \newblock \url{https://www.usb.org/document-library/usb-20-specification}.
 \newblock [súbor usb\_20.pdf, kap. 9.5].
+
+\bibitem{usb_classes}
+{Zoznam definovaných USB tried}.
+\newblock \url{https://www.usb.org/defined-class-codes}.
 
 \bibitem{usb_packet}
 {USB 2.0 Specification -- USB paket definícia}.
@@ -87,9 +81,30 @@
 \newblock \url{https://www.usb.org/document-library/usb-20-specification}.
 \newblock [súbor usb\_20.pdf].
 
+\bibitem{usbhid}
+{USB Human Interface Device Class}.
+\newblock
+  \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
+\newblock [str. 9].
+
 \bibitem{genius_mouse}
 {Genius myš použitá v úvode pri porovnaní existujúcich analyzátorov}.
 \newblock \url{https://us.geniusnet.com/product/dx-120/}.
+
+\bibitem{logitech_mouse}
+{Logitech myš požitá na ukážku konkrétneho inputu zariadenia}.
+\newblock
+  \url{https://www.amazon.com/Logitech-Spectrum-Shifting-Personalized-Programmable/dp/B019OB663A}.
+
+\bibitem{genius_mouse_pic}
+{Fotka genius myši prevzatá z oficiálnej genius stránky}.
+\newblock
+  \url{https://us.geniusnet.com/wp-content/uploads/sites/2/2020/01/DX-110_P18_980x600.jpg}.
+
+\bibitem{logitech_mouse_pic}
+{Fotka logitech myši prevzatá zo stránky obchodu}.
+\newblock
+  \url{https://images-na.ssl-images-amazon.com/images/I/31qPw4sF6uL._AC_.jpg}.
 
 \bibitem{hid_opening_collections}
 {Komunikácia HID Clienta s HID Class driverom}.

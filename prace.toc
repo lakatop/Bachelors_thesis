@@ -1,79 +1,79 @@
 \babel@toc {slovak}{}
 \contentsline {chapter}{\numberline {1}Úvod}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Základné pojmy}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Existujúce aplikácie}{6}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Požadované funkcie}{12}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Ciele práce}{13}{section.1.4}%
-\contentsline {chapter}{\numberline {2}USB a Windows}{14}{chapter.2}%
-\contentsline {section}{\numberline {2.1}USB zbernica}{14}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Device object a device stack}{14}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Drivery}{14}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}Komunikacia s USB zariadenim}{14}{section.2.3}%
-\contentsline {section}{\numberline {2.4}USB descriptory}{14}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Rozlozenie USB zariadenia z hladiska descriptorov}{14}{subsection.2.4.1}%
-\contentsline {section}{\numberline {2.5}HID zariadenia}{15}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Reporty}{15}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Report Descriptor}{15}{subsection.2.5.2}%
-\contentsline {chapter}{\numberline {3}Analýza}{16}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Získanie USB packetov}{16}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Windows exclusive mód}{16}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Známe knižnice}{17}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}Driver}{17}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Third-party aplikácie}{17}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Spracovávanie pcap súborov}{17}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Sémantická reprezentácia dát}{17}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Voľba frameworku}{17}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Zobrazenie základných informácií}{18}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Zobrazenie sémantického významu dát}{18}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Hexdump}{18}{section.3.7}%
-\contentsline {chapter}{\numberline {4}Vývojová dokumentácia}{19}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Architekrúra aplikácie}{19}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Jadro aplikácie}{19}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}USB\_Packet\_Analyzer}{19}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Item Manager}{19}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}DataViewer}{19}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}TreeItem}{19}{subsection.4.2.4}%
-\contentsline {section}{\numberline {4.3}Modely}{19}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}AdditionaldataModel}{19}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}ColorMapModel}{19}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}DataViewerModel}{19}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}TreeItemBaseModel}{19}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}USBPcapHeaderModel}{19}{subsection.4.3.5}%
-\contentsline {section}{\numberline {4.4}Interpretery}{20}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}BaseInterpreter}{20}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Interpreter factory}{20}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Interpretery descriptorov}{20}{subsection.4.4.3}%
-\contentsline {subsection}{\numberline {4.4.4}Interrupt transfer interpretery}{20}{subsection.4.4.4}%
-\contentsline {subsubsection}{Joystick interpreter}{20}{section*.23}%
-\contentsline {subsubsection}{Mouse interpreter}{20}{section*.24}%
-\contentsline {subsubsection}{Keyboard interpreter}{20}{section*.25}%
-\contentsline {section}{\numberline {4.5}Delegáti}{20}{section.4.5}%
-\contentsline {subsubsection}{DataViewerDelegate}{20}{section*.26}%
-\contentsline {section}{\numberline {4.6}HID}{20}{section.4.6}%
-\contentsline {subsection}{\numberline {4.6.1}HIDDevices}{20}{subsection.4.6.1}%
-\contentsline {section}{\numberline {4.7}Práca so súbormi}{20}{section.4.7}%
-\contentsline {subsection}{\numberline {4.7.1}FileReader}{20}{subsection.4.7.1}%
-\contentsline {section}{\numberline {4.8}Globálne dáta}{21}{section.4.8}%
-\contentsline {subsection}{\numberline {4.8.1}ConstDataHolder}{21}{subsection.4.8.1}%
-\contentsline {subsection}{\numberline {4.8.2}PacketExternStructs}{21}{subsection.4.8.2}%
-\contentsline {chapter}{\numberline {5}Možnosti rozšírenia}{22}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Ukladanie výstupu do súboru}{22}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Iná vizuálna reprezentácia dát}{22}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Pridávanie nových interpreterov pre descriptory}{22}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Pridanie intepreteru na interrupt tranfser}{22}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Pridanie nových HID zariední}{22}{subsection.5.4.1}%
-\contentsline {section}{\numberline {5.5}Pridanie analýzy pre isochronous a bulk transfer}{22}{section.5.5}%
-\contentsline {section}{\numberline {5.6}?Možnosť rozšírenia na iné platformy?}{22}{section.5.6}%
-\contentsline {chapter}{\numberline {6}Užívateľská dokumentácia}{23}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Inštalácia}{23}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Orientácia v GUI aplikácie}{23}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Používanie aplikácie}{23}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Záver}{24}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Zhrnutie}{24}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Budúce plány}{24}{section.7.2}%
-\contentsline {chapter}{Seznam použité literatury}{25}{chapter*.27}%
-\contentsline {chapter}{Zoznam obr\'azkov}{27}{chapter*.28}%
-\contentsline {chapter}{Zoznam tabuliek}{28}{chapter*.29}%
-\contentsline {chapter}{Seznam použitých zkratek}{29}{chapter*.30}%
-\contentsline {chapter}{Přílohy}{30}{appendix*.31}%
-\contentsline {section}{\numberline {.1}První příloha}{31}{section.Alph0.1}%
+\contentsline {section}{\numberline {1.2}Existujúce aplikácie}{8}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Požadované funkcie}{13}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Ciele práce}{15}{section.1.4}%
+\contentsline {chapter}{\numberline {2}USB a Windows}{16}{chapter.2}%
+\contentsline {section}{\numberline {2.1}USB zbernica}{16}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Device object a device stack}{16}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Drivery}{16}{subsection.2.2.1}%
+\contentsline {section}{\numberline {2.3}Komunikacia s USB zariadenim}{16}{section.2.3}%
+\contentsline {section}{\numberline {2.4}USB descriptory}{16}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Rozlozenie USB zariadenia z hladiska descriptorov}{16}{subsection.2.4.1}%
+\contentsline {section}{\numberline {2.5}HID zariadenia}{17}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Reporty}{17}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Report Descriptor}{17}{subsection.2.5.2}%
+\contentsline {chapter}{\numberline {3}Analýza}{18}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Získanie USB packetov}{18}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Windows exclusive mód}{18}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Známe knižnice}{19}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Driver}{19}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Third-party aplikácie}{19}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}Spracovávanie pcap súborov}{19}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Sémantická reprezentácia dát}{19}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Voľba frameworku}{19}{section.3.4}%
+\contentsline {section}{\numberline {3.5}Zobrazenie základných informácií}{20}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Zobrazenie sémantického významu dát}{20}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Hexdump}{20}{section.3.7}%
+\contentsline {chapter}{\numberline {4}Vývojová dokumentácia}{21}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Architekrúra aplikácie}{21}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Jadro aplikácie}{21}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}USB\_Packet\_Analyzer}{21}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Item Manager}{21}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}DataViewer}{21}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}TreeItem}{21}{subsection.4.2.4}%
+\contentsline {section}{\numberline {4.3}Modely}{21}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}AdditionaldataModel}{21}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}ColorMapModel}{21}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}DataViewerModel}{21}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}TreeItemBaseModel}{21}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}USBPcapHeaderModel}{21}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}Interpretery}{22}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}BaseInterpreter}{22}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Interpreter factory}{22}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Interpretery descriptorov}{22}{subsection.4.4.3}%
+\contentsline {subsection}{\numberline {4.4.4}Interrupt transfer interpretery}{22}{subsection.4.4.4}%
+\contentsline {subsubsection}{Joystick interpreter}{22}{section*.29}%
+\contentsline {subsubsection}{Mouse interpreter}{22}{section*.30}%
+\contentsline {subsubsection}{Keyboard interpreter}{22}{section*.31}%
+\contentsline {section}{\numberline {4.5}Delegáti}{22}{section.4.5}%
+\contentsline {subsubsection}{DataViewerDelegate}{22}{section*.32}%
+\contentsline {section}{\numberline {4.6}HID}{22}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}HIDDevices}{22}{subsection.4.6.1}%
+\contentsline {section}{\numberline {4.7}Práca so súbormi}{22}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}FileReader}{22}{subsection.4.7.1}%
+\contentsline {section}{\numberline {4.8}Globálne dáta}{23}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}ConstDataHolder}{23}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}PacketExternStructs}{23}{subsection.4.8.2}%
+\contentsline {chapter}{\numberline {5}Možnosti rozšírenia}{24}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Ukladanie výstupu do súboru}{24}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Iná vizuálna reprezentácia dát}{24}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Pridávanie nových interpreterov pre descriptory}{24}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Pridanie intepreteru na interrupt tranfser}{24}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Pridanie nových HID zariední}{24}{subsection.5.4.1}%
+\contentsline {section}{\numberline {5.5}Pridanie analýzy pre isochronous a bulk transfer}{24}{section.5.5}%
+\contentsline {section}{\numberline {5.6}?Možnosť rozšírenia na iné platformy?}{24}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Užívateľská dokumentácia}{25}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Inštalácia}{25}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Orientácia v GUI aplikácie}{25}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Používanie aplikácie}{25}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Záver}{26}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Zhrnutie}{26}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Budúce plány}{26}{section.7.2}%
+\contentsline {chapter}{Zoznam použitej literatúry}{27}{chapter*.33}%
+\contentsline {chapter}{Zoznam obr\'azkov}{29}{chapter*.34}%
+\contentsline {chapter}{Zoznam tabuliek}{30}{chapter*.35}%
+\contentsline {chapter}{Seznam použitých zkratek}{31}{chapter*.36}%
+\contentsline {chapter}{Prílohy}{32}{appendix*.37}%
+\contentsline {section}{\numberline {.1}První příloha}{33}{section.Alph0.1}%
