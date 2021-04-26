@@ -122,4 +122,30 @@
   \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture}.
 \newblock [sekcia \uv{HID Clients Supported in Windows}].
 
+\bibitem{libusb}
+{libusb knižnica}.
+\newblock \url{https://libusb.info/}.
+
+\bibitem{hidapi_library}
+{HIDAPI knižnica}.
+\newblock \url{https://github.com/signal11/hidapi}.
+
+\bibitem{moufiltr}
+{Moufiltr -- filter driver}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/samples/microsoft/windows-driver-samples/mouse-input-wdf-filter-driver-moufiltr/}.
+
+\bibitem{kbfiltr}
+{Kbfiltr -- filter driver}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/samples/microsoft/windows-driver-samples/keyboard-input-wdf-filter-driver-kbfiltr/}.
+
+\bibitem{usbpcap}
+{USBPcap sniffer}.
+\newblock \url{https://desowin.org/usbpcap/}.
+
+\bibitem{pcap}
+{Pcap file format}.
+\newblock \url{https://wiki.wireshark.org/Development/LibpcapFileFormat}.
+
 \end{thebibliography}

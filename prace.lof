@@ -1,19 +1,19 @@
 \babel@toc {slovak}{}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {1.1}{\ignorespaces USB topológia vyobrazená v špecifikácii USB 2.0~\cite {usb_topology}.\relax }}{4}{figure.caption.2}%
+\contentsline {figure}{\numberline {1.1}{\ignorespaces USB topológia. Obrázok prevzatý z USB 2.0 špecifikácie~\cite {usb_topology}.\relax }}{4}{figure.caption.2}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Ukážka myší, ktorých input budeme porovnávať\relax }}{6}{figure.caption.4}%
 \contentsline {figure}{\numberline {1.3}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom genius myši.\relax }}{7}{figure.caption.5}%
 \contentsline {figure}{\numberline {1.4}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom logitech myši.\relax }}{7}{figure.caption.6}%
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom genius myši s významom.\relax }}{7}{figure.caption.7}%
 \contentsline {figure}{\numberline {1.6}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom logitech myši s významom.\relax }}{7}{figure.caption.8}%
 \contentsline {figure}{\numberline {1.7}{\ignorespaces Ukážka hexdumpu vo Wiresharku.\relax }}{8}{figure.caption.10}%
-\contentsline {figure}{\numberline {1.8}{\ignorespaces Ukážka hexdumpu so zvýrazneným endpoint deskriptorom.\relax }}{8}{figure.caption.11}%
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Ukážka hexdumpu so zvýrazneným endpoint descriptorom.\relax }}{8}{figure.caption.11}%
 \contentsline {figure}{\numberline {1.9}{\ignorespaces Ukážka hexdumpu s farebným oddelením na základe významu.\relax }}{9}{figure.caption.12}%
 \contentsline {figure}{\numberline {1.10}{\ignorespaces Ukážka reprezentácie dát pomocou stromovej štruktúry.\relax }}{9}{figure.caption.13}%
-\contentsline {figure}{\numberline {1.11}{\ignorespaces Endpoint deskriptor reprezentovaný dátami zvýraznenými na obrázku~\ref {obr:uvod:wireshark_hexdump} vyššie.\relax }}{9}{figure.caption.14}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces Endpoint descriptor reprezentovaný dátami zvýraznenými na obrázku~\ref {obr:uvod:wireshark_hexdump} vyššie.\relax }}{9}{figure.caption.14}%
 \contentsline {figure}{\numberline {1.12}{\ignorespaces Ukážka vyobrazenia jednotlivých bytov.\relax }}{10}{figure.caption.15}%
 \contentsline {figure}{\numberline {1.13}{\ignorespaces Ukážka kliknutia na položku v hexdumpe.\relax }}{10}{figure.caption.16}%
-\contentsline {figure}{\numberline {1.14}{\ignorespaces Ukážka kliknutia na položku \textit {endpoint deskriptoru} v stromovej štruktúre.\relax }}{10}{figure.caption.17}%
+\contentsline {figure}{\numberline {1.14}{\ignorespaces Ukážka kliknutia na položku \textit {endpoint descriptoru} v stromovej štruktúre.\relax }}{10}{figure.caption.17}%
 \contentsline {figure}{\numberline {1.15}{\ignorespaces Príklad obecného vyobrazenia jednotlivých paketov vo Wiresharku.\relax }}{10}{figure.caption.18}%
 \contentsline {figure}{\numberline {1.16}{\ignorespaces Príklad inputu myši vo Wiresharku.\relax }}{11}{figure.caption.19}%
 \contentsline {figure}{\numberline {1.17}{\ignorespaces Ukážka stromovej štruktúry na~zvolenie si zariadenia, s~ktorým bude zachytávaná komunikácia.\relax }}{11}{figure.caption.21}%
