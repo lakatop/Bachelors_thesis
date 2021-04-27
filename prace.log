@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  26 APR 2021 17:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  27 APR 2021 10:40
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -753,7 +753,7 @@ Package caption Info: End \AtBeginDocument code.
 
  (intro/titulka.tex
 Package hyperref Info: Option `pageanchor' set `false' on input line 6.
-<img/logo-cs.pdf, id=302, 506.4591pt x 156.49065pt>
+<img/logo-cs.pdf, id=310, 506.4591pt x 156.49065pt>
 File: img/logo-cs.pdf Graphic file (type pdf)
 <use img/logo-cs.pdf>
 Package pdftex.def Info: img/logo-cs.pdf  used on input line 10.
@@ -829,7 +829,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
  (content/kap01-uvod.tex
 Kapitola 1.
-<img/uvod_usb_topology.png, id=427, 626.34pt x 488.42474pt>
+<img/uvod_usb_topology.png, id=438, 626.34pt x 488.42474pt>
 File: img/uvod_usb_topology.png Graphic file (type png)
 <use img/uvod_usb_topology.png>
 Package pdftex.def Info: img/uvod_usb_topology.png  used on input line 13.
@@ -843,34 +843,34 @@ File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 ]
 [4 <./img/uvod_usb_topology.png>] [5]
-<img/genius_mys.jpg, id=483, 59.2614pt x 101.6598pt>
+<img/genius_mys.jpg, id=493, 59.2614pt x 101.6598pt>
 File: img/genius_mys.jpg Graphic file (type jpg)
 <use img/genius_mys.jpg>
 Package pdftex.def Info: img/genius_mys.jpg  used on input line 77.
 (pdftex.def)             Requested size: 82.51172pt x 141.55179pt.
-<img/logitech_mys.jpg, id=486, 64.5612pt x 112.2594pt>
+<img/logitech_mys.jpg, id=496, 64.5612pt x 112.2594pt>
 File: img/logitech_mys.jpg Graphic file (type jpg)
 <use img/logitech_mys.jpg>
 Package pdftex.def Info: img/logitech_mys.jpg  used on input line 83.
 (pdftex.def)             Requested size: 82.51172pt x 143.48596pt.
-<img/uvod_genius_input.png, id=491, 141.4083pt x 4.5771pt>
+<img/uvod_genius_input.png, id=501, 141.4083pt x 4.5771pt>
 File: img/uvod_genius_input.png Graphic file (type png)
 <use img/uvod_genius_input.png>
 Package pdftex.def Info: img/uvod_genius_input.png  used on input line 95.
 (pdftex.def)             Requested size: 341.43306pt x 11.05156pt.
  [6 <./img/genius_mys.jpg> <./img/logitech_mys.jpg>]
-<img/uvod_logitech_input.png, id=504, 143.0946pt x 8.9133pt>
+<img/uvod_logitech_input.png, id=514, 143.0946pt x 8.9133pt>
 File: img/uvod_logitech_input.png Graphic file (type png)
 <use img/uvod_logitech_input.png>
 Package pdftex.def Info: img/uvod_logitech_input.png  used on input line 102.
 (pdftex.def)             Requested size: 341.43306pt x 21.26775pt.
-<img/uvod_genius_input_vyznam.png, id=507, 141.4083pt x 13.2495pt>
+<img/uvod_genius_input_vyznam.png, id=517, 141.4083pt x 13.2495pt>
 File: img/uvod_genius_input_vyznam.png Graphic file (type png)
 <use img/uvod_genius_input_vyznam.png>
 Package pdftex.def Info: img/uvod_genius_input_vyznam.png  used on input line 1
 28.
 (pdftex.def)             Requested size: 341.43306pt x 31.99147pt.
-<img/uvod_logitech_input_vyznam.png, id=508, 143.0946pt x 15.1767pt>
+<img/uvod_logitech_input_vyznam.png, id=518, 143.0946pt x 15.1767pt>
 File: img/uvod_logitech_input_vyznam.png Graphic file (type png)
 <use img/uvod_logitech_input_vyznam.png>
 Package pdftex.def Info: img/uvod_logitech_input_vyznam.png  used on input line
@@ -878,19 +878,19 @@ Package pdftex.def Info: img/uvod_logitech_input_vyznam.png  used on input line
 (pdftex.def)             Requested size: 341.43306pt x 36.21263pt.
  [7 <./img/uvod_genius_input.png> <./img/uvod_logitech_input.png> <./img/uvod_g
 enius_input_vyznam.png> <./img/uvod_logitech_input_vyznam.png>]
-<img/uvod_wireshark_hexdump.png, id=523, 362.5545pt x 53.60025pt>
+<img/uvod_wireshark_hexdump.png, id=533, 362.5545pt x 53.60025pt>
 File: img/uvod_wireshark_hexdump.png Graphic file (type png)
 <use img/uvod_wireshark_hexdump.png>
 Package pdftex.def Info: img/uvod_wireshark_hexdump.png  used on input line 158
 .
 (pdftex.def)             Requested size: 341.43306pt x 50.48073pt.
-<img/uvod_wireshark_hexdump_endpoint.png, id=525, 361.35pt x 52.998pt>
+<img/uvod_wireshark_hexdump_endpoint.png, id=535, 361.35pt x 52.998pt>
 File: img/uvod_wireshark_hexdump_endpoint.png Graphic file (type png)
 <use img/uvod_wireshark_hexdump_endpoint.png>
 Package pdftex.def Info: img/uvod_wireshark_hexdump_endpoint.png  used on input
  line 170.
 (pdftex.def)             Requested size: 341.43306pt x 50.07689pt.
-<img/uvod_wireshark_data_selection.png, id=527, 361.35pt x 53.60025pt>
+<img/uvod_wireshark_data_selection.png, id=537, 361.35pt x 53.60025pt>
 File: img/uvod_wireshark_data_selection.png Graphic file (type png)
 <use img/uvod_wireshark_data_selection.png>
 Package pdftex.def Info: img/uvod_wireshark_data_selection.png  used on input l
@@ -899,36 +899,36 @@ ine 179.
 
 [8 <./img/uvod_wireshark_hexdump.png> <./img/uvod_wireshark_hexdump_endpoint.pn
 g>]
-<img/uvod_tree_structure.png, id=539, 67.57245pt x 19.87425pt>
+<img/uvod_tree_structure.png, id=549, 67.57245pt x 19.87425pt>
 File: img/uvod_tree_structure.png Graphic file (type png)
 <use img/uvod_tree_structure.png>
 Package pdftex.def Info: img/uvod_tree_structure.png  used on input line 188.
 (pdftex.def)             Requested size: 312.9803pt x 92.06612pt.
-<img/uvod_endpoint.png, id=542, 43.6029pt x 17.46526pt>
+<img/uvod_endpoint.png, id=552, 43.6029pt x 17.46526pt>
 File: img/uvod_endpoint.png Graphic file (type png)
 <use img/uvod_endpoint.png>
 Package pdftex.def Info: img/uvod_endpoint.png  used on input line 197.
 (pdftex.def)             Requested size: 227.62204pt x 91.19347pt.
-<img/uvod_byte_detail.png, id=546, 40.4712pt x 7.227pt>
+<img/uvod_byte_detail.png, id=556, 40.4712pt x 7.227pt>
 File: img/uvod_byte_detail.png Graphic file (type png)
 <use img/uvod_byte_detail.png>
 Package pdftex.def Info: img/uvod_byte_detail.png  used on input line 206.
 (pdftex.def)             Requested size: 227.62204pt x 40.64908pt.
  [9 <./img/uvod_wireshark_data_selection.png> <./img/uvod_tree_structure.png> <
 ./img/uvod_endpoint.png>]
-<img/uvod_wireshark_hexdump_click.png, id=557, 510.10574pt x 110.21175pt>
+<img/uvod_wireshark_hexdump_click.png, id=567, 510.10574pt x 110.21175pt>
 File: img/uvod_wireshark_hexdump_click.png Graphic file (type png)
 <use img/uvod_wireshark_hexdump_click.png>
 Package pdftex.def Info: img/uvod_wireshark_hexdump_click.png  used on input li
 ne 215.
 (pdftex.def)             Requested size: 412.56496pt x 89.13817pt.
-<img/uvod_wireshark_tree_click.png, id=559, 593.8185pt x 40.953pt>
+<img/uvod_wireshark_tree_click.png, id=569, 593.8185pt x 40.953pt>
 File: img/uvod_wireshark_tree_click.png Graphic file (type png)
 <use img/uvod_wireshark_tree_click.png>
 Package pdftex.def Info: img/uvod_wireshark_tree_click.png  used on input line 
 224.
 (pdftex.def)             Requested size: 412.56496pt x 28.45255pt.
-<img/uvod_wireshark_listview.png, id=561, 561.89925pt x 124.0635pt>
+<img/uvod_wireshark_listview.png, id=571, 561.89925pt x 124.0635pt>
 File: img/uvod_wireshark_listview.png Graphic file (type png)
 <use img/uvod_wireshark_listview.png>
 Package pdftex.def Info: img/uvod_wireshark_listview.png  used on input line 23
@@ -936,45 +936,45 @@ Package pdftex.def Info: img/uvod_wireshark_listview.png  used on input line 23
 (pdftex.def)             Requested size: 412.56496pt x 91.09375pt.
  [10 <./img/uvod_byte_detail.png> <./img/uvod_wireshark_hexdump_click.png> <./i
 mg/uvod_wireshark_tree_click.png> <./img/uvod_wireshark_listview.png>]
-<img/uvod_wireshark_input.png, id=575, 361.35pt x 74.679pt>
+<img/uvod_wireshark_input.png, id=585, 361.35pt x 74.679pt>
 File: img/uvod_wireshark_input.png Graphic file (type png)
 <use img/uvod_wireshark_input.png>
 Package pdftex.def Info: img/uvod_wireshark_input.png  used on input line 244.
 (pdftex.def)             Requested size: 341.43306pt x 70.5629pt.
-<img/uvod_hhd_treeview.png, id=577, 184.89075pt x 195.129pt>
+<img/uvod_hhd_treeview.png, id=587, 184.89075pt x 195.129pt>
 File: img/uvod_hhd_treeview.png Graphic file (type png)
 <use img/uvod_hhd_treeview.png>
 Package pdftex.def Info: img/uvod_hhd_treeview.png  used on input line 257.
 (pdftex.def)             Requested size: 184.89027pt x 195.12851pt.
-<img/uvod_hhd_hexdump.png, id=579, 316.7835pt x 43.362pt>
+<img/uvod_hhd_hexdump.png, id=589, 316.7835pt x 43.362pt>
 File: img/uvod_hhd_hexdump.png Graphic file (type png)
 <use img/uvod_hhd_hexdump.png>
 Package pdftex.def Info: img/uvod_hhd_hexdump.png  used on input line 267.
 (pdftex.def)             Requested size: 341.43306pt x 46.73563pt.
  [11 <./img/uvod_wireshark_input.png> <./img/uvod_hhd_treeview.png>]
-<img/uvod_hhd_analyza.png, id=590, 616.704pt x 72.87225pt>
+<img/uvod_hhd_analyza.png, id=600, 616.704pt x 72.87225pt>
 File: img/uvod_hhd_analyza.png Graphic file (type png)
 <use img/uvod_hhd_analyza.png>
 Package pdftex.def Info: img/uvod_hhd_analyza.png  used on input line 277.
 (pdftex.def)             Requested size: 412.56496pt x 48.75076pt.
-<img/uvod_hhd_urb.png, id=592, 230.3004pt x 56.1297pt>
+<img/uvod_hhd_urb.png, id=602, 230.3004pt x 56.1297pt>
 File: img/uvod_hhd_urb.png Graphic file (type png)
 <use img/uvod_hhd_urb.png>
 Package pdftex.def Info: img/uvod_hhd_urb.png  used on input line 287.
 (pdftex.def)             Requested size: 412.56496pt x 100.55972pt.
-<img/uvod_hhd_input.png, id=594, 510.708pt x 78.2925pt>
+<img/uvod_hhd_input.png, id=604, 510.708pt x 78.2925pt>
 File: img/uvod_hhd_input.png Graphic file (type png)
 <use img/uvod_hhd_input.png>
 Package pdftex.def Info: img/uvod_hhd_input.png  used on input line 298.
 (pdftex.def)             Requested size: 412.56496pt x 63.24931pt.
-<img/uvod_hhd_listview.png, id=596, 529.98pt x 125.87025pt>
+<img/uvod_hhd_listview.png, id=606, 529.98pt x 125.87025pt>
 File: img/uvod_hhd_listview.png Graphic file (type png)
 <use img/uvod_hhd_listview.png>
 Package pdftex.def Info: img/uvod_hhd_listview.png  used on input line 307.
 (pdftex.def)             Requested size: 412.56496pt x 97.9844pt.
  [12 <./img/uvod_hhd_hexdump.png> <./img/uvod_hhd_analyza.png> <./img/uvod_hhd_
 urb.png> <./img/uvod_hhd_input.png>]
-<img/uvod_hhd_interface.png, id=608, 634.16925pt x 81.906pt>
+<img/uvod_hhd_interface.png, id=618, 634.16925pt x 81.906pt>
 File: img/uvod_hhd_interface.png Graphic file (type png)
 <use img/uvod_hhd_interface.png>
 Package pdftex.def Info: img/uvod_hhd_interface.png  used on input line 318.
@@ -1090,12 +1090,73 @@ Kapitola 3.
 
 
 ]
-<img/kap3_access_mode.png, id=668, 556.479pt x 203.5605pt>
+<img/kap3_access_mode.png, id=678, 556.479pt x 203.5605pt>
 File: img/kap3_access_mode.png Graphic file (type png)
 <use img/kap3_access_mode.png>
 Package pdftex.def Info: img/kap3_access_mode.png  used on input line 29.
 (pdftex.def)             Requested size: 412.56496pt x 150.91817pt.
- [19 <./img/kap3_access_mode.png>] [20]) [21]
+ [19 <./img/kap3_access_mode.png>]
+Overfull \hbox (3.72778pt too wide) in paragraph at lines 59--61
+[]\T1/lmr/m/n/12 Celková ²truk-túra Re-port Desc-rip-toru je opí-saná v HID Cla
+ss Spe-ci-fi-ca-tion [[]].|
+ []
+
+[20]
+Overfull \hbox (43.68869pt too wide) in paragraph at lines 73--74
+[]\T1/lmr/m/n/12 Collection -- udáva akúsi lo-gickú ko-lek-ciu/zoskupenie rôz-n
+ych In-put/Output/Feature|
+ []
+
+<img/kap03_full_report_desc.png, id=712, 63.95895pt x 98.769pt>
+File: img/kap03_full_report_desc.png Graphic file (type png)
+<use img/kap03_full_report_desc.png>
+Package pdftex.def Info: img/kap03_full_report_desc.png  used on input line 89.
+
+(pdftex.def)             Requested size: 284.52756pt x 439.52962pt.
+[21]
+<img/kap03_report_desc_collection.png, id=723, 319.79475pt x 93.951pt>
+File: img/kap03_report_desc_collection.png Graphic file (type png)
+<use img/kap03_report_desc_collection.png>
+Package pdftex.def Info: img/kap03_report_desc_collection.png  used on input li
+ne 100.
+(pdftex.def)             Requested size: 284.52756pt x 83.59319pt.
+ [22 <./img/kap03_full_report_desc.png> <./img/kap03_report_desc_collection.png
+>]
+<img/kap03_report_desc_buttons.png, id=732, 319.79475pt x 212.59425pt>
+File: img/kap03_report_desc_buttons.png Graphic file (type png)
+<use img/kap03_report_desc_buttons.png>
+Package pdftex.def Info: img/kap03_report_desc_buttons.png  used on input line 
+109.
+(pdftex.def)             Requested size: 284.52756pt x 189.15637pt.
+<img/kap03_report_desc_axis.png, id=734, 319.79475pt x 154.176pt>
+File: img/kap03_report_desc_axis.png Graphic file (type png)
+<use img/kap03_report_desc_axis.png>
+Package pdftex.def Info: img/kap03_report_desc_axis.png  used on input line 118
+.
+(pdftex.def)             Requested size: 284.52756pt x 137.17854pt.
+<img/kap03_report_desc_end.png, id=736, 319.79475pt x 34.9305pt>
+File: img/kap03_report_desc_end.png Graphic file (type png)
+<use img/kap03_report_desc_end.png>
+Package pdftex.def Info: img/kap03_report_desc_end.png  used on input line 127.
+
+(pdftex.def)             Requested size: 284.52756pt x 31.0795pt.
+ [23 <./img/kap03_report_desc_buttons.png> <./img/kap03_report_desc_axis.png>]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <14.4> on input line 136.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 136.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 136.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 136.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 136.
+
+[24 <./img/kap03_report_desc_end.png>]) [25]
 \openout2 = `content/kap05-vyvojova_dokumentacia.aux'.
 
 
@@ -1107,12 +1168,12 @@ Overfull \hbox (6.32361pt too wide) in paragraph at lines 18--19
 astne ide(konkretny|
  []
 
-[22
+[26
 
 
 
 
-] [23]) [24]
+] [27]) [28]
 \openout2 = `content/kap06-moznosti_rozsirenia.aux'.
 
  (content/kap06-moznosti_rozsirenia.tex
@@ -1128,7 +1189,7 @@ Overfull \hbox (16.92982pt too wide) in paragraph at lines 13--13
 []\T1/lmr/bx/n/17.28 Pridanie ana-lýzy pre isoch-ro-nous a bulk trans-|
  []
 
-) [25
+) [29
 
 
 
@@ -1138,7 +1199,7 @@ Overfull \hbox (16.92982pt too wide) in paragraph at lines 13--13
 
  (content/kap07-uzivatelska_dokumentacia.tex
 Kapitola 6.
-) [26
+) [30
 
 
 
@@ -1148,7 +1209,7 @@ Kapitola 6.
 
  (content/kap08-zaver.tex
 Kapitola 7.
-) [27
+) [31
 
 
 
@@ -1209,7 +1270,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--89
 s : / / www . usb . org /
  []
 
-[28
+[32
 
 
 
@@ -1297,7 +1358,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 148--150
 shark . org / Development /
  []
 
-)) [29] (prace.lof
+[33])) [34] (prace.lof
 Overfull \hbox (6.79913pt too wide) in paragraph at lines 16--16
  [][] [][]\T1/lmr/m/n/12 Ukáºka klik-nu-tia na po-loºku \T1/lmr/m/it/12 end-po-
 int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
@@ -1307,7 +1368,7 @@ int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
 \tf@lof=\write7
 \openout7 = `prace.lof'.
 
- [30
+ [35
 
 
 
@@ -1315,17 +1376,17 @@ int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
 \tf@lot=\write8
 \openout8 = `prace.lot'.
 
- [31
+ [36
 
-] [32
+] [37
 
 ]
 \openout2 = `outro/prilohy.aux'.
 
- (outro/prilohy.tex) [33
+ (outro/prilohy.tex) [38
 
 
-] [34
+] [39
 
 
 ] (prace.aux
@@ -1336,19 +1397,19 @@ int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
 (content/kap07-uzivatelska_dokumentacia.aux) (content/kap08-zaver.aux)
 (outro/literatura.aux) (outro/prilohy.aux))
 Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: 85E03A6412F730CEA2270A8330116854;11479.
+(rerunfilecheck)             Checksum: 1226600BE1B76B6B1936E8B19ED817F0;11813.
  ) 
 Here is how much of TeX's memory you used:
- 17720 strings out of 479334
- 268516 string characters out of 2857084
- 576904 words of memory out of 3000000
- 34534 multiletter control sequences out of 15000+200000
- 469039 words of font info for 68 fonts, out of 3000000 for 9000
+ 17825 strings out of 479334
+ 270855 string characters out of 2857084
+ 580498 words of memory out of 3000000
+ 34612 multiletter control sequences out of 15000+200000
+ 491896 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,8n,90p,1651b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C
-:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}{C
-:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}<C:/U
+:/Users/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc}{C:/U
+sers/lakat/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.enc}<C:/U
 sers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbx12.pfb><C:/U
 sers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmbxi10.pfb><C:/
 Users/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr10.pfb><C:/U
@@ -1357,9 +1418,9 @@ ers/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr17.pfb><C:/Use
 rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Use
 rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Use
 rs/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on prace.pdf (39 pages, 987131 bytes).
+Output written on prace.pdf (44 pages, 1261816 bytes).
 PDF statistics:
- 937 PDF objects out of 1000 (max. 8388607)
- 195 named destinations out of 1000 (max. 500000)
- 735 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1014 PDF objects out of 1200 (max. 8388607)
+ 210 named destinations out of 1000 (max. 500000)
+ 776 words of extra memory for PDF output out of 10000 (max. 10000000)
 

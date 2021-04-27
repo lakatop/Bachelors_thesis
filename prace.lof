@@ -26,6 +26,11 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Tabuľka zariadenía ich \textit {Access Mode}. Zariadenia postupne po riadkoch -- myš, joystick a klávesnica\relax }}{19}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Konkrétny príklad Report Descriptoru myši prevzatý z HID Class Specification~\cite {report_desc_mouse}\relax }}{22}{figure.caption.29}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Časť Report Descriptoru reprezentujúca jednotlivé kolekcie\relax }}{22}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Časť Report Descriptoru reprezentujúca tlačidlá myši\relax }}{23}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou\relax }}{23}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Časť Report Descriptoru reprezentujúca ukončenie jednotlivých kolekcií\relax }}{24}{figure.caption.33}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

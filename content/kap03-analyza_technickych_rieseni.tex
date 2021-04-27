@@ -52,18 +52,99 @@ Miernou nevýhodou je, že nepodporuje čítanie zo súboru do ktorého práve z
 
 
 
-\section{Sémantická reprezentácia dát}
+\section{Sémantická analýza dát}
 Ako sme už naznačili v kapitole~\ref{uvod:sec:HID}, na vykonanie sémantickej analýzy inputu HID zariadenia je potrebné získať informácie o danom inpute z Report Descriptoru konkrétneho zariadenia. V tejto kapitole si vysvetlíme formát Report Descriptoru a ako nám informácie ktoré reprezentuje pomôžu v sémantickej analýze inputu HID zariadenia.
 
+\subsection{Report Descriptor}
+Celková štruktúra Report Descriptoru je opísaná v HID Class Specification~\cite{report_desc}. Descriptor sa skladá z tzv. itemov, ktoré obsahujú informácie o danom zariadení. Každý item obsahuje hlavičku, ktorá sa skladá z troch častí:
+\begin{itemize}
+\item Typ
+\item Tag
+\item Veľkosť
+\end{itemize}
 
-ako si z dat vytiahnut udaje ktore su potom pouzite na semanticku analyzu implementovanych HID zariadeni : HID Report parser, InputValues a EndpointDevice struct.
-Nasledne sparovanie - ako vybrat spravny report pre konkretny input
+Existujú 3 typy itemov : \textit{Main}, \textit{Global} a \textit{Local}. Main item udáva informácie o konkrétnej časti zariadenia (napríklad o tlačidlách na klávesnici, alebo o hodnotách osy X a Y pri pohybe myšou, atď.) Global a Local itemy bližšie špecifikujú Main item (napríklad počet bytov, ktorý je potrebný na reprezentovanie jednotlivých súradníc pri pohybe myšou). Local item určuje vlastnosti len najbližšieho Main itemu, zatiaľ čo Global item je platný pre všetky nasledujúce Main itemy.
 
-\section{Spracovávanie pcap súborov}
-moznosti ako citat pcap subory : bud pouzit uz existujucu kniznicu : na linuxe Libpcap, windows NPcap(deprecated WinPcap), alebo citat subory manualne : std::istream alebo QFile
+Main item má momentálne definovaných 5 tagov:
+\begin{itemize}
+\item Input -- udáva informácie o inpute zariadenia. Toto je veľmi podstatná časť, pretože práve na základe tohto itemu vieme, že v inpute zariadenia máme očakávať byty reprezentujúce konkrétnu časť zariadenia (bližšie informácie o konkrétnej časti inputu, ako napríklad veľkosť a význam, sú poskytnuté Global a Local itemami pred týmto konkrétnym Input itemom)
+\item Output -- podobný význam ako Input item, ale reprezentuje dáta, ktoré sú posielané zariadeniu (napríklad nastavenie LED svetiel na klávesnici)
+\item Feature -- itemy ktoré môžu byť posielané ako input aj output a využívajú sa napríklad na kalibráciu konkrétneho zariadenia.
+\item Collection -- udáva akúsi logickú kolekciu/zoskupenie rôznych Input/Output/Feature itemov. Napríklad kolekcia myši by mohla obsahovať Input itemy reprezentujúce tlačidlá a súradnice pohybu myši.
+\item End Collection -- udáva koniec kolekcie Collection itemu.
+\end{itemize}
+
+Vysvetlíme si ešte zopár hlavných Local/Global tagov, ktoré budeme potrebovať aby sme pochopili Report Descriptor:
+\begin{itemize}
+\item Usage -- reprezentuje odporúčaný význam dát (napríklad, že sa jedná o tlačidlo, osy X/Y/Z, atď.), ale každý výrobca si ho môže definovať po svojom.
+\item Usage Page -- zoskupenie jednotlivých Usage-ov do rôznych tried (napríklad Generic Desktop Page, Keyboard Page, LED Page, atď.). Kompletný výpis je dostupný v HID Usage Tables špecifikácii~\cite{usage_pages}. To znamená, že Usage s hodnotou 0x00 môže mať iný význam v Generic Desktop Page ako v Keyboard Page.
+\item Report Size a Report Count -- reprezentujú veľkosť dát. Napríklad ak je Report Size = 8 a Report Count = 1, dáta budú reprezentované jednou 8-bitovou hodnotou, takže 1 byte.
+\item Logical Minimum a Logical Maximum -- označujú rozsah hodnôt aké môžu dáta nadobúdať.
+\end{itemize}
+
+Momentálne keď už máme celkový prehľad o základných itemoch, môžeme si ukázať parsovanie Report Descriptoru na konkrétnom príklade. Na obrázku~\ref{obr:kap3:full_report_desc} môžeme vidieť konkrétny Report Descriptor prevzatý z HID Class Specification~\cite{report_desc_mouse}, reprezentujúci myš. Ten si teraz postupne rozoberieme.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=10cm]{img/kap03_full_report_desc}
+	\caption{Konkrétny príklad Report Descriptoru myši prevzatý z HID Class Specification~\cite{report_desc_mouse}}
+	\label{obr:kap3:full_report_desc}
+\end{figure}
+
+\newpage
+
+Z prvej časti (obrázok~\ref{obr:kap3:report_desc_collection}) si môžeme všimnúť, že sa celý Report Descriptor delí do logických kolekcíí -- najprv \textit{Application} a potom \textit{Physical}. Dôležitá je takisto Usage informácia, kde je hneď na začiatku ohraničená Usage Page na \textit{Generic Desktop} a samotný \textit{Usage (Mouse)} nám bližšie špecifikuje, že sa jedná o myš.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=10cm]{img/kap03_report_desc_collection}
+	\caption{Časť Report Descriptoru reprezentujúca jednotlivé kolekcie}
+	\label{obr:kap3:report_desc_collection}
+\end{figure}
+
+Na obrázku~\ref{obr:kap3:report_desc_buttons} vidíme ďalšiu časť descriptoru, ktorá reprezentuje tlačidlá myši -- to sme vyčítali z časti \textit{Usage (Buttons)}. Nasledujúce časti \textit{Report Count (3)} a \textit{Report Size (1)} nám naznačujú, že veľkosť istej podmnožiny dát budú tri 1-bitové hodnoty. Ďalej z hodnôt \textit{Logical Minimum (0)} a \textit{Logical Maximum (1)} vidíme že budú nabývať hodnoty medzi 0 a 1. Nasleduje Input item s hodnotami \textit{Data}, \textit{Variable} a \textit{Absolute} -- tie nám udávajú, že sa jedná o input zariadenia, ktorý bude modifikovateľný (hodnota \textit{Data}), budú to 3 jednotlivé 1-bitové položky (hodnota \textit{Variable}) a hodnota dát nie je relatívna voči inej hodnote (položka \textit{Absolute}). Ďalej vidíme časti \textit{Report Count (1)}, \textit{Report Size (5)} a \textit{Input (Constant)} -- Takže v inpute bude nasledovať časť o veľkosti 5 bitov, ktorá bude mať konštantnú readonly hodnotu (toto v myši väčšinou reprezentuje padding tlačidiel).
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=10cm]{img/kap03_report_desc_buttons}
+	\caption{Časť Report Descriptoru reprezentujúca tlačidlá myši}
+	\label{obr:kap3:report_desc_buttons}
+\end{figure}
+
+Z nasledujúcej časti (obrázok~\ref{obr:kap3:report_desc_axis}) vidíme, že sa bude jednať o dve 8-bitové hodnoty (položky \textit{Report Size (8)} a \textit{Report Count (2)}). Následne prepneme Usage Page z \textit{Buttons} na \textit{Generic Desktop} a definujeme 2 Usage pre \textit{X} a \textit{Y} -- tie v myši reprezentujú jednotlivé osy pohybu. Ďalej vidíme, že môžu nadobúdať hodnoty od -127 do 127 (položky \textit{Logical Minimum (-127)} a \textit{Logical Maximum (127)}) čo presne odpovedá rozsahu jedného znamienkového bytu.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=10cm]{img/kap03_report_desc_axis}
+	\caption{Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou}
+	\label{obr:kap3:report_desc_axis}
+\end{figure}
+
+Na poslednom obrázku~\ref{obr:kap3:report_desc_end} už len vidíme ukončenie kolekcií, tak ako aj celého Report Descriptoru.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=10cm]{img/kap03_report_desc_end}
+	\caption{Časť Report Descriptoru reprezentujúca ukončenie jednotlivých kolekcií}
+	\label{obr:kap3:report_desc_end}
+\end{figure}
+
+V konečnom dôsledku nám z toho teda vychádza, že input našej myši bude mať veľkosť 3 byty (sčítanie všetkých \textit{Report Size} * \textit{Report Count}), kde prvé 3 bity budú reprezentovať stlačenie tlačidiel, nasledujúcich 5 bitov bude výplň a posledné 2 byty reprezentujú osy X a Y v tomto poradí. Toto reprezentuje jeden input report nášho zariadenia na jeho konkrétnom endpointe. Jeden endpoint ale môže obsahovať viac reportov (či už input, output alebo feature). V takom prípade musia byť jednotlivé reporty prefixované 1B hodnotou, ktorú nazývame \textit{Report ID} a ktorá musí byť uvedená v Report Descriptore pri jednotlivých reportoch v podobe \textit{Report ID} itemu. Ako príklad niečoho takého si môžeme predstaviť klávesnicu so zabudovaným zariadením s funkciou myši. Takáto klávesnica môže posielať informácie o stlačení kláves tak ako aj o pohybe myši v jednom endpointe. Na rozlíšenie o ktoré dáta sa jedná by sa použil Report ID.
+
+Ostáva nám ešte jedna možnosť, ktorú sme doteraz nespomenuli -- ako priradiť Report Descriptor k jednotlivým reportom pokiaľ ich zariadenie posiela z viacerých endpointov. To si vysvetlíme v nasledujúcej sekcii.
+
+\subsection{Report Descriptor $\longleftrightarrow$ endpoint}
+Ako už vieme z kapitoly (ODKAZ), jedno USB zariadenie môže pozostávať z viacerých interfacov. Každý interface má dané endpointy, ktoré sa s ním viažu. Pri komunikácii medzi USB hostom a zariadením si z hlavičky jednotlivých paketov vieme vytiahnuť informáciu do ktorého endpointu zapisujeme, resp. z ktorého endpointu čítame dáta. Takže v prípade reportu poslaného zariadením vieme zistiť k akému endpointu sa viaže. Hodilo by sa nám teda vedieť k jednotlivým endpointom priradiť im odpovedajúci Report Descriptor. Túto informáciu máme nepriamo poskytnutú v Setup Pakete, ktorý posiela USB host v momente keď si od zariadenia vypýta jeho Report Descriptor. Špecifikuje v ňom totiž položku \textit{wInterfaceNumber}, ktorá udáva číslo interfacu pre ktorý si USB host vypýtal Report Descriptor. Teraz nám už len stačí zistiť aké endpointy sa na daný interface viažu -- túto informáciu sme zíkali vyššie v konfigurácii keď si USB host vypýtal od zariadenia Configuration Descriptor a spolu s ním dostal aj Interface Descriptor a jemu odpovedajúce Endpoint Descriptory.
+
+
+
 \section{Voľba frameworku}
 obecne co by som od toho GUI priblizne chcel, potom opisat preco som si vybral prave Qt a v nasledujucich kapitolach opisat rozhodnutia uz v Qt
 dovod preco som si zvolil qt namiesto inych c++ GUI frameworkov(napriklad sfml)
+
+
+\section{Spracovávanie pcap súborov}
+moznosti ako citat pcap subory : bud pouzit uz existujucu kniznicu : na linuxe Libpcap, windows NPcap(deprecated WinPcap), alebo citat subory manualne : std::istream alebo QFile
 \section{Zobrazenie základných informácií}
 ako zobrazovat zakladne info o packete : pouzit QListWidget alebo QTableWidget (pripadne nieco ine ako nejaky abstract viewmodel), narok na zakladne funkcionality : lahka rozsiritenlnost o dalsie ''stlpceky'' , moznost jednoduchej interakcie(doubleClick na polozku). Mat vsetky info na jednom okne / mat pop-up okna. Farebne oddelenie.
 \section{Zobrazenie sémantického významu dát}
