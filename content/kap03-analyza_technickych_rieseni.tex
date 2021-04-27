@@ -46,6 +46,7 @@ Windows ponúka niekoľko vstavaných driverov pre rôzne typy zariadení. Stač
 Riešením by teda bolo naprogramovanie vlastného filter driveru pre myš a klávesnicu. Toto je ale už nad rámec našej práce a preto na získavanie USB paketov použijeme inú third-party aplikáciu.
 
 \subsection{Third-party aplikácie}
+\label{kap03:third_party}
 Na zachytávanie USB paketov sme sa rozhodli použiť \textit{USBPcap}~\cite{usbpcap}, s ktorým sme sa už stretli v kapitole~\ref{uvod:sec:Wireshark} keď sme opisovali Wireshark a rôzne sniffery, s ktorými je schopný spolupracovať. USBPcap je veľmi rozšírený Windows sniffer USB paketov a jeho hlavnou výhodou je jednoduchá inštalácia. Takisto nám vyhovuje, že je s ním schopný spolupracovať Wireshark, čo nám častokrát počas vývoja poskytlo spôsob akým sme si mohli overiť správnosť nami vykonanej analýzy niektorých paketov. Daný sniffer zachytáva pakety do súborov v obecne známom formáte -- pcap~\cite{pcap}. 
 
 Miernou nevýhodou je, že nepodporuje čítanie zo súboru do ktorého práve zapisuje -- analýzu paketov v reálnom čase tak budeme musieť vykonať trochu iným spôsobom, a to za pomoci Wiresharku. Ako sme už spomínali, Wireshark je schopný spolupráce s USBPcapom a zároveň podporuje ukladať výstup analýzy do súboru, ktorý je takisto formátu pcap. Wireshark už ale podporuje čítanie z daného súboru počas toho, ako do neho zapisuje. To znamená, že ak budeme chcieť vykonať analýzu v reálnom čase, urobíme to pomocou Wiresharku (konkrétnejší postup si ukážeme neskôr v užívateľskej dokumentácii v kapitole~\ref{udok:chap}).
@@ -139,14 +140,86 @@ Ako už vieme z kapitoly (ODKAZ), jedno USB zariadenie môže pozostávať z via
 
 
 \section{Voľba frameworku}
+Pre jazyk C++ existuje hneď niekoľko známych GUI frameworkov nad ktorými sme uvažovali, ako napríklad \textit{Dear ImGui}, \textit{SFML} a \textit{Qt}. 
+
+
 obecne co by som od toho GUI priblizne chcel, potom opisat preco som si vybral prave Qt a v nasledujucich kapitolach opisat rozhodnutia uz v Qt
 dovod preco som si zvolil qt namiesto inych c++ GUI frameworkov(napriklad sfml)
 
 
 \section{Spracovávanie pcap súborov}
-moznosti ako citat pcap subory : bud pouzit uz existujucu kniznicu : na linuxe Libpcap, windows NPcap(deprecated WinPcap), alebo citat subory manualne : std::istream alebo QFile
+Pcap je obecne známy formát súboru so špecifickým zameraním -- ukladanie dát, ktoré majú reprezentovať pakety. Existuje niekoľko spôsobov ako daný súbor spracovať:
+
+\subsection*{Npcap API}
+Npcap~\cite{npcap} je Windows knižnica na zachytávanie sieťových paketov, ktorá poskytuje Npcap API~\cite{npcap_api}. Pomocou tohto API sme schopní spracovávať pcap súbory. Schopnosť Npcap zachytávať pakety je nám zbytočná -- jednak pretože na to využívame USBPcap a navyše Npcap je schopný zachytiť iba sieťové pakety. Jej API by nám ale mohlo zjednodušiť čítanie nami zachytených pcap súborov. Pomocou volania \textit{pcap\_open\_offline()} získame handle pomocou ktorého môžeme neskôr čítať jednotlivé pakety volaním funkcie \textit{pcap\_next()}, ktorá nám vráti pointer na dáta samotného paketu. Použitie je skutočne jednoduché, má to ale aj svoje nevýhody.
+
+Za prvú nevýhodu môžeme brať nutnosť pridávať do projektu ďalšie knižnice -- čo zahŕňa inštaláciu Npcap, linkovanie dll súborov do nášho projektu a celkovú integráciu nášho projektu s knižnicou. Zároveň tým vytvárame akúsi závislosť nášho projektu na Npcap knižnici. Čo ale môžeme považovať za najväčšiu nevýhodu je fakt, že použitím tejto knižnice úzko viažeme náš program na platformu Windows. Windows je síce platforma na ktorú hlavne cielime, ale zároveň môžeme uvažovať nad neskôrším rozšírením na iné platformy. V takom prípade by sme museli prepísať dôležitú časť nášho kódu, ktorá by zahŕňala spracovanie pcap súborov a oddelenie dát jednotlivých paketov.
+
+Keď sa bližšie pozrieme na formát pcap súboru, zistíme, že vôbec nie je zložitý. Celý súbor obsahuje globálnu hlavičku a dáta jednotlivých paketov sú prefixované lokálnymi hlavičkami. Preto spracovanie jednotlivých súborov nie je náročné a môžeme na to použiť bežné spôsoby.
+
+\subsection*{QFile}
+Bežný prístup k čítaniu súborov v C++ by bolo použitie \textit{std::ifstream}~\cite{std_ifstream}, keďže ale používame Qt framework, máme k dispozícii triedu \textit{QFile}~\cite{qfile}. QFile ponúka jednoduché API vďaka ktorému môžeme postupne spracovávať pcap súbor.
+Ako sme už spomínali vyššie v kapitole~\ref{kap03:third_party}, na analýzu paketov v reálnom čase používame ukladanie do súboru pomocou Wiresharku. QFile API nám umožňuje tento súbor postupne spracovávať a tým pádom sme splnili požiadavky~\ref{uvod:poz:analyza}~a~\ref{uvod:poz:analyza_real_time} ohľadom čítania súborov, ktoré sme si na začiatku stanovili.
+
+\section{Uchovávanie informácií}
+Počas spracovávania pcap súborov máme k dispozícii dáta popisujúce jednotlivé pakety. Tie si musíme nejakým spôsobom zareprezentovať a ukladať, aby sme ich mohli neskôr analyzovať a vyobraziť. V tejto sekcii si rozoberieme niekoľko možných riešení.
+
+\subsection*{char[]}
+Metóda \textit{read(char*, qint64)} pomocou ktorej čítame zo súboru špecifikuje prvým parametrom miesto do ktorého sa majú zapísať prečítané dáta a druhým parametrom akú veľkosť dát chceme prečítať. Musíme si teda dopredu pripraviť buffer do ktorého budeme zapisovať. Keďže konkrétnu veľkosť jednotlivých paketov nepoznáme, budeme musieť buffer dynamicky alokovať na halde. Na to existujú 2 hlavné spôsoby ako niečo také dosiahnuť:
+\begin{itemize}
+\item Pomocou \textit{new char[paket\_size]} -- tento spôsob by sa dal v dnešnom C++ považovať za zastaralý a nebezpečný. Je nutné pečlivo sledovať životnosť takto alokovanej pamäte, musíme si na ňu držať odkaz a keď už ju nebudeme potrebovať, je potrebné na nej zavolať delete aby nám nevznikali žiadne memory leaky.
+\item Pomocou \textit{std::unique\_ptr\textless char[]\textgreater} -- tento spôsob je určite lepší ako ten predchádzajúci, pretože nám odpadá starosť o memory leaky. Na druhú stranu tu vzniká menší problém z uskladnením alebo s predávaním dát po programe v podobe parametru. Museli by sme sa starať o to, kto je vlastníkom daného objektu a či je ešte korektné ho používať.
+\end{itemize}
+
+Skúsime sa pozrieť na to, čo nám ponúka samotné Qt.
+
+\subsection*{QByteArray}
+\label{kap03:sec:uch_dat:qbytearray}
+V riešení nám zase pomôže koncept dostupný v Qt -- \textit{QByteArray}~\cite{qbytearray}. QByteArray je classa ktorá slúži práve na uchovávanie bytov alebo '\\0'-terminated stringov. Navyše sú uložené dáta copy-on-write takže ušetríme pamäť a zbytočné kopírovanie dát. Obsahuje metódy ako \textit{resize(int)} (zmení veľkosť daného poľa) alebo \textit{data()} (vráti char* na začiatok poľa). O životnosť objektu sa nemusíme obávať, pretože Qt používa vlastný reference counting systém, ktorým sa stará o všetky zdieľané objekty medzi ktoré patrí aj QByteArray. O ukladaní dát sa budeme bližšie baviť v sekcii~\ref{kap03:sec:zobr_zakl} nižšie. Aby sme to ale pochopili, vysvetlíme si tu ešte jeden koncept Qt, ktorý neskôr využijeme spolu s QByteArray pri ukladaní dát -- \textit{QVariant}~\cite{qvariant}. QVariant je trieda, ktorá sa správa ako union pre väčšinu základných Qt datových typov. Podstatné je, že si doňho vieme zabaliť náš konkrétny QByteArray a neskôr ho odtiaľ získať zavolaním metódy \textit{toByteArray()}.
+
 \section{Zobrazenie základných informácií}
-ako zobrazovat zakladne info o packete : pouzit QListWidget alebo QTableWidget (pripadne nieco ine ako nejaky abstract viewmodel), narok na zakladne funkcionality : lahka rozsiritenlnost o dalsie ''stlpceky'' , moznost jednoduchej interakcie(doubleClick na polozku). Mat vsetky info na jednom okne / mat pop-up okna. Farebne oddelenie.
+\label{kap03:sec:zobr_zakl}
+V požiadavke~\ref{uvod:poz:zobrazenie_paketov} sme si zadefinovali aby aplikácia na prvý pohľad zobrazia len základné údaje o pakete, a detailnejšie informácie by mali byť podľa požiadavky~\ref{uvod:poz:paket_detail} zobrazené až po interakcii užívateľa. Pravdepodobne najintutívnejšia interakcia užívateľa ak chce zobraziť detailnejšie informácie je pomocou dvojkliku na konkrétnu položku. Zobrazenie základných informácií by malo byť podobné tým, aké sme mali možnosť vidieť u Wiresharku a Device Monitoring Studia v kapitole~\ref{uvod:sec:existujuce_aplikacie}. Qt nám poskytuje 2 základné classy pomocou ktorých budeme schopní dosiahnuť podobného vzhľadu.
+
+\subsection{QListWidget}
+QListWidget~\cite{qlistwidget} poskytuje vzhľad na základe view classy QListView~\cite{qlistview} a jednotlivé položky sú reprezentované pomocou itemu QListWidgetItem~\cite{qlistwidgetitem}. Pomocou QListWidget sme boli schopní dosiahnuť výsledku ukázaného na obrázku~\ref{obr:kap3:ListViewLook}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap03_ListViewLook}
+	\caption{Vyobrazenie základných informácií o pakete pomocou QListWidget}
+	\label{obr:kap3:ListViewLook}
+\end{figure}
+
+QListWidget zároveň podporuje signal \textit{itemDoubleClicked(QListWidgetItem*)}, ktorý má ako parameter konkrétny QListWidgetItem na ktorý užívateľ dvojklikol. Keďže chceme po dvojkliku zobraziť detailnejšie informácie o danom pakete, musíme si ich najprv niekde uschovať a následne sa k nim vedieť ľahko dostať. Tu prichádza výhoda použitia QListWidgetItem -- ten je totiž schopný si v sebe uchovať dáta v podobe QVariantu. To nám úplne vyhovuje, pretože ako sme už spomínali vyššie v sekcii~\ref{kap03:sec:uch_dat:qbytearray}, dáta si uchovávame práve v QByteArray, ktorý sme schopný zabaliť do QVariantu. Uloženie konkrétneho QVariantu je vykonané pomocou metódy \textit{setData(int role, const QVariant \&value)} -- role môže byť podľa Qt dokumentácie~\cite{qitemdatarole} hodnota 256 a vyššie, druhý parameter je práve QVariant, ktorý chceme uložiť. Odkázaním sa na rovnakú \textit{role} hodnotu v metóde \textit{data(int role)} dostaneme ako návratovú hodnotu QVariant ktorý sme si vyššie uložili. Ďalšou výhodou je, že jeden riadok reprezentuje práve jeden QListWidgetItem, takže presne vieme v ktorom iteme máme uložené dáta.
+
+Nevýhody sú naopak nepraktické rozšírenie o ďalšie stĺpčeky. Tým, že jeden riadok je práve jeden item, stĺpčeky sú tu len akási ilúzia, pretože všetky informácie ktoré môžeme vidieť na obrázku~\ref{obr:kap3:ListViewLook} (napríklad index paketu na začiatku alebo typ prenosu), je len jeden dlhý string. Takisto tu tým pádom nemáme žiadnu zmysluplnú hlavičku, ktorá by nám udávala význam jednotlivých \uv{stĺpčekov}.
+
+\subsection{QTableWidget}
+QTableWidget~\cite{qtablewidget} poskytuje vzhľad na základe view classy QTableView~\cite{qtableview} a jednotlivé položky sú reprezentované pomocou itemu QTableWidgetItem~\cite{qtablewidgetitem}. Pomocou QTableWidget sme dosiahli výsledok vyobrazený na obrázku~\ref{obr:kap3:TableViewLook} nižšie.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap03_TableViewLook}
+	\caption{Vyobrazenie základných informácií o pakete pomocou QTableWidget}
+	\label{obr:kap3:TableViewLook}
+\end{figure}
+
+Ako si môžeme všimnúť, podoba medzi QListWidget a QTableWidget tak ako aj medzi QListWidgetItem a QTableWidgetItem je zrejmá, a teda nie je prekvapivé, že budú mať niektoré interné vlastnosti rovnaké. Medzi ne patria našťastie aj metódy \textit{setData(int role, const QVariant \&value)} a \textit{data(int role)} -- takže výhoda uchovania si dát nám ostala. QTableWidget takisto podporuje signal  \textit{itemDoubleClicked(QTableWidgetItem*)} s rovnakými vlastnosťami ako mal QListWidget. Naopak rozdiel je napríklad v tom, že jeden riadok je teraz reprezentovaný niekoľkými QTableWidgetItemami. To nám umožňuje pridať si samotný item pre každú informáciu o pakete, ktorú chceme vyobraziť, čím zároveň vytvárame skutočné stĺpčeky. Pridanie nového stĺpčeku je teda jednoduché -- pridáme len nový item v riadku. QTableWidget má zároveň možnosť pridania horizontálnej hlavičky, v ktorej vieme špecifikovať význam hodnôt v jednotlivých stĺpčekoch. 
+
+S týmito vlastnosťami nám ale vznikli aj nové problémy, ktoré musíme riešiť. Prvý problém je, že nie všetky riadky majú jednotnú dĺžku (niektoré nemajú vyplnenú hodnotu \uv{Function}, ako môžeme vidieť na obrázku~\ref{obr:kap3:TableViewLook} vyššie). To znamená, že riadok tam pôvodne nemá žiaden item -- pri dvojkliku na nevyplnenú časť by sa teda nič nestalo. Takisto pri kliknutí na riadok alebo pri vyfarbení daného riadku by bola označená resp. vyfarbená len časť v ktorej sa nachádza text -- to pôsobí nekonzistentným dojmom. Riešenie je naštastie triviálne -- v prípade, že do daného stĺpčeka nemáme čo vyplniť, vytvoríme prázdny QTableWidgetItem a ten pridáme. Ďalší problém je uchovávanie dát -- v prípade QListWidget bol jeden riadok reprezentovaný len jedným itemom, takže v prípade keď užívateľ dvojklikol na paket, ktorý chcel bližšie preskúmať, tak sme v signali \textit{itemDoubleClicked(QListWidgetItem*)} dostali práve item v ktorom sme mali uložené všetky informácie. V prípade QTableWidget ak užívateľ dvojklikne na určitú časť riadku, zvolí sa jeden konkrétny item spomedzi všetkých na danom riadku. Problém teraz spočíva v tom, v ktorom iteme si budeme uchovávať dáta. Trochu prvoplánové riešenie by bolo ukladať si dáta do každého itemu v riadku -- toto riešenie nie je príliš ideálne, pretože vzniká zbytočná duplikácia dát. Preto si dáta uchovávame v prvom iteme každého riadku a v prípade keď užívateľ dvojklikom vyberie konkrétny item, zistíme si pomocou metódy \textit{row(QTableWidgetItem*)} číslo riadku na ktorom sa nachádza a následne pomocou metódy \textit{item(int row, int column)} získame prvý item v danom riadku.
+
+V požiadavke~\ref{uvod:poz:zobrazenie_paketov} sme si takisto určili, že chceme jednotlivé pakety mať farebne oddelené na základe ich pohybu na zbernici. Túto informáciu získame z hlavičky paketu pri vytváraní jednotlivých riadkov. Rozhodli sme sa vyfarbovať riadky ktoré reprezentujú pakety posielané zariadením hostovi, pretože sa v nich väčšinou nachádzajú zaujímavejšie dáta a myslíme si, že typický užívateľ má tendenciu klikať skôr na farebne zvýraznené časti. Keďže tu zase nemáme jeden item reprezentujúci celý riadok, zafarbenie prebieha obyčajnou iteráciou cez všetky stĺpčeky a ich samostatným zafarbením. Celkovú funkcionalitu farebného oddelenia sme rozvinuli ešte o trochu viac oproti ostatným aplikáciám a dokonca ešte aj farba akou je item označený, sa líši na základe typu prenosu. Výsledný vzhľad môžeme vidieť na obrázku~\ref{obr:kap3:TableViewLookColor}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap03_TableViewLookColor}
+	\caption{Vyobrazenie základných informácií o pakete pomocou QTableWidget}
+	\label{obr:kap3:TableViewLookColor}
+\end{figure}
+
+
+
 \section{Zobrazenie sémantického významu dát}
 ako vyzobrazit semanticky vyznam roznych dat - descriptory, usb header, vyznam input dat roznych HID zariadeni
 \section{Hexdump}

@@ -162,4 +162,56 @@
 \newblock \url{https://www.usb.org/sites/default/files/hid1_11.pdf}.
 \newblock [str. 71].
 
+\bibitem{npcap}
+{Npcap}.
+\newblock \url{https://nmap.org/npcap/}.
+
+\bibitem{npcap_api}
+{Npcap API}.
+\newblock \url{https://nmap.org/npcap/guide/wpcap/pcap.html}.
+
+\bibitem{std_ifstream}
+{C++ Input file stream class -- std::ifstream}.
+\newblock \url{https://www.cplusplus.com/reference/fstream/ifstream/}.
+
+\bibitem{qfile}
+{Qt QFile class}.
+\newblock \url{https://doc.qt.io/qt-5/qfile.html}.
+
+\bibitem{qbytearray}
+{Qt QByteArray class}.
+\newblock \url{https://doc.qt.io/qt-5/qbytearray.html}.
+
+\bibitem{qvariant}
+{Qt QVariant class}.
+\newblock \url{https://doc.qt.io/qt-5/qvariant.html}.
+
+\bibitem{qlistwidget}
+{Qt QListWidget class}.
+\newblock \url{https://doc.qt.io/qt-5/qvariant.html}.
+
+\bibitem{qlistview}
+{Qt QListView class}.
+\newblock \url{https://doc.qt.io/qt-5/qlistview.html}.
+
+\bibitem{qlistwidgetitem}
+{Qt QListWidgetItem class}.
+\newblock \url{https://doc.qt.io/qt-5/qlistwidgetitem.html}.
+
+\bibitem{qitemdatarole}
+{Qt ItemDataRole enum}.
+\newblock \url{https://doc.qt.io/qt-5/qt.html#ItemDataRole-enum}.
+
+\bibitem{qtablewidget}
+{Qt QTableWidget class}.
+\newblock \url{https://doc.qt.io/qt-5/qtablewidget.html}.
+
+\bibitem{qtableview}
+{Qt QTableView class}.
+\newblock \url{https://doc.qt.io/qt-5/qtableview.html}.
+
+\bibitem{qtablewidgetitem}
+{Qt QTableWidgetItem class}.
+\newblock \url{https://doc.qt.io/qt-5/qtablewidgetitem.html}.
+
 \end{thebibliography}
