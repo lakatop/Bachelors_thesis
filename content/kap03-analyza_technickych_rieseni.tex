@@ -16,7 +16,7 @@ Microsoft dokumentácia podrobnejšie opisuje komunikáciu medzi HID zaridením 
 
 Podstatný je práve bod~\ref{kap03:read:paket} v ktorom vidíme, že pomocou metódy \textit{ReadFile} sme schopní od daného zariadenia získať USB pakety, ktoré reprezentujú jeho input. Tie by sme následne mohli pomocou nášho analyzátoru spracovať. Tu narážame na prvý problém, ktorý sa priamo viaže na platformu Windows a ktorý si detailnejšie opíšeme v nasledujúcej sekcii.
 
-\subsection{Windows exclusive mód}
+\subsection*{Windows exclusive mód}
 Windows má definovaný tzv. \textit{Access Mode}, ktorý určuje restrikciu prístupu \textit{HID Clienta} k HID zariadeniu. 
 Ten môže byť buď \textit{Shared} alebo \textit{Exclusive}. \textit{Exclusive Mode} zabraňuje ostatným \textit{HID Clientom} v zachytávaní alebo získavaní inputu HID zariadenia, pokiaľ nie sú hlavným príjemcom daného inputu. Preto z bezpečnostných dôvodov otvára \textit{RIM (Raw Input Manager)} niektoré zariadenia v \textit{Exclusive Mode}.
 
@@ -31,7 +31,7 @@ Tabuľka zariadení~\cite{hid_access} (obrázok~\ref{obr:kap3:access_mode}), kto
 	\label{obr:kap3:access_mode}
 \end{figure}
 
-\subsection{Známe knižnice}
+\subsection*{Známe knižnice}
 Keďže komunikáciu nemôžeme zachytávať priamo pomocou \textit{HID API}~\cite{hid_api} metód, rozhodli sme sa skúsiť použiť niektoré známe knižnice na sledovanie USB zbernice. 
 
 Pravdepodobne najznámejšou z nich je \textit{libusb}~\cite{libusb} -- knižnica napísaná v jazyku C, ktorá slúži na poskytnutie prístupu k USB zariadeniu. Je cielená na programátorov aby im uľahčila vývoj aplikácií, ktoré komunikujú s USB hardwarom. Podporuje viaceré platformy, medzi ktorými sa nachádza aj Windows. Zároveň beží v user-mode, takže aplikácia ktorá ju využíva nepotrebuje žiadne špeciálne privilégiá na používanie libusb API. Ďalšou výhodou je, že podporuje všetky verzie USB od 1.0 až po 3.1. Je schopná zachytiť všetky typy prenosov (control,bulk,interrrupt,isochronus), a teda by sme pomocou nej mohli sledovať celú komunikáciu so zariadením vrátane počiatočného nakonfigurovania. Bohužiaľ, ani pomocou tejto knižnice sme neboli schopní získať prístup k zariadeniam, ktoré Windows otvára v exclusive móde.
@@ -40,12 +40,12 @@ Keďže sa zameriavame na HID zariadenia, skúsili sme hľadať niečo viac špe
 
 Vyzerá to tak, že jediné riešenie nášho problému je priamo pracovať s filter driverom, ktorý sa nachádza na driver stacku daného zariadenia.
 
-\subsection{Driver}
+\subsection*{Driver}
 Windows ponúka niekoľko vstavaných driverov pre rôzne typy zariadení. Stačí ak nájdeme ten, ktorý nám umožní komunikáciu s konkrétnymi HID zariadeniami, s ktorými bol problém kvôli exclusive módu -- klávesnica a myš. Pre tieto dve konkrétne zariadenia momentálne existuje \textit{Moufiltr}~\cite{moufiltr} (upper-level filter driver pre myš) a \textit{Kbfiltr}~\cite{kbfiltr} (upper-level filter driver pre klávesnicu). Tie ale podporujú len legacy zariadenia -- non-USB, non-Bluetooth a non-I2C zariadenia.
 
 Riešením by teda bolo naprogramovanie vlastného filter driveru pre myš a klávesnicu. Toto je ale už nad rámec našej práce a preto na získavanie USB paketov použijeme inú third-party aplikáciu.
 
-\subsection{Third-party aplikácie}
+\subsection*{Third-party aplikácie}
 \label{kap03:third_party}
 Na zachytávanie USB paketov sme sa rozhodli použiť \textit{USBPcap}~\cite{usbpcap}, s ktorým sme sa už stretli v kapitole~\ref{uvod:sec:Wireshark} keď sme opisovali Wireshark a rôzne sniffery, s ktorými je schopný spolupracovať. USBPcap je veľmi rozšírený Windows sniffer USB paketov a jeho hlavnou výhodou je jednoduchá inštalácia. Takisto nám vyhovuje, že je s ním schopný spolupracovať Wireshark, čo nám častokrát počas vývoja poskytlo spôsob akým sme si mohli overiť správnosť nami vykonanej analýzy niektorých paketov. Daný sniffer zachytáva pakety do súborov v obecne známom formáte -- pcap~\cite{pcap}. 
 
@@ -56,7 +56,7 @@ Miernou nevýhodou je, že nepodporuje čítanie zo súboru do ktorého práve z
 \section{Sémantická analýza dát}
 Ako sme už naznačili v kapitole~\ref{uvod:sec:HID}, na vykonanie sémantickej analýzy inputu HID zariadenia je potrebné získať informácie o danom inpute z Report Descriptoru konkrétneho zariadenia. V tejto kapitole si vysvetlíme formát Report Descriptoru a ako nám informácie ktoré reprezentuje pomôžu v sémantickej analýze inputu HID zariadenia.
 
-\subsection{Report Descriptor}
+\subsection*{Report Descriptor}
 Celková štruktúra Report Descriptoru je opísaná v HID Class Specification~\cite{report_desc}. Descriptor sa skladá z tzv. itemov, ktoré obsahujú informácie o danom zariadení. Každý item obsahuje hlavičku, ktorá sa skladá z troch častí:
 \begin{itemize}
 \item Typ
@@ -134,17 +134,22 @@ V konečnom dôsledku nám z toho teda vychádza, že input našej myši bude ma
 
 Ostáva nám ešte jedna možnosť, ktorú sme doteraz nespomenuli -- ako priradiť Report Descriptor k jednotlivým reportom pokiaľ ich zariadenie posiela z viacerých endpointov. To si vysvetlíme v nasledujúcej sekcii.
 
-\subsection{Report Descriptor $\longleftrightarrow$ endpoint}
+\subsection*{Report Descriptor $\longleftrightarrow$ endpoint}
 Ako už vieme z kapitoly (ODKAZ), jedno USB zariadenie môže pozostávať z viacerých interfacov. Každý interface má dané endpointy, ktoré sa s ním viažu. Pri komunikácii medzi USB hostom a zariadením si z hlavičky jednotlivých paketov vieme vytiahnuť informáciu do ktorého endpointu zapisujeme, resp. z ktorého endpointu čítame dáta. Takže v prípade reportu poslaného zariadením vieme zistiť k akému endpointu sa viaže. Hodilo by sa nám teda vedieť k jednotlivým endpointom priradiť im odpovedajúci Report Descriptor. Túto informáciu máme nepriamo poskytnutú v Setup Pakete, ktorý posiela USB host v momente keď si od zariadenia vypýta jeho Report Descriptor. Špecifikuje v ňom totiž položku \textit{wInterfaceNumber}, ktorá udáva číslo interfacu pre ktorý si USB host vypýtal Report Descriptor. Teraz nám už len stačí zistiť aké endpointy sa na daný interface viažu -- túto informáciu sme zíkali vyššie v konfigurácii keď si USB host vypýtal od zariadenia Configuration Descriptor a spolu s ním dostal aj Interface Descriptor a jemu odpovedajúce Endpoint Descriptory.
 
 
 
 \section{Voľba frameworku}
-Pre jazyk C++ existuje hneď niekoľko známych GUI frameworkov nad ktorými sme uvažovali, ako napríklad \textit{Dear ImGui}, \textit{SFML} a \textit{Qt}. 
+Pre jazyk C++ existuje hneď niekoľko známych GUI frameworkov nad ktorými sme uvažovali, ako napríklad \textit{Dear ImGui}~\cite{dearimgui}, \textit{SFGui}~\cite{sfgui} alebo \textit{Qt}~\cite{qt}. Autor tohto projektu nemal so žiadnym z týchto frameworkov predchádzajúcu skúsenosť, ale na základe rešeršu si nakoniec zvolil Qt.
 
+\subsection*{Qt}
+Qt je open-source framework na vytváranie užívateľských rozhraní. Podporuje všetky základné platformy ako Windows, Linux a macOS. Je to jeden z najznámejších a najpoužívanejších GUI frameworkov v profesionálnom prostredí medzi firmami ako napríklad LG, AMD, Panasonic a podobne. To naznačuje, že sa jedná o robustný systém s rozsiahlou a dobre otestovanou funkcionalitou. Qt sa môže na prvý pohľad javiť ako zložitejši na naučenie kvôli jeho komplexnosti, na druhú stranu sa len ťažko hľadá niečo, čoho by nebol schopný. To nás dostáva k trochu špecifickému spôsobu akým sa v Qt programuje, a to je využívaním tzv. model/view architektúry~\cite{qt_model_view}.
 
-obecne co by som od toho GUI priblizne chcel, potom opisat preco som si vybral prave Qt a v nasledujucich kapitolach opisat rozhodnutia uz v Qt
-dovod preco som si zvolil qt namiesto inych c++ GUI frameworkov(napriklad sfml)
+\subsubsection*{Model/View Architektúra}
+Qt obsahuje množinu itemov, ktoré používaju model/view architektúru na riadenie vzťahu medzi reprezentáciou dát a spôsobom akým sú vyobrazené. Celá architektúra vychádza zo známeho návrhového vzoru MVC~\cite{mvc} (Model-View-Controller), kde sa View a Controller zlúčia do jedného. V prípade ak chceme mierne upraviť spôsob akým viewer dáta zobrazuje (napríklad zmeniť ich farbu a podobne) použijeme na to tzv. \textit{delegate}. Architektúra sa dá teda rozdeliť do 3 hlavných komponent -- model, view a delegate. Každá z týchto komponent je definovaná abstraktnou triedou, ktoré ponúkajú jednotný interface. V niektorých prípadoch (napríklad QFileSystemModel~\cite{qfilesystemmodel}, QTableView~\cite{qtableview}, atď.) máme dokonca už predimplementovanú aj základnú funckionalitu. Komunikácia medzi komponentami prebieha pomocou tzv. \textit{signals} a \textit{slots}~\cite{signal_slot}. Signal je vyvolaný nejakým konkrétnym eventom (napríklad stlačenie tlačidla na konrétny item) a slot je funkcia, ktorá sa zavolá ako odpoveď na daný signal.
+
+Qt má ešte jednu obrovskú výhodu, a tou je rozsiahla komunita a skvelá dokumentácia. V prípade akýchkoľvek otázok alebo nejasností sme nikdy nemali problém nájsť odpoveď, či už v spomínanej dokumentácii, alebo na rôznych užívateľských fórach.
+
 
 
 \section{Spracovávanie pcap súborov}
@@ -181,7 +186,7 @@ V riešení nám zase pomôže koncept dostupný v Qt -- \textit{QByteArray}~\ci
 \label{kap03:sec:zobr_zakl}
 V požiadavke~\ref{uvod:poz:zobrazenie_paketov} sme si zadefinovali aby aplikácia na prvý pohľad zobrazia len základné údaje o pakete, a detailnejšie informácie by mali byť podľa požiadavky~\ref{uvod:poz:paket_detail} zobrazené až po interakcii užívateľa. Pravdepodobne najintutívnejšia interakcia užívateľa ak chce zobraziť detailnejšie informácie je pomocou dvojkliku na konkrétnu položku. Zobrazenie základných informácií by malo byť podobné tým, aké sme mali možnosť vidieť u Wiresharku a Device Monitoring Studia v kapitole~\ref{uvod:sec:existujuce_aplikacie}. Qt nám poskytuje 2 základné classy pomocou ktorých budeme schopní dosiahnuť podobného vzhľadu.
 
-\subsection{QListWidget}
+\subsection*{QListWidget}
 QListWidget~\cite{qlistwidget} poskytuje vzhľad na základe view classy QListView~\cite{qlistview} a jednotlivé položky sú reprezentované pomocou itemu QListWidgetItem~\cite{qlistwidgetitem}. Pomocou QListWidget sme boli schopní dosiahnuť výsledku ukázaného na obrázku~\ref{obr:kap3:ListViewLook}.
 
 \begin{figure}[!htb]
@@ -195,7 +200,8 @@ QListWidget zároveň podporuje signal \textit{itemDoubleClicked(QListWidgetItem
 
 Nevýhody sú naopak nepraktické rozšírenie o ďalšie stĺpčeky. Tým, že jeden riadok je práve jeden item, stĺpčeky sú tu len akási ilúzia, pretože všetky informácie ktoré môžeme vidieť na obrázku~\ref{obr:kap3:ListViewLook} (napríklad index paketu na začiatku alebo typ prenosu), je len jeden dlhý string. Takisto tu tým pádom nemáme žiadnu zmysluplnú hlavičku, ktorá by nám udávala význam jednotlivých \uv{stĺpčekov}.
 
-\subsection{QTableWidget}
+\subsection*{QTableWidget}
+\label{kap03:sec:table_widget}
 QTableWidget~\cite{qtablewidget} poskytuje vzhľad na základe view classy QTableView~\cite{qtableview} a jednotlivé položky sú reprezentované pomocou itemu QTableWidgetItem~\cite{qtablewidgetitem}. Pomocou QTableWidget sme dosiahli výsledok vyobrazený na obrázku~\ref{obr:kap3:TableViewLook} nižšie.
 
 \begin{figure}[!htb]
@@ -219,16 +225,70 @@ V požiadavke~\ref{uvod:poz:zobrazenie_paketov} sme si takisto určili, že chce
 \end{figure}
 
 
+\section{Hexdump}
+Ako sme si stanovili na začiatku v požiadavke~\ref{uvod:poz:hexdump}, chceme aby naša aplikácia bola schopná zobrazovať hexdump dát nad ktorými prebieha analýza. Chceli by sme podporovať základné správanie hexdumpu -- označením hexovej časti sa automaticky označia im odpovedajúce tlačiteľné znaky a opačne. Zároveň ale máme na náš hexdump vďaka požiadavke~\ref{uvod:poz:data_highlight} trochu väčšie nároky, a to farebné vyznačenie jednotlivých znakov podľa významu. V Qt máme 2 základné možnosti ako niečoho takého dosiahnuť -- nadefinovanie vlastného widgetu alebo prispôsobenie už existujúceho widgetu naším požiadavkám. Poďme sa teda pozrieť na to čo všetko by sme museli riešiť v prípade nadefinovania vlastného widgetu.
+
+\subsection*{QAbstractScrollArea}
+QAbstractScrollArea~\cite{qabstractscrollarea} class je v podstate widget, ktorý nám poskytuje abstrakciu scrollovacej plochy (scrollovanie samozrejme musíme podporovať v prípade väčšieho množstva dát). Kontent je vykresľovaný do widgetu, ktorý nazývame viewport. Dokumentácia udáva list niekoľkých vecí o ktoré sa musíme postarať ak chceme objekt, ktorý dedí od QAbstractScrollArea:
+\begin{itemize}
+\item Nastavenie scroll-barov -- to zahŕňa napríklad ich veľkosť, rozsah pohybu, definovanie o koľko sa má daný scroll-bar pohnúť v prípade ak užívateľ stlačí tlačidlo \uv{Page Up} resp. \uv{Page Down}, alebo aj sledovanie ich aktuálnej pozície.
+\item Vykreslenie kontentu, ktorý sa má zobraziť na základe hodnôt jednotlivých scroll-barov (vykresliť tú časť hexdumpu na ktorej sa momentálne podľa scroll-barov nachádzame).
+\item Spracovať všetky eventy, ktoré sú prijaté viewportom -- napríklad paintEvent (požaduje vykreslenie celého veiwportu alebo danej časti), mousePressEvent (kliknutie na viewport), atď.
+\item Používanie \textit{viewport->update} k updatenutiu kontentu na viewporte namiesto \textit{update()}.
+\end{itemize}
+
+Ako vidíme, je toho celkom dosť a preto skúsime nájsť widget, ktorý už má v Qt všetky tieto požiadavky vyriešené a len ho upravíme našim požiadavkám hexdumpu.
+
+\subsection*{QTableView}
+S QTableView~\cite{qtableview} sme sa už stretli vyššie v sekcii~\ref{kap03:sec:table_widget}. Hexdump si v podstate vieme predstaviť ako tabuľku dát, preto dáva zmysel skúsiť upraviť práve tento view. QTableView je súčasťou Qt model/view frameworku, takže nám umožňuje logicky oddeliť dáta a ich zobrazovanie. Na reprezentáciu dát máme vytvorený vlastný model, poďme sa preto venovať len ich zobrazeniu pomocou table view. Na kompletný hexdump budeme potrebovať 2 samostatné QTableView -- jeden pre hexa časť a jeden pre tlačiteľné znaky. Pre vyobrazenie hexdumpu tak, aby sa podobal tomu na čo je bežný užívateľ zvyknutý nám postačia len jednoduché úpravy ako napríklad:
+\begin{itemize}
+\item Odstránenie horizontálnej hlavičky (\textit{horizontalHeader()->setVisible(false)}).
+\item Nastavenie veľkosti jednotlivých buniek (\text{resizeColumnsToContents()} a \textit{resizeRowsToContents()}).
+\item Odstránenie mriežky medzi bunkami (\textit{setShowGrid(false)}).
+\end{itemize}
+
+Na implementáciu funkcionality označenia rovnakých častí tlačiteľných znakov ako hexdumpu a opačne nám stačí prepojiť signály \textit{selectionChanged} jednotlivých selection modelov pre oba QTableView s nami definovanými funkciami (bližšie si ich opíšeme v kapitole Vývojová dokumentácia~\ref{chap:vyvoj_dok}). Keďže sa pohybujeme v model/view frameworku, na vykreslenie jednotlivých dát použijeme delegate, ktorý sa takisto stará o ich farebné oddelenie (detailnejší popis jeho fungovania si takisto opíšeme v kapitole Vývojová dokumentácia~\ref{chap:vyvoj_dok}). Ukážku nášho výsledného hexdumpu môžeme vidieť na obrázku~\ref{obr':kap3:hexdump_color} nižšie.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap03_hexdump_color}
+	\caption{Vyobrazenie hexdumpu s farebným oddelením dát podľa významu}
+	\label{obr:kap3:hexdump_color}
+\end{figure}
+
+Samozrejme, obyčajné vyfarbenie nám k lepšej orientácii v hexdumpe veľmi nepomôže, pokiaľ nepoznáme význam jednotlivých farieb. Preto sme implementovali tzv. Color Map, ktorý nám k jednotlivým farbám priradí ich význam. Jej časť môžeme vidieť na obrázku~\ref{obr:kap3:color_map}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=8cm]{img/kap03_colormap}
+	\caption{Časť Color Map}
+	\label{obr:kap3:color_map}
+\end{figure}
+
+Takisto si uvedomujeme, že nie každému môže farebné zvýraznenie hexdumpu vyhovovať a preto dávame užívateľovi možnosť ho úplne vypnúť. Výsledok je ukázaný na obrázku~\ref{obr:kap3:hexdump_clear}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap03_hexdump_clear}
+	\caption{Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu}
+	\label{obr:kap3:hexdump_clear}
+\end{figure}
 
 \section{Zobrazenie sémantického významu dát}
-ako vyzobrazit semanticky vyznam roznych dat - descriptory, usb header, vyznam input dat roznych HID zariadeni
-\section{Hexdump}
-ako v qt urobit hexdump - do coho zobrazovat data(vytvorit si vlastny viewer dedeny od QAbstractScrollArea, pripadne niecoho ineho) vs najst nieco co uz v qt je a upravit to aby to sedelo poziadavkam. Vziat do uvahy bezne funkcie hexdumpu : selection mody(oznacit naraz hexa a im odpovedajuce printable), logicke oddelenie dat(napriklad farbami)
+Ako sme si definovali v požiadavkách~\ref{uvod:poz:descriptory}\=/~\ref{uvod:poz:paket_hlavicka}, chceme byť schopní vykonávať sémenatikú analýzu pomocou stromovej štruktúry. Vzhľadom na to, že sa jedná o obecne známy spôsob vyobrazenia dát, Qt má na to špeciálnu classu QTreeView~\cite{qtreeview}, ktorá je sučasťou Qt model/view frameworku. Opäť ale máme možnosť nadefinovať si vlastný view pomocou dedenia od classy \textit{QAbstractItemView}~\cite{qabstractitemview}. Ako sme už ale videli vyššie, museli by sme sami implementovať viaceré funkcionality, ktoré nám už QTreeView ponúka sám a preto nevidíme dôvod nadefinovania vlastného view.
 
+\subsection*{QTreeView}
+Celkom používame až 3 QTreeView -- pre vyobrazenie hlavičky paketu, descriptorov a inputu zariadenia, a ako posledné už vyššie spomínaný Color Map. V našom konkrétnom prípade máme aj 3 odlišné modely -- jeden pre každý view. Vzhľadom na to, že sa opäť pohybujeme v Qt model/view frameworku, riešime iba vyobrazenie dát. Keďže nám vyhovuje štandardný spôsob vyobrazenia dát, definujeme len niekoľko základných vlastností pre jednotlivé viewery:
+\begin{itemize}
+\item Každému vieweru nastavíme jemu odpovedajúci model pomocou \textit{setModel()}.
+\item Nastavíme šírku jednotlivých stĺpčekov buď pomocou \textit{resizeColumnToContents()} alebo \textit{setColumnWidth()}.
+\end{itemize}
 
+Príklad výslednej stromovej štruktúry môžeme vidieť na obrázku~\ref{obr:kap3:tree_view}.
 
-
-
-
-
-
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap03_tree_view}
+	\caption{Vyobrazenie stromovej štruktúry}
+	\label{obr:kap3:tree_view}
+\end{figure}
