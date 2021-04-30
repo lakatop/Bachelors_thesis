@@ -1,0 +1,34 @@
+\chapter{USB}
+V tejto kapitole si rozšírime znalosti fungovania USB, ktoré sme získlai v sekcii~\ref{uvod:sec:zakl_pojmy}. Najprv si vysvetlíme ako prebieha komunikácia medzi USB zariadením a hostom, následne sa pozrieme na konfiguráciu USB zariadenia po pripojení na zbernicu a ako posledné si ešte vysvetlíme základnú stavbu USB na Windowse.
+
+\section{Komunikácia}
+Detailný popis komunikácie a presunu dát po zbernici je opísaný v USB 2.0 špecifikácii v kapitole 5 (ODKAZ). My sa momentálne zameriame len na určité časti, ktoré sú potrebné pre našu prácu. Každé USB zariadenie v sebe obsahuje tzv. \textit{endpointy}(ODKAZ) -- môžeme to považovať za akúsi koncovku komunikácie medzi hostom a zariadením. Z technického hľadiska sa jedná o hardware, ktorý je schopný v sebe uchovať dáta (memory buffer). Ako už vieme z kapitoly~\ref{uvod:sec:zakl_pojmy}, komunikáciu riadi USB host, a tá prebieha práve pomocou týchto endpointov -- v prípade ak chce host poslať určité dáta zariadeniu, zapíše ich do jeho konkrétneho endpointu. V prípade ak chce zariadenie poslať určité dáta hostovi, zapíše si ich do daného endpointu, odkiaľ ich host potom prečíta.
+
+\subsection{Endpoint}
+USB zariadenie typicky pozostáva z niekoľkých na sebe nezávislých endpointov. Každý endpoint je potom jednoznačne určený:
+\begin{enumerate}
+\item Adresou USB zariadenia -- tá je pridelená USB zariadeniu pri jeho konfigurácii v momente pripojenia na zbernicu.
+\item Číslom endpointu -- unikátne číslo, ktoré určuje výrobca zariadenia.
+\item Smerom prenosu dát -- host $\longrightarrow$ device alebo device $\longrightarrow$ host.
+\end{enumerate}
+
+Do momentu pokiaľ neprebehne konfigurácia USB zariadenia a jeho endpointov, sú endpointy s adresou inou ako 0 v neurčitom stave a nemusia byť pre hosta dostupné. Endpoint s adresou 0, inak nazývaný aj ako \uv{default endpoint} alebo \uv{Endpoint0}, slúži na nakonfiguranie daného USB zariadenia. Výrobca zariadenia je povinný poskytnúť aspoň 1 Endpoint0 pre každý smer pohybu dát, prípadne 1 Endpoint0 s možnosťou prenosu oboma smermi. Funkcie (USB zariadenia) môžu obsahovať aj ďalšie endpointy s adresou inou ako 0. Tieto endpointy slúžia na prenos dát špecifických pre dané zariadenie (napríklad na posielane inputu myši). Rôzne endpointy môžeme zlučovať do určitých množín podľa ich funkcionality. Takúto množinu endpointov potom nazývame \textit{interface}. Niektoré USB zariadenia potom môžu pozostávať z viacerých interfacov.
+
+\subsection{Pipe}
+USB pipe je termín označujúci spojenie medzi konkrétnym endpointom USB zariadenia a Host Controllerom (interface medzi hostom a zbernicou). Reprezentuje schopnosť prenášať dáta medzi hostom a endpointom pomocou memory bufferu. Pipe ktorá pozostáva z dvoch Endpoint0 sa nazýva \uv{Default Control Pipe} a je prístupná v momente pripojenia zariadenia na zbernicu a slúži na konfiguráciu daného zariadenia (po konfigurácii môže mať aj iné využitie, ktoré špecifikuje samotný výrobca). Ostatné pipy s ďalšími endpointami (za predpokladu, že existujú) sú vytvorené až po konfigurácii zariadenia. 
+
+
+
+\section{Konfigurácia}
+Konfigurácia USB zariadenia je detailne opísaná v USB 2.0 špecifikácii (ODKAZ 9.2.3). Predtým ako začneme využívať funkcionalitu pripojeného USB zariadenia, je USB host zodpovedný za jeho nakonfigurovanie. To je typicky vykonávané na základe descriptorov, ktoré sú posielané USB hostovi na jeho žiadosť. 
+
+
+
+
+\section{Windows}
+
+
+
+
+
+

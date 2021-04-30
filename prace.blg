@@ -5,18 +5,18 @@ Reallocating 'name_of_file' (item size: 1) to 18 items.
 A level-1 auxiliary file: intro/titulka.aux
 Reallocating 'name_of_file' (item size: 1) to 23 items.
 A level-1 auxiliary file: content/kap01-uvod.aux
-Reallocating 'name_of_file' (item size: 1) to 32 items.
-A level-1 auxiliary file: content/kap02-USB_a_Windows.aux
+Reallocating 'name_of_file' (item size: 1) to 22 items.
+A level-1 auxiliary file: content/kap02-USB.aux
 Reallocating 'name_of_file' (item size: 1) to 46 items.
 A level-1 auxiliary file: content/kap03-analyza_technickych_rieseni.aux
 Reallocating 'name_of_file' (item size: 1) to 40 items.
-A level-1 auxiliary file: content/kap05-vyvojova_dokumentacia.aux
+A level-1 auxiliary file: content/kap04-vyvojova_dokumentacia.aux
 Reallocating 'name_of_file' (item size: 1) to 38 items.
-A level-1 auxiliary file: content/kap06-moznosti_rozsirenia.aux
+A level-1 auxiliary file: content/kap05-moznosti_rozsirenia.aux
 Reallocating 'name_of_file' (item size: 1) to 43 items.
-A level-1 auxiliary file: content/kap07-uzivatelska_dokumentacia.aux
+A level-1 auxiliary file: content/kap06-uzivatelska_dokumentacia.aux
 Reallocating 'name_of_file' (item size: 1) to 24 items.
-A level-1 auxiliary file: content/kap08-zaver.aux
+A level-1 auxiliary file: content/kap07-zaver.aux
 Reallocating 'name_of_file' (item size: 1) to 21 items.
 A level-1 auxiliary file: outro/literatura.aux
 Reallocating 'name_of_file' (item size: 1) to 6 items.
@@ -27,7 +27,7 @@ A level-1 auxiliary file: outro/prilohy.aux
 Database file #1: outro/literatura.bib
 You've used 57 entries,
             1791 wiz_defined-function locations,
-            628 strings with 9191 characters,
+            628 strings with 9181 characters,
 and the built_in function-call counts, 5857 in all, are:
 = -- 486
 > -- 57

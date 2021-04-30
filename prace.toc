@@ -4,16 +4,12 @@
 \contentsline {section}{\numberline {1.2}Existujúce aplikácie}{8}{section.1.2}%
 \contentsline {section}{\numberline {1.3}Požadované funkcie}{13}{section.1.3}%
 \contentsline {section}{\numberline {1.4}Ciele práce}{15}{section.1.4}%
-\contentsline {chapter}{\numberline {2}USB a Windows}{16}{chapter.2}%
-\contentsline {section}{\numberline {2.1}USB zbernica}{16}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Device object a device stack}{16}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Drivery}{16}{subsection.2.2.1}%
-\contentsline {section}{\numberline {2.3}Komunikacia s USB zariadenim}{16}{section.2.3}%
-\contentsline {section}{\numberline {2.4}USB descriptory}{16}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Rozlozenie USB zariadenia z hladiska descriptorov}{16}{subsection.2.4.1}%
-\contentsline {section}{\numberline {2.5}HID zariadenia}{17}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Reporty}{17}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Report Descriptor}{17}{subsection.2.5.2}%
+\contentsline {chapter}{\numberline {2}USB}{16}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Komunikácia}{16}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Endpoint}{16}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Pipe}{16}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2}Konfigurácia}{17}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Windows}{17}{section.2.3}%
 \contentsline {chapter}{\numberline {3}Analýza}{18}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Získanie USB packetov}{18}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Sémantická analýza dát}{20}{section.3.2}%

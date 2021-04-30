@@ -2,10 +2,10 @@
 
 USB je najrozšírenejšia zbernica na pripojenie rôznych periférií k počítaču. Vznikla v druhej polovici 90. rokov 20. storočia, kedy boli rôzne zariadenia a ich porty veľmi úzko mapované. Na pripojenie základných zariadení ako myš alebo klávesnica slúžil napríklad sériový port PS/2~\cite{ps2_port}. K pripojeniu tlačiarne sa často používal paralelný port Centronics~\cite{parallel_port}. Ešte pred PS/2 portom sa myš pripájala cez veľmi známy sériový port RS-232~\cite{rs232_port}. Všetky tieto porty boli typu \textit{point-to-point} -- na jeden port je možné pripojiť len jedno zariadenie. Toto sa paralelným portom dalo čiastočné obísť tým, že niektoré zariadenia podporovali tzv. \textit{daisy chain} -- do pripojeného zariadenia sa pripojí ďalšie zariadenie, do toho sa pripojí ďalšie, atď. (napríklad typická tlačiareň toto nepodporovala, takže musela byť pripojená na konci \textit{daisy chainu}). Existovala takisto paralelná \textit{SCSI} zbernica~\cite{scsi_hub}, ktorej návrh bol prispôsobený aby podporoval  \textit{daisy chain}. Tá fungovala dobre na zariadeniach ako externé HDD a skenery, ale bola nepraktická pre zariadenia ako myš a klávesnica.
 
-USB vzniklo za účelom nahradiť a zjednotiť tieto spôsoby pripojenia bežných periférií k počítaču. Návrh zbernice je založený na hviezdicovej topológii, ktorá umožňuje cez jeden port pripojiť až 127 zariadení súčasne. Z toho vyplýva, že USB interface v sebe zahŕňa obrovskú množinu protokolov, ktoré sú hierarchicky usporiadané. K analýze paketov ktoré sa pohybujú na danej zbernici nám slúžia tzv. USB paket analyzátory. Tie môžu mať podobu hardwarového zariadenia, alebo softwarovej aplikácie. Môžu slúžiť napríklad ako učebná pomôcka pre účel lepšieho pochopenia jednotlivých protokolov. Takisto sa často využívajú pri implementácii vlastného USB zariadenia na ladenie komunikácie medzi daným zariadením a driverom. Využitie ale majú aj v opačnom prípade, keď implementujeme vlastný driver a potrebujeme sledovať jeho komunikáciu s konkrétnym zariadením. Cieľom tejto práce bude naprogramovať funkčný softwarový USB analyzátor, ktorý by mal presnejšie slúžiť práve ako učebná pomôcka pre lepšie pochopenie určitej množiny protokolov. Cieľová platforma aplikácie bude Windows.
+USB vzniklo za účelom nahradiť a zjednotiť tieto spôsoby pripojenia bežných periférií k počítaču. Návrh zbernice je založený na hviezdicovej topológii, ktorá umožňuje cez jeden port pripojiť až 127 zariadení súčasne. Z toho vyplýva, že USB interface v sebe zahŕňa obrovskú množinu protokolov, ktoré sú hierarchicky usporiadané. K analýze paketov ktoré sa pohybujú na danej zbernici nám slúžia tzv. USB paket analyzátory, ktoré môžu mať podobu hardwarového zariadenia alebo softwarovej aplikácie. Môžu slúžiť napríklad ako učebná pomôcka pre účel lepšieho pochopenia jednotlivých protokolov. Takisto sa často využívajú pri implementácii vlastného USB zariadenia na ladenie komunikácie medzi daným zariadením a driverom. Využitie ale majú aj v opačnom prípade, keď implementujeme vlastný driver a potrebujeme sledovať jeho komunikáciu s konkrétnym zariadením. Cieľom tejto práce bude naprogramovať funkčný softwarový USB analyzátor, ktorý by mal presnejšie slúžiť práve ako učebná pomôcka pre lepšie pochopenie určitej množiny protokolov. Cieľová platforma aplikácie bude Windows.
 
 \section{Základné pojmy}
-
+\label{uvod:sec:zakl_pojmy}
 V tejto sekcii si vysvetlíme niektoré základné pojmy ktoré budeme neskôr v~texte používať.
 
 \begin{figure}[!htb]
@@ -15,7 +15,7 @@ V tejto sekcii si vysvetlíme niektoré základné pojmy ktoré budeme neskôr v
 	\label{obr:uvod:usb_topology}
 \end{figure}
 
-Ako sme už vyššie spomínali a ako ilustruje obrázok~\ref{obr:uvod:usb_topology}, USB zbernica je založená na vrstevnatej hviezdicovej topológii. Na vrchu všetkého sa nachádza \textbf{USB Host}~\cite{usb_host} čo je systém do ktorého sa pripájajú ostatné USB zariadenia (v našom prípade je \textit{USB Host} počítač). \textbf{USB zariadenie}~\cite{usb_device} je buď:
+Ako sme už vyššie spomínali a ako ilustruje obrázok~\ref{obr:uvod:usb_topology}, USB zbernica je založená na vrstevnatej hviezdicovej topológii. Na vrchu všetkého sa nachádza \textbf{USB Host}~\cite{usb_host}, čo je systém do ktorého sa pripájajú ostatné USB zariadenia (v našom prípade je \textit{USB Host} počítač). \textbf{USB zariadenie}~\cite{usb_device} je buď:
 \begin{itemize}
 \item \textbf{Hub}~\cite{usb_hub} -- poskytuje dodatočné pripojenia k USB zbernici.
 \item \textbf{Funkcia}~\cite{usb_function} -- poskytuje novú funkcionalitu systému (napríklad joystick, reproduktory, myš a pod.)
@@ -29,7 +29,7 @@ Ako sme už vyššie spomínali a ako ilustruje obrázok~\ref{obr:uvod:usb_topol
 
 USB zariadenia využívajú tzv. \textbf{descriptory} na predávanie informácií o sebe samých. \textbf{Descriptor}~\cite{usb_descriptor} je dátová štruktúra s predom definovaným formátom. Existuje viacero typov \textit{USB descriptorov} (device, endpoint, interface atď.), ktorých význam si vysvetlíme neskôr.
 
-Vzhľadom na hierarchickú štruktúru USB protokolov sa \textit{USB zariadenia} delia na rôzne triedy~\cite{usb_classes}. USB trieda je zoskupenie zariadení (alebo interfacov) ktoré majú spoločné vlastnosti alebo funkcionalitu. Tieto triedy umožňujú USB hostovi identifikovať dané zariadenie a jeho funkcionalitu. Každá trieda má svoju vlastnú \textit{Class Specification} -- definuje správanie zariadení v jednotlivých triedach a opisuje ich komunikačný protokol, ktorý sa naprieč triedami líši. Takisto definuje rôzne descriptory, ktoré sú špecifické pre danú triedu. Príklady USB tried a jednotlivých zariadení ktoré do nich patria sú:
+Vzhľadom na hierarchickú štruktúru USB protokolov sa \textit{USB zariadenia} delia na rôzne triedy~\cite{usb_classes}. \textit{USB trieda} je zoskupenie zariadení (alebo interfacov) ktoré majú spoločné vlastnosti alebo funkcionalitu. Tieto triedy umožňujú \textit{USB hostovi} identifikovať dané zariadenie a jeho funkcionalitu. Každá trieda má svoju vlastnú \textit{Class Specification} -- definuje správanie zariadení v jednotlivých triedach a opisuje ich komunikačný protokol, ktorý sa naprieč triedami líši. Takisto definuje rôzne descriptory, ktoré sú špecifické pre danú triedu. Príklady USB tried a jednotlivých zariadení ktoré do nich patria sú:
 \begin{itemize}
 \item Mass Storage (napr. SD karta a flash disk)
 \item Audio (napr. reproduktory a slúchadlá)
@@ -45,7 +45,7 @@ Vzhľadom na hierarchickú štruktúru USB protokolov sa \textit{USB zariadenia}
 
 Komunikácia na zbernici medzi \textit{USB hostom} a \textit{zariadením} prebieha práve pomocou prenosu \textit{USB paketov}.   Existujú 4 typy takýchto prenosov~\cite{usb_type_transfers}:
 \begin{itemize}
-\item \textbf{Control Transfer} -- používa sa na nakonfigurovanie USB zariadenia v momente keď sa pripojí na zbernicu.
+\item \textbf{Control Transfer} -- používa sa na konfiguráciu \textit{USB zariadenia} v momente keď sa pripojí na zbernicu.
 \item \textbf{Bulk Data Transfer} -- typicky pozostáva z väčšieho množstva dát ktoré sú posielané nárazovo (využívajú ho najmä tlačiarne alebo skener). Vďaka detekcii chýb na hardwarovej úrovni je zaistená správnosť prenesených dát.
 \item \textbf{Interrupt Data Transfer} -- spoľahlivý prenos ktorý sa využíva hlavne na odovzdávanie aktuálnych informácií (ako napríklad pohyb myšou). Tieto informácie musia byť doručené USB zbernicou za čas kratší ako má špecifikované dané zariadenie.
 \item \textbf{Isochronous Data Transfer} -- takisto nazývaný ako streaming v reálnom čase. Typický príklad je prenos zvuku.
@@ -66,7 +66,7 @@ Keďže sa v našej práci budeme venovať hlavne analýze HID zariadení, tak s
 
 Podľa dodatku k USB špecifikácii~\cite{usbhid} je \textbf{HID} (z anglického \uv{Human Interface Device}) USB trieda pozostávajúca prevažne zo zariadení, ktoré sú využívané človekom na riadenie určitých systémovových aplikácií. Medzi najpoužívanejšie príklady patrí myš, klávesnica alebo joystick.
 
-Ako sme už spomínali vyššie, jednotlivé USB triedy majú definované vlastné descriptory špecifické pre danú triedu. Jedným z takýchto descriptorov je aj \textit{Report Descripor}. Ten popisuje dáta, ktoré generuje konkrétne zariadenie. Analýzou \textit{Report Descriporu} sme schopní určiť veľkosť a kompozíciu dát posielaných zariadením. Z toho vyplýva, že komunikácia HID zariadením s USB hostom sa môže líšiť nie len vo veľkosti posielaných dát, ale takisto aj v ich význame.
+Ako sme už spomínali vyššie, jednotlivé USB triedy majú definované vlastné descriptory špecifické pre danú triedu. Jedným z takýchto descriptorov je aj \textit{Report Descripor}, ktorý popisuje dáta generované konkrétnym zariadením. Analýzou \textit{Report Descriporu} sme schopní určiť veľkosť a kompozíciu dát posielaných zariadením. Z toho vyplýva, že komunikácia HID zariadenia s USB hostom sa môže líšiť nie len vo veľkosti posielaných dát, ale takisto aj v ich význame.
 
 Lepšie to uvidíme na konkrétnom príklade. K dispozícii máme 2 rozdielne myši -- Genius DX\=/120~\cite{genius_mouse} a Logitech G502 Proteus Spectrum~\cite{logitech_mouse}
 
@@ -88,7 +88,7 @@ Lepšie to uvidíme na konkrétnom príklade. K dispozícii máme 2 rozdielne my
 \label{obr:uvod:logitech:mouse:pic}
 \end{figure}
 
-Teraz si ukážeme ako sa líši ich input. Dáta budeme vyobrazovať pomocou obyčajného hexdumpu (zvýraznená časť v hexdumpe reprezentuje input zariadenia). Na oboch myšiach stlačíme ľavé tlačidlo a mierne ich posunieme smerom hore. Dáta, ktoré poslala genius myš sú vyobrazené na obrázku~\ref{obr:uvod:genius:input} a dáta poslané logitech myšou môžeme vidieť na obrázku~\ref{obr:uvod:logitech:input}.
+Teraz si ukážeme ako sa líši ich input. Dáta budeme vyobrazovať pomocou obyčajného hexdumpu (zvýraznená časť v hexdumpe reprezentuje input zariadenia). Na oboch myšiach budeme mať stlačené ľavé tlačidlo a mierne ich posunieme smerom hore. Dáta, ktoré poslala genius myš sú vyobrazené na obrázku~\ref{obr:uvod:genius:input} a dáta poslané logitech myšou môžeme vidieť na obrázku~\ref{obr:uvod:logitech:input}.
 
 \begin{figure}[!htb]
 	\centering
@@ -104,7 +104,7 @@ Teraz si ukážeme ako sa líši ich input. Dáta budeme vyobrazovať pomocou ob
 	\label{obr:uvod:logitech:input}
 \end{figure}
 
-Aj napriek tomu, že sa jedná o zariadenia z tej istej USB triedy a dokonca o rovnaké zariadenie -- myš,  má ich komunikácia rozličný tvar definovaný priamo výrobcom zariadenia. Analýzou \textit{Report Descriporu} (o ktorej si viac povieme neskôr v práci) sme zistili, že dáta, ktoré poslala genius myš majú nasledujúci význam:
+Aj napriek tomu, že sa jedná o zariadenia z tej istej USB triedy a dokonca o rovnaké zariadenie -- myš,  má ich komunikácia rozličný tvar definovaný priamo výrobcom zariadenia. Analýzou \textit{Report Descriporu} (o ktorej si viac povieme v sekcii~\ref{kap03:sec:report_desc}) sme zistili, že dáta, ktoré poslala genius myš majú nasledujúci význam:
 \begin{itemize}
 \item Byte 0: bity 0--2 reprezentujú stlačenie jednotlivých tlačidiel, bity 3--7 tvoria len dodatočnú výplň bytu
 \item Byte 1: reprezentuje súradnicu X
