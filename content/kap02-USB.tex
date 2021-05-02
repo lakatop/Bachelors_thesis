@@ -1,10 +1,10 @@
 \chapter{USB}
-V tejto kapitole si rozšírime znalosti fungovania USB, ktoré sme získlai v sekcii~\ref{uvod:sec:zakl_pojmy}. Najprv si vysvetlíme ako prebieha komunikácia medzi USB zariadením a hostom, následne sa pozrieme na konfiguráciu USB zariadenia po pripojení na zbernicu a ako posledné si ešte vysvetlíme základnú stavbu USB na Windowse.
+V tejto kapitole si rozšírime znalosti fungovania USB, ktoré sme získlai v sekcii~\ref{uvod:sec:zakl_pojmy}. Najprv si vysvetlíme ako prebieha komunikácia medzi USB zariadením a hostom, následne sa pozrieme na konfiguráciu USB zariadenia po pripojení na zbernicu, prejdeme si niektoré základné USB descriptory a ako posledné si ešte vysvetlíme základnú stavbu USB na Windowse.
 
 \section{Komunikácia}
 Detailný popis komunikácie a presunu dát po zbernici je opísaný v USB 2.0 špecifikácii v kapitole 5 (ODKAZ). My sa momentálne zameriame len na určité časti, ktoré sú potrebné pre našu prácu. Každé USB zariadenie v sebe obsahuje tzv. \textit{endpointy}(ODKAZ) -- môžeme to považovať za akúsi koncovku komunikácie medzi hostom a zariadením. Z technického hľadiska sa jedná o hardware, ktorý je schopný v sebe uchovať dáta (memory buffer). Ako už vieme z kapitoly~\ref{uvod:sec:zakl_pojmy}, komunikáciu riadi USB host, a tá prebieha práve pomocou týchto endpointov -- v prípade ak chce host poslať určité dáta zariadeniu, zapíše ich do jeho konkrétneho endpointu. V prípade ak chce zariadenie poslať určité dáta hostovi, zapíše si ich do daného endpointu, odkiaľ ich host potom prečíta.
 
-\subsection{Endpoint}
+\subsection*{Endpoint}
 USB zariadenie typicky pozostáva z niekoľkých na sebe nezávislých endpointov. Každý endpoint je potom jednoznačne určený:
 \begin{enumerate}
 \item Adresou USB zariadenia -- tá je pridelená USB zariadeniu pri jeho konfigurácii v momente pripojenia na zbernicu.
@@ -12,20 +12,43 @@ USB zariadenie typicky pozostáva z niekoľkých na sebe nezávislých endpointo
 \item Smerom prenosu dát -- host $\longrightarrow$ device alebo device $\longrightarrow$ host.
 \end{enumerate}
 
-Do momentu pokiaľ neprebehne konfigurácia USB zariadenia a jeho endpointov, sú endpointy s adresou inou ako 0 v neurčitom stave a nemusia byť pre hosta dostupné. Endpoint s adresou 0, inak nazývaný aj ako \uv{default endpoint} alebo \uv{Endpoint0}, slúži na nakonfiguranie daného USB zariadenia. Výrobca zariadenia je povinný poskytnúť aspoň 1 Endpoint0 pre každý smer pohybu dát, prípadne 1 Endpoint0 s možnosťou prenosu oboma smermi. Funkcie (USB zariadenia) môžu obsahovať aj ďalšie endpointy s adresou inou ako 0. Tieto endpointy slúžia na prenos dát špecifických pre dané zariadenie (napríklad na posielane inputu myši). Rôzne endpointy môžeme zlučovať do určitých množín podľa ich funkcionality. Takúto množinu endpointov potom nazývame \textit{interface}. Niektoré USB zariadenia potom môžu pozostávať z viacerých interfacov.
+Do momentu pokiaľ neprebehne konfigurácia USB zariadenia a jeho endpointov, sú endpointy s adresou inou ako 0 v neurčitom stave a nemusia byť pre hosta dostupné. Endpoint s adresou 0, inak nazývaný aj ako \uv{default endpoint} alebo \uv{Endpoint0}, slúži na nakonfiguranie daného USB zariadenia. Výrobca zariadenia je povinný poskytnúť aspoň 1 Endpoint0 pre každý smer pohybu dát, prípadne 1 Endpoint0 s možnosťou prenosu oboma smermi. Funkcie (USB zariadenia) môžu obsahovať aj ďalšie endpointy s adresou inou ako 0. Tieto endpointy slúžia na prenos dát špecifických pre dané zariadenie (napríklad na posielane inputu myši). Rôzne endpointy môžeme zlučovať do určitých množín podľa ich funkcionality. Takúto množinu endpointov potom nazývame \textit{interface}. Niektoré USB zariadenia potom môžu pozostávať z viacerých interfacov, ktoré budú reprezentovať rozličné USB triedy.
 
-\subsection{Pipe}
+\subsection*{Pipe}
 USB pipe je termín označujúci spojenie medzi konkrétnym endpointom USB zariadenia a Host Controllerom (interface medzi hostom a zbernicou). Reprezentuje schopnosť prenášať dáta medzi hostom a endpointom pomocou memory bufferu. Pipe ktorá pozostáva z dvoch Endpoint0 sa nazýva \uv{Default Control Pipe} a je prístupná v momente pripojenia zariadenia na zbernicu a slúži na konfiguráciu daného zariadenia (po konfigurácii môže mať aj iné využitie, ktoré špecifikuje samotný výrobca). Ostatné pipy s ďalšími endpointami (za predpokladu, že existujú) sú vytvorené až po konfigurácii zariadenia. 
 
 
 
 \section{Konfigurácia}
-Konfigurácia USB zariadenia je detailne opísaná v USB 2.0 špecifikácii (ODKAZ 9.2.3). Predtým ako začneme využívať funkcionalitu pripojeného USB zariadenia, je USB host zodpovedný za jeho nakonfigurovanie. To je typicky vykonávané na základe descriptorov, ktoré sú posielané USB hostovi na jeho žiadosť. 
+Konfigurácia USB zariadenia je detailne opísaná v USB 2.0 špecifikácii (ODKAZ 9.2.3). Predtým ako začneme využívať funkcionalitu pripojeného USB zariadenia, je USB host zodpovedný za jeho nakonfigurovanie. Počas konfigurácie posiela USB host zariadeniu tzv. \uv{Device Requesty}, na ktoré dané zariadenie odpovedá cez Default Control Pipe. Tieto requesty sú špecifikované v \textit{Setup Pakete} -- štruktúra veľká 8 bytov so štandardným formátom definovaným v USB špecifikácii 2.0 (ODKAZ 9.3). Existuje niekoľko základných requestov (ODKAZ 9.4), na ktoré musí každe USB zariadenie vedieť reagovať. Patria medzi ne napríklad:
+\begin{itemize}
+\item Get Descriptor -- vypýta si od zariadenia konkrétny descriptor, ktorý mu zariadenie pošle ako odpoveď na tento request (za predpokaldu, že daný descriptor existuje)
+\item Set Configuration -- nastaví konkrétnu konfiguráciu zariadeniu
+\end{itemize}
 
+Bežný postup konfigurácie je, že si USB host vypýta rôzne descriptory od zariadenia, ktoré určujú jeho schopnosti (napr. \textit{Configuration Descriptor}, \textit{Interface Descriptor}, \textit{Endpoint Desriptor}) a potom pomocou requestu Set Configuration nastaví požadovanú konfiguráciu (a ak je to nutné, zvolí rôzne dodatočné nastavenie interfacov).
+
+
+
+\section{USB Descriptory}
+Teraz si prejdeme niekoľko základných USB descriptorov a ich jednotlivé položky, pretože ich význam budeme potrebovať neskôr v tejto práci. 
+
+
+\subsection*{Configuration Descriptor}
+Configuration Descriptor (ODKAZ 9.6.3) opisuje informácie o konkrétnej konfigurácii USB zariadenia. Obsahuje položku \textit{bConfigurationValue} -- číslo reprezentujúce konkrétnu konfiguráciu, ktorú USB host použije ako parameter v \texttt{SetConfiguration()} requeste v prípade, že chce nastaviť práve túto konfiguráciu. Každé zariadenie má aspoň jeden Configuration Descriptor. Každá konfigurácia obsahuje aspoň jeden interface a každý interface má nula alebo viac endpointov. V prípade, že si host vyžiada od zariadenia Configuration Descriptor, dostane spolu s ním aj všetky súvisiace Interface a Endpoint descriptory.
+
+
+\subsection*{Interface Descriptor}
+Interface Descriptor (ODKAZ 9.6.5) opisuje šepcifický interface konkrétnej konfigurácie USB zariadenia. Ak zariadenie podporuje viac ako jeden interface, tak všetky Interface Descriptory spolu s im odpovedajúcimi Endpoint Descriptormi sú vrátené ako odpoveď na \texttt{GetConfiguration()} request (k Interface Descriptoru nie je možný priamy prístup pomocou \texttt{GetDescriptor()} alebo \texttt{SetDescriptor()} requestom). Ak interface používa len Endpoint0, tak za Interface Descriptorom nenasleduje žiaden Endpoint Descriptor. Endpoint0 takisto nie je započítaný v položke Interface Descriptoru \textit{bNumEndpoints}, ktorá udáva počet endpointov konkrétneho interfacu.
+
+
+\subsection*{Endpoint Descriptor}
+Endpoint Descriptor (ODKAZ 9.6.6) poskytuje hostovi informácie o konkrétnom endpointe. Tento descriptor obsahuje aj informácie na základe ktorých je host schopný určiť bandwidth konkrétneho endpointu -- množstvo dát prenesených za jednotku času (typicky bity za sekundu = b/s, alebo byty za sekundu = B/s). Takisto ako aj  pri Interface Descriptore, nie je možné k nemu priamo pristupovať pomocou \texttt{GetDescriptor()} alebo \texttt{SetDescriptor()} requestov, ale je súčasťou odpovede na \texttt{GetConfiguration()} request.
 
 
 
 \section{Windows}
+Keďže Windows je hlavná platforma na ktorú mierime s našou aplikáciou, priblížime si ako sú reprezentované jednotlivé USB zariadenia a priebeh komunikácie na danej zbernici.
 
 
 
