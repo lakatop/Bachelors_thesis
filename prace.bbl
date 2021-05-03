@@ -106,6 +106,81 @@
 \newblock
   \url{https://images-na.ssl-images-amazon.com/images/I/31qPw4sF6uL._AC_.jpg}.
 
+\bibitem{usb_chap5}
+{USB 2.0 Specification -- USB Data Flow Model}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 5].
+
+\bibitem{usb_chap5_endpoint}
+{USB 2.0 Specification -- USB Endpoint}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 5.3.1].
+
+\bibitem{usb_chap5_pipe}
+{USB 2.0 Specification -- USB Pipe}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 5.3.2].
+
+\bibitem{usb_chap9_conf}
+{USB 2.0 Specification -- USB konfigurácia}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.2.3].
+
+\bibitem{usb_chap9_setup_pak}
+{USB 2.0 Specification -- USB setup paket}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.3].
+
+\bibitem{usb_chap9_device_req}
+{USB 2.0 Specification -- USB štandardné device requesty}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.4].
+
+\bibitem{usb_chap9_conf_desc}
+{USB 2.0 Specification -- USB Configuration Descriptor}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.6.3].
+
+\bibitem{usb_chap9_interf_desc}
+{USB 2.0 Specification -- USB Interface Descriptors}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.6.5].
+
+\bibitem{usb_chap9_end_desc}
+{USB 2.0 Specification -- USB Endpoint Descriptor}.
+\newblock \url{https://www.usb.org/document-library/usb-20-specification}.
+\newblock [súbor usb\_20.pdf, kap. 9.6.6].
+
+\bibitem{usb_msdn_device_node_stack}
+{MSDN USB -- Device node a device stack}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/gettingstarted/device-nodes-and-device-stacks}.
+
+\bibitem{usb_msdn_pnp_manager}
+{MSDN USB -- Plug and Play Manager}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/install/pnp-manager}.
+
+\bibitem{usb_msdn_device_object}
+{MSDN USB -- Device object}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_device_object}.
+
+\bibitem{usb_msdn_hid_client}
+{MSDN USB -- HID Client}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture#hid-clients}.
+
+\bibitem{usb_msdn_service}
+{MSDN USB -- Services}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows/win32/services/services}.
+
+\bibitem{usb_msdn_preparsed_data}
+{MSDN USB -- Preparsed Data}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/preparsed-data}.
+
 \bibitem{hid_opening_collections}
 {Komunikácia HID Clienta s HID Class driverom}.
 \newblock

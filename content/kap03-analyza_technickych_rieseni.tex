@@ -5,13 +5,14 @@ Ako prvé sme sa museli rozhodnúť v akom jazyku budeme náš projekt implement
 \section{Získanie USB packetov}
 Na získavanie USB paketov nám bude obecne slúžiť paket sniffer. Väčšina paket analyzátorov má implementované vlastné sniffery a preto sme sa o to pokúsili tiež. Narazili sme ale na niekoľko zásadných problémov, ktoré sa úzko viažu s platformou na ktorú cielime s našou aplikáciou~--~Windows.
 
-Microsoft dokumentácia podrobnejšie opisuje komunikáciu medzi HID zaridením a kernel/user-mode aplikáciou~\cite{hid_opening_collections}. Pri tejto komunikácii sme schopní zachytiť USB pakety posielané zariadením a neskôr ich analyzovať. Keďže naša aplikácia beží v user-mode, prejdeme si práve tento spôsob komunikácie:
+V minulej kapitole~\ref{kap02:sec:hid_arch} sme opisovali stavbu HID zariadení vo windowse, čím sme sa dozvedeli, že device stack každého z nich je postavený na \textit{hidclass.sys}. Microsoft dokumentácia podrobnejšie opisuje komunikáciu medzi HID zaridením a kernel/user-mode aplikáciou~\cite{hid_opening_collections} za pomoci API tohoto driveru -- \textit{HID API}~\cite{hid_api}.
+Pri tejto komunikácii sme schopní zachytiť USB pakety posielané zariadením a neskôr ich analyzovať. Keďže naša aplikácia beží v user-mode, prejdeme si práve tento spôsob komunikácie:
 \begin{enumerate}
 \item Aplikácia nájde a identifikuje HID zariadenie.
 \item Aplikácia pomocou metódy \texttt{CreateFile} otvorí spojenie s HID zariadením.
-\item Aplikácia pomocou \textit{HID API}~\cite{hid_api} metód \texttt{HidD\_Xxx} získa \textit{Preparsed Data} a informácie ohľadom HID zariadenia.
+\item Aplikácia pomocou \textit{HID API} metód \texttt{HidD\_Xxx} získa \textit{Preparsed Data} a informácie ohľadom HID zariadenia.
 \item \label{kap03:read:paket} \textbf{Aplikácia použije metódu \texttt{ReadFile} resp. \texttt{WriteFile} na získanie inputu zariadenia resp. poslanie reportu zariadeniu.}
-\item Aplikácia pomocou \textit{HID API}~\cite{hid_api} metód \texttt{HidP\_Xxx} interpretuje HID reporty.
+\item Aplikácia pomocou \textit{HID API} metód \texttt{HidP\_Xxx} interpretuje HID reporty.
 \end{enumerate}
 
 Podstatný je práve bod~\ref{kap03:read:paket} v ktorom vidíme, že pomocou metódy \texttt{ReadFile} sme schopní od daného zariadenia získať USB pakety, ktoré reprezentujú jeho input. Tie by sme následne mohli pomocou nášho analyzátoru spracovať. Tu narážame na prvý problém, ktorý sa priamo viaže na platformu Windows a ktorý si detailnejšie opíšeme v nasledujúcej sekcii.
@@ -38,10 +39,10 @@ Pravdepodobne najznámejšou z nich je \textit{libusb}~\cite{libusb} -- knižnic
 
 Keďže sa zameriavame na HID zariadenia, skúsili sme hľadať niečo viac špecifické práve pre túto triedu USB zariadení -- to nás zaviedlo k \textit{HIDAPI}~\cite{hidapi_library}. \textit{HIDAPI} je ďalšia veľmi rozšírená knižnica, ktorá umožňuje komunikáciu s USB zariadeniami z HID triedy a takisto beží na viacerých patformách vrátane Windowsu. Pretrváva tu ale rovnaký problém ako s minulou knižnicou -- nie je možné získať prístup k zariadeniam, ktoré sú otvorené vo Windows exclusive móde.
 
-Vyzerá to tak, že jediné riešenie nášho problému je priamo pracovať s filter driverom, ktorý sa nachádza na driver stacku daného zariadenia.
+Keďže sme nevedeli získať input zariadenia pomocou \textit{hidclass.sys} driveru a ani pomocu iných third-party aplikácií, skúsime sa pozrieť či nemáme k dispozícii filter driver, ktorý by nám poskytol prístup k inputu daného zariadenia.
 
-\subsection*{Driver}
-Windows ponúka niekoľko vstavaných driverov pre rôzne typy zariadení. Stačí ak nájdeme ten, ktorý nám umožní komunikáciu s konkrétnymi HID zariadeniami, s ktorými bol problém kvôli exclusive módu -- klávesnica a myš. Pre tieto dve konkrétne zariadenia momentálne existuje \textit{Moufiltr}~\cite{moufiltr} (filter driver pre myš) a \textit{Kbfiltr}~\cite{kbfiltr} (filter driver pre klávesnicu). Tie ale podporujú len legacy zariadenia -- non-USB, non-Bluetooth a non-I2C zariadenia.
+\subsection*{Filter Driver}
+Windows ponúka niekoľko vstavaných driverov pre rôzne typy zariadení. Konkrétne pre myš a klávesnicu windows ponúka 2 filter drivery -- \textit{Moufiltr}~\cite{moufiltr} (upper-level filter driver pre myš) a \textit{Kbfiltr}~\cite{kbfiltr} (upper-level filter driver pre klávesnicu). Tie ale podporujú len legacy zariadenia -- non-USB, non-Bluetooth a non-I2C zariadenia.
 
 Riešením by teda bolo naprogramovanie vlastného filter driveru pre myš a klávesnicu. Toto je ale už nad rámec našej práce a preto upustíme od myšlienky implementácie vlastného USB snifferu a použijeme už existujúcu third-party aplikáciu.
 

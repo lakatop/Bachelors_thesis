@@ -24,20 +24,25 @@
 \contentsline {figure}{\numberline {1.22}{\ignorespaces Príklad obecného vyobrazenia jednotlivých paketov v Device Monitoring Studio.\relax }}{13}{figure.caption.26}%
 \contentsline {figure}{\numberline {1.23}{\ignorespaces Užívateľské rozhranie Device Monitoring Studio.\relax }}{13}{figure.caption.27}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Ukážka device tree.\relax }}{19}{figure.caption.33}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Ukážka konkrétnych device nodov.\relax }}{19}{figure.caption.34}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Ukážka vytvorenia konkrétnych PDO Pci.sys driverom.\relax }}{20}{figure.caption.35}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Ukážka konkrétneho device tree pre PCI zbernicu.\relax }}{21}{figure.caption.36}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ukážka konkrétneho devicestacku myši a klávesnice.\relax }}{21}{figure.caption.37}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Tabuľka zariadenía ich \textit {Access Mode}. Zariadenia postupne po riadkoch -- myš, joystick a klávesnica\relax }}{20}{figure.caption.34}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Konkrétny príklad Report Descriptoru myši prevzatý z HID Class Specification~\cite {report_desc_mouse}\relax }}{23}{figure.caption.39}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Časť Report Descriptoru reprezentujúca jednotlivé kolekcie\relax }}{23}{figure.caption.40}%
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Časť Report Descriptoru reprezentujúca tlačidlá myši\relax }}{24}{figure.caption.41}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou\relax }}{24}{figure.caption.42}%
-\contentsline {figure}{\numberline {3.6}{\ignorespaces Časť Report Descriptoru reprezentujúca ukončenie jednotlivých kolekcií\relax }}{25}{figure.caption.43}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QListWidget\relax }}{29}{figure.caption.52}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{30}{figure.caption.54}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{31}{figure.caption.55}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Vyobrazenie hexdumpu s farebným oddelením dát podľa významu\relax }}{32}{figure.caption.58}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Časť Color Map\relax }}{33}{figure.caption.59}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu\relax }}{33}{figure.caption.60}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Vyobrazenie stromovej štruktúry\relax }}{34}{figure.caption.62}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Tabuľka zariadenía ich \textit {Access Mode}. Zariadenia postupne po riadkoch -- myš, joystick a klávesnica\relax }}{23}{figure.caption.39}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Konkrétny príklad Report Descriptoru myši prevzatý z HID Class Specification~\cite {report_desc_mouse}\relax }}{26}{figure.caption.44}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Časť Report Descriptoru reprezentujúca jednotlivé kolekcie\relax }}{26}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Časť Report Descriptoru reprezentujúca tlačidlá myši\relax }}{27}{figure.caption.46}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou\relax }}{27}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Časť Report Descriptoru reprezentujúca ukončenie jednotlivých kolekcií\relax }}{28}{figure.caption.48}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QListWidget\relax }}{32}{figure.caption.57}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{33}{figure.caption.59}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{34}{figure.caption.60}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Vyobrazenie hexdumpu s farebným oddelením dát podľa významu\relax }}{35}{figure.caption.63}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Časť Color Map\relax }}{36}{figure.caption.64}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu\relax }}{36}{figure.caption.65}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Vyobrazenie stromovej štruktúry\relax }}{37}{figure.caption.67}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

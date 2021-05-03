@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  2 MAY 2021 17:10
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  3 MAY 2021 20:17
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -994,153 +994,180 @@ LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 3
  (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/latex/lm\t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Overfull \hbox (59.57559pt too wide) in paragraph at lines 38--39
-\T1/lmr/m/n/12 tu-júce kon-krétnu kon-fi-gu-rá-ciu, ktorú USB host po-u-ºije ak
-o pa-ra-me-ter v \T1/lmtt/m/n/12 SetConfiguration()|
+Overfull \hbox (25.30501pt too wide) in paragraph at lines 38--39
+\T1/lmr/m/n/12 kon-krétnu kon-fi-gu-rá-ciu, ktorú USB host po-u-ºije ako pa-ra-
+me-ter v \T1/lmtt/m/n/12 SetConfiguration()|
  []
 
-
-Overfull \hbox (35.22598pt too wide) in paragraph at lines 42--43
-\T1/lmr/m/n/12 rip-toru nie je moºný priamy prí-stup po-mo-cou \T1/lmtt/m/n/12 
-GetDescriptor() \T1/lmr/m/n/12 alebo \T1/lmtt/m/n/12 SetDescriptor()|
- []
-
-[17]) [18]
+[17]
+<img/kap02_device_tree.png, id=639, 514.17094pt x 436.63126pt>
+File: img/kap02_device_tree.png Graphic file (type png)
+<use img/kap02_device_tree.png>
+Package pdftex.def Info: img/kap02_device_tree.png  used on input line 55.
+(pdftex.def)             Requested size: 284.52756pt x 241.62033pt.
+ [18]
+<img/kap02_device_node_diagram.png, id=655, 524.96124pt x 499.8675pt>
+File: img/kap02_device_node_diagram.png Graphic file (type png)
+<use img/kap02_device_node_diagram.png>
+Package pdftex.def Info: img/kap02_device_node_diagram.png  used on input line 
+66.
+(pdftex.def)             Requested size: 284.52756pt x 270.93123pt.
+ [19 <./img/kap02_device_tree.png> <./img/kap02_device_node_diagram.png>]
+<img/kap02_PDO.png, id=661, 414.04688pt x 273.27094pt>
+File: img/kap02_PDO.png Graphic file (type png)
+<use img/kap02_PDO.png>
+Package pdftex.def Info: img/kap02_PDO.png  used on input line 78.
+(pdftex.def)             Requested size: 284.52756pt x 187.79407pt.
+<img/kap02_concrete_dev_tree.png, id=663, 395.97937pt x 376.40625pt>
+File: img/kap02_concrete_dev_tree.png Graphic file (type png)
+<use img/kap02_concrete_dev_tree.png>
+Package pdftex.def Info: img/kap02_concrete_dev_tree.png  used on input line 88
+.
+(pdftex.def)             Requested size: 284.52756pt x 270.46664pt.
+<img/kap02_concrete_device_stack.png, id=666, 741.972pt x 401.0985pt>
+File: img/kap02_concrete_device_stack.png Graphic file (type png)
+<use img/kap02_concrete_device_stack.png>
+Package pdftex.def Info: img/kap02_concrete_device_stack.png  used on input lin
+e 102.
+(pdftex.def)             Requested size: 284.52756pt x 153.8083pt.
+) [20 <./img/kap02_PDO.png>] [21 <./img/kap02_concrete_dev_tree.png> <./img/kap
+02_concrete_device_stack.png>]
 \openout2 = `content/kap03-analyza_technickych_rieseni.aux'.
 
- (content/kap03-analyza_technickych_rieseni.tex
+
+(content/kap03-analyza_technickych_rieseni.tex
 Kapitola 3.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <12> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 13.
-[19
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 14.
+[22
 
 
 
 
 ]
-<img/kap3_access_mode.png, id=646, 556.479pt x 203.5605pt>
+<img/kap3_access_mode.png, id=705, 556.479pt x 203.5605pt>
 File: img/kap3_access_mode.png Graphic file (type png)
 <use img/kap3_access_mode.png>
-Package pdftex.def Info: img/kap3_access_mode.png  used on input line 29.
+Package pdftex.def Info: img/kap3_access_mode.png  used on input line 30.
 (pdftex.def)             Requested size: 412.56496pt x 150.91817pt.
- [20 <./img/kap3_access_mode.png>]
-Overfull \hbox (3.72778pt too wide) in paragraph at lines 61--63
+ [23 <./img/kap3_access_mode.png>]
+Overfull \hbox (3.72778pt too wide) in paragraph at lines 62--64
 []\T1/lmr/m/n/12 Celková ²truk-túra Re-port Desc-rip-toru je opí-saná v HID Cla
 ss Spe-ci-fi-ca-tion [[]].|
  []
 
-[21]
-Overfull \hbox (43.68869pt too wide) in paragraph at lines 75--76
+[24]
+Overfull \hbox (43.68869pt too wide) in paragraph at lines 76--77
 []\T1/lmr/m/n/12 Collection -- udáva akúsi lo-gickú ko-lek-ciu/zoskupenie rôz-n
 ych In-put/Output/Feature|
  []
 
-<img/kap03_full_report_desc.png, id=683, 63.95895pt x 98.769pt>
+<img/kap03_full_report_desc.png, id=741, 63.95895pt x 98.769pt>
 File: img/kap03_full_report_desc.png Graphic file (type png)
 <use img/kap03_full_report_desc.png>
-Package pdftex.def Info: img/kap03_full_report_desc.png  used on input line 91.
+Package pdftex.def Info: img/kap03_full_report_desc.png  used on input line 92.
 
 (pdftex.def)             Requested size: 284.52756pt x 439.52962pt.
-[22]
-<img/kap03_report_desc_collection.png, id=694, 319.79475pt x 93.951pt>
+[25]
+<img/kap03_report_desc_collection.png, id=752, 319.79475pt x 93.951pt>
 File: img/kap03_report_desc_collection.png Graphic file (type png)
 <use img/kap03_report_desc_collection.png>
 Package pdftex.def Info: img/kap03_report_desc_collection.png  used on input li
-ne 102.
+ne 103.
 (pdftex.def)             Requested size: 284.52756pt x 83.59319pt.
- [23 <./img/kap03_full_report_desc.png> <./img/kap03_report_desc_collection.png
+ [26 <./img/kap03_full_report_desc.png> <./img/kap03_report_desc_collection.png
 >]
-<img/kap03_report_desc_buttons.png, id=704, 319.79475pt x 212.59425pt>
+<img/kap03_report_desc_buttons.png, id=763, 319.79475pt x 212.59425pt>
 File: img/kap03_report_desc_buttons.png Graphic file (type png)
 <use img/kap03_report_desc_buttons.png>
 Package pdftex.def Info: img/kap03_report_desc_buttons.png  used on input line 
-111.
+112.
 (pdftex.def)             Requested size: 284.52756pt x 189.15637pt.
-<img/kap03_report_desc_axis.png, id=706, 319.79475pt x 154.176pt>
+<img/kap03_report_desc_axis.png, id=765, 319.79475pt x 154.176pt>
 File: img/kap03_report_desc_axis.png Graphic file (type png)
 <use img/kap03_report_desc_axis.png>
-Package pdftex.def Info: img/kap03_report_desc_axis.png  used on input line 120
+Package pdftex.def Info: img/kap03_report_desc_axis.png  used on input line 121
 .
 (pdftex.def)             Requested size: 284.52756pt x 137.17854pt.
-<img/kap03_report_desc_end.png, id=708, 319.79475pt x 34.9305pt>
+<img/kap03_report_desc_end.png, id=767, 319.79475pt x 34.9305pt>
 File: img/kap03_report_desc_end.png Graphic file (type png)
 <use img/kap03_report_desc_end.png>
-Package pdftex.def Info: img/kap03_report_desc_end.png  used on input line 129.
+Package pdftex.def Info: img/kap03_report_desc_end.png  used on input line 130.
 
 (pdftex.def)             Requested size: 284.52756pt x 31.0795pt.
- [24 <./img/kap03_report_desc_buttons.png> <./img/kap03_report_desc_axis.png>]
+ [27 <./img/kap03_report_desc_buttons.png> <./img/kap03_report_desc_axis.png>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <14.4> on input line 138.
+(Font)              <14.4> on input line 139.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 138.
+(Font)              <10> on input line 139.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 138.
- [25 <./img/kap03_report_desc_end.png>] [26] [27]
-<img/kap03_ListViewLook.png, id=774, 129.3633pt x 51.5526pt>
+(Font)              <7> on input line 139.
+ [28 <./img/kap03_report_desc_end.png>] [29] [30]
+<img/kap03_ListViewLook.png, id=832, 129.3633pt x 51.5526pt>
 File: img/kap03_ListViewLook.png Graphic file (type png)
 <use img/kap03_ListViewLook.png>
-Package pdftex.def Info: img/kap03_ListViewLook.png  used on input line 199.
+Package pdftex.def Info: img/kap03_ListViewLook.png  used on input line 200.
 (pdftex.def)             Requested size: 412.56496pt x 164.43517pt.
 
-Overfull \hbox (21.92056pt too wide) in paragraph at lines 204--205
+Overfull \hbox (21.92056pt too wide) in paragraph at lines 205--206
 []\T1/lmr/m/n/12 QListWidget zá-ro-ve¬ pod-po-ruje sig-nal \T1/lmtt/m/n/12 item
 DoubleClicked(QListWidgetItem*)\T1/lmr/m/n/12 ,|
  []
 
-[28]
-<img/kap03_TableViewLook.png, id=795, 129.8451pt x 72.0291pt>
+[31]
+<img/kap03_TableViewLook.png, id=853, 129.8451pt x 72.0291pt>
 File: img/kap03_TableViewLook.png Graphic file (type png)
 <use img/kap03_TableViewLook.png>
-Package pdftex.def Info: img/kap03_TableViewLook.png  used on input line 214.
+Package pdftex.def Info: img/kap03_TableViewLook.png  used on input line 215.
 (pdftex.def)             Requested size: 412.56496pt x 228.86342pt.
- [29 <./img/kap03_ListViewLook.png>]
-<img/kap03_TableViewLookColor.png, id=808, 129.96555pt x 72.39046pt>
+ [32 <./img/kap03_ListViewLook.png>]
+<img/kap03_TableViewLookColor.png, id=867, 129.96555pt x 72.39046pt>
 File: img/kap03_TableViewLookColor.png Graphic file (type png)
 <use img/kap03_TableViewLookColor.png>
 Package pdftex.def Info: img/kap03_TableViewLookColor.png  used on input line 2
-27.
+28.
 (pdftex.def)             Requested size: 412.56496pt x 229.84596pt.
- [30 <./img/kap03_TableViewLook.png>]
-[31 <./img/kap03_TableViewLookColor.png>]
-Overfull \hbox (36.28801pt too wide) in paragraph at lines 252--253
+ [33 <./img/kap03_TableViewLook.png>]
+[34 <./img/kap03_TableViewLookColor.png>]
+Overfull \hbox (36.28801pt too wide) in paragraph at lines 253--254
 []\T1/lmr/m/n/12 Odstránenie ho-ri-zon-tál-nej hla-vi£ky (\T1/lmtt/m/n/12 horiz
 ontalHeader()->setVisible(false)\T1/lmr/m/n/12 ). |
  []
 
-<img/kap03_hexdump_color.png, id=830, 133.9404pt x 22.52415pt>
+<img/kap03_hexdump_color.png, id=889, 133.9404pt x 22.52415pt>
 File: img/kap03_hexdump_color.png Graphic file (type png)
 <use img/kap03_hexdump_color.png>
-Package pdftex.def Info: img/kap03_hexdump_color.png  used on input line 261.
+Package pdftex.def Info: img/kap03_hexdump_color.png  used on input line 262.
 (pdftex.def)             Requested size: 412.56496pt x 69.38039pt.
-<img/kap03_colormap.png, id=832, 42.3984pt x 45.5301pt>
+<img/kap03_colormap.png, id=891, 42.3984pt x 45.5301pt>
 File: img/kap03_colormap.png Graphic file (type png)
 <use img/kap03_colormap.png>
-Package pdftex.def Info: img/kap03_colormap.png  used on input line 270.
+Package pdftex.def Info: img/kap03_colormap.png  used on input line 271.
 (pdftex.def)             Requested size: 227.62204pt x 244.47911pt.
-<img/kap03_hexdump_clear.png, id=834, 133.9404pt x 22.52415pt>
+<img/kap03_hexdump_clear.png, id=893, 133.9404pt x 22.52415pt>
 File: img/kap03_hexdump_clear.png Graphic file (type png)
 <use img/kap03_hexdump_clear.png>
-Package pdftex.def Info: img/kap03_hexdump_clear.png  used on input line 279.
+Package pdftex.def Info: img/kap03_hexdump_clear.png  used on input line 280.
 (pdftex.def)             Requested size: 412.56496pt x 69.38039pt.
-[32 <./img/kap03_hexdump_color.png>]
-Overfull \hbox (8.6593pt too wide) in paragraph at lines 290--291
+[35 <./img/kap03_hexdump_color.png>]
+Overfull \hbox (8.6593pt too wide) in paragraph at lines 291--292
 []\T1/lmr/m/n/12 Kaºdému vie-weru na-sta-víme jemu od-po-ve-da-júci mo-del po-m
 o-cou \T1/lmtt/m/n/12 setModel()\T1/lmr/m/n/12 . |
  []
 
 
-Overfull \hbox (35.83636pt too wide) in paragraph at lines 291--292
+Overfull \hbox (35.83636pt too wide) in paragraph at lines 292--293
 []\T1/lmr/m/n/12 Nastavíme ²írku jed-not-li-vých st¨p-£e-kov bu¤ po-mo-cou \T1/
 lmtt/m/n/12 resizeColumnToContents()|
  []
 
-[33 <./img/kap03_colormap.png> <./img/kap03_hexdump_clear.png>]
-<img/kap03_tree_view.png, id=859, 486.01575pt x 254.1495pt>
+[36 <./img/kap03_colormap.png> <./img/kap03_hexdump_clear.png>]
+<img/kap03_tree_view.png, id=917, 486.01575pt x 254.1495pt>
 File: img/kap03_tree_view.png Graphic file (type png)
 <use img/kap03_tree_view.png>
-Package pdftex.def Info: img/kap03_tree_view.png  used on input line 298.
+Package pdftex.def Info: img/kap03_tree_view.png  used on input line 299.
 (pdftex.def)             Requested size: 412.56496pt x 215.745pt.
-) [34 <./img/kap03_tree_view.png>]
+) [37 <./img/kap03_tree_view.png>]
 \openout2 = `content/kap04-vyvojova_dokumentacia.aux'.
 
  (content/kap04-vyvojova_dokumentacia.tex
@@ -1151,12 +1178,12 @@ Overfull \hbox (6.32361pt too wide) in paragraph at lines 19--20
 astne ide(konkretny|
  []
 
-[35
+[38
 
 
 
 
-] [36]) [37]
+] [39]) [40]
 \openout2 = `content/kap05-moznosti_rozsirenia.aux'.
 
  (content/kap05-moznosti_rozsirenia.tex
@@ -1172,7 +1199,7 @@ Overfull \hbox (16.92982pt too wide) in paragraph at lines 13--13
 []\T1/lmr/bx/n/17.28 Pridanie ana-lýzy pre isoch-ro-nous a bulk trans-|
  []
 
-) [38
+) [41
 
 
 
@@ -1182,7 +1209,7 @@ Overfull \hbox (16.92982pt too wide) in paragraph at lines 13--13
 
  (content/kap06-uzivatelska_dokumentacia.tex
 Kapitola 6.
-) [39
+) [42
 
 
 
@@ -1192,7 +1219,7 @@ Kapitola 6.
 
  (content/kap07-zaver.tex
 Kapitola 7.
-) [40
+) [43
 
 
 
@@ -1247,7 +1274,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 85--89
 s : / / www . usb . org /
  []
 
-[41
+[44
 
 
 
@@ -1282,96 +1309,162 @@ Underfull \hbox (badness 10000) in paragraph at lines 100--103
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--113
+Underfull \hbox (badness 4569) in paragraph at lines 115--118
+[]\T1/lmr/m/n/12 USB 2.0 Spe-ci-fi-ca-tion -- USB End-po-int.  []$\T1/lmtt/m/n/
+12 https : / / www . usb . org /
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 115--118
+\T1/lmtt/m/n/12 document-[]library / usb-[]20-[]specification$[]\T1/lmr/m/n/12 
+.  [sú-bor usb_20.pdf, kap.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 120--123
+[]\T1/lmr/m/n/12 USB 2.0 Spe-ci-fi-ca-tion -- USB Pipe.  []$\T1/lmtt/m/n/12 htt
+ps : / / www . usb . org /
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 120--123
+\T1/lmtt/m/n/12 document-[]library / usb-[]20-[]specification$[]\T1/lmr/m/n/12 
+.  [sú-bor usb_20.pdf, kap.
+ []
+
+
+Underfull \hbox (badness 1895) in paragraph at lines 125--128
+[]\T1/lmr/m/n/12 USB 2.0 Spe-ci-fi-ca-tion -- USB kon-fi-gu-rá-cia.  []$\T1/lmt
+t/m/n/12 https : / / www . usb . org /
+ []
+
+
+Underfull \hbox (badness 2065) in paragraph at lines 125--128
+\T1/lmtt/m/n/12 document-[]library / usb-[]20-[]specification$[]\T1/lmr/m/n/12 
+.  [sú-bor usb_20.pdf, kap.
+ []
+
+
+Underfull \hbox (badness 1590) in paragraph at lines 130--133
+[]\T1/lmr/m/n/12 USB 2.0 Spe-ci-fi-ca-tion -- USB se-tup pa-ket.  []$\T1/lmtt/m
+/n/12 https : / / www . usb . org /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--158
+[]\T1/lmr/m/n/12 MSDN USB -- De-vice node a de-vice stack.  []$\T1/lmtt/m/n/12 
+https : / / docs .
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 155--158
+\T1/lmtt/m/n/12 microsoft . com / en-[]us / windows-[]hardware / drivers / gett
+ingstarted /
+ []
+
+[45]
+Underfull \hbox (badness 1048) in paragraph at lines 165--168
+[]\T1/lmr/m/n/12 MSDN USB -- De-vice ob-ject.  []$\T1/lmtt/m/n/12 https : / / d
+ocs . microsoft . com / en-[]us /
+ []
+
+
+Underfull \hbox (badness 2970) in paragraph at lines 170--173
+[]\T1/lmr/m/n/12 MSDN USB -- HID Client.  []$\T1/lmtt/m/n/12 https : / / docs .
+ microsoft . com / en-[]us /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 185--188
 []\T1/lmr/m/n/12 Komunikácia HID Clienta s HID Class dri-ve-rom.  []$\T1/lmtt/m
 /n/12 https :
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 110--113
+Underfull \hbox (badness 10000) in paragraph at lines 185--188
 \T1/lmtt/m/n/12 / / docs . microsoft . com / en-[]us / windows-[]hardware / dri
 vers / hid /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--118
+Underfull \hbox (badness 10000) in paragraph at lines 190--193
 []\T1/lmr/m/n/12 HID App-li-ca-tion Prog-ram-ming In-ter-face (API).  []$\T1/lm
 tt/m/n/12 https : / /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 115--118
+Underfull \hbox (badness 10000) in paragraph at lines 190--193
 \T1/lmtt/m/n/12 docs . microsoft . com / en-[]us / windows-[]hardware / drivers
  / hid /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--137
+Underfull \hbox (badness 10000) in paragraph at lines 209--212
 []\T1/lmr/m/n/12 Moufiltr -- fil-ter dri-ver.  []$\T1/lmtt/m/n/12 https : / / d
 ocs . microsoft .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 134--137
+Underfull \hbox (badness 10000) in paragraph at lines 209--212
 \T1/lmtt/m/n/12 com / en-[]us / samples / microsoft / windows-[]driver-[]sample
 s /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--142
+Underfull \hbox (badness 10000) in paragraph at lines 214--217
 []\T1/lmr/m/n/12 Kbfiltr -- fil-ter dri-ver.  []$\T1/lmtt/m/n/12 https : / / do
 cs . microsoft .
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 139--142
+Underfull \hbox (badness 10000) in paragraph at lines 214--217
 \T1/lmtt/m/n/12 com / en-[]us / samples / microsoft / windows-[]driver-[]sample
 s /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 148--150
+Underfull \hbox (badness 10000) in paragraph at lines 223--225
 []\T1/lmr/m/n/12 Pcap file for-mat.  []$\T1/lmtt/m/n/12 https : / / wiki . wire
 shark . org / Development /
  []
 
-[42]
-Underfull \hbox (badness 10000) in paragraph at lines 178--180
+[46]
+Underfull \hbox (badness 10000) in paragraph at lines 253--255
 []\T1/lmr/m/n/12 Qt Mo-del/View ar-chi-tek-túra.  []$\T1/lmtt/m/n/12 https : / 
 / doc . qt . io / qt-[]5 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 186--188
+Underfull \hbox (badness 10000) in paragraph at lines 261--263
 []\T1/lmr/m/n/12 Qt QFi-le-Sys-tem-Mo-del class.  []$\T1/lmtt/m/n/12 https : / 
 / doc . qt . io / qt-[]5 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 234--236
+Underfull \hbox (badness 10000) in paragraph at lines 309--311
 []\T1/lmr/m/n/12 Qt Item-Da-ta-Role enum.  []$\T1/lmtt/m/n/12 https : / / doc .
  qt . io / qt-[]5 / qt . html #
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 242--244
+Underfull \hbox (badness 10000) in paragraph at lines 317--319
 []\T1/lmr/m/n/12 Qt QTab-le-Wid-ge-tI-tem class.  []$\T1/lmtt/m/n/12 https : / 
 / doc . qt . io / qt-[]5 /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 254--256
+Underfull \hbox (badness 10000) in paragraph at lines 329--331
 []\T1/lmr/m/n/12 Qt QAb-s-trac-tI-tem-View class.  []$\T1/lmtt/m/n/12 https : /
  / doc . qt . io / qt-[]5 /
  []
 
-[43])) [44] (prace.lof
+)) [47] (prace.lof
 Overfull \hbox (6.79913pt too wide) in paragraph at lines 16--16
  [][] [][]\T1/lmr/m/n/12 Ukáºka klik-nu-tia na po-loºku \T1/lmr/m/it/12 end-po-
 int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
  []
 
-[45
+[48
 
 
 
@@ -1379,21 +1472,21 @@ int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
 \tf@lof=\write7
 \openout7 = `prace.lof'.
 
- [46] (prace.lot)
+ [49] (prace.lot)
 \tf@lot=\write8
 \openout8 = `prace.lot'.
 
- [47
+ [50
 
-] [48
+] [51
 
 ]
 \openout2 = `outro/prilohy.aux'.
 
- (outro/prilohy.tex) [49
+ (outro/prilohy.tex) [52
 
 
-] [50
+] [53
 
 
 ] (prace.aux
@@ -1403,14 +1496,17 @@ int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
 (content/kap05-moznosti_rozsirenia.aux)
 (content/kap06-uzivatelska_dokumentacia.aux) (content/kap07-zaver.aux)
 (outro/literatura.aux) (outro/prilohy.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: 1C339C363282C4816D10242D380C829F;9986.
+(rerunfilecheck)             Checksum: B3722DBBD93C3055478CC8AF23674D0D;9986.
  ) 
 Here is how much of TeX's memory you used:
- 18012 strings out of 479334
- 274408 string characters out of 2857084
- 585856 words of memory out of 3000000
- 34736 multiletter control sequences out of 15000+200000
+ 18126 strings out of 479334
+ 277387 string characters out of 2857084
+ 588528 words of memory out of 3000000
+ 34822 multiletter control sequences out of 15000+200000
  487943 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  88i,8n,90p,1883b,2364s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -1425,9 +1521,9 @@ s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/User
 s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/User
 s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/User
 s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on prace.pdf (55 pages, 1429385 bytes).
+Output written on prace.pdf (58 pages, 1552436 bytes).
 PDF statistics:
- 1184 PDF objects out of 1200 (max. 8388607)
- 266 named destinations out of 1000 (max. 500000)
- 731 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1283 PDF objects out of 1440 (max. 8388607)
+ 289 named destinations out of 1000 (max. 500000)
+ 756 words of extra memory for PDF output out of 10000 (max. 10000000)
 
