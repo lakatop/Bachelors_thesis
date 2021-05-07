@@ -68,7 +68,7 @@ Podľa dodatku k USB špecifikácii~\cite{usbhid} je \textbf{HID} (z anglického
 
 Ako sme už spomínali vyššie, jednotlivé USB triedy majú definované vlastné descriptory špecifické pre danú triedu. Jedným z takýchto descriptorov je aj \textit{Report Descripor}, ktorý popisuje dáta generované konkrétnym zariadením. Analýzou \textit{Report Descriporu} sme schopní určiť veľkosť a kompozíciu dát posielaných zariadením. Z toho vyplýva, že komunikácia HID zariadenia s USB hostom sa môže líšiť nie len vo veľkosti posielaných dát, ale takisto aj v ich význame.
 
-Lepšie to uvidíme na konkrétnom príklade. K dispozícii máme 2 rozdielne myši -- Genius DX\=/120~\cite{genius_mouse} a Logitech G502 Proteus Spectrum~\cite{logitech_mouse}
+Lepšie to uvidíme na konkrétnom príklade. K dispozícii máme 2 rozdielne myši (obrázok~\ref{obr:uvod:mysi:porovnanie}) -- Genius DX\=/120~\cite{genius_mouse} a Logitech G502 Proteus Spectrum~\cite{logitech_mouse}
 
 \begin{figure}[!htb]
 \centering
@@ -85,26 +85,26 @@ Lepšie to uvidíme na konkrétnom príklade. K dispozícii máme 2 rozdielne my
   \label{fig:sub2}
 \end{subfigure}
 \caption{Ukážka myší, ktorých input budeme porovnávať}
-\label{obr:uvod:logitech:mouse:pic}
+\label{obr:uvod:mysi:porovnanie}
 \end{figure}
 
-Teraz si ukážeme ako sa líši ich input. Dáta budeme vyobrazovať pomocou obyčajného hexdumpu (zvýraznená časť v hexdumpe reprezentuje input zariadenia). Na oboch myšiach budeme mať stlačené ľavé tlačidlo a mierne ich posunieme smerom hore. Dáta, ktoré poslala genius myš sú vyobrazené na obrázku~\ref{obr:uvod:genius:input} a dáta poslané logitech myšou môžeme vidieť na obrázku~\ref{obr:uvod:logitech:input}.
+Teraz si ukážeme ako sa líši ich input. Dáta budeme vyobrazovať pomocou obyčajného hexdumpu (zvýraznená časť v hexdumpe reprezentuje input zariadenia). Na oboch myšiach budeme mať stlačené ľavé tlačidlo a mierne ich posunieme smerom hore. Dáta, ktoré poslala Genius myš sú vyobrazené na obrázku~\ref{obr:uvod:genius:input} a dáta poslané Logitech myšou môžeme vidieť na obrázku~\ref{obr:uvod:logitech:input}. Už na prvý pohľad môžeme vidieť, že dáta majú rozdielnu dĺžku a obecne o ich význame nevieme nič povedať -- ten je definovaný v \textit{Report Descriptore}.
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=12cm]{img/uvod_genius_input}
-	\caption{Ukážka hexdumpu so zvýrazneným inputom genius myši.}
+	\caption{Ukážka hexdumpu so zvýrazneným inputom Genius myši.}
 	\label{obr:uvod:genius:input}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=12cm]{img/uvod_logitech_input}
-	\caption{Ukážka hexdumpu so zvýrazneným inputom logitech myši.}
+	\caption{Ukážka hexdumpu so zvýrazneným inputom Logitech myši.}
 	\label{obr:uvod:logitech:input}
 \end{figure}
 
-Aj napriek tomu, že sa jedná o zariadenia z tej istej USB triedy a dokonca o rovnaké zariadenie -- myš,  má ich komunikácia rozličný tvar definovaný priamo výrobcom zariadenia. Analýzou \textit{Report Descriporu} (o ktorej si viac povieme v sekcii~\ref{kap03:sec:report_desc}) sme zistili, že dáta, ktoré poslala genius myš majú nasledujúci význam:
+Aj napriek tomu, že sa jedná o zariadenia z tej istej USB triedy a dokonca o rovnaké zariadenie -- myš,  má ich komunikácia rozličný tvar definovaný priamo výrobcom zariadenia. Analýzou \textit{Report Descriporu} (o ktorej si viac povieme v sekcii~\ref{kap03:sec:report_desc}) sme zistili, že dáta, ktoré poslala Genius myš majú nasledujúci význam:
 \begin{itemize}
 \item Byte 0: bity 0--2 reprezentujú stlačenie jednotlivých tlačidiel, bity 3--7 tvoria len dodatočnú výplň bytu
 \item Byte 1: reprezentuje súradnicu X
@@ -112,7 +112,7 @@ Aj napriek tomu, že sa jedná o zariadenia z tej istej USB triedy a dokonca o r
 \item Byte 3: reprezentuje koliesko myši
 \end{itemize}
 
-Pre porovnanie, význam dát poslaných logitech myšou je nasledovný:
+Pre porovnanie, význam dát poslaných Logitech myšou je nasledovný:
 \begin{itemize}
 \item Byte 0--1: reprezentujú stlačenie jednotlivých tlačidiel
 \item Byte 2--3: reprezentuje súradnicu X
@@ -121,19 +121,19 @@ Pre porovnanie, význam dát poslaných logitech myšou je nasledovný:
 \item Byte 7: je rezervovaný výrobcom myši
 \end{itemize}
 
-Vizuálne zobrazený význam dát genius myši je ukázaný na obrázku~\ref{obr:uvod:genius:input:vyznam} a logitech myši na obrázku~\ref{obr:uvod:logitech:input:vyznam}.
+Vizuálne zobrazený význam dát Genius myši je ukázaný na obrázku~\ref{obr:uvod:genius:input:vyznam} a Logitech myši na obrázku~\ref{obr:uvod:logitech:input:vyznam}.
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=12cm]{img/uvod_genius_input_vyznam}
-	\caption{Ukážka hexdumpu so zvýrazneným inputom genius myši s významom.}
+	\caption{Ukážka hexdumpu so zvýrazneným inputom Genius myši s významom.}
 	\label{obr:uvod:genius:input:vyznam}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=12cm]{img/uvod_logitech_input_vyznam}
-	\caption{Ukážka hexdumpu so zvýrazneným inputom logitech myši s významom.}
+	\caption{Ukážka hexdumpu so zvýrazneným inputom Logitech myši s významom.}
 	\label{obr:uvod:logitech:input:vyznam}
 \end{figure}
 

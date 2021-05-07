@@ -166,6 +166,11 @@
 \newblock
   \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/ddi/wdm/ns-wdm-_device_object}.
 
+\bibitem{usb_msdn_hid_architecture}
+{MSDN USB -- HID Architecture}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture}.
+
 \bibitem{usb_msdn_hid_client}
 {MSDN USB -- HID Client}.
 \newblock
@@ -328,5 +333,10 @@
 \bibitem{qabstractitemview}
 {Qt QAbstractItemView class}.
 \newblock \url{https://doc.qt.io/qt-5/qabstractitemview.html}.
+
+\bibitem{qt_vs_tools}
+{Qt Visual Studio Tools}.
+\newblock
+  \url{https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2019}.
 
 \end{thebibliography}

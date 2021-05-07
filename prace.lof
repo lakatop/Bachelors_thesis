@@ -2,10 +2,10 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces USB topológia. Obrázok prevzatý z USB 2.0 špecifikácie~\cite {usb_topology}.\relax }}{4}{figure.caption.2}%
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Ukážka myší, ktorých input budeme porovnávať\relax }}{6}{figure.caption.4}%
-\contentsline {figure}{\numberline {1.3}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom genius myši.\relax }}{7}{figure.caption.5}%
-\contentsline {figure}{\numberline {1.4}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom logitech myši.\relax }}{7}{figure.caption.6}%
-\contentsline {figure}{\numberline {1.5}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom genius myši s významom.\relax }}{7}{figure.caption.7}%
-\contentsline {figure}{\numberline {1.6}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom logitech myši s významom.\relax }}{7}{figure.caption.8}%
+\contentsline {figure}{\numberline {1.3}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Genius myši.\relax }}{7}{figure.caption.5}%
+\contentsline {figure}{\numberline {1.4}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Logitech myši.\relax }}{7}{figure.caption.6}%
+\contentsline {figure}{\numberline {1.5}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Genius myši s významom.\relax }}{7}{figure.caption.7}%
+\contentsline {figure}{\numberline {1.6}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Logitech myši s významom.\relax }}{7}{figure.caption.8}%
 \contentsline {figure}{\numberline {1.7}{\ignorespaces Ukážka hexdumpu vo Wiresharku.\relax }}{8}{figure.caption.10}%
 \contentsline {figure}{\numberline {1.8}{\ignorespaces Ukážka hexdumpu so zvýrazneným endpoint descriptorom.\relax }}{8}{figure.caption.11}%
 \contentsline {figure}{\numberline {1.9}{\ignorespaces Ukážka hexdumpu s farebným oddelením na základe významu.\relax }}{9}{figure.caption.12}%
@@ -24,26 +24,42 @@
 \contentsline {figure}{\numberline {1.22}{\ignorespaces Príklad obecného vyobrazenia jednotlivých paketov v Device Monitoring Studio.\relax }}{13}{figure.caption.26}%
 \contentsline {figure}{\numberline {1.23}{\ignorespaces Užívateľské rozhranie Device Monitoring Studio.\relax }}{13}{figure.caption.27}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Ukážka device tree.\relax }}{19}{figure.caption.33}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Ukážka konkrétnych device nodov.\relax }}{19}{figure.caption.34}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Ukážka vytvorenia konkrétnych PDO Pci.sys driverom.\relax }}{20}{figure.caption.35}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Ukážka konkrétneho device tree pre PCI zbernicu.\relax }}{21}{figure.caption.36}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Ukážka konkrétneho devicestacku myši a klávesnice.\relax }}{21}{figure.caption.37}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Ukážka device tree. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_device_node_stack}\relax }}{19}{figure.caption.33}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Ukážka konkrétnych device nodov. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_device_node_stack}\relax }}{19}{figure.caption.34}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Ukážka vytvorenia konkrétnych PDO Pci.sys driverom. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_device_node_stack}\relax }}{20}{figure.caption.35}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Ukážka konkrétneho device tree pre PCI zbernicu. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_device_node_stack}\relax }}{21}{figure.caption.36}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Ukážka konkrétneho device stacku myši a klávesnice. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_hid_architecture}\relax }}{21}{figure.caption.37}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Tabuľka zariadenía ich \textit {Access Mode}. Zariadenia postupne po riadkoch -- myš, joystick a klávesnica\relax }}{23}{figure.caption.39}%
 \contentsline {figure}{\numberline {3.2}{\ignorespaces Konkrétny príklad Report Descriptoru myši prevzatý z HID Class Specification~\cite {report_desc_mouse}\relax }}{26}{figure.caption.44}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Časť Report Descriptoru reprezentujúca jednotlivé kolekcie\relax }}{26}{figure.caption.45}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Časť Report Descriptoru reprezentujúca jednotlivé kolekcie\relax }}{27}{figure.caption.45}%
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Časť Report Descriptoru reprezentujúca tlačidlá myši\relax }}{27}{figure.caption.46}%
-\contentsline {figure}{\numberline {3.5}{\ignorespaces Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou\relax }}{27}{figure.caption.47}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou\relax }}{28}{figure.caption.47}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Časť Report Descriptoru reprezentujúca ukončenie jednotlivých kolekcií\relax }}{28}{figure.caption.48}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QListWidget\relax }}{32}{figure.caption.57}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{33}{figure.caption.59}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{34}{figure.caption.60}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Vyobrazenie hexdumpu s farebným oddelením dát podľa významu\relax }}{35}{figure.caption.63}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Časť Color Map\relax }}{36}{figure.caption.64}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu\relax }}{36}{figure.caption.65}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Vyobrazenie stromovej štruktúry\relax }}{37}{figure.caption.67}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QListWidget\relax }}{33}{figure.caption.60}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{33}{figure.caption.62}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{35}{figure.caption.63}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Vyobrazenie hexdumpu s farebným oddelením dát podľa významu\relax }}{36}{figure.caption.66}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Časť Color Map\relax }}{37}{figure.caption.67}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu\relax }}{37}{figure.caption.68}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Vyobrazenie stromovej štruktúry\relax }}{38}{figure.caption.70}%
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Stránka Qt download.\relax }}{39}{figure.caption.71}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Stránka Qt -- odkaz na stiahnutie \uv {Qt Online Installer}.\relax }}{40}{figure.caption.72}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Stránka Qt stiahnutie uv{Qt Online Installeru}.\relax }}{40}{figure.caption.73}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces \uv {Welcome} časť Qt Setupu\relax }}{41}{figure.caption.74}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces \uv {Open Source Obligations} časť Qt Setupu\relax }}{41}{figure.caption.75}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces \uv {Setup - Qt} časť Qt Setupu\relax }}{42}{figure.caption.76}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces \uv {Contribute to Qt Development} časť Qt Setupu\relax }}{42}{figure.caption.77}%
+\contentsline {figure}{\numberline {4.8}{\ignorespaces \uv {Installation Folder} časť Qt Setupu\relax }}{43}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.9}{\ignorespaces \uv {Select Components} časť Qt Setupu\relax }}{43}{figure.caption.79}%
+\contentsline {figure}{\numberline {4.10}{\ignorespaces \uv {License Agreement} časť Qt Setupu\relax }}{44}{figure.caption.80}%
+\contentsline {figure}{\numberline {4.11}{\ignorespaces \uv {Start Menu Shortcut} časť Qt Setupu\relax }}{44}{figure.caption.81}%
+\contentsline {figure}{\numberline {4.12}{\ignorespaces \uv {Ready to Install} časť Qt Setupu\relax }}{45}{figure.caption.82}%
+\contentsline {figure}{\numberline {4.13}{\ignorespaces Visual Studio možnosť vybratia Qt verzie.\relax }}{46}{figure.caption.83}%
+\contentsline {figure}{\numberline {4.14}{\ignorespaces Visual Studio zvolenie adresára ku \textit {qmake.exe}.\relax }}{46}{figure.caption.84}%
+\contentsline {figure}{\numberline {4.15}{\ignorespaces Visual Studio obecné nastavenia projektu.\relax }}{47}{figure.caption.85}%
+\contentsline {figure}{\numberline {4.16}{\ignorespaces Visual Studio obecné nastavenia projektu.\relax }}{47}{figure.caption.86}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
