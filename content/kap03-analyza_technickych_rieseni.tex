@@ -159,6 +159,7 @@ Na veľkosť frameworku sa môžeme pozerať dvoma rozličnými spôsobmi. Na je
 Vzhľadom na to, že sme si zvolil Qt musíme spomenúť ešte jednu vec, ktorá je pre tento framework špecifická, a to spôsob akým sa v ňom programuje. Využíva sa tu tzv. model/view architektúra~\cite{qt_model_view}.
 
 \subsubsection*{Model/View Architektúra}
+\label{kap3:sec:model_view}
 Qt obsahuje množinu itemov, ktoré používaju model/view architektúru na riadenie vzťahu medzi reprezentáciou dát a spôsobom akým sú vyobrazené. Celá architektúra vychádza zo známeho návrhového vzoru MVC~\cite{mvc} (Model-View-Controller), kde sa View a Controller zlúčia do jedného. V prípade ak chceme mierne upraviť spôsob akým viewer dáta zobrazuje (napríklad zmeniť ich farbu) použijeme na to tzv. \textit{delegate}. Architektúra sa teda dá rozdeliť do 3 hlavných komponent -- model, view a delegate. Každá z týchto komponent je definovaná abstraktnou triedou, ktoré ponúkajú jednotný interface a v niektorých prípadoch (napríklad QFileSystemModel~\cite{qfilesystemmodel}, QTableView~\cite{qtableview}, atď.) máme dokonca už predimplementovanú aj základnú funckionalitu. Komunikácia medzi komponentami prebieha pomocou tzv. \textit{signals} a \textit{slots}~\cite{signal_slot}. Signal je vyvolaný konkrétnym eventom (napríklad stlačenie tlačidla na konrétny item) a slot je funkcia, ktorá sa zavolá ako odpoveď na daný signal.
 
 

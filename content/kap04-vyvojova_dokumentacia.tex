@@ -129,6 +129,8 @@ Keďže ku kompilácii budeme potrebovať samotné Qt, ukážeme si jeho inštal
 
 \item V záverečnej obrazovke môžeme odškrtnúť možnosť \uv{Launch Qt Creator} a klikneme na tlačidlo \uv{Finish}.
 
+\end{itemize}
+
 \clearpage
 
 \subsection{Visual Studio 2019 a Qt}
@@ -165,7 +167,8 @@ Teraz si ešte ukážeme integrovanie Visual studia 2019 spolu s Qt. Budeme si p
 \end{figure}
 
 \end{itemize}
-Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2} nenastaví Qt verziu a nebudeme vedieť projekt preložiť kvôli errorom typu \uv{cannot open source file qbytearray}. V takom prípade prejdeme do možnosti \textit{Project}$\rightarrow$\textit{Properties}$\rightarrow$\textit{Qt Project Settings} a manuálne nastavíme \textit{Qt Installation} na \textit{msvc2019\_64} (obrázok~\ref{obr:kap4:vs_manual}).
+
+Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2} nenastaví Qt verziu a nebudeme vedieť projekt preložiť kvôli errorom typu \uv{cannot open source file qbytearray}. V takom prípade prejdeme do možnosti \textit{Project}$\rightarrow$\textit{Properties}$\rightarrow$\textit{Qt~Project~Settings} a manuálne nastavíme \textit{Qt Installation} na \textit{msvc2019\_64} (obrázok~\ref{obr:kap4:vs_manual}).
 
 \begin{figure}[!htb]
 	\centering
@@ -175,8 +178,76 @@ Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2
 \end{figure}
 
 V tomto momente by sme mali byť schopní úspešne skompilovať a spustiť náš program.
-%Budeme si potrebovať nainštalovať Qt pre Windows. podla videa, verzia 5.15.0 len msvc 2019 64bit. inak ostatne default. zatial som este nainstaloval QT VS extension. teraz idem updatenut SDK na verziu 10.0.19041.0 -- to vymazalo errory typu ''cannot open source file cctype'' , teraz mi este ostali ''cannot open source file qbytearray'' a podobne spojene cisto s qt : pravdepodobne bug. musel som ist manualne do Project->properties->Qt Project SEttings a nastavit Qt installation na verziu 5.15.0_msvc2019_64. A UZ TO BEZIIII :)
+
+\newpage
+
+\section{Architektúra aplikácie}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap04_architektura}
+	\caption{Diagram architektúry aplikácie}
+	\label{obr:kap4:architek}
+\end{figure}
+
+V tejto sekcii si prejdeme celkovú stavbu aplikácie a akým spôsobom sú jednotlivé komponenty prepojené. Ako vidíme na obrázku~\ref{obr:kap4:architek}, aplikáciu môžeme rozdeliť do dvoch hlavných komponent, ktoré tvoria logické jadro programu: \texttt{USB\_Packet\_Analyzer} a \texttt{DataViewer}, na ktoré sa viažu ďalšie komponenty a dopĺňajú ich funkcionalitu. Teraz si podrobnejšie opíšeme obe hlavné komponenty spolu s komponentami, ktoré sú na nich napojené.
+
+\subsection{USB\_Packet\_Analyzer}
+
+USB\_Packet\_Analyzer tvorí hlavnú triedu programu, ktorá reprezentuje okno zobrazené užívateľovi hneď po zapnutí aplikácie. Naše hlavné okno pozostáva z nasledujúcich komponent:
+\begin{itemize}
+\item QTableWidget -- slúži na vyobrazenie základných informácií o paketoch.
+\item 2 QRadioButtony -- slúžia na výber medzi analýzou fixného súboru (file capture), alebo súboru do ktorého môže sniffer počas analýzy niečo pripísať (live capture).
+\item QCheckBox -- slúži na výber, či užívateľ chce farebne zvýrazniť detailnejší význam analyzovaných paketov alebo nie.
+\item QLabel -- slúži na vyobrazenie názvu súboru, ktorý sa aktuálne spracováva.
+\item QProgressBar -- progress bar ukazujúci stav spracovania súboru počas file capture.
+\item 5 QPushButtonov -- tlačidlá, ktorých jednotlivú funkcionalitu si vysvetlíme nižšie v tejto sekcii~\ref{kap04:sec:open_button}.
 \end{itemize}
+Zároveň implementuje funkcie spojené s užívateľskou interakciou, od ktorej sa následne odvíja ďalšie správanie aplikácie.
+
+\subsubsection{Užívateľská interakcia}
+Ako sme už spomínali vyššie v kapitole~\ref{kap3:sec:model_view}, Qt využíva na komunikáciu medzi objektami tzv. \uv{Signals \& Slots}~\cite{signal_slot} mechanizmus, ktorý funguje ako alternatíva ku callback funkciám v iných frameworkoch. Qt widgety majú veľa preddefinovaných signálov (ku ktorým si môžeme dodefinovať ďalšie), ktoré sú emitované pri konkrétnom evente (napríklad QPushButton~\cite{qpushbutton} má signál \texttt{clicked()} ktorý je emitnutý pokiaľ je dané tlačidlo stlačené). Slot je funkcia, ktorá je zavolaná ako odpoveď na konkrétny signál. Prepojenie signálu so slotom prebieha pomocou metódy \texttt{QObject::connect(QObject* sender, signal, QObject* receiver, method)}, kde postupne definujeme inštanciu QObject spolu s jej konkrétnym signálom a následne inštanciu QObject spolu s jej metódou, ktorá sa má zavolať po emitovaní daného singálu. Qt má takisto možnosť \uv{Auto-Connect}~\cite{qt_autoconnect} pri ktorej stačí, že sa budeme držať štandardných konvencií a tým pádom nebudeme musieť manuálne prepájať jednotlivé signály a sloty pomocou \texttt{connect()} metódy. Toto využívame napríklad pri tlačidlách, konkrétne so signálom \texttt{clicked()}, kde stačí ak si vytvoríme slot pomocou nasledujúcej mennej konvencie: \texttt{void on\_\textless object name \textgreater\_clicked()}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\textwidth]{img/kap04_arch_buttons}
+	\caption{Tlačidlá v aplikácii.}
+	\label{obr:kap4:arch:buttons}
+\end{figure}
+
+Ako môžeme vidieť na obrázku~\ref{obr:kap4:arch:buttons}, naša aplikácia obsahuje hneď niekoľko tlačidieľ s odlišnou funkcionalitou o ktorú sa starajú už jednotlivé sloty, ktoré si teraz postupne opíšeme.
+
+\paragraph{Open tlačidlo}
+\label{kap04:sec:open_button}
+
+slúži na vybratie si súboru na analýzu. To funguje na základe triedy QFileDialog~\cite{qfiledialog}, ktorá slúži na prechádzanie file systému. Užívateľovi sa zobrazí nový dialóg s intuitívnym ovládaním na ktoré je bežný užívateľ zvyknutý. Zároveň slúži na resetovanie progress baru a nastavenie labelu, ktorý zobrazuje aktuálne zvolený súbor.
+
+\paragraph{Start tlačidlo}
+
+ako už napovedá jeho samotný názov, slúži na začatie analýzy. V tejto chvíli sa začne spracovávať súbor, ktorý si užívateľ zvolil pomocou predcházajúceho tlačidla Open~\ref{kap04:sec:open_button}. Spracovanie je následne vyobrazené pomocou QTableWidgetu, ktorým ako sme už riešili v kapitole~\ref{kap03:sec:zobr_zakl} vyobrazujeme základné informácie o jednotlivých paketoch. O cekové spracovanie súboru a jeho vyobrazenie tak ako aj o iné veci, sa stará trieda \textit{ItemManager}, o ktorej si povieme viac neskôr v sekcii (ODKAZ).
+
+\paragraph{Clear tlačidlo}
+
+zastáva funkciu vyčistenia plochy QTableWidgetu na ktorej sú vyobrazné základné informácie o paketoch. Takisto resetne progress bar, ktorým reprezentujeme v akom stave sa nachádzame z hľadiska spracovania daného súboru.
+
+\paragraph{Stop tlačidlo}
+
+spôsobí to, že sa úplne zastaví spracovávanie súboru. Využívané je pri analýze paketov v reálnom čase, čím stopne pridávanie nových paketov do QTableWidgetu. Akékoľvek ďalšie spracovávanie súborov už nie je umožnené. Ak by sme chceli analýzu len pozastaviť, tak v takom prípade použijeme tlačidlo Pause~\ref{kap04:sec:pause_button}.
+
+\paragraph{Pause tlačidlo}
+\label{kap04:sec:pause_button}
+
+ako už bolo naznačené vyššie, slúži na pozastavenie analýzy. To znamená, že nové pakety nie sú pridávané do QTableWidgetu. Obnovenie analýzy je možné opätovným stlačením tlačidla (teraz už s nápisom \uv{Continue}), čím bude obnovené pridávanie nových paketov.
+
+Z užívateľskej interakcie máme k dispozícii ešte jednu, o ktorej sme viac hovorili v kapitole~\ref{kap03:sec:zobr_zakl}, kde sme sa pre splnenie požiadavky na vyobrazenie detailnejších informácií o pakete na základe užívateľskej interakcie rozhodli pre dvojklik na položku reprezentujúcu daný paket.
+
+\paragraph{\texttt{on\_tableWidget\_itemDoubleclicked(QTableWidget* item)}}
+
+je slot, ktorý sa volá po dvojkliku na konkrétny item v QTableWidget (pointer na daný item je poslaný ako parameter). V tejto metóde vytvoríme novú inštanciu triedy DataViewer s odpovedajúcimi parametrami a vyobrazíme jej dialógové okno, ktoré zobrazí detailnejšie informácie o danom pakete.
+
+
+
+%Budeme si potrebovať nainštalovať Qt pre Windows. podla videa, verzia 5.15.0 len msvc 2019 64bit. inak ostatne default. zatial som este nainstaloval QT VS extension. teraz idem updatenut SDK na verziu 10.0.19041.0 -- to vymazalo errory typu ''cannot open source file cctype'' , teraz mi este ostali ''cannot open source file qbytearray'' a podobne spojene cisto s qt : pravdepodobne bug. musel som ist manualne do Project->properties->Qt Project SEttings a nastavit Qt installation na verziu 5.15.0_msvc2019_64. A UZ TO BEZIIII :)
 
 
 

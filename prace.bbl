@@ -339,4 +339,17 @@
 \newblock
   \url{https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2019}.
 
+\bibitem{qpushbutton}
+{Qt QPushButton class}.
+\newblock \url{https://doc.qt.io/qt-5/qpushbutton.html}.
+
+\bibitem{qt_autoconnect}
+{Qt Auto-Connect}.
+\newblock
+  \url{https://doc.qt.io/qt-5/designer-using-a-ui-file.html#widgets-and-dialogs-with-auto-connect}.
+
+\bibitem{qfiledialog}
+{Qt QFileDialog class}.
+\newblock \url{https://doc.qt.io/qt-5/qfiledialog.html}.
+
 \end{thebibliography}

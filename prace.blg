@@ -25,44 +25,44 @@ Reallocating 'name_of_file' (item size: 1) to 17 items.
 Reallocating 'name_of_file' (item size: 1) to 18 items.
 A level-1 auxiliary file: outro/prilohy.aux
 Database file #1: outro/literatura.bib
-You've used 74 entries,
+You've used 77 entries,
             1791 wiz_defined-function locations,
-            678 strings with 11054 characters,
-and the built_in function-call counts, 7638 in all, are:
-= -- 640
-> -- 74
+            687 strings with 11337 characters,
+and the built_in function-call counts, 7938 in all, are:
+= -- 664
+> -- 77
 < -- 0
-+ -- 74
++ -- 77
 - -- 0
 * -- 2
-:= -- 725
-add.period$ -- 172
-call.type$ -- 74
-change.case$ -- 74
+:= -- 752
+add.period$ -- 178
+call.type$ -- 77
+change.case$ -- 77
 chr.to.int$ -- 0
-cite$ -- 74
-duplicate$ -- 370
-empty$ -- 1333
+cite$ -- 77
+duplicate$ -- 385
+empty$ -- 1387
 format.name$ -- 0
-if$ -- 2047
+if$ -- 2128
 int.to.chr$ -- 0
-int.to.str$ -- 74
+int.to.str$ -- 77
 missing$ -- 0
-newline$ -- 323
+newline$ -- 335
 num.names$ -- 0
-pop$ -- 492
+pop$ -- 510
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 371
+skip$ -- 389
 stack$ -- 0
 substring$ -- 0
-swap$ -- 74
+swap$ -- 77
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
 while$ -- 0
-width$ -- 76
-write$ -- 568
+width$ -- 79
+write$ -- 589
