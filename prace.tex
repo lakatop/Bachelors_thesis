@@ -116,20 +116,24 @@ Poděkování.
 USB zbernica je dnes jedným z najrozšírenejších spôsobov pripojenia periférií k~počítaču. 
 Cieľom práce bolo vytvoriť software, ktorý analyzuje zachytenú komunikáciu medzi zariadnením pripojeným na~danú zbernicu a~počítačom.
 
-Aplikácia následne rozumným spôsobom vizuálne zobrazuje zanalyzované dáta. Počiatočná verzia sa špecificky zameriava na~HID triedu zariadení a~ponúka aj sémantický význam jej úzkej podmnožiny do~ktorej patria myš, klávesnica a~joystick. Pri vizuálnej reprezentácii dát sa práca inšpiruje rôznymi dostupnými softwarmi, pričom rozlične kombinuje resp. dopĺňa ich vlastnosti a~implementuje z~nich tie, ktoré vníma ako najlepšie riešenie v danej situácii.
+Aplikácia následne rozumným spôsobom vizuálne zobrazuje zanalyzované dáta. Konkrétne sa zameriava na~HID triedu zariadení a~ponúka aj sémantický význam jej úzkej podmnožiny do~ktorej patria myš, klávesnica a~joystick. Pri vizuálnej reprezentácii dát sa práca inšpiruje rôznymi dostupnými softwarmi, pričom rozlične kombinuje resp. dopĺňa ich vlastnosti a~implementuje z~nich tie, ktoré vníma ako najlepšie riešenie v danej situácii.
 
-Ďalšie vlastnosti aplikácie sú napríklad parsovanie HID Report Descriptoru vďaka ktorému je jednoduchšie pridať sémantickú analýzu rôznym ďalším HID zariadeniam. Celkový návrh aplikácie by mal ponúknuť možnosť budúcej implementácie ďalších USB tried pre~prípadné rozšírenie.
+Ďalšie vlastnosti aplikácie sú napríklad parsovanie HID Report Descriptoru vďaka ktorému bude v budúcnosti jednoduchšie pridať sémantickú analýzu rôznym ďalším HID zariadeniam. Celkový návrh aplikácie by mal ponúknuť možnosť budúcej implementácie ďalších USB tried pre~prípadné rozšírenie.
 }
 \def\AbstraktEN{%
-Abstract.
+USB is the most common way of connecting peripherals to the PC. The goal of this thesis is to create a software application which analyzes communication between a device connected to this bus and a computer.
+
+An application should be capable to reasonably show analyzed data. Its specific focus is on HID class devices. This also brings semantic analysis of given subset of HID devices, which consists of mouse, keyboard and joystick. The methods that application use to visually represent data were created upon an inspiration from already existing ones, whereas it combines and impoves their capabilities to achieve the best possible result.
+
+Another feature that application has is for example ability to parse HID Report Descriptor, to accomplish easier addition of new HID devices for semantic analysis. Overall design of application should be general enough so it will be possible to add analysis for other USB classes.
 }
 
 % 3 až 5 klíčových slov (doporučeno), každé uzavřeno ve složených závorkách
 \def\KlicovaSlova{%
-{USB} {HID}
+{USB} {HID} {Analyzátor}
 }
 \def\KlicovaSlovaEN{%
-{key} {words}
+{USB} {HID} {Analyzer}
 }
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,

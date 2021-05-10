@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  9 MAY 2021 18:41
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  10 MAY 2021 15:21
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -654,8 +654,8 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 ) (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/latex/ncctools\extdash.sty
 Package: extdash 2018/06/24 v1.3 Extended Dash Package (NCC)
 )
-Package hyperref Info: Option `unicode' set `true' on input line 138.
-Package hyperref Info: Option `breaklinks' set `true' on input line 139.
+Package hyperref Info: Option `unicode' set `true' on input line 142.
+Package hyperref Info: Option `breaklinks' set `true' on input line 143.
 
 \@input{makra.aux}
 \openout2 = `makra.aux'.
@@ -677,24 +677,24 @@ File: l3backend-pdftex.def 2021-03-02 L3 backend support: PDF output (pdfTeX)
 (outro/literatura.aux) (outro/prilohy.aux))
 \openout1 = `prace.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 145.
-LaTeX Font Info:    ... okay on input line 145.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 149.
+LaTeX Font Info:    ... okay on input line 149.
 
 (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -725,7 +725,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
 )
-Package hyperref Info: Link coloring OFF on input line 145.
+Package hyperref Info: Link coloring OFF on input line 149.
 
 (C:\Users\lakat\AppData\Local\Programs\MiKTeX\tex/latex/hyperref\nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
@@ -739,9 +739,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count317
 )
-LaTeX Info: Redefining \ref on input line 145.
-LaTeX Info: Redefining \pageref on input line 145.
-LaTeX Info: Redefining \nameref on input line 145.
+LaTeX Info: Redefining \ref on input line 149.
+LaTeX Info: Redefining \pageref on input line 149.
+LaTeX Info: Redefining \nameref on input line 149.
  (prace.out) (prace.out)
 \@outlinefile=\write5
 \openout5 = `prace.out'.
@@ -1312,7 +1312,7 @@ mr/m/n/12 je slot, ktorý sa|
  []
 
 [50]
-Overfull \hbox (6.32361pt too wide) in paragraph at lines 295--296
+Overfull \hbox (6.32361pt too wide) in paragraph at lines 296--297
 []\T1/lmr/m/n/12 model na he-xdump - pre-nasa hex/printable a za-ro-ven o co vl
 astne ide(konkretny|
  []
@@ -1642,13 +1642,16 @@ int desc-rip-toru \T1/lmr/m/n/12 v stro-mo-vej ²truk- |
 (content/kap05-moznosti_rozsirenia.aux)
 (content/kap06-uzivatelska_dokumentacia.aux) (content/kap07-zaver.aux)
 (outro/literatura.aux) (outro/prilohy.aux))
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `prace.out' has not changed.
-(rerunfilecheck)             Checksum: 65899350B73832B25E29E05250BC1B55;10767.
+(rerunfilecheck)             Checksum: E64D8999217DE7B5615023980C8D41EB;10767.
  ) 
 Here is how much of TeX's memory you used:
- 18367 strings out of 479334
- 282612 string characters out of 2857084
- 590678 words of memory out of 3000000
+ 18368 strings out of 479334
+ 282624 string characters out of 2857084
+ 591611 words of memory out of 3000000
  34993 multiletter control sequences out of 15000+200000
  487943 words of font info for 92 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1664,9 +1667,9 @@ s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/User
 s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/User
 s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/User
 s/lakat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on prace.pdf (72 pages, 3945699 bytes).
+Output written on prace.pdf (72 pages, 3946726 bytes).
 PDF statistics:
- 1524 PDF objects out of 1728 (max. 8388607)
- 341 named destinations out of 1000 (max. 500000)
+ 1525 PDF objects out of 1728 (max. 8388607)
+ 342 named destinations out of 1000 (max. 500000)
  886 words of extra memory for PDF output out of 10000 (max. 10000000)
 

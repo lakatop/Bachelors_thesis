@@ -32,6 +32,7 @@
 \contentsline {paragraph}{Stop tlačidlo}{50}{section*.93}%
 \contentsline {paragraph}{Pause tlačidlo}{50}{section*.94}%
 \contentsline {paragraph}{\texttt {on\_tableWidget\_itemDoubleclicked(QTableWidget* item)}}{50}{section*.95}%
+\contentsline {subsubsection}{ItemManager}{50}{section*.96}%
 \contentsline {section}{\numberline {4.3}Architekrúra aplikácie}{51}{section.4.3}%
 \contentsline {section}{\numberline {4.4}Jadro aplikácie}{51}{section.4.4}%
 \contentsline {subsection}{\numberline {4.4.1}USB\_Packet\_Analyzer}{51}{subsection.4.4.1}%
@@ -49,11 +50,11 @@
 \contentsline {subsection}{\numberline {4.6.2}Interpreter factory}{52}{subsection.4.6.2}%
 \contentsline {subsection}{\numberline {4.6.3}Interpretery descriptorov}{52}{subsection.4.6.3}%
 \contentsline {subsection}{\numberline {4.6.4}Interrupt transfer interpretery}{52}{subsection.4.6.4}%
-\contentsline {subsubsection}{Joystick interpreter}{52}{section*.96}%
-\contentsline {subsubsection}{Mouse interpreter}{52}{section*.97}%
-\contentsline {subsubsection}{Keyboard interpreter}{52}{section*.98}%
+\contentsline {subsubsection}{Joystick interpreter}{52}{section*.97}%
+\contentsline {subsubsection}{Mouse interpreter}{52}{section*.98}%
+\contentsline {subsubsection}{Keyboard interpreter}{52}{section*.99}%
 \contentsline {section}{\numberline {4.7}Delegáti}{52}{section.4.7}%
-\contentsline {subsubsection}{DataViewerDelegate}{52}{section*.99}%
+\contentsline {subsubsection}{DataViewerDelegate}{52}{section*.100}%
 \contentsline {section}{\numberline {4.8}HID}{52}{section.4.8}%
 \contentsline {subsection}{\numberline {4.8.1}HIDDevices}{52}{subsection.4.8.1}%
 \contentsline {section}{\numberline {4.9}Práca so súbormi}{52}{section.4.9}%
@@ -76,9 +77,9 @@
 \contentsline {chapter}{\numberline {7}Záver}{56}{chapter.7}%
 \contentsline {section}{\numberline {7.1}Zhrnutie}{56}{section.7.1}%
 \contentsline {section}{\numberline {7.2}Budúce plány}{56}{section.7.2}%
-\contentsline {chapter}{Zoznam použitej literatúry}{57}{chapter*.100}%
-\contentsline {chapter}{Zoznam obr\'azkov}{62}{chapter*.101}%
-\contentsline {chapter}{Zoznam tabuliek}{64}{chapter*.102}%
-\contentsline {chapter}{Seznam použitých zkratek}{65}{chapter*.103}%
-\contentsline {chapter}{Prílohy}{66}{appendix*.104}%
+\contentsline {chapter}{Zoznam použitej literatúry}{57}{chapter*.101}%
+\contentsline {chapter}{Zoznam obr\'azkov}{62}{chapter*.102}%
+\contentsline {chapter}{Zoznam tabuliek}{64}{chapter*.103}%
+\contentsline {chapter}{Seznam použitých zkratek}{65}{chapter*.104}%
+\contentsline {chapter}{Prílohy}{66}{appendix*.105}%
 \contentsline {section}{\numberline {.1}První příloha}{67}{section.Alph0.1}%

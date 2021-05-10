@@ -173,7 +173,7 @@ Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=12cm]{img/kap04_vs_manual}
-	\caption{Visual Studio obecné nastavenia projektu.}
+	\caption{Visual Studio manuálne nastavenie Qt Installation.}
 	\label{obr:kap4:vs_manual}
 \end{figure}
 
@@ -245,7 +245,8 @@ Z užívateľskej interakcie máme k dispozícii ešte jednu, o ktorej sme viac 
 
 je slot, ktorý sa volá po dvojkliku na konkrétny item v QTableWidget (pointer na daný item je poslaný ako parameter). V tejto metóde vytvoríme novú inštanciu triedy DataViewer s odpovedajúcimi parametrami a vyobrazíme jej dialógové okno, ktoré zobrazí detailnejšie informácie o danom pakete.
 
-
+\subsubsection{ItemManager}
+Interakciu užívateľa so systémom sme si už vysvetlili, poďme sa teraz pozrieť na samotné spracovávanie súborov.
 
 %Budeme si potrebovať nainštalovať Qt pre Windows. podla videa, verzia 5.15.0 len msvc 2019 64bit. inak ostatne default. zatial som este nainstaloval QT VS extension. teraz idem updatenut SDK na verziu 10.0.19041.0 -- to vymazalo errory typu ''cannot open source file cctype'' , teraz mi este ostali ''cannot open source file qbytearray'' a podobne spojene cisto s qt : pravdepodobne bug. musel som ist manualne do Project->properties->Qt Project SEttings a nastavit Qt installation na verziu 5.15.0_msvc2019_64. A UZ TO BEZIIII :)
 
