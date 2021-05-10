@@ -164,6 +164,7 @@ Qt obsahuje množinu itemov, ktoré používaju model/view architektúru na riad
 
 
 \section{Spracovávanie pcap súborov}
+\label{kap03:sec:sprac_sub}
 V sekcii~\ref{kap03:third_party} sme sa rozhodli, že na zachytávanie paketov budeme používať third-party aplikáciu USBPcap. Tá, ako sme už spomínali, zachytáva pakety do súboru vo formáte pcap, čo je obecne známy formát so špecifickým zameraním práve na ukladanie dát reprezentujúcich pakety. Teraz sa pozrieme na niekoľko možných spôsobov ako daný súbor spracovať:
 
 \subsection*{Npcap API}
@@ -194,6 +195,24 @@ Skúsime sa pozrieť na to, čo nám ponúka samotné Qt.
 \subsection*{QByteArray}
 \label{kap03:sec:uch_dat:qbytearray}
 V riešení nám zase pomôže koncept dostupný v Qt -- \textit{QByteArray}~\cite{qbytearray}. QByteArray je trieda, ktorá slúži práve na uchovávanie bytov alebo '\\0'-terminated stringov. Navyše sú uložené dáta copy-on-write takže ušetríme pamäť a zbytočné kopírovanie dát. Obsahuje metódy ako \texttt{resize(int)} (zmení veľkosť daného poľa) alebo \texttt{data()} (vráti char* na začiatok poľa). O životnosť objektu sa nemusíme obávať, pretože Qt používa vlastný reference counting systém, ktorým sa stará o všetky zdieľané objekty medzi ktoré patrí aj QByteArray. O ukladaní dát sa budeme bližšie baviť v sekcii~\ref{kap03:sec:zobr_zakl} nižšie ale aby sme to pochopili, vysvetlíme si tu ešte jeden koncept Qt, ktorý neskôr využijeme spolu s QByteArray pri ukladaní dát -- \textit{QVariant}~\cite{qvariant}. QVariant je trieda, ktorá sa správa ako union pre väčšinu základných Qt datových typov. Podstatné je, že si doňho vieme zabaliť náš konkrétny QByteArray a neskôr ho odtiaľ získať zavolaním metódy \texttt{toByteArray()}.
+
+
+
+\section{Spracovávanie live capture}
+Ako sme už spomínali vyššie v sekcii~\ref{ka03:sec:sprac_sub}, súbory spracovávame pomocou QFile. Ak máme fixný súbor, ktorý sa počas spracovávania a ani po ňom nemení, tak jeho spracovanie je priamočiare -- prechádzame \texttt{while} cyklom cez súbor až pokiaľ sa nedostaneme na jeho koniec a tým celé psracovanie končí. Počas live capturu to je o trochu komplikovanejšie, pretože potrebujeme neustále sledovať spracovávaný súbor na aktuálne zmeny. To môžeme riešiť viacerými spôsobmi:
+
+\subsection*{Nekonečný cyklus}
+Jedno z riešení by bolo celý proces spracovávania súboru zabaliť do nekonečného \texttt{while(true)} cyklu. Toto riešenie nie je práve ideálne z dvoch hlavných dôvodov:
+\begin{enumerate}
+\item Záťaž procesora -- mohli by sme do kódu pridať napríklad \texttt{Sleep(50)}, ale stále to tvorí obrovský nátlak na procesor.
+\item User-experience -- z užívateľského pohľadu je toto riešenie veľmi nepraktické. Vzhľadom na to, že používame Qt, náš program reaguje na interakciu užívateľa pomocou tzv. \uv{signálov a slotov}~\cite{signal_slot}. Zároveň na daný cyklus nevyužívame žiadne metódy paralelného programovania a teda Qt komponenty nemajú možnosť tieto signály emitnúť. Riešenie by bolo volať priebežne metódu \texttt{QCoreApplication::processEvents()}, ktorou by sme spracovali dané signály. Takýto prístup má za následok veľmi zlú odozvu vzhľadiska užívateľskej interakcie s aplikáciou, čo pôsobí sekavým dojmom.
+\end{enumerate}
+
+\subsection*{QFileSystemWatcher}
+QFileSystemWatcher~\cite{qfilesystemwatcher} Qt trieda ponúka interface na monitorovanie jednotlivých súborov a priečinkov. Pomocou \texttt{addPath(QString)} metódy si pridáme cestu k súboru, ktorý chceme sledovať a pokiaľ je daný súbor akýmsi spôsobom modifikovaný, QFileSystemWatcher emitne signál \texttt{fileChanged(QString)}. Museli by sme si teda spojiť tento signál s našim konkrétnym slotom (takže ak bude \texttt{fileChanged(QString)} signál emitnutý, zavolá sa naša slot funkcia), v ktorom by sme implementovali čítanie súboru po jeho prípadných zmenách. Toto riešenie sme bohužial nemohli implementovať z dôvodu, akým vo Wiresharku funguje zapisovanie do súboru počas zachytávania USB paketov. Zapisovanie prebieha až v momente keď máme Wireshark otvorený ako hlavné okno, a nie keď len beží na pozadí. To znamená, že by sme museli prepínať medzi našou aplikáciou a Wiresharkom aby bol súbor, do ktorého sa zapisuje modifikovaný a tým pádom by bol emitnutý signál \texttt{fileChanged(QString)}.
+
+\subsection*{Qtimer}
+Riešenie nám poskytne trieda QTimer~\cite{qtimer} a jej signál \texttt{timeout()}. Ten sa emitne v pravidelných intervaloch určených metódou \texttt{start(std::chrono::miliseconds)} (čím sa zároveň aj spustí daný timer). K tomuto signálu si pripojíme slot, ktorý skontroluje či nebol daný súbor modifikovaný a prípadne spracuje jeho zmeny. Z vyššie opísaných dôvodov pre ktoré sme nemohli použiť QFileSystemWatcher, je QTimer prijateľná alternatíva, ktorá netvorí záťaž procesora a neprejavuje sa ani čisto z užívateľského pohľadu.
 
 
 

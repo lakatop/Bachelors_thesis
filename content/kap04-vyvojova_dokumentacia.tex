@@ -6,92 +6,26 @@ Táto kapitola je zameraná pre programátorov, ktorých by bližšie zaujímali
 \section{Kompilácia}
 V prílohe tejto práce sa nachádzajú zdrojové kódy nášho programu. Na ich úspešné skompilovanie budeme ale potrebovať splniť niekoľko požiadaviek:
 \begin{itemize}
-\item Podporovaná platforma na kompiláciu je momentálne iba Windows 10.
-\item Ku kompilácii je potrebné Visual Studio 2019 s SDK verziou 10.0.19041.0
-\item Qt verzie 5.15.0
+\item Podporovaná platforma na kompiláciu je momentálne iba Windows 10 verzie 20H2.
+\item Ku kompilácii je potrebné Visual Studio 2019 verzie 16.9.0, a Windows 10 SDK verzie 10.0.19041.0
+\item Qt verzie 5.15.0 \footnote{V dobe dokončovania práce bola najnovšia verzia Qt 6.1, ktorá by mala byť spätne kompatibilná, ale netestovali sme to.}
 \end{itemize}
 
 \subsection{Inštalácia Qt}
 
 Keďže ku kompilácii budeme potrebovať samotné Qt, ukážeme si jeho inštaláciu v nasledujúcich krokoch (v prípade, že náš počítač už obsahuje požadovanú verziu Qt, môžeme tieto kroky preskočiť a prejsť na integráciu VS s Qt~\ref{kap4:sec:VS2019_qt}). Tu je nutné spomenúť, že sa jedná o online inštaláciu a budeme potrebovať pripojenie k internetu:
 \begin{itemize}
-\item Po kliknutí  \href{https://www.qt.io/download}{\textbf{tu}} sa nám otvorí internetový prehliadač so stránkou na stiahnutie Qt, kde vyhľadáme možnosť \uv{Downloads for open source users} a klikneme na \uv{Go open source} (ukázané na obrázku~\ref{obr:kap4:qt_download}).
+\item Po kliknutí na odkaz https://www.qt.io/download sa nám otvorí internetový prehliadač so stránkou na stiahnutie Qt, kde vyhľadáme možnosť \uv{Downloads for open source users} a klikneme na \uv{Go open source}.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_qt_download}
-	\caption{Stránka Qt download.}
-	\label{obr:kap4:qt_download}
-\end{figure}
+\item Na aktuálnej stránke nascrollujeme úplne dole, kde klikneme na zelené tlačidlo s nápisom \uv{Download the Qt Online Installer}.
 
-\item Na aktuálnej stránke nascrollujeme úplne dole, kde klikneme na zelené tlačidlo s nápisom \uv{Download the Qt Online Installer} (obrázok~\ref{obr:kap4:qt_online}).
+\item Na aktuálnej stránke klikneme na \uv{Download}, čím sa nám stiahne \uv{Qt Online Installer}. Ten následne spustíme.
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_qt_online}
-	\caption{Stránka Qt -- odkaz na stiahnutie \uv{Qt Online Installer}.}
-	\label{obr:kap4:qt_online}
-\end{figure}
+\item Ako prvé nás privíta obrazovka, ktorá od nás vyžaduje prihlásenie sa do nášho Qt účtu. Toto je bohužiaľ nutnosť a nie je možné bez toho pokračovať. V prípade, že nemáme žiadny vytvorený Qt účet, môžeme si ho vytvoriť priamo počas inštalácie a celé to nezaberie viac ako dve minúty. Potom klikneme na tlačidlo \uv{Next}.
 
-\item Na aktuálnej stránke klikneme na \uv{Download}, čím sa nám stiahne \uv{Qt Online Installer}. Ten následne spustíme. Ukážku vidíme na obrázku~\ref{obr:kap4:qt_online_down}.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_qt_online_down}
-	\caption{Stránka Qt stiahnutie uv{Qt Online Installeru}.}
-	\label{obr:kap4:qt_online_down}
-\end{figure}
-
-\newpage
-\newpage
-
-\item Ako prvé nás privíta obrazovka, ktorá od nás vyžaduje prihlásenie sa do nášho Qt účtu. Toto je bohužiaľ nutnosť a nie je možné bez toho pokračovať. V prípade, že nemáme žiadny vytvorený Qt účet, môžeme si ho vytvroiť priamo počas inštalácie a celé to nezaberie viac ako dve minúty. Potom klikneme na tlačidlo \uv{Next} (obrázok~\ref{obr:kap4:inst_welcome}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_welcome}
-	\caption{\uv{Welcome} časť Qt Setupu}
-	\label{obr:kap4:inst_welcome}
-\end{figure}
-
-
-\item Teraz zaškrtneme, že sme si prečítali a súhlasíme s povinnosťami používania \uv{Open Source Qt} a klikneme na tlačidlo \uv{Next} (obrázok~\ref{obr:kap4:inst_oblg}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_oblg}
-	\caption{\uv{Open Source Obligations} časť Qt Setupu}
-	\label{obr:kap4:inst_oblg}
-\end{figure}
-
-\item Momentálne len klikneme na tlačidlo \uv{Next} a počkáme kým sa nám stiahnu dáta z repozitára (obrázok~\ref{obr:kap4:inst_set}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_set}
-	\caption{\uv{Setup - Qt} časť Qt Setupu}
-	\label{obr:kap4:inst_set}
-\end{figure}
-
-\item Teraz zaškrtneme jednu z možností o zasielaní štatistických údajov počas používania Qt Creatoru. Tu si môžeme zvoliť ktorúkoľvek z možností podľa osobných preferencií. Následne klikneme na tlačidlo \uv{Next} (obrázok~\ref{obr:kap4:inst_cont}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_cont}
-	\caption{\uv{Contribute to Qt Development} časť Qt Setupu}
-	\label{obr:kap4:inst_cont}
-\end{figure}
-
-\item Na tejto obrazovke (obrázok~\ref{obr:kap4:inst_int}) si zvolíme adresár do ktorého chceme Qt nainštalovať a zaklikneme možnosť \uv{Custom installation}. Následne klikneme na \uv{Next}.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_int}
-	\caption{\uv{Installation Folder} časť Qt Setupu}
-	\label{obr:kap4:inst_int}
-\end{figure}
-
-\item Teraz si zvolíme konkrétne komponenty, ktoré sa nám nainštalujú. Komponenty, ktoré sú zaškrtnuté necháme tak a rozklikneme možnosť Qt$\leftarrow$Qt 5.15.0 a zaškrtneme možnosť \uv{MSVC 2019 64-bit} a klikneme na \uv{Next} (obrázok~\ref{obr:kap4:inst_sel}).
+ \item Teraz sa postupne preklikáme až po časť, kde máme možnosť si vybrať či chceme zasielať štatistické údaje počas používania Qt Creatoru. Tu si môžeme zvoliť ktorúkoľvek z možností podľa osobných preferencií a pokračovať ďalej v inštalácii.
+ 
+\item Postupne sa dostaneme na obrazovku kde si zvolíme konkrétne komponenty, ktoré sa nám nainštalujú. Komponenty, ktoré sú zaškrtnuté necháme tak a rozklikneme možnosť Qt$\leftarrow$Qt 5.15.0 a zaškrtneme možnosť \uv{MSVC 2019 64-bit} a klikneme na \uv{Next} (obrázok~\ref{obr:kap4:inst_sel}).
 
 \begin{figure}[!htb]
 	\centering
@@ -100,38 +34,9 @@ Keďže ku kompilácii budeme potrebovať samotné Qt, ukážeme si jeho inštal
 	\label{obr:kap4:inst_sel}
 \end{figure}
 
-\item Na aktuálnej obrazovke (obrázok~\ref{obr:kap4:inst_lic}) zaškrtneme možnosť, že sme si prečítali a súhlasíme s licenčnej zmluvy a klikneme na \uv{Next}.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_lic}
-	\caption{\uv{License Agreement} časť Qt Setupu}
-	\label{obr:kap4:inst_lic}
-\end{figure}
-
-\item Zvolíme si start menu skratku a klikneme na \uv{Next} (obrázok~\ref{obr:kap4:inst_star}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_star}
-	\caption{\uv{Start Menu Shortcut} časť Qt Setupu}
-	\label{obr:kap4:inst_star}
-\end{figure}
-
-\item Teraz už len klikneme na \uv{Install} (obrázok~\ref{obr:kap4:inst_ready}) a počkáme kým prebehne inštalácia.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap04_inst_ready}
-	\caption{\uv{Ready to Install} časť Qt Setupu}
-	\label{obr:kap4:inst_ready}
-\end{figure}
-
-\item V záverečnej obrazovke môžeme odškrtnúť možnosť \uv{Launch Qt Creator} a klikneme na tlačidlo \uv{Finish}.
+\item Ďalej nasledujú bežné kroky pomocou ktorých dokončíme inštaláciu.
 
 \end{itemize}
-
-\clearpage
 
 \subsection{Visual Studio 2019 a Qt}
 \label{kap4:sec:VS2019_qt}
@@ -192,7 +97,7 @@ V tomto momente by sme mali byť schopní úspešne skompilovať a spustiť ná�
 
 V tejto sekcii si prejdeme celkovú stavbu aplikácie a akým spôsobom sú jednotlivé komponenty prepojené. Ako vidíme na obrázku~\ref{obr:kap4:architek}, aplikáciu môžeme rozdeliť do dvoch hlavných komponent, ktoré tvoria logické jadro programu: \texttt{USB\_Packet\_Analyzer} a \texttt{DataViewer}, na ktoré sa viažu ďalšie komponenty a dopĺňajú ich funkcionalitu. Teraz si podrobnejšie opíšeme obe hlavné komponenty spolu s komponentami, ktoré sú na nich napojené.
 
-\subsection{USB\_Packet\_Analyzer}
+\section{USB\_Packet\_Analyzer}
 
 USB\_Packet\_Analyzer tvorí hlavnú triedu programu, ktorá reprezentuje okno zobrazené užívateľovi hneď po zapnutí aplikácie. Naše hlavné okno pozostáva z nasledujúcich komponent:
 \begin{itemize}
@@ -205,7 +110,7 @@ USB\_Packet\_Analyzer tvorí hlavnú triedu programu, ktorá reprezentuje okno z
 \end{itemize}
 Zároveň implementuje funkcie spojené s užívateľskou interakciou, od ktorej sa následne odvíja ďalšie správanie aplikácie.
 
-\subsubsection{Užívateľská interakcia}
+\subsection{Užívateľská interakcia}
 Ako sme už spomínali vyššie v kapitole~\ref{kap3:sec:model_view}, Qt využíva na komunikáciu medzi objektami tzv. \uv{Signals \& Slots}~\cite{signal_slot} mechanizmus, ktorý funguje ako alternatíva ku callback funkciám v iných frameworkoch. Qt widgety majú veľa preddefinovaných signálov (ku ktorým si môžeme dodefinovať ďalšie), ktoré sú emitované pri konkrétnom evente (napríklad QPushButton~\cite{qpushbutton} má signál \texttt{clicked()} ktorý je emitnutý pokiaľ je dané tlačidlo stlačené). Slot je funkcia, ktorá je zavolaná ako odpoveď na konkrétny signál. Prepojenie signálu so slotom prebieha pomocou metódy \texttt{QObject::connect(QObject* sender, signal, QObject* receiver, method)}, kde postupne definujeme inštanciu QObject spolu s jej konkrétnym signálom a následne inštanciu QObject spolu s jej metódou, ktorá sa má zavolať po emitovaní daného singálu. Qt má takisto možnosť \uv{Auto-Connect}~\cite{qt_autoconnect} pri ktorej stačí, že sa budeme držať štandardných konvencií a tým pádom nebudeme musieť manuálne prepájať jednotlivé signály a sloty pomocou \texttt{connect()} metódy. Toto využívame napríklad pri tlačidlách, konkrétne so signálom \texttt{clicked()}, kde stačí ak si vytvoríme slot pomocou nasledujúcej mennej konvencie: \texttt{void on\_\textless object name \textgreater\_clicked()}.
 
 \begin{figure}[!htb]
@@ -223,8 +128,9 @@ Ako môžeme vidieť na obrázku~\ref{obr:kap4:arch:buttons}, naša aplikácia o
 slúži na vybratie si súboru na analýzu. To funguje na základe triedy QFileDialog~\cite{qfiledialog}, ktorá slúži na prechádzanie file systému. Užívateľovi sa zobrazí nový dialóg s intuitívnym ovládaním na ktoré je bežný užívateľ zvyknutý. Zároveň slúži na resetovanie progress baru a nastavenie labelu, ktorý zobrazuje aktuálne zvolený súbor.
 
 \paragraph{Start tlačidlo}
+\label{kap04:sec:start_button}
 
-ako už napovedá jeho samotný názov, slúži na začatie analýzy. V tejto chvíli sa začne spracovávať súbor, ktorý si užívateľ zvolil pomocou predcházajúceho tlačidla Open~\ref{kap04:sec:open_button}. Spracovanie je následne vyobrazené pomocou QTableWidgetu, ktorým ako sme už riešili v kapitole~\ref{kap03:sec:zobr_zakl} vyobrazujeme základné informácie o jednotlivých paketoch. O cekové spracovanie súboru a jeho vyobrazenie tak ako aj o iné veci, sa stará trieda \textit{ItemManager}, o ktorej si povieme viac neskôr v sekcii (ODKAZ).
+ako už napovedá jeho samotný názov, slúži na začatie analýzy. V tejto chvíli sa začne spracovávať súbor, ktorý si užívateľ zvolil pomocou predcházajúceho tlačidla Open~\ref{kap04:sec:open_button}. Spracovanie je následne vyobrazené pomocou QTableWidgetu, ktorým ako sme už riešili v kapitole~\ref{kap03:sec:zobr_zakl} vyobrazujeme základné informácie o jednotlivých paketoch. O cekové spracovanie súboru a jeho vyobrazenie tak ako aj o iné veci, sa stará trieda \textit{ItemManager}, o ktorej si povieme viac neskôr v sekcii~\ref{kap04:sec:item_manager}.
 
 \paragraph{Clear tlačidlo}
 
@@ -245,8 +151,35 @@ Z užívateľskej interakcie máme k dispozícii ešte jednu, o ktorej sme viac 
 
 je slot, ktorý sa volá po dvojkliku na konkrétny item v QTableWidget (pointer na daný item je poslaný ako parameter). V tejto metóde vytvoríme novú inštanciu triedy DataViewer s odpovedajúcimi parametrami a vyobrazíme jej dialógové okno, ktoré zobrazí detailnejšie informácie o danom pakete.
 
-\subsubsection{ItemManager}
-Interakciu užívateľa so systémom sme si už vysvetlili, poďme sa teraz pozrieť na samotné spracovávanie súborov.
+\subsection{ItemManager}
+\label{kap04:sec:item_manager}
+Interakciu užívateľa so systémom sme si už vysvetlili a teraz sa poďme pozrieť na samotné spracovávanie súborov. To má na starosti hlavne trieda ItemManager. Tá je implementovaná podľa návrhového vzoru singleton a vytvárame ju v konštruktore hlavnej triedy USB\_Packet\_Analyzer. Tento návrh nám okrem iného zároveň umožňuje počas analýzy v reálnom čase pokračovať v spracovávaní súboru na mieste, kde sme predtým skončili. V kapitole~\ref{kap03:sec:sprac_sub} sme sa rozhodli, že na čítanie súborov budeme používať QFile. ItemManager priamo so súborom, ale už len predparsovanými dátami v podobe jednotlivých paketov. Tie mu posiela inštancia triedy FileReader, ktorú má uloženú ako dátovú položku. FileReader má implementovanú celú logiku práce so súborom, pričom asi najpodstatnejšia je metóda \texttt{GetPacket()} -- prečíta zo súboru dáta, ktoré reprezentujú jeden paket a tie vráti zabaené v QByteArray.
+
+\subsubsection{Selekcia paketov}
+
+Ako sme už spomínali vyššie, samotná analýza začína stlačením tlačidla Start, kedy sa na inštancii ItemManagera zavolá metóda \texttt{ProcessFile(QString filename, bool liveReading)}. Ako nám už samotné názvy parametrov napovedajú, predávame v nej názov súboru, ktorý chceme spracovať a \texttt{bool} hodnotu určujúcu, či sa jedná o live capture alebo file capture. Táto metóda zaistí prostredníctvom FileReader inštancie otvorenie daného súboru a prečítanie jeho globálnej hlavičky. Ak sa jedná o live capture, nastaví timer aby kontroloval zmenu v súbore v pravidelných intervaloch 1 sekundy. Následne zavolá metódu \texttt{ProcessFileTillEnd(bool liveReading)}, ktorá pokračuje v spracovaní súboru od miesta kde čítanie naposledy skončilo, až po jeho koniec. Táto metóda je takisto spojená s \texttt{QTimer::timeout()} signálom, pre dodatočné spracovanie súboru v prípade pripísania nových paketov počas live capture. V tejto metóde si postupne od FileReaderu pýtame pomocou \texttt{GetPacket()} metódy dáta reprezentujúce jednotlivé pakety a tie posielame ako parameter funkcie \texttt{ProcessPacket(QByteArray)} na ich ďalšie spracovanie. Spracovanie samostatného paketu obsahuje niekoľko fáz:
+\paragraph{Kontrola pre špeciálny typ paketu.}
+\hfill \break
+Pri spracovaní jednotlivých paketov riešime 2 nasledujúce veci:
+\begin{itemize}
+\item Dáta paketu reprezentujú Configuration Descriptor spolu s Interface/HID/Endpoint Descriptormi -- v takomto prípade bolo na zbernicu pripojené nové zariadenie a je potrebné si pre neho vytvoriť novú inštanciu typu BusDevice, o ktorej si viac povieme neskôr (ODKAZ).
+\item Dáta paketu reprezentujú HID Report Descriptor -- v takom prípade je nutné daný Report Descriptor rozparsovať. Detailnejší opis si povieme nižšie v sekcii (ODKAZ).
+\end{itemize}
+Po týchto dvoch kontrolách a prípadne následných úkonoch, ktoré s nimi súvisia, posunieme dáta do metódy \texttt{FillUpItem(QByteArray)}.  
+
+\paragraph{Rozdelenie dát do logických celkov.}
+\hfill \break
+Jej hlavná úloha je rozdeliť celý QByteArray na niekoľko menších podľa ich logického významu -- hlavička paketu, dodatočné dáta hlavičky a zvyšok poslaných dát. V kapitole~\ref{kap03:sec:uch_dat:qbytearray} sme sa rozhodli, že všetky tieto dáta zabalíme do QVariantu a uložíme do prvého QTableWidgetu na aktuálnom riadku. Ale ešte predtým ako dáta uložíme, si musíme celý riadok s odpovedajúcimi QTableWidgetami vytvoriť.
+
+\paragraph{Pridanie jednotlivých riadkov.}
+\hfill \break
+Na to nám slúži metóda \texttt{InsertRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER, unsigned char*)} -- prvý parameter je pointer na štruktúru reprezentujúcu hlavičku paketu, druhý parameter reprezentuje char* na dáta paketu. Pomocou tejto metódy teda vytvárame jednotlivé riadky v našej QTableWidget komponente. Po pridaní jednotlivých QTableWidgetItemov sa zavolaním metódy \texttt{ColorRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER)} postará o farebné oddelenie jednotlivých riadkov podľa ich významu. Po úspešom pridaní riadku do QTableWidgetu a naplnení uložení jednotlivých dát do prvého QTableWidgetItemu sa vraciame späť do metódy \texttt{ProcessPacket(QByteArray)}, kde musíme urobiť ešte poslednú vec -- skontrolovať, či daný paket nereprezentuje Setup Paket pomocou metódy \texttt{CheckForSetupPacket(QByteArray)}. 
+
+\paragraph{Kontrola na Setup Paket.}
+\hfill \break
+Ak sa jedná o Setup Paket, skontrolujeme položku bRequest. Ak má hodnotu GET\_DESCRIPTOR, znamená to, že USB host si od zariadenia vypýtal konkrétny typ desrcriptoru -- ten si vieme zistiť z položky wValue. V prípade, že sa jedná o Configuration Descriptor alebo HID Report Descriptor tak vieme, že dáta nasledujúceho paketu budú reprezentovať tento konkrétny descriptor a teda bude nutné ho podľa toho spracovať.
+\hfill \break \newline
+ItemManager obsahuje ešte jednu dôležitú metódu, a to \texttt{GetDataType(QTableWidgetItem*, QTableWidgetItem*)}, ktorá je schopná na základe dát, ktoré sme si uložili do konkrétneho QTableWidgetItemu zistiť presný typ prenosu. V prípade, že sa jedná o Control Transfer tak určuje aký typ descriptoru reprezentujú \uv{zvyškové dáta} paketu (dáta nasledujúce po hlavičke a po nepovinnej dodatočnej hlavičke).
 
 %Budeme si potrebovať nainštalovať Qt pre Windows. podla videa, verzia 5.15.0 len msvc 2019 64bit. inak ostatne default. zatial som este nainstaloval QT VS extension. teraz idem updatenut SDK na verziu 10.0.19041.0 -- to vymazalo errory typu ''cannot open source file cctype'' , teraz mi este ostali ''cannot open source file qbytearray'' a podobne spojene cisto s qt : pravdepodobne bug. musel som ist manualne do Project->properties->Qt Project SEttings a nastavit Qt installation na verziu 5.15.0_msvc2019_64. A UZ TO BEZIIII :)
 

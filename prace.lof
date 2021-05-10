@@ -36,32 +36,21 @@
 \contentsline {figure}{\numberline {3.4}{\ignorespaces Časť Report Descriptoru reprezentujúca tlačidlá myši\relax }}{27}{figure.caption.46}%
 \contentsline {figure}{\numberline {3.5}{\ignorespaces Časť Report Descriptoru reprezentujúca osy X a Y pri pohybe s myšou\relax }}{28}{figure.caption.47}%
 \contentsline {figure}{\numberline {3.6}{\ignorespaces Časť Report Descriptoru reprezentujúca ukončenie jednotlivých kolekcií\relax }}{28}{figure.caption.48}%
-\contentsline {figure}{\numberline {3.7}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QListWidget\relax }}{33}{figure.caption.60}%
-\contentsline {figure}{\numberline {3.8}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{33}{figure.caption.62}%
-\contentsline {figure}{\numberline {3.9}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{35}{figure.caption.63}%
-\contentsline {figure}{\numberline {3.10}{\ignorespaces Vyobrazenie hexdumpu s farebným oddelením dát podľa významu\relax }}{36}{figure.caption.66}%
-\contentsline {figure}{\numberline {3.11}{\ignorespaces Časť Color Map\relax }}{37}{figure.caption.67}%
-\contentsline {figure}{\numberline {3.12}{\ignorespaces Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu\relax }}{37}{figure.caption.68}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Vyobrazenie stromovej štruktúry\relax }}{38}{figure.caption.70}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QListWidget\relax }}{34}{figure.caption.63}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{35}{figure.caption.65}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Vyobrazenie základných informácií o pakete pomocou QTableWidget\relax }}{36}{figure.caption.66}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Vyobrazenie hexdumpu s farebným oddelením dát podľa významu\relax }}{37}{figure.caption.69}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Časť Color Map\relax }}{38}{figure.caption.70}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Vyobrazenie hexdumpu bez farebného oddelenia dát podľa významu\relax }}{38}{figure.caption.71}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Vyobrazenie stromovej štruktúry\relax }}{39}{figure.caption.73}%
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Stránka Qt download.\relax }}{39}{figure.caption.71}%
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Stránka Qt -- odkaz na stiahnutie \uv {Qt Online Installer}.\relax }}{40}{figure.caption.72}%
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Stránka Qt stiahnutie uv{Qt Online Installeru}.\relax }}{40}{figure.caption.73}%
-\contentsline {figure}{\numberline {4.4}{\ignorespaces \uv {Welcome} časť Qt Setupu\relax }}{41}{figure.caption.74}%
-\contentsline {figure}{\numberline {4.5}{\ignorespaces \uv {Open Source Obligations} časť Qt Setupu\relax }}{41}{figure.caption.75}%
-\contentsline {figure}{\numberline {4.6}{\ignorespaces \uv {Setup - Qt} časť Qt Setupu\relax }}{42}{figure.caption.76}%
-\contentsline {figure}{\numberline {4.7}{\ignorespaces \uv {Contribute to Qt Development} časť Qt Setupu\relax }}{42}{figure.caption.77}%
-\contentsline {figure}{\numberline {4.8}{\ignorespaces \uv {Installation Folder} časť Qt Setupu\relax }}{43}{figure.caption.78}%
-\contentsline {figure}{\numberline {4.9}{\ignorespaces \uv {Select Components} časť Qt Setupu\relax }}{43}{figure.caption.79}%
-\contentsline {figure}{\numberline {4.10}{\ignorespaces \uv {License Agreement} časť Qt Setupu\relax }}{44}{figure.caption.80}%
-\contentsline {figure}{\numberline {4.11}{\ignorespaces \uv {Start Menu Shortcut} časť Qt Setupu\relax }}{44}{figure.caption.81}%
-\contentsline {figure}{\numberline {4.12}{\ignorespaces \uv {Ready to Install} časť Qt Setupu\relax }}{45}{figure.caption.82}%
-\contentsline {figure}{\numberline {4.13}{\ignorespaces Visual Studio možnosť vybratia Qt verzie.\relax }}{46}{figure.caption.83}%
-\contentsline {figure}{\numberline {4.14}{\ignorespaces Visual Studio zvolenie adresára ku \textit {qmake.exe}.\relax }}{46}{figure.caption.84}%
-\contentsline {figure}{\numberline {4.15}{\ignorespaces Visual Studio obecné nastavenia projektu.\relax }}{47}{figure.caption.85}%
-\contentsline {figure}{\numberline {4.16}{\ignorespaces Visual Studio manuálne nastavenie Qt Installation.\relax }}{47}{figure.caption.86}%
-\contentsline {figure}{\numberline {4.17}{\ignorespaces Diagram architektúry aplikácie\relax }}{48}{figure.caption.87}%
-\contentsline {figure}{\numberline {4.18}{\ignorespaces Tlačidlá v aplikácii.\relax }}{49}{figure.caption.89}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces \uv {Select Components} časť Qt Setupu\relax }}{41}{figure.caption.74}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Visual Studio možnosť vybratia Qt verzie.\relax }}{42}{figure.caption.75}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Visual Studio zvolenie adresára ku \textit {qmake.exe}.\relax }}{42}{figure.caption.76}%
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Visual Studio obecné nastavenia projektu.\relax }}{42}{figure.caption.77}%
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Visual Studio manuálne nastavenie Qt Installation.\relax }}{43}{figure.caption.78}%
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Diagram architektúry aplikácie\relax }}{43}{figure.caption.79}%
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Tlačidlá v aplikácii.\relax }}{45}{figure.caption.80}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

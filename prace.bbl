@@ -298,6 +298,14 @@
 {Qt QVariant class}.
 \newblock \url{https://doc.qt.io/qt-5/qvariant.html}.
 
+\bibitem{qfilesystemwatcher}
+{Qt QFileSystemWatcher class}.
+\newblock \url{https://doc.qt.io/qt-5/qfilesystemwatcher.html}.
+
+\bibitem{qtimer}
+{Qt QTimer class}.
+\newblock \url{https://doc.qt.io/qt-5/qtimer.html}.
+
 \bibitem{qlistwidget}
 {Qt QListWidget class}.
 \newblock \url{https://doc.qt.io/qt-5/qvariant.html}.
