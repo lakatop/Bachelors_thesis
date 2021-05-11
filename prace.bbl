@@ -360,4 +360,17 @@
 {Qt QFileDialog class}.
 \newblock \url{https://doc.qt.io/qt-5/qfiledialog.html}.
 
+\bibitem{qabstracttablemodel}
+{Qt QAbstractTableModel class}.
+\newblock \url{https://doc.qt.io/qt-5/qabstracttablemodel.html}.
+
+\bibitem{qabstractitemdelegate}
+{Qt QAbstractItemDelegate class}.
+\newblock \url{https://doc.qt.io/qt-5/qabstractitemdelegate.html}.
+
+\bibitem{qtreemodelexample}
+{Qt Tree Model example}.
+\newblock
+  \url{https://doc.qt.io/qt-5/qtwidgets-itemviews-simpletreemodel-example.html}.
+
 \end{thebibliography}

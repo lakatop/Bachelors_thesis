@@ -148,6 +148,7 @@ ako už bolo naznačené vyššie, slúži na pozastavenie analýzy. To znamená
 Z užívateľskej interakcie máme k dispozícii ešte jednu, o ktorej sme viac hovorili v kapitole~\ref{kap03:sec:zobr_zakl}, kde sme sa pre splnenie požiadavky na vyobrazenie detailnejších informácií o pakete na základe užívateľskej interakcie rozhodli pre dvojklik na položku reprezentujúcu daný paket.
 
 \paragraph{\texttt{on\_tableWidget\_itemDoubleclicked(QTableWidget* item)}}
+\label{kap04:sec:double_click}
 
 je slot, ktorý sa volá po dvojkliku na konkrétny item v QTableWidget (pointer na daný item je poslaný ako parameter). V tejto metóde vytvoríme novú inštanciu triedy DataViewer s odpovedajúcimi parametrami a vyobrazíme jej dialógové okno, ktoré zobrazí detailnejšie informácie o danom pakete.
 
@@ -179,7 +180,146 @@ Na to nám slúži metóda \texttt{InsertRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER, u
 \hfill \break
 Ak sa jedná o Setup Paket, skontrolujeme položku bRequest. Ak má hodnotu GET\_DESCRIPTOR, znamená to, že USB host si od zariadenia vypýtal konkrétny typ desrcriptoru -- ten si vieme zistiť z položky wValue. V prípade, že sa jedná o Configuration Descriptor alebo HID Report Descriptor tak vieme, že dáta nasledujúceho paketu budú reprezentovať tento konkrétny descriptor a teda bude nutné ho podľa toho spracovať.
 \hfill \break \newline
-ItemManager obsahuje ešte jednu dôležitú metódu, a to \texttt{GetDataType(QTableWidgetItem*, QTableWidgetItem*)}, ktorá je schopná na základe dát, ktoré sme si uložili do konkrétneho QTableWidgetItemu zistiť presný typ prenosu. V prípade, že sa jedná o Control Transfer tak určuje aký typ descriptoru reprezentujú \uv{zvyškové dáta} paketu (dáta nasledujúce po hlavičke a po nepovinnej dodatočnej hlavičke).
+ItemManager obsahuje ešte jednu dôležitú metódu, a to \texttt{GetDataType(QTableWidgetItem*, QTableWidgetItem*)}, ktorá je schopná na základe dát, ktoré sme si uložili do konkrétneho QTableWidgetItemu zistiť presný typ prenosu. V prípade, že sa jedná o Control Transfer tak určuje aký typ descriptoru reprezentujú \uv{zvyškové dáta} paketu (dáta nasledujúce po hlavičke a po nepovinnej dodatočnej hlavičke). V danom prenose sa ale môže nachádzať aj viac descriptorov súčasne -- konkrétne je to v prípade ak zariadenie posiela svoj Configuration Descriptor spolu s Interface/Endpoint/HID descriptormi. V tomto prípade metóda vráti, že sa jedná o Configuration Descriptor.
+
+Týmto sme si opísali akým spôsobom sa spracovávajú súbory, vyobrazujú sa základné informácie o paketoch a spôsob uloženia dát jednotlivých paketov. Teraz sa pozrieme ako je v našom programe riešená detailnejšia analýza (napírklad hexdump alebo sémantické vyobrazenie dát) konkrétnych paketov na základe informácií, ktoré sme si pri nich uložili.
+
+\section{DataViewer}
+Trieda reprezentujúca pop-up okno s detailnejšou analýzou konkrétneho paketu. Dané okno pozostáva z nasledujúcich komponent:
+\begin{itemize}
+\item 2 QTableView -- slúžia na vyobrazenie hexdumpu. Jeden pre hex časť a druhý pre tlačiteľné znaky.
+\item 3 QTreeView -- každý slúži na vyobrazenie sémantického významu rozdielnych dát v podobe stromovej štruktúry. Jeden zobrazuje hlavičku paketu spolu s nepovinnou hlavičkou, ďalší vyobrazuje Color Map slúžiacu na lepšiu orentáciu v hexdumpe a posledný ukazuje zvyškové dáta -- napríklad význam rôznych descriptorov alebo inputu zariadenia.
+\item 6 QLabelov -- slúžia na opis toho, čo je vyobrazené na predošlých komponentách. 
+\end{itemize}
+
+Ako sme sa si vysvetlili vyššie~\ref{kap04:sec:double_click}, nová inštancia DataVieweru sa vytvára v momente keď užívateľ dvojklikne na riadok reprezentujúci konkrétny paket. Do konštruktoru si predávame 3 základné veci:
+\begin{enumerate}
+\item Pointer na QTableWidgetItem, ktorý v sebe obsahuje dáta daného paketu.
+
+\item Typ prenosu/descriptoru, ktorý získame pomocou vyššie sponínanej metódy \texttt{ItemManager::GetDataType(QTableWidgetItem*, QTableWidgetItem*)}.
+
+\item Bool hodnotu, ktorá určuje či budeme dáta v hexdumpe farebne zvýrazňovať alebo nie. Túto hodnotu získame z QCheckBoxu hlavného okna.
+\end{enumerate}
+
+V konštruktore následne inicializujeme naše komponenty -- keďže využívame spôsob programovania pomocou Qt Model/View architektúry, inicializácia zahŕňa vytvorenie modelov a delegátov a ich následné priradenie k jednotlivým viewerom. Teraz si povieme obecný spôsob fungovania modelov a delegátov v Qt, a následne si priblížime implementáciu našich konkrétnych modelov.
+
+
+\subsection{Model}
+Model je v Qt obyčajná trieda založená na QAbstractItemModel~\cite{qabstractitemmodel} triede, ktorá spĺňa preddefinovaný interface vďaka ktorému viewery a delegáti pristupujú k dátam. Naše modely môžu byť takisto odvodené od viac špecifických modelov, ktoré poskytuje Qt ako napríklad QAbstractTableModel~\cite{qabstracttablemodel}. Nezáleží na tom akým spôsobom budú naše dáta uložené, modely ich reprezentujú ako hierarchickú štruktúru obsahujúcu tabuľku itemov. Prístup k položkám modelu je potom zaistený pomocou tzv. \uv{model indexov}. Viewery a delegáti používajú tieto indexy aby sa odkázali na konkrétne dáta, ktoré neskôr vyobrazujú. Aby sme získali index na konkrétne dáta, potrebujeme špecifikovať tri veci: číslo riadku, číslo stĺpca a model index rodičovského itemu.
+\paragraph{Číslo riadku a číslo stĺpca:} Ako sme už spomínali, modely reprezentujú itemy pomocou tabuľkovej štruktúry. Pomocou čísla riadku a stĺpca sa odkážeme na konkrétny item v tabuľke.
+\paragraph{Model index rodičovského itemu:}  Tabuľková štruktúra ponúka dobrú reprezentáciu v prípade tabuliek, avšak nie je úplne ideálna ak si dáta ukladáme a chceme ich vyobraziť v podobe stromovej štruktúry. V takejto štruktúre má prirodzene každý item (až na koreň stromu) rodiča a ľubovoľný počet synov. Na index konkrétneho vrcholu v strome nám tak bude stačiť poznať index jeho rodiča a ktorý syn v poradí to je (to môžeme reprezentovať číslom riadku).
+Každý item v modeli má definovanú tzv. \uv{role}, ktorá určuje ako sa na dané dáta máme pozerať. Napríklad \textit{Qt::DisplayRole} označuje dáta, ktoré majú byť vo vieweri vyobrazené ako text
+
+
+\subsection{Delegát}
+\label{kap04:sec:delegate}
+Delegáti obecne slúžia na vizualizáciu dát s možnosťou ich editácie. Štandardný interface pre delegátov je poskytnutý triedov QAbstractItemDelegate~\cite{qabstractitemdelegate}. Od delegátov sa predpokladá, že implementujú metódy \texttt{paint()} a \texttt{sizeHint()} na vyobrazenie kontentu.
+
+
+\subsection{Hexdump}
+Teraz sa pozrieme na konkrétny model pre naše komponenty reprezentujúce hexdump. Implementujeme ho vlastnou triedou \texttt{HexdumpModel}, ktorá je odvodená od \texttt{QAbstractTableModel}. V konštruktore si predávame nasledujúce:
+\begin{enumerate}
+\item \texttt{QTableWidgetItem* item} -- Pointer na item obsahujúci dáta konkrétneho paketu, ktoré budeme v hexdumpe vyobrazovať.
+
+\item \texttt{bool hexView} -- Keďže máme rovnaký model pre hex časť a tlačiteľné znaky, potrebujeme vedieť rozlíšiť o ktorú z týchto dvoch možností sa jedná. Na to presne slúži táto bool hodnota.
+
+\item \texttt{HeaderDataType additionalDataType} -- Typ prenosu/descriptoru dát paketu.
+
+\item \texttt{QObject* parent} -- Pointer na DataViewer inštanciu.
+\end{enumerate}
+
+QAbstractTableModel ponúka viac špecializovaný interface ako QAbstractItemModel a podľa dokumentácie implementuje metódy \texttt{index()} a \texttt{parent()}. Nám ostáva implementovať metódy \texttt{columnCount()}, \texttt{rowCount()} a \texttt{data()}. Odporúčané je takisto implementovať metódu \texttt{headerData()}.
+
+\paragraph{columnCount()} metóda vráti počet stĺpcov z ktorých bude pozostávať výsledný hexdump. V našom programe sme sa rozhodli zvoliť konštantnú hodnotu, ktorá je pre hexdump bežná -- 16.
+
+\paragraph{rowCount()} metóda vráti počet riadkov, z ktorých bude pozostávať výsledný hexdump. Vzhľadom na to, že máme k dispozícii QTableWidgetItem obsahujúci všetky dáta, ktoré budeme chcieť vyobraziť v hexdumpe, stačí nám spočítať ich dĺžku a vydeliť ju počtom stĺpcov na jeden riadok (pričom z výsledku berieme hornú celú časť).
+
+\paragraph{data()} metóda vracia QVariant reprezentujúci konkrétny item v hexdumpe. Ten pozostáva z dvojice:
+\begin{enumerate}
+\item Konkrétne dáta, ktoré budú vyobrazené -- 1B buď v hex tvare, alebo v tvare tlačiteľného znaku
+\item \texttt{HeaderDataType} položka určujúca presný typ prenosu/descriptoru. Podľa tejto položky budeme následne určovať akou farbou bude daný item v hexdumpe označený. Nemôžeme tu ale iba skopírovať položku, ktorú sme dostali ako parameter v konštruktore, pretože hodnota tejto položky pochádza z metódy \texttt{ItemManager::GetDataType} a ako sme už spomínali, tá nevie rozoznať rozdiel medzi jednotlivými descriptormi pokiaľ sú poslané v jednom prenose. My ale chceme vedieť farebne odlíšiť aj descriptory, ktoré zariadenie poslalo v jednom prenose. Konkrétnu hodnotu teda zistíme pomocou metódy \texttt{GetDataRepresentationType} v ktorej pokiaľ sa jedná o Configuration Descriptor, prejdeme zvyškové dáta paketu a na základe indexu v ktorej časti sa nachádzame presne určíme typ descriptoru.
+\end{enumerate}
+
+\paragraph{headerData()} metóda nám umožňuje nastaviť vertikálnu hlavičku na ktorú je užívateľ pri bežnom hexdumpe zvyknutý -- offset bytov v hexadecimálnej reprezentácii.
+
+
+\subsection{Hexdump delegát}
+Delegát pre hexdump je naša trieda \texttt{HexdumpDelegate} odvodená od triedy QStyledItemDelegate. Tento delegát slúži na vyobrazenie jednotlivých položiek v hexdumpe, tak ako aj ich farebné zvýraznenie. Pri vytváraní inštancie daného delegátu jej nastavíme bool parameter \textit{dataHighlight} určujúci, či máme farebne zvýrazňovať dáta v hexdumpe. Ako sme už naznačili vyššie v sekcii~\ref{kap04:sec:delegate}, musíme implementovať metódy \texttt{paint()} a \texttt{sizeHint()}.
+
+\paragraph{paint()} metóda dostane ako parameter model index z ktorého získa dvojicu dát QVariant, ktorú sme vytvorili pomocou nášho hexdump modelu v metóde \texttt{data()}. Podľa dátovej položky \textit{dataHighlight} sa určí, či budeme farbne zvýrazňovať daný item -- ak áno, z druhej položky QVariantu získaného z model indexu zistíme presný typ prenosu/descriptoru (teraz už aj v prípade, že bolo poslaných viac descriptorov v jednom prenose) a na základe toho zafarbíme daný item.
+
+\paragraph{sizeHint()} metódou vrátime konštantnú hodnotu \texttt{QSize(30,30)} ktorá určuje veľkosť bunky hexdumpu.
+
+
+Teraz keď sme si vysvetlili fungovanie HexdumpModelu a HexdumpDelegatu, stačí ak ich nastavíme danému QTableVieweru. To urobíme pomocou metódy \texttt{setModel()} a \texttt{setItemDelegate()}.
+
+Momentálne nám ostávajú ešte modely pre 3 komponenty reprezentujúce Color Map, hlavička paketu a zvyškové dáta. Všetky majú viewer typu QTreeView, takže k nim budeme potrebovať model prispôsobený na stromovú štruktúru. Každá komponenta má vlastný model, niektorú funkcionalitu ale majú spoločnú a preto sme si vytvorili triedu \texttt{TreeItemBaseModel}, ktorá dedí od triedy \texttt{QAbstractItemModel}. Každý z modelov pre jednotlivé QTreeViewery bude následne dediť od \texttt{TreeItemBaseModel}. Musíme ešte vyriešiť spôsob reprezentácie tejto stromovej štruktúry. Na to nám poslúži naša trieda \texttt{TreeItem}. Pri implementácii tried TreeItemBaseModel a TreeItem sme sa inšpirovali príkladom z Qt dokumentácie~\cite{qtreemodelexample}.
+
+\subsection{TreeItem}
+\label{kap04:sec:tree_item}
+Reprezentuje jeden vrchol v stromovej štruktúre. Uchováva si v sebe nasledovné:
+\begin{itemize}
+\item \texttt{TreeItem* parent} -- pointer na svojho rodiča.
+\item \texttt{QVector\textless~std::shared\_ptr\textless~TreeItem\textgreater\textgreater childs} -- list svojich synov
+\item \texttt{QVector\textless~QVariant\textgreater} data -- dáta, ktoré budú následne vyobrazené v QTreeView. Viewer samotný ponúka možnosť viacerých stĺpcov v jednom iteme a preto si dáta ukladáme v QVectore. Každá položka QVariant vo vectore tak rerezentuje dáta v jednotlivých stĺpcoch.
+\end{itemize} 
+
+Následne tu máme implemtované bežné funkcie potrebné pre prácu so stromovou štruktúrov ako napríklad \texttt{ChildCount()}, \texttt{AppendChild()} alebo \texttt{ColumnCount()}, ktorých význam a princíp fungovania je bližšie opísaný v zdrojvých kódoch v súboroch \textit{TreeItem.hpp} a \text{TreeItem.cpp}, ktoré boli poskytnuté ako príloha k tejto práci.
+Trochu podstatnejší je konštruktor, ktorý vyzerá nasledovne:
+\texttt{TreeItem(QVector\textless~QVariant\textgreater) data\_, TreeItem* parent\_} -- ako parameter dostávame dáta, ktoré si bude daný vrchol držať a pointer na svojho rodiča. V prípade že sa jedná o koreň stromu bude rodič nastavený na \texttt{nullptr}.
+
+
+
+\subsection{TreeItemBaseModel}
+Poskytuje spoločný interface pre modely fungujúcimi pre stromové štruktúry. Takisto v sebe drží \texttt{std::unique\_ptr\textless~TreeItem\textgreater rootItem} reprezentujúci koreň stromu.  Ako spoločný predok všetkých modelov pre stromové štruktúry má implementované metódy, ktorých funkcionalita sa v odvodených triedach nemení a patria medzi ne:
+\begin{itemize}
+\item \texttt{index()} -- vytvorí a vráti QModelIndex na základe parametrov (číslo riadku, číslo stĺpca a model index rodičovského itemu).
+\item \texttt{parent()} -- na základe parametru QModelIndex vráti index rodiča daného vrcholu. Ak sa jedná o koreň stromu, podľa konvencie vrátime QModelIndex().
+\item \texttt{rowCount()} -- vráti počet synov vrcholu.
+\item \texttt{columnCount()} -- vráti počet stĺpcov dát vrcholu.
+\end{itemize}
+ 
+ Následne tu máme ešte implementované metódy, ktoré sa nám hodia pri vyobrazovaní dát v QTreeView ale nie sú súčasťou QAbstractItemModelu:
+\begin{itemize}
+\item \texttt{CharToHexConvert(char** addr, int len, QString\& data)} -- v parametri \textit{data} vráti hex reprezentáciu prvých \textit{len} znakov char poľa uloženého na adrese \textit{addr}.
+\item \texttt{ShowBits\textless~T\textgreater(uint32\_t start, size\_t size, T number)}  -- parametrizovaná funckia, ktorá bola vytvorená pre účel splnenia požiadavky~\ref{uvod:poz:show_bits} na vyobrazenie významu dát až na úrovni jednotlivých bitov. Výsledok zapisujeme do QStringu, ktorý na konci vrátime. Ako parameter T dostaneme číslo, ktorého bity budeme chcieť ukázať. To prechádzame postupne bit po bite a v momente keď sa nachádzame v intervale \textless~start, start + size) zapisujeme do QStringu hodnoty jednotlivých bitov. Ak sa nachádzame mimo intervalu, zapisujeme \uv{.}.
+\end{itemize}
+
+TreeItemBaseModel obsahuje ešte tzv. \uv{pure virtual} funkcie \texttt{data()} a \texttt{headerData()}, ktorých implementácia sa bude líšiť na základe dedenej triedy -- je teda ich povinnosťou tieto metódy implementovať.
+
+
+\subsection{ColorMapModel}
+ColorMapModel je naša trieda odvodená od TreeItemBaseModel reprezentujúca model pre Color Map. Ako sme už vyššie spomínali, musí implementovať 2 funkcie: \texttt{headerData()} a \texttt{data()}. Ešte predtým si ale musíme rozmyslieť odkiaľ zoberieme dáta, ktoré budeme chcieť v Color Mape zobrazovať. Vyššie sme si spomínali triedu \texttt{TreeItem}~\ref{kap04:sec:tree_item}, ktorá reprezentuje jeden vrchol v stromovej štruktúre, ktorá si bude udržiavať naše dáta. Celý strom si musíme najprv vytvoriť a naplniť ho dátami, a o to sa stará funkcia \texttt{SetupModelData()}.
+
+\paragraph{SetupModelData()} je metóda, ktorú voláme priamo v konštruktore ColorMapModel. Keďže dedíme od triedy TreeItemBaseModel, máme k dispozícii koreň stromu (\texttt{std::unique\_ptr\textless~TreeItem\textgreater rootItem}) pomocou ktorého budeme cez TreeItem metódy budovať strom. Dáta každého vrcholu budú pozostávať z 2 položiek:
+\begin{itemize}
+\item \texttt{HeaderDataType} -- položka určujúca presný typ prenosu/descriptoru. Vďaka tejto položke budeme schopní priradiť odpovedajúcu farbu každému itemu v QTreeView.
+\item string reprezentujúci názov typu prenosu/descriptoru.
+\end{itemize}
+
+ColorMapModel obsahuje ešte jednu špecifickú metódu \texttt{GetDataTypeColor(HeaderDataType dataType)}, ktorá na základe parametru type vráti jemu odpovedajúcu farbu. Farby ku každému HeaderDataType máme nadefinované v triede DataHolder o ktorej si povieme viac nižšie (ODKAZ). Teraz si prejdeme implementáciu už spomínaných virtuálnych funkcií:
+\begin{itemize}
+\item \texttt{headerData()} -- keďže v Color Map nechceme mať žiadnu hlavičku, funkcia vracia prázdny QVariant().
+\item \texttt{data(QModelIndex\& index, int role)} -- podľa parametru role zistíme o aké dáta sa jedná. Ak sa role rovná \textit{Qt::DecorationRole}, vrátime farbu pomocou metódy GetDataTypeColor(). Ak sa role rovná \textit{Qt::DisplayRole}, vrátime textovú reprezentáciu typu prenosu/descriptoru, ktorú sme si uložili do itemu ako druhú položku. Ak sa role rovná hocičomu inému, vrátime prázdny QVariant().
+\end{itemize}
+
+
+\subsection{USBPCapHeaderModel}
+je trieda odvodená od TreeItemBaseModel a reprezentuje model pre QTreeView, ktorý vyobrazuje detailnejšie informácie hlavičky paketu. V tejto triede máme takisto metódu \texttt{SetupModelData()}, ktorá vytvorí stromovú štruktúru reprezentujúcu hlavičku paketu. Hlavička paketu má fixný formát určený štruktúrou \texttt{USBPCAP\_BUFFER\_PACKET\_HEADER}, ktorú definuje sniffer USBPcap cez ktorý zachytávame pakety na zbernici.
+Virtuálne funkcie sú implementované nasledovne:
+\begin{itemize}
+\label{kap04:sec:usbh_virt}
+\item \texttt{headerData(int section, Qt::Orientation orientation, int role)} -- dáta hlavičky si typicky budeme ukladať do QVectoru \textit{data} nášho rootItemu. Podľa parametru orientation zistíme o akú hlavičku sa jedná (vertikálnu/horizontálnu). Keďže v našom QTreeView chceme mať horizontálnu hlavičku, testujeme na zhodu práve s Qt::Horizontal hodnotou a zároveň kontrolujeme či sa role rovná Qt::DisplayRole. Následne už len vrátime dáta zo stĺpca, ktorý je definovaný parametrom section.
+\item \texttt{data(QModelIndex\& index, int role)} -- pokiaľ sa role nerovná Qt::DisplayRole alebo index nie je validný, vrátime prázdny QVariant(). V opačnom prípade is pomocou indexu získame pointer na daný item a vrátime dáta z konkrétneho stĺpca (hodnotu stĺpca zistíme takisto z indexu).
+\end{itemize}
+
+\subsection{AdditionalDataModel}
+je trieda, ktorá je takisto odvodená od TreeItemBaseModel a reprezentuje model zvyškových dát paketu. To zahŕňa napríklad dáte reprezentujúce rôzne typy descriptorov, input zariadení atď. Virtuálne metódy \texttt{data()} a \texttt{headerData} riešime rovnakým spôsobom ako pri USBPCapHeaderModel~\ref{kap04:sec:usbh_virt}. Problém nastáva až vo funkcii, ktorá má vytvoriť stromovú štruktúru. V minulých modeloch sme totiž presne vedeli čo majú jednotlivé dáta reprezentovať a ako bude vyzerať im odpovedajúci strom. Teraz to ale nie je také jednoduché, pretože zvyškové dáta paketu môžu mať rozličnú reprezentáciu, ktorá je určená až za runtimu. (odkaz na cieľ s ľahkou rozsiritelnostou ?) Preto túto situáciu vyriešime pomocou známeho návrhového vzoru -- factory. Zadefinujeme si triedy, ktorých jediná úloha bude vytvoriť špecifickú stromovú štruktúru odpovedajúcu danému typu dát. Tieto triedy budeme obecne nazývať \uv{interpretery}.
+
+\subsection{BaseInterpreter}
+
+
+
 
 %Budeme si potrebovať nainštalovať Qt pre Windows. podla videa, verzia 5.15.0 len msvc 2019 64bit. inak ostatne default. zatial som este nainstaloval QT VS extension. teraz idem updatenut SDK na verziu 10.0.19041.0 -- to vymazalo errory typu ''cannot open source file cctype'' , teraz mi este ostali ''cannot open source file qbytearray'' a podobne spojene cisto s qt : pravdepodobne bug. musel som ist manualne do Project->properties->Qt Project SEttings a nastavit Qt installation na verziu 5.15.0_msvc2019_64. A UZ TO BEZIIII :)
 
