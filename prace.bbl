@@ -373,4 +373,15 @@
 \newblock
   \url{https://doc.qt.io/qt-5/qtwidgets-itemviews-simpletreemodel-example.html}.
 
+\bibitem{usbpcap_usbpcaph_file}
+{USBPcap súbor USBPcap.h v github reporzitári}.
+\newblock
+  \url{https://github.com/desowin/usbpcap/blob/master/USBPcapDriver/include/USBPcap.h}.
+
+\bibitem{usbhid_hid_descriptor}
+{USB Device Class Definition for HID -- HID Descriptor}.
+\newblock
+  \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
+\newblock [kap. 6.2.1].
+
 \end{thebibliography}

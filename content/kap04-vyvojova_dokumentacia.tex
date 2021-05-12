@@ -163,8 +163,8 @@ Ako sme už spomínali vyššie, samotná analýza začína stlačením tlačidl
 \hfill \break
 Pri spracovaní jednotlivých paketov riešime 2 nasledujúce veci:
 \begin{itemize}
-\item Dáta paketu reprezentujú Configuration Descriptor spolu s Interface/HID/Endpoint Descriptormi -- v takomto prípade bolo na zbernicu pripojené nové zariadenie a je potrebné si pre neho vytvoriť novú inštanciu typu BusDevice, o ktorej si viac povieme neskôr (ODKAZ).
-\item Dáta paketu reprezentujú HID Report Descriptor -- v takom prípade je nutné daný Report Descriptor rozparsovať. Detailnejší opis si povieme nižšie v sekcii (ODKAZ).
+\item Dáta paketu reprezentujú Configuration Descriptor spolu s Interface/HID/Endpoint Descriptormi -- v takomto prípade bolo na zbernicu pripojené nové zariadenie a je potrebné si pre neho vytvoriť novú inštanciu typu BusDevice, o ktorej si viac povieme neskôr~\ref{kap04:sec:bus_device}.
+\item Dáta paketu reprezentujú HID Report Descriptor -- v takom prípade je nutné daný Report Descriptor rozparsovať. Detailnejší opis si povieme nižšie v sekcii~\ref{kap04:sec:parse_hid}.
 \end{itemize}
 Po týchto dvoch kontrolách a prípadne následných úkonoch, ktoré s nimi súvisia, posunieme dáta do metódy \texttt{FillUpItem(QByteArray)}.  
 
@@ -297,7 +297,7 @@ ColorMapModel je naša trieda odvodená od TreeItemBaseModel reprezentujúca mod
 \item string reprezentujúci názov typu prenosu/descriptoru.
 \end{itemize}
 
-ColorMapModel obsahuje ešte jednu špecifickú metódu \texttt{GetDataTypeColor(HeaderDataType dataType)}, ktorá na základe parametru type vráti jemu odpovedajúcu farbu. Farby ku každému HeaderDataType máme nadefinované v triede DataHolder o ktorej si povieme viac nižšie (ODKAZ). Teraz si prejdeme implementáciu už spomínaných virtuálnych funkcií:
+ColorMapModel obsahuje ešte jednu špecifickú metódu \texttt{GetDataTypeColor(HeaderDataType dataType)}, ktorá na základe parametru type vráti jemu odpovedajúcu farbu. Farby ku každému HeaderDataType máme nadefinované v triede DataHolder o ktorej si povieme viac nižšie~\ref{kap04:sec:data_holder}. Teraz si prejdeme implementáciu už spomínaných virtuálnych funkcií:
 \begin{itemize}
 \item \texttt{headerData()} -- keďže v Color Map nechceme mať žiadnu hlavičku, funkcia vracia prázdny QVariant().
 \item \texttt{data(QModelIndex\& index, int role)} -- podľa parametru role zistíme o aké dáta sa jedná. Ak sa role rovná \textit{Qt::DecorationRole}, vrátime farbu pomocou metódy GetDataTypeColor(). Ak sa role rovná \textit{Qt::DisplayRole}, vrátime textovú reprezentáciu typu prenosu/descriptoru, ktorú sme si uložili do itemu ako druhú položku. Ak sa role rovná hocičomu inému, vrátime prázdny QVariant().
@@ -314,97 +314,113 @@ Virtuálne funkcie sú implementované nasledovne:
 \end{itemize}
 
 \subsection{AdditionalDataModel}
-je trieda, ktorá je takisto odvodená od TreeItemBaseModel a reprezentuje model zvyškových dát paketu. To zahŕňa napríklad dáte reprezentujúce rôzne typy descriptorov, input zariadení atď. Virtuálne metódy \texttt{data()} a \texttt{headerData} riešime rovnakým spôsobom ako pri USBPCapHeaderModel~\ref{kap04:sec:usbh_virt}. Problém nastáva až vo funkcii, ktorá má vytvoriť stromovú štruktúru. V minulých modeloch sme totiž presne vedeli čo majú jednotlivé dáta reprezentovať a ako bude vyzerať im odpovedajúci strom. Teraz to ale nie je také jednoduché, pretože zvyškové dáta paketu môžu mať rozličnú reprezentáciu, ktorá je určená až za runtimu. (odkaz na cieľ s ľahkou rozsiritelnostou ?) Preto túto situáciu vyriešime pomocou známeho návrhového vzoru -- factory. Zadefinujeme si triedy, ktorých jediná úloha bude vytvoriť špecifickú stromovú štruktúru odpovedajúcu danému typu dát. Tieto triedy budeme obecne nazývať \uv{interpretery}.
+je trieda, ktorá je takisto odvodená od TreeItemBaseModel a reprezentuje model zvyškových dát paketu. To zahŕňa napríklad dáte reprezentujúce rôzne typy descriptorov, input zariadení atď. Virtuálne metódy \texttt{data()} a \texttt{headerData} riešime rovnakým spôsobom ako pri USBPCapHeaderModel~\ref{kap04:sec:usbh_virt}. Problém nastáva až vo funkcii, ktorá má vytvoriť stromovú štruktúru. V minulých modeloch sme totiž presne vedeli čo majú jednotlivé dáta reprezentovať a ako bude vyzerať im odpovedajúci strom. Teraz to ale nie je také jednoduché, pretože zvyškové dáta paketu môžu mať rozličnú reprezentáciu, ktorá je určená až za runtimu. (odkaz na cieľ s ľahkou rozsiritelnostou ?) Preto túto situáciu vyriešime pomocou známeho návrhového vzoru -- factory. Zadefinujeme si triedy, ktorých jediná úloha bude vytvoriť špecifickú stromovú štruktúru odpovedajúcu danému typu dát. Tieto triedy budeme obecne nazývať \uv{Interpretery}.
 
 \subsection{BaseInterpreter}
+Je základná trieda od ktorej sú všetky Interpretery odvodené. Obsahuje nasledujúce dátové položky spoločné pre všetky Interpretery:
+\begin{itemize}
+\item \texttt{TreeItem* rootItem} -- koreň stromu.
+\item \texttt{QTableWidgetItem* item} -- pointer na item, ktorý v sebe obsahuje dáta z ktorých budeme zostavovať daný strom.
+\item \texttt{AdditionalDataModel* additionalDataModel} -- pointer na model pre zvyškové dáta. Budeme ho potrebovať k využívaniu funkcíí \texttt{ShowBits()} a \texttt{CharToHexConvert()}, ktoré sa nám hodia pri vyobrazovaní informácií v QTreeView.
+\end{itemize}
 
+Trieda má zadefinovaný konštruktor, ktorý má ako parameter všetky vyššie spomínané dátové položky. Zároveň obsahuje pure virtual funckiu \texttt{Interpret()}, ktorú si definuje každý interpreter zvlášť a slúži na vytvorenie konkrétnej stromovej štruktúry odpovedajúcej danému interpreteru.
 
+Teraz si prejdeme všetky definované Interpretery a akú majú funckionalitu:
 
+\paragraph{ConfigDescriptorsInterpreter}
+\hfill \break
+Slúži na interpretovanie nasledujúcich descriptorov:
+\begin{itemize}
+\item Configuration Descriptor
+\item Other\_Speed\_Configuration Descriptor
+\item Interface Descriptor
+\item HID Descriptor
+\item Endpoint Descriptor
+\item unknown descriptor -- descriptor, ktorého štruktúru nepoznáme. Obecne ale vieme, že prvé 2B každého descriptoru reprezentujú položky \textit{bLength} a \textit{bDescriptorType} takže ich vypíšeme a ako ďalší vrchol stromu pripojíme zvyšné dáta descriptoru.
+\end{itemize}
+Keďže Interface/HID/Endpoint/unknown descriptory sú poslané v Control Transfere po Configuration Descriptore/Other\_Speed\_Configuration Descriptore, tak prechádzame celé zvyškové dáta paketu a postupne staviame strom pre jednotlivé typy descriptorov.
 
-%Budeme si potrebovať nainštalovať Qt pre Windows. podla videa, verzia 5.15.0 len msvc 2019 64bit. inak ostatne default. zatial som este nainstaloval QT VS extension. teraz idem updatenut SDK na verziu 10.0.19041.0 -- to vymazalo errory typu ''cannot open source file cctype'' , teraz mi este ostali ''cannot open source file qbytearray'' a podobne spojene cisto s qt : pravdepodobne bug. musel som ist manualne do Project->properties->Qt Project SEttings a nastavit Qt installation na verziu 5.15.0_msvc2019_64. A UZ TO BEZIIII :)
+\paragraph{DeviceDescriptorInterpreter a DeviceQualifierDescriptorInterpreter}
+\hfill \break
+Samostatné triedy, ktoré slúžia na interpretovanie Device Descriptoru a Device\_Qualifier Descriptoru. Oba descriptory majú zo začiatku rovnakú štruktúru a preto máme metódu \texttt{InterpretControlTransferDeviceDescriptorBase\textless~T\textgreater()}, ktorá ako parameter zoberie jeden z descriptorov a vyplní spoločnú časť.
 
+\paragraph{ReportDescriptorInterpreter} slúži na interpretovanie HID Report Descriptoru, ktoré prebieha v 2 fázach:
+\begin{enumerate}
+\item \texttt{ParseReportDescriptor()} -- rozparsuje súvislé dáta reprezentujúce Report Descriptor a vytvorí z nich strom kde vrchol reprezentujeme štruktúrou \texttt{ReportDescTreeStruct} (ktorú si detailnejšie opíšme nižšie v sekcii~\ref{kap04:sec:report_tree_struct}). Tento strom slúži len na jednoduchšiu intepretáciu celého Report Descriptoru. Túto metódu voláme priamo z konštruktora interpreteru.
+\item \texttt{Interpter()} -- slúži na interpretovanie Report Descriptoru. Tu už nepracujeme s dátami poskytnutými QTableWidgetItemom ale so stromom, ktorý sme si vytvorili pomocou \texttt{ParseReportDescriptor()} metódy.
+\end{enumerate}
 
+\paragraph{SetupPacketInterpreter} slúži na interpretovanie Setup Paketu.
 
+\paragraph{StringDescriptorIntepreter} slúži na interpretovanie String Descriptoru.
 
+\paragraph{InterruptTransferInterpreter}
+\hfill \break
+Slúži na interpretovanie Interrupt Transferu, takže musí zároveň riešiť aký typ zariadenia daný input poslalo. Z hlavičky paketu prenosu vieme zistiť adresu zariadenia, ktoré zariadenie poslalo daný input. V \texttt{Interpret()} metóde prejde všetky zariadenia, ktoré máme uložené a nájdeme zariadenie s odpovedajúcou adresou. Zároveň sa musíme pozerať na číslo riadku na ktorom sa nachádza náš QTableWidgetItem z ktorého berieme dáta. Môže sa totiž stať, že pripojíme konkrétne zariadenie na zbernicu (napríklad myš) a USB Host mu nastaví adresu napríklad 9. Neskôr zariadenie odpojíme a napojíme namiesto neho iné (napríklad klávesnicu) a USB Host mu priradí teraz už voľnú adresu 9. V takomto prípade máme v liste zariadení 2 s rovnakou adresou a nevieme teda, ktoré z nich si máme vybrať. Toto vyriešime tým, že si u každého zariadenia budeme pamätať rozsah riadkov v ktorom boli pakety s touto adresou posielané ním. Ak také nenájdeme, nemáme informácie o danom zariadení a teda nevieme interpretovať jeho input. Ak sa nám podarí dané zariadenie rozpoznať, vyberieme ešte pomocou metódy \texttt{GetInputParser} štruktúru, ktorá presnejšie opisuje daný input a následne zavoláme už konkrétny interpreter pre naše zariadenie. Keďže sme sa na začiatku rozhodli, že budeme podporovať 3 HID zaridenia, máme na výber z týchto možností:
+\begin{enumerate}
+\item \texttt{MouseInterpreter} -- interpretuje zariadenie myši.
+\item \texttt{KeyboardInterpreter} -- interpretuje zariadenie klávesnice.
+\item \texttt{JoystickInterpreter} -- interpreturj zariadenie joysticku.
+\item \texttt{UnknownDeviceInterpreter} -- snaží sa o obecnú interpretáciu inputu zariadenia, ktoré nie je ani jedno z vyššie uvedených.
+\end{enumerate}
 
+Teraz už poznáme všetky Interpreter triedy nášho programu a musíme ešte vyriešiť ako si AdditionalDataModel vyberie ten správny. Ako sme už spomínali vyššie, budeme to riešiť pomocou návrhového vzoru factory, konkrétne nám na to bude slúžiť trieda InterpretFactory.
 
+\subsection{InterpretFactory}
+Trieda pomocou ktorej zvolíme správny interpreter pre AdditionalDataModel. Keďže bude vytvárať inštancie jednotlivých interpreterov, obsahuje nasledujúce dátové položky:
+\begin{itemize}
+\item \texttt{TreeItem* rootItem} -- koreň stromu.
+\item \texttt{QTableWidgetItem* item} -- pointer na item, ktorý v sebe obsahuje dáta.
+\item \texttt{AdditionalDataModel* additionalDataModel} -- pointer na model pre zvyškové dáta paketu.
+\item \texttt{HeaderDataType dataType} -- typ prenosu/descriptoru, ktorý reprezentujú dáta.
+\end{itemize}
+Následne obsahuje metódu \texttt{GetInterpreter()} v ktorej pomocou položky \textit{dataType} vráti novú inštanciu správneho interpreteru. 
 
+Takže jediné čo AdditionalDataModel musí urobiť keď chce vytvoriť strom pre konkrétny input je vytvoriť si novú inštanciu InterpretFactory, získať správny interpreter a na ňom zavolať metódu \texttt{Interpret()}.
 
+Momentálne si povieme niečo ešte o triedach a štruktúrach, ktoré nijako priamo neriadia data-flow aplikácie, ale využívame ich všade naprieč naším programom.
 
+\section{HIDDevices}
+HIDDevice je trieda implementujúca logiku súvisiacu s HID zariadeniami. Trieda je implementovaná návrhovým vzorom singleton, pretože obsahuje viaceré dátové položky a funkcie, ktoré by mali byť jednotné a chceme k nim mať prístup z viacerých častí programu. Obsahuje \texttt{std::vector\textless~BusDevice\textgreater devices} -- vector zariadení ktoré boli/sú pripojené na zbernicu počas zachytávania paketov. Zároveň v nej máme implementované veľmi dôležité funkcie \texttt{CreateDevice} a \texttt{ParseHIDReportDescriptor}
 
+\paragraph{CreateDevice(QByteArray packetData)} -- táto funkcia sa volá z ItemManagera počas spracovávania paketu v momente, keď máme paket v ktorom zariadenie pošle Configuration Descriptor. Je zodpovedná za vytvorenie nového zariadenia a jeho pridanie do \textit{devices}.
 
+\paragraph{ParseHIDReportDescriptor(QByteArray packetData, USHORT interfaceIndex)} \label{kap04:sec:parse_hid} -- takisto ju voláme z ItemManageru počas spracovania paketu. Je zodpovedná za rozparsovanie HID Report descriptoru. Podľa \textit{interfaceIndex} (číslo interfacu zariadenia s ktorým sa Report Descriptor viaže) si nájdeme konkrétne endpointy, ktorým bude tento Report Descriptor priradený. \textit{packetData} reprezentujú dáta paketu -- v nich preskočíme hlavičku paketu a začneme spracovávať dáta, ktoré reprezentujú Report Descriptor. Podľa HID dodatku k USB špecifikácii~\cite{usbhid} má každý item hlavičku z ktorej zistíme tag, veľkosť a typ itemu, pričom tieto tri parametre jednoznačne určujú daný item. Dáta tak spacovávame sekvenčne po jednotlivých itemoch a postupne vytvárame jednotlivé HIDReportDescriptorInputParse štruktúry (viac si o nich povieme nižšie v sekcii~\ref{kap04:sec:hid_report_input_parse}) reprezentujúce jednotlivé inputy zariadenia.
 
+\section{DataHolder}
+\label{kap04:sec:data_holder}
+Trieda obsahujúca rôzne dátové konštanty a funkcie, ktoré potrebujeme v rôznych častiach programu. Z tohto dôvodu je takisto naimplementovaná ako Singleton. Hlavné položky ktoré obsahuje:
+\begin{itemize}
+\item \texttt{TRANSFER\_LEFTOVER\_DATA}, \texttt{TRANSFER\_OPTIONAL\_HEADER} a \texttt{USBPCAP\_HEADER\_DATA} -- konštanty určujúce Qt UserRole pri ukladaní/načítaní jednotlivých QByteArray z QTableWidgetItem pomocou \texttt{setData()}/\texttt{data()}.
+\item \texttt{BYTES\_ON\_ROW} -- konštanta určujúca počet buniek na jeden riadok v hexdumpe.
+\item \texttt{DataColors} -- mapa ktorá priradzuje jednotlivému typu prenosu/descriptoru farebné zložky ktoroými budú jeho dáta zvýraznené v hexdumpe a Color Mape.
+\item \texttt{FillDataColorMap()} -- metóda naplňujúca \textit{DataColors} fixnými hodnotami.
+\item Metódy, ktoré vracajú textovú reprezentáciu rôznych enum konštánt.
+\end{itemize}
 
+\section{PacketExterStructs.hpp}
+Je súbor skladajúci sa z dvoch častí:
+\begin{itemize}
+\item USBPCap štruktúry -- časť tohto súboru definuje USBPCap štruktúry. Táto časť nie je napísaná autorom tohto projektu, ale je prevzatá zo súboru USBPcap.h~\cite{usbpcap_usbpcaph_file}, ktorý je súčasť open-source zdrojových kódov USBPcapu.
+\item Nami definované štruktúry a enumy, ktorým sa budeme bližšie venovať v naledujúcej sekcii~\ref{kap04:sec:extern_structs}
+\end{itemize}
 
+\subsection{ExternStructs}
+\label{kap04:sec:extern_structs}
 
+Obsahuje definíciu všetkých štruktúr a enumov, ktoré používame v programe. Teraz is vysvetlíme vzťahy a význam rôznyh štruktúr:
 
+\paragraph{DataTypeColor} štruktúra reprezentujúce farebné zložky RGBA.
 
+\paragraph{ReportDescTreeStruct}\label{kap04:sec:report_tree_struct} štruktúra slúžiaca na jednoduchšiu interpretáciu Report Descriptoru v stromovej štruktúre. Obsahuje 3 základné parametre hlavičky itemu (tag, veľkosť a typ), QByteArray data reprezentujúci dáta daného itemu, bool premennú určujúcu či sa jedná o koreň stromu a ako posledné vector shared pointerov na svojich synov.
 
+\paragraph{HIDDescriptor} štruktúra reprezentuje HID Descriptor definovaný v HID dodatku k USB špecifikácii~\cite{usbhid_hid_descriptor}.
 
+\paragraph{InputValues} štruktúra reprezentujúca jeden Input item v Report Descriptore. Obsahuje všetky povinné itemy, ktoré v sebe musí Report Descriptor zahrnúť aby opísal dáta posielané zariadením ako napríklad \textit{Report Size}, \textit{Usage Page} atď. Obsahuje takisto niektoré nepovinné itemy (\textit{Usage Minimum}, \textit{Usage Maximum}), ktoré momentálne nepoužívame, ale mohli by sa nám hodiť v prípade rozšírenia našej aplikácie o ďalšie zariadenia.
 
+\paragraph{HIDReportDescriptorInputParse}\label{kap04:sec:hid_report_input_parse} štruktúra reprezentuje jeden konkrétny input report zariadenia. Ako už vieme, zariadenie môže mať k jednému endpointu asociovaných viacero reportov a v takom prípade musia byť prefixované Report ID. V tejto štruktúre si všetky tieto informácie uchovávame a bližšie ich opisujeme v zdrojových kódoch, ktoré sú poskytnuté ako príloha k teto práci.
 
+\paragraph{BusDevice}\label{kap04:sec:bus_device} je štruktúra, ktorá reprezentuje jedno konkrétne zariadenie ktoré bolo pripojené na zbernicu počas zachytávania paketov. Najdôležitejšie položky sú adresa zariadenia, ktorú jej pridelil USB host počas konfigurácie a vector HIDReportDescriptorInputParse štruktúr aby sme vedeli interpretovať všetky druhy inputov daného zariadenia.
 
-
-
-
-
-
-\newpage
-\section{Architekrúra aplikácie}
-\section{Jadro aplikácie}
-\subsection{USB\_Packet\_Analyzer}
-riadi celkovy beh programu, reaguje na input od uzivatela
-\subsection{Item Manager}
-spracovanie samostatneho packetu a ulozenie dat o nom
-\subsection{DataViewer}
-trieda ktora ma na starosti vyskakovacie okno po dvojkliku a item a nasledne reaguje na input od uzivatela v okne
-\subsection{TreeItem}
-reprezentuje jednotlive nody v stromovej strukture ktora sa potom vyuziva na zobrazenie dat v QTreeView
-\section{Modely}
-\subsection{AdditionaldataModel}
-model na spravovanie zvysnych dat(data ktore nie su sucastou hlavicky packetu)
-\subsection{ColorMapModel}
-vyobrazenie pomocnej mapy na lepsie sa zorientovanie v zvyraznemom hexdumpe
-\subsection{DataViewerModel}
-model na hexdump - prenasa hex/printable a zaroven o co vlastne ide(konkretny descriptor, interrupt data, ...)
-\subsection{TreeItemBaseModel}
-model na QTreeView ktorz vyuziva TreeItem
-\subsection{USBPcapHeaderModel}
-model na QTreeView ale specialne pre USBPcap hlavicku packetu
-\section{Interpretery}
-\subsection{BaseInterpreter}
-abstractna trieda od ktorej dedia vsetkz interpretery
-\subsection{Interpreter factory}
-facory trieda na pridelenie konkretneho interpreteru za runtimu kvoli jednoduchosti na lepsie rozsirenie programu do buducnosti
-\subsection{Interpretery descriptorov}
-Config,Device,Setup,String,...
-\subsection{Interrupt transfer interpretery}
-obecne interrupt transfer interpreter - sluzi skor ako factory na rozne doteraz implementovane HID zariadenia
-\subsubsection{Joystick interpreter}
-\subsubsection{Mouse interpreter}
-\subsubsection{Keyboard interpreter}
-\section{Delegáti}
-\subsubsection{DataViewerDelegate}
-Qt delegat - stara sa o highlight hexdumpu
-\section{HID}
-\subsection{HIDDevices}
-staticka trieda, drzi vsetky rozpoznane HID zariadenia a obsahuje funkcie specificke nich - parsovanie HID Report descriptoru
-\section{Práca so súbormi}
-\subsection{FileReader}
-praca zo suborom a predavanie precitanych dat, offline/online capture, QFile vs std::istream
-\section{Globálne dáta}
-\subsection{ConstDataHolder}
-staticka trieda na drzanie si konstant ktore su potrebne napriec celym programom. Mapovanie z enumu do jeho stringovej reprezentacie
-\subsection{PacketExternStructs}
-obsahuje definiciu vsetkych dolezitych USBPcap structov, pcap structov, enumov a vsetkych structov ktore pouzivam v aplikacii
-
-
-
-
-
-
-
-
-
-
-
+Týmto sme si prešli celkovú stavbu našej aplikácie a mali by sme mať obecný prehľad akým spôsobom náš program funguje. Všetky detailnejšie informácie o popise jednotlivých položiek, tried alebo metód nájdeme v prílohe tejto práce v zdrojových kódoch alebo poskytnutej dokumentácie vygenerovanej z dokumentačných komentárov.
