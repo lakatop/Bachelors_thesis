@@ -347,6 +347,31 @@
 \newblock
   \url{https://marketplace.visualstudio.com/items?itemName=TheQtCompany.QtVisualStudioTools2019}.
 
+\bibitem{warningc26812}
+{Compiler Warning C26812}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/cpp/code-quality/c26812?view=msvc-160}.
+
+\bibitem{warningc26451}
+{Compiler Warning C26451}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/cpp/code-quality/c26451?view=msvc-160}.
+
+\bibitem{warningc26498}
+{Compiler Warning C26498}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/cpp/code-quality/c26498?view=msvc-160}.
+
+\bibitem{warningc26495}
+{Compiler Warning C26495}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/cpp/code-quality/c26495?view=msvc-160}.
+
+\bibitem{warningc6011}
+{Compiler Warning C6011}.
+\newblock
+  \url{https://docs.microsoft.com/en-us/cpp/code-quality/c6011?view=msvc-160}.
+
 \bibitem{qpushbutton}
 {Qt QPushButton class}.
 \newblock \url{https://doc.qt.io/qt-5/qpushbutton.html}.
@@ -373,6 +398,11 @@
 \newblock
   \url{https://doc.qt.io/qt-5/qtwidgets-itemviews-simpletreemodel-example.html}.
 
+\bibitem{keyboard_keycodes_names}
+{USB Keyboard Usage Names}.
+\newblock \url{https://www.usb.org/document-library/hid-usage-tables-122}.
+\newblock [kap. 10].
+
 \bibitem{usbpcap_usbpcaph_file}
 {USBPcap súbor USBPcap.h v github reporzitári}.
 \newblock
@@ -383,5 +413,10 @@
 \newblock
   \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
 \newblock [kap. 6.2.1].
+
+\bibitem{usbmadesimple_graphics}
+{USB Made Simple -- príklad grafického vyobrazenia paketov}.
+\newblock \url{https://www.usbmadesimple.co.uk/ums_5.htm}.
+\newblock [Tretí obrázok na stránke].
 
 \end{thebibliography}

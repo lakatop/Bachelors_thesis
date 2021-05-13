@@ -53,7 +53,7 @@ Teraz si ešte ukážeme integrovanie Visual studia 2019 spolu s Qt. Budeme si p
 	\label{obr:kap4:vs_versions}
 \end{figure}
 
-\item V dialógu sa teraz cez ikonu v stĺpčeku \uv{Path} (obrázok~\ref{obr:kap4:vs_path}) odkážeme do adresáru, kde sme nainštalovali \textit{Qt} a následne do adresáru \textit{5.15.0\/msvc2019\_64\/bin} kde máme nainštalovaný \textit{qmake.exe}.
+\item V dialógu sa teraz cez ikonu v stĺpčeku \uv{Path} (obrázok~\ref{obr:kap4:vs_path}) odkážeme do adresáru, kde sme nainštalovali \textit{Qt} a následne do adresáru \newline\textit{5.15.0\/msvc2019\_64\/bin} kde máme nainštalovaný \textit{qmake.exe}.
 
 \begin{figure}[!htb]
 	\centering
@@ -73,7 +73,8 @@ Teraz si ešte ukážeme integrovanie Visual studia 2019 spolu s Qt. Budeme si p
 
 \end{itemize}
 
-Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2} nenastaví Qt verziu a nebudeme vedieť projekt preložiť kvôli errorom typu \uv{cannot open source file qbytearray}. V takom prípade prejdeme do možnosti \textit{Project}$\rightarrow$\textit{Properties}$\rightarrow$\textit{Qt~Project~Settings} a manuálne nastavíme \textit{Qt Installation} na \textit{msvc2019\_64} (obrázok~\ref{obr:kap4:vs_manual}).
+\newpage
+Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2} nenastaví Qt verziu a nebudeme vedieť projekt preložiť kvôli errorom typu \uv{cannot open source file qbytearray}. V takom prípade prejdeme do možnosti \textit{Project}$\rightarrow$\textit{Properties}$\rightarrow$\newline\textit{Qt~Project~Settings} a manuálne nastavíme \textit{Qt Installation} na \textit{msvc2019\_64} (obrázok~\ref{obr:kap4:vs_manual}).
 
 \begin{figure}[!htb]
 	\centering
@@ -84,7 +85,16 @@ Môže sa stať, že narazíme na bug keď nám krok~\ref{kap4:qt_vs_integ:krok2
 
 V tomto momente by sme mali byť schopní úspešne skompilovať a spustiť náš program.
 
-\newpage
+\subsection{Warningy pri kompilácii}
+Warningy prekladaču sú samozrejme veľmi dôležité a nemali by byť ignorované. Niekedy sa ale jedná o vedľajší efekt, ktorý upozorňuje na časti kódu o ktorých sme si vedomí a neželáme si ich meniť. Pri kompilácii prázdneho Qt programu nám prekladač vygeneruje niečo cez 250 warningov a preto sme sa rozhodli niektoré z nich vypnúť v nastaveniach projektu. V časti \textit{Project}$\rightarrow$\textit{Properties}$\rightarrow$\newline\textit{Configuration Properties}$\rightarrow$\textit{C/C++}$\rightarrow$\textit{Advanced} sme do položky \textit{Disable Specific Warnings} pridali čísla nasledujúcich warningov, čím vypneme ich zobrazovanie:
+
+\paragraph{C26812}~\cite{warningc26812} -- \uv{The enum type type-name is unscoped. Prefer 'enum class' over 'enum' (Enum.3)} -- tento typ warningu poukazuje aj na časti v našom kóde pretože používame tzv. \uv{plain enum} a porovnávame ho s položkami typu \texttt{int}, na ktoré majú plain enumy implicitnú konverziu.
+
+Všetky nasledujúce warningy sa nachádzajú len v zdrojových kódoch Qt:
+\paragraph{C26451}~\cite{warningc26451} -- \uv{Arithmetic overflow: Using operator 'operator' on a size-a byte value and then casting the result to a size-b byte value. Cast the value to the wider type before calling operator 'operator' to avoid overflow.}
+\paragraph{C26498}~\cite{warningc26498} -- \uv{Use constexpr for values that can be computed at compile time.}
+\paragraph{C26495}~\cite{warningc26495} -- \uv{Variable '\%variable\%' is uninitialized. Always initialize a member variable (type.6).}
+\paragraph{C6011}~\cite{warningc6011} -- \uv{Dereferencing NULL pointer \textless~name\textgreater.}
 
 \section{Architektúra aplikácie}
 
@@ -99,7 +109,7 @@ V tejto sekcii si prejdeme celkovú stavbu aplikácie a akým spôsobom sú jedn
 
 \section{USB\_Packet\_Analyzer}
 
-USB\_Packet\_Analyzer tvorí hlavnú triedu programu, ktorá reprezentuje okno zobrazené užívateľovi hneď po zapnutí aplikácie. Naše hlavné okno pozostáva z nasledujúcich komponent:
+USB\_Packet\_Analyzer tvorí hlavnú triedu programu, ktorá reprezentuje ok\-no zobrazené užívateľovi hneď po zapnutí aplikácie. Naše hlavné okno pozostáva z nasledujúcich komponent:
 \begin{itemize}
 \item QTableWidget -- slúži na vyobrazenie základných informácií o paketoch.
 \item 2 QRadioButtony -- slúžia na výber medzi analýzou fixného súboru (file capture), alebo súboru do ktorého môže sniffer počas analýzy niečo pripísať (live capture).
@@ -133,7 +143,7 @@ slúži na vybratie si súboru na analýzu. To funguje na základe triedy QFileD
 ako už napovedá jeho samotný názov, slúži na začatie analýzy. V tejto chvíli sa začne spracovávať súbor, ktorý si užívateľ zvolil pomocou predcházajúceho tlačidla Open~\ref{kap04:sec:open_button}. Spracovanie je následne vyobrazené pomocou QTableWidgetu, ktorým ako sme už riešili v kapitole~\ref{kap03:sec:zobr_zakl} vyobrazujeme základné informácie o jednotlivých paketoch. O cekové spracovanie súboru a jeho vyobrazenie tak ako aj o iné veci, sa stará trieda \textit{ItemManager}, o ktorej si povieme viac neskôr v sekcii~\ref{kap04:sec:item_manager}.
 
 \paragraph{Clear tlačidlo}
-
+\label{kap04:sec:clear_button}
 zastáva funkciu vyčistenia plochy QTableWidgetu na ktorej sú vyobrazné základné informácie o paketoch. Takisto resetne progress bar, ktorým reprezentujeme v akom stave sa nachádzame z hľadiska spracovania daného súboru.
 
 \paragraph{Stop tlačidlo}
@@ -150,7 +160,7 @@ Z užívateľskej interakcie máme k dispozícii ešte jednu, o ktorej sme viac 
 \paragraph{\texttt{on\_tableWidget\_itemDoubleclicked(QTableWidget* item)}}
 \label{kap04:sec:double_click}
 
-je slot, ktorý sa volá po dvojkliku na konkrétny item v QTableWidget (pointer na daný item je poslaný ako parameter). V tejto metóde vytvoríme novú inštanciu triedy DataViewer s odpovedajúcimi parametrami a vyobrazíme jej dialógové okno, ktoré zobrazí detailnejšie informácie o danom pakete.
+je slot, ktorý \newline sa volá po dvojkliku na konkrétny item v QTableWidget (pointer na daný item je poslaný ako parameter). V tejto metóde vytvoríme novú inštanciu triedy DataViewer s odpovedajúcimi parametrami a vyobrazíme jej dialógové okno, ktoré zobrazí detailnejšie informácie o danom pakete.
 
 \subsection{ItemManager}
 \label{kap04:sec:item_manager}
@@ -158,12 +168,12 @@ Interakciu užívateľa so systémom sme si už vysvetlili a teraz sa poďme poz
 
 \subsubsection{Selekcia paketov}
 
-Ako sme už spomínali vyššie, samotná analýza začína stlačením tlačidla Start, kedy sa na inštancii ItemManagera zavolá metóda \texttt{ProcessFile(QString filename, bool liveReading)}. Ako nám už samotné názvy parametrov napovedajú, predávame v nej názov súboru, ktorý chceme spracovať a \texttt{bool} hodnotu určujúcu, či sa jedná o live capture alebo file capture. Táto metóda zaistí prostredníctvom FileReader inštancie otvorenie daného súboru a prečítanie jeho globálnej hlavičky. Ak sa jedná o live capture, nastaví timer aby kontroloval zmenu v súbore v pravidelných intervaloch 1 sekundy. Následne zavolá metódu \texttt{ProcessFileTillEnd(bool liveReading)}, ktorá pokračuje v spracovaní súboru od miesta kde čítanie naposledy skončilo, až po jeho koniec. Táto metóda je takisto spojená s \texttt{QTimer::timeout()} signálom, pre dodatočné spracovanie súboru v prípade pripísania nových paketov počas live capture. V tejto metóde si postupne od FileReaderu pýtame pomocou \texttt{GetPacket()} metódy dáta reprezentujúce jednotlivé pakety a tie posielame ako parameter funkcie \texttt{ProcessPacket(QByteArray)} na ich ďalšie spracovanie. Spracovanie samostatného paketu obsahuje niekoľko fáz:
+Ako sme už spomínali vyššie, samotná analýza začína stlačením tlačidla Start, kedy sa na inštancii ItemManagera zavolá metóda \texttt{ProcessFile(QString file\-name, bool liveReading)}. Ako nám už samotné názvy parametrov napovedajú, predávame v nej názov súboru, ktorý chceme spracovať a \texttt{bool} hodnotu určujúcu, či sa jedná o live capture alebo file capture. Táto metóda zaistí prostredníctvom FileReader inštancie otvorenie daného súboru a prečítanie jeho globálnej hlavičky. Ak sa jedná o live capture, nastaví timer aby kontroloval zmenu v súbore v pravidelných intervaloch 1 sekundy. Následne zavolá metódu \texttt{ProcessFileTillEnd(bool liveReading)}, ktorá pokračuje v spracovaní súboru od miesta kde čítanie naposledy skončilo, až po jeho koniec. Táto metóda je takisto spojená s \texttt{QTimer::timeout()} signálom, pre dodatočné spracovanie súboru v prípade pripísania nových paketov počas live capture. V tejto metóde si postupne od FileReaderu pýtame pomocou \texttt{GetPacket()} metódy dáta reprezentujúce jednotlivé pakety a tie posielame ako parameter funkcie\newline \texttt{ProcessPacket(QByteArray)} na ich ďalšie spracovanie. Spracovanie samostatného paketu obsahuje niekoľko fáz:
 \paragraph{Kontrola pre špeciálny typ paketu.}
 \hfill \break
 Pri spracovaní jednotlivých paketov riešime 2 nasledujúce veci:
 \begin{itemize}
-\item Dáta paketu reprezentujú Configuration Descriptor spolu s Interface/HID/Endpoint Descriptormi -- v takomto prípade bolo na zbernicu pripojené nové zariadenie a je potrebné si pre neho vytvoriť novú inštanciu typu BusDevice, o ktorej si viac povieme neskôr~\ref{kap04:sec:bus_device}.
+\item Dáta paketu reprezentujú Configuration Descriptor spolu s Interface/HID/\newline Endpoint Descriptormi -- v takomto prípade bolo na zbernicu pripojené nové zariadenie a je potrebné si pre neho vytvoriť novú inštanciu typu BusDevice, o ktorej si viac povieme neskôr~\ref{kap04:sec:bus_device}.
 \item Dáta paketu reprezentujú HID Report Descriptor -- v takom prípade je nutné daný Report Descriptor rozparsovať. Detailnejší opis si povieme nižšie v sekcii~\ref{kap04:sec:parse_hid}.
 \end{itemize}
 Po týchto dvoch kontrolách a prípadne následných úkonoch, ktoré s nimi súvisia, posunieme dáta do metódy \texttt{FillUpItem(QByteArray)}.  
@@ -174,13 +184,13 @@ Jej hlavná úloha je rozdeliť celý QByteArray na niekoľko menších podľa i
 
 \paragraph{Pridanie jednotlivých riadkov.}
 \hfill \break
-Na to nám slúži metóda \texttt{InsertRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER, unsigned char*)} -- prvý parameter je pointer na štruktúru reprezentujúcu hlavičku paketu, druhý parameter reprezentuje char* na dáta paketu. Pomocou tejto metódy teda vytvárame jednotlivé riadky v našej QTableWidget komponente. Po pridaní jednotlivých QTableWidgetItemov sa zavolaním metódy \texttt{ColorRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER)} postará o farebné oddelenie jednotlivých riadkov podľa ich významu. Po úspešom pridaní riadku do QTableWidgetu a naplnení uložení jednotlivých dát do prvého QTableWidgetItemu sa vraciame späť do metódy \texttt{ProcessPacket(QByteArray)}, kde musíme urobiť ešte poslednú vec -- skontrolovať, či daný paket nereprezentuje Setup Paket pomocou metódy \texttt{CheckForSetupPacket(QByteArray)}. 
+Na to nám slúži metóda \texttt{InsertRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER, \newline unsigned char*)} -- prvý parameter je pointer na štruktúru reprezentujúcu hlavičku paketu, druhý parameter reprezentuje char* na dáta paketu. Pomocou tejto metódy teda vytvárame jednotlivé riadky v našej QTableWidget komponente. Po pridaní jednotlivých QTableWidgetItemov sa zavolaním metódy \newline\texttt{ColorRow(PUSBPCAP\_BUFFER\_PACKET\_HEADER)} postará o farebné oddelenie jednotlivých riadkov podľa ich významu. Po úspešom pridaní riadku do QTableWidgetu a naplnení uložení jednotlivých dát do prvého QTableWidgetItemu sa vraciame späť do metódy \texttt{ProcessPacket(QByteArray)}, kde musíme urobiť ešte poslednú vec -- skontrolovať, či daný paket nereprezentuje Setup Paket pomocou metódy \texttt{CheckForSetupPacket(QByteArray)}. 
 
 \paragraph{Kontrola na Setup Paket.}
 \hfill \break
 Ak sa jedná o Setup Paket, skontrolujeme položku bRequest. Ak má hodnotu GET\_DESCRIPTOR, znamená to, že USB host si od zariadenia vypýtal konkrétny typ desrcriptoru -- ten si vieme zistiť z položky wValue. V prípade, že sa jedná o Configuration Descriptor alebo HID Report Descriptor tak vieme, že dáta nasledujúceho paketu budú reprezentovať tento konkrétny descriptor a teda bude nutné ho podľa toho spracovať.
 \hfill \break \newline
-ItemManager obsahuje ešte jednu dôležitú metódu, a to \texttt{GetDataType(QTableWidgetItem*, QTableWidgetItem*)}, ktorá je schopná na základe dát, ktoré sme si uložili do konkrétneho QTableWidgetItemu zistiť presný typ prenosu. V prípade, že sa jedná o Control Transfer tak určuje aký typ descriptoru reprezentujú \uv{zvyškové dáta} paketu (dáta nasledujúce po hlavičke a po nepovinnej dodatočnej hlavičke). V danom prenose sa ale môže nachádzať aj viac descriptorov súčasne -- konkrétne je to v prípade ak zariadenie posiela svoj Configuration Descriptor spolu s Interface/Endpoint/HID descriptormi. V tomto prípade metóda vráti, že sa jedná o Configuration Descriptor.
+ItemManager obsahuje ešte jednu dôležitú metódu, a to \texttt{GetDataType(QTable\-WidgetItem*, QTableWidgetItem*)}, ktorá je schopná na základe dát, ktoré sme si uložili do konkrétneho QTableWidgetItemu zistiť presný typ prenosu. V prípade, že sa jedná o Control Transfer tak určuje aký typ descriptoru reprezentujú \uv{zvyškové dáta} paketu (dáta nasledujúce po hlavičke a po nepovinnej dodatočnej hlavičke). V danom prenose sa ale môže nachádzať aj viac descriptorov súčasne -- konkrétne je to v prípade ak zariadenie posiela svoj Configuration Descriptor spolu s Interface/Endpoint/HID descriptormi. V tomto prípade metóda vráti, že sa jedná o Configuration Descriptor.
 
 Týmto sme si opísali akým spôsobom sa spracovávajú súbory, vyobrazujú sa základné informácie o paketoch a spôsob uloženia dát jednotlivých paketov. Teraz sa pozrieme ako je v našom programe riešená detailnejšia analýza (napírklad hexdump alebo sémantické vyobrazenie dát) konkrétnych paketov na základe informácií, ktoré sme si pri nich uložili.
 
@@ -196,7 +206,7 @@ Ako sme sa si vysvetlili vyššie~\ref{kap04:sec:double_click}, nová inštancia
 \begin{enumerate}
 \item Pointer na QTableWidgetItem, ktorý v sebe obsahuje dáta daného paketu.
 
-\item Typ prenosu/descriptoru, ktorý získame pomocou vyššie sponínanej metódy \texttt{ItemManager::GetDataType(QTableWidgetItem*, QTableWidgetItem*)}.
+\item Typ prenosu/descriptoru, ktorý získame pomocou vyššie sponínanej metódy \texttt{ItemManager::GetDataType(QTableWidgetItem*, \newline QTableWidgetItem*)}.
 
 \item Bool hodnotu, ktorá určuje či budeme dáta v hexdumpe farebne zvýrazňovať alebo nie. Túto hodnotu získame z QCheckBoxu hlavného okna.
 \end{enumerate}
@@ -264,16 +274,16 @@ Reprezentuje jeden vrchol v stromovej štruktúre. Uchováva si v sebe nasledovn
 \item \texttt{QVector\textless~QVariant\textgreater} data -- dáta, ktoré budú následne vyobrazené v QTreeView. Viewer samotný ponúka možnosť viacerých stĺpcov v jednom iteme a preto si dáta ukladáme v QVectore. Každá položka QVariant vo vectore tak rerezentuje dáta v jednotlivých stĺpcoch.
 \end{itemize} 
 
-Následne tu máme implemtované bežné funkcie potrebné pre prácu so stromovou štruktúrov ako napríklad \texttt{ChildCount()}, \texttt{AppendChild()} alebo \texttt{ColumnCount()}, ktorých význam a princíp fungovania je bližšie opísaný v zdrojvých kódoch v súboroch \textit{TreeItem.hpp} a \text{TreeItem.cpp}, ktoré boli poskytnuté ako príloha k tejto práci.
+Následne tu máme implemtované bežné funkcie potrebné pre prácu so stromovou štruktúrov ako napríklad \texttt{ChildCount()}, \texttt{AppendChild()} alebo \texttt{Column\-Count()}, ktorých význam a princíp fungovania je bližšie opísaný v zdrojvých kódoch v súboroch \textit{TreeItem.hpp} a \text{TreeItem.cpp}, ktoré boli poskytnuté ako príloha k tejto práci.
 Trochu podstatnejší je konštruktor, ktorý vyzerá nasledovne:
-\texttt{TreeItem(QVector\textless~QVariant\textgreater) data\_, TreeItem* parent\_} -- ako parameter dostávame dáta, ktoré si bude daný vrchol držať a pointer na svojho rodiča. V prípade že sa jedná o koreň stromu bude rodič nastavený na \texttt{nullptr}.
+\texttt{TreeItem(QVector\textless~QVariant\textgreater data\_, TreeItem* parent\_)} -- ako parameter dostávame dáta, ktoré si bude daný vrchol držať a pointer na svojho rodiča. V prípade že sa jedná o koreň stromu bude rodič nastavený na \texttt{nullptr}.
 
 
 
 \subsection{TreeItemBaseModel}
 Poskytuje spoločný interface pre modely fungujúcimi pre stromové štruktúry. Takisto v sebe drží \texttt{std::unique\_ptr\textless~TreeItem\textgreater rootItem} reprezentujúci koreň stromu.  Ako spoločný predok všetkých modelov pre stromové štruktúry má implementované metódy, ktorých funkcionalita sa v odvodených triedach nemení a patria medzi ne:
 \begin{itemize}
-\item \texttt{index()} -- vytvorí a vráti QModelIndex na základe parametrov (číslo riadku, číslo stĺpca a model index rodičovského itemu).
+\item \texttt{index()} -- vytvorí a vráti QModelIndex na základe parametrov (číslo riad\-ku, číslo stĺpca a model index rodičovského itemu).
 \item \texttt{parent()} -- na základe parametru QModelIndex vráti index rodiča daného vrcholu. Ak sa jedná o koreň stromu, podľa konvencie vrátime QModelIndex().
 \item \texttt{rowCount()} -- vráti počet synov vrcholu.
 \item \texttt{columnCount()} -- vráti počet stĺpcov dát vrcholu.
@@ -285,7 +295,7 @@ Poskytuje spoločný interface pre modely fungujúcimi pre stromové štruktúry
 \item \texttt{ShowBits\textless~T\textgreater(uint32\_t start, size\_t size, T number)}  -- parametrizovaná funckia, ktorá bola vytvorená pre účel splnenia požiadavky~\ref{uvod:poz:show_bits} na vyobrazenie významu dát až na úrovni jednotlivých bitov. Výsledok zapisujeme do QStringu, ktorý na konci vrátime. Ako parameter T dostaneme číslo, ktorého bity budeme chcieť ukázať. To prechádzame postupne bit po bite a v momente keď sa nachádzame v intervale \textless~start, start + size) zapisujeme do QStringu hodnoty jednotlivých bitov. Ak sa nachádzame mimo intervalu, zapisujeme \uv{.}.
 \end{itemize}
 
-TreeItemBaseModel obsahuje ešte tzv. \uv{pure virtual} funkcie \texttt{data()} a \texttt{headerData()}, ktorých implementácia sa bude líšiť na základe dedenej triedy -- je teda ich povinnosťou tieto metódy implementovať.
+TreeItemBaseModel obsahuje ešte tzv. \uv{pure virtual} funkcie \texttt{data()} a \newline\texttt{headerData()}, ktorých implementácia sa bude líšiť na základe dedenej triedy -- je teda ich povinnosťou tieto metódy implementovať.
 
 
 \subsection{ColorMapModel}
@@ -293,11 +303,11 @@ ColorMapModel je naša trieda odvodená od TreeItemBaseModel reprezentujúca mod
 
 \paragraph{SetupModelData()} je metóda, ktorú voláme priamo v konštruktore ColorMapModel. Keďže dedíme od triedy TreeItemBaseModel, máme k dispozícii koreň stromu (\texttt{std::unique\_ptr\textless~TreeItem\textgreater rootItem}) pomocou ktorého budeme cez TreeItem metódy budovať strom. Dáta každého vrcholu budú pozostávať z 2 položiek:
 \begin{itemize}
-\item \texttt{HeaderDataType} -- položka určujúca presný typ prenosu/descriptoru. Vďaka tejto položke budeme schopní priradiť odpovedajúcu farbu každému itemu v QTreeView.
+\item \texttt{HeaderDataType} -- položka určujúca presný typ prenosu/descriptoru. Vďa\-ka tejto položke budeme schopní priradiť odpovedajúcu farbu každému itemu v QTreeView.
 \item string reprezentujúci názov typu prenosu/descriptoru.
 \end{itemize}
 
-ColorMapModel obsahuje ešte jednu špecifickú metódu \texttt{GetDataTypeColor(HeaderDataType dataType)}, ktorá na základe parametru type vráti jemu odpovedajúcu farbu. Farby ku každému HeaderDataType máme nadefinované v triede DataHolder o ktorej si povieme viac nižšie~\ref{kap04:sec:data_holder}. Teraz si prejdeme implementáciu už spomínaných virtuálnych funkcií:
+ColorMapModel obsahuje ešte jednu špecifickú metódu \newline\texttt{GetDataTypeColor(HeaderDataType dataType)}, ktorá na základe parametru type vráti jemu odpovedajúcu farbu. Farby ku každému HeaderDataType máme nadefinované v triede DataHolder o ktorej si povieme viac nižšie~\ref{kap04:sec:data_holder}. Teraz si prejdeme implementáciu už spomínaných virtuálnych funkcií:
 \begin{itemize}
 \item \texttt{headerData()} -- keďže v Color Map nechceme mať žiadnu hlavičku, funkcia vracia prázdny QVariant().
 \item \texttt{data(QModelIndex\& index, int role)} -- podľa parametru role zistíme o aké dáta sa jedná. Ak sa role rovná \textit{Qt::DecorationRole}, vrátime farbu pomocou metódy GetDataTypeColor(). Ak sa role rovná \textit{Qt::DisplayRole}, vrátime textovú reprezentáciu typu prenosu/descriptoru, ktorú sme si uložili do itemu ako druhú položku. Ak sa role rovná hocičomu inému, vrátime prázdny QVariant().
@@ -309,8 +319,8 @@ je trieda odvodená od TreeItemBaseModel a reprezentuje model pre QTreeView, kto
 Virtuálne funkcie sú implementované nasledovne:
 \begin{itemize}
 \label{kap04:sec:usbh_virt}
-\item \texttt{headerData(int section, Qt::Orientation orientation, int role)} -- dáta hlavičky si typicky budeme ukladať do QVectoru \textit{data} nášho rootItemu. Podľa parametru orientation zistíme o akú hlavičku sa jedná (vertikálnu/horizontálnu). Keďže v našom QTreeView chceme mať horizontálnu hlavičku, testujeme na zhodu práve s Qt::Horizontal hodnotou a zároveň kontrolujeme či sa role rovná Qt::DisplayRole. Následne už len vrátime dáta zo stĺpca, ktorý je definovaný parametrom section.
-\item \texttt{data(QModelIndex\& index, int role)} -- pokiaľ sa role nerovná Qt::DisplayRole alebo index nie je validný, vrátime prázdny QVariant(). V opačnom prípade is pomocou indexu získame pointer na daný item a vrátime dáta z konkrétneho stĺpca (hodnotu stĺpca zistíme takisto z indexu).
+\item \texttt{headerData(int section, Qt::Orientation orientation, int \newline role)} -- dáta hlavičky si typicky budeme ukladať do QVectoru \textit{data} nášho rootItemu. Podľa parametru orientation zistíme o akú hlavičku sa jedná (vertikálnu/horizontálnu). Keďže v našom QTreeView chceme mať horizontálnu hlavičku, testujeme na zhodu práve s Qt::Horizontal hodnotou a zároveň kontrolujeme či sa role rovná Qt::DisplayRole. Následne už len vrátime dáta zo stĺpca, ktorý je definovaný parametrom section.
+\item \texttt{data(QModelIndex\& index, int role)} -- pokiaľ sa role nerovná \newline Qt::DisplayRole alebo index nie je validný, vrátime prázdny QVariant(). V opačnom prípade is pomocou indexu získame pointer na daný item a vrátime dáta z konkrétneho stĺpca (hodnotu stĺpca zistíme takisto z indexu).
 \end{itemize}
 
 \subsection{AdditionalDataModel}
@@ -321,7 +331,7 @@ Je základná trieda od ktorej sú všetky Interpretery odvodené. Obsahuje nasl
 \begin{itemize}
 \item \texttt{TreeItem* rootItem} -- koreň stromu.
 \item \texttt{QTableWidgetItem* item} -- pointer na item, ktorý v sebe obsahuje dáta z ktorých budeme zostavovať daný strom.
-\item \texttt{AdditionalDataModel* additionalDataModel} -- pointer na model pre zvyškové dáta. Budeme ho potrebovať k využívaniu funkcíí \texttt{ShowBits()} a \texttt{CharToHexConvert()}, ktoré sa nám hodia pri vyobrazovaní informácií v QTreeView.
+\item \texttt{AdditionalDataModel* additionalDataModel} -- pointer na model \newline pre zvyškové dáta. Budeme ho potrebovať k využívaniu funkcíí \texttt{ShowBits()} a \texttt{CharToHexConvert()}, ktoré sa nám hodia pri vyobrazovaní informácií v QTreeView.
 \end{itemize}
 
 Trieda má zadefinovaný konštruktor, ktorý má ako parameter všetky vyššie spomínané dátové položky. Zároveň obsahuje pure virtual funckiu \texttt{Interpret()}, ktorú si definuje každý interpreter zvlášť a slúži na vytvorenie konkrétnej stromovej štruktúry odpovedajúcej danému interpreteru.
@@ -339,11 +349,11 @@ Slúži na interpretovanie nasledujúcich descriptorov:
 \item Endpoint Descriptor
 \item unknown descriptor -- descriptor, ktorého štruktúru nepoznáme. Obecne ale vieme, že prvé 2B každého descriptoru reprezentujú položky \textit{bLength} a \textit{bDescriptorType} takže ich vypíšeme a ako ďalší vrchol stromu pripojíme zvyšné dáta descriptoru.
 \end{itemize}
-Keďže Interface/HID/Endpoint/unknown descriptory sú poslané v Control Transfere po Configuration Descriptore/Other\_Speed\_Configuration Descriptore, tak prechádzame celé zvyškové dáta paketu a postupne staviame strom pre jednotlivé typy descriptorov.
+Keďže Interface/HID/Endpoint/unknown descriptory sú poslané v Control Tran\-sfere po Configuration Descriptore/Other\_Speed\_Configuration Descriptore, tak prechádzame celé zvyškové dáta paketu a postupne staviame strom pre jednotlivé typy descriptorov.
 
 \paragraph{DeviceDescriptorInterpreter a DeviceQualifierDescriptorInterpreter}
 \hfill \break
-Samostatné triedy, ktoré slúžia na interpretovanie Device Descriptoru a Device\_Qualifier Descriptoru. Oba descriptory majú zo začiatku rovnakú štruktúru a preto máme metódu \texttt{InterpretControlTransferDeviceDescriptorBase\textless~T\textgreater()}, ktorá ako parameter zoberie jeden z descriptorov a vyplní spoločnú časť.
+Samostatné triedy, ktoré slúžia na interpretovanie Device Descriptoru a \newline Device\_Qualifier Descriptoru. Oba descriptory majú zo začiatku rovnakú štruktúru a preto máme metódu \newline \texttt{InterpretControlTransferDeviceDescriptorBase\textless~T\textgreater()}, ktorá ako parameter zoberie jeden z descriptorov a vyplní spoločnú časť.
 
 \paragraph{ReportDescriptorInterpreter} slúži na interpretovanie HID Report Descriptoru, ktoré prebieha v 2 fázach:
 \begin{enumerate}
@@ -360,7 +370,7 @@ Samostatné triedy, ktoré slúžia na interpretovanie Device Descriptoru a Devi
 Slúži na interpretovanie Interrupt Transferu, takže musí zároveň riešiť aký typ zariadenia daný input poslalo. Z hlavičky paketu prenosu vieme zistiť adresu zariadenia, ktoré zariadenie poslalo daný input. V \texttt{Interpret()} metóde prejde všetky zariadenia, ktoré máme uložené a nájdeme zariadenie s odpovedajúcou adresou. Zároveň sa musíme pozerať na číslo riadku na ktorom sa nachádza náš QTableWidgetItem z ktorého berieme dáta. Môže sa totiž stať, že pripojíme konkrétne zariadenie na zbernicu (napríklad myš) a USB Host mu nastaví adresu napríklad 9. Neskôr zariadenie odpojíme a napojíme namiesto neho iné (napríklad klávesnicu) a USB Host mu priradí teraz už voľnú adresu 9. V takomto prípade máme v liste zariadení 2 s rovnakou adresou a nevieme teda, ktoré z nich si máme vybrať. Toto vyriešime tým, že si u každého zariadenia budeme pamätať rozsah riadkov v ktorom boli pakety s touto adresou posielané ním. Ak také nenájdeme, nemáme informácie o danom zariadení a teda nevieme interpretovať jeho input. Ak sa nám podarí dané zariadenie rozpoznať, vyberieme ešte pomocou metódy \texttt{GetInputParser} štruktúru, ktorá presnejšie opisuje daný input a následne zavoláme už konkrétny interpreter pre naše zariadenie. Keďže sme sa na začiatku rozhodli, že budeme podporovať 3 HID zaridenia, máme na výber z týchto možností:
 \begin{enumerate}
 \item \texttt{MouseInterpreter} -- interpretuje zariadenie myši.
-\item \texttt{KeyboardInterpreter} -- interpretuje zariadenie klávesnice.
+\item \texttt{KeyboardInterpreter} -- interpretuje zariadenie klávesnice. Pre získanie názvu odpovedajúceho tlačidla podľa jeho key codu používame dokumentáciou definované Usage Names~\cite{keyboard_keycodes_names}.
 \item \texttt{JoystickInterpreter} -- interpreturj zariadenie joysticku.
 \item \texttt{UnknownDeviceInterpreter} -- snaží sa o obecnú interpretáciu inputu zariadenia, ktoré nie je ani jedno z vyššie uvedených.
 \end{enumerate}
@@ -372,7 +382,7 @@ Trieda pomocou ktorej zvolíme správny interpreter pre AdditionalDataModel. Ke�
 \begin{itemize}
 \item \texttt{TreeItem* rootItem} -- koreň stromu.
 \item \texttt{QTableWidgetItem* item} -- pointer na item, ktorý v sebe obsahuje dáta.
-\item \texttt{AdditionalDataModel* additionalDataModel} -- pointer na model pre zvyškové dáta paketu.
+\item \texttt{AdditionalDataModel* additionalDataModel} -- pointer na model \newline pre zvyškové dáta paketu.
 \item \texttt{HeaderDataType dataType} -- typ prenosu/descriptoru, ktorý reprezentujú dáta.
 \end{itemize}
 Následne obsahuje metódu \texttt{GetInterpreter()} v ktorej pomocou položky \textit{dataType} vráti novú inštanciu správneho interpreteru. 
@@ -392,9 +402,9 @@ HIDDevice je trieda implementujúca logiku súvisiacu s HID zariadeniami. Trieda
 \label{kap04:sec:data_holder}
 Trieda obsahujúca rôzne dátové konštanty a funkcie, ktoré potrebujeme v rôznych častiach programu. Z tohto dôvodu je takisto naimplementovaná ako Singleton. Hlavné položky ktoré obsahuje:
 \begin{itemize}
-\item \texttt{TRANSFER\_LEFTOVER\_DATA}, \texttt{TRANSFER\_OPTIONAL\_HEADER} a \texttt{USBPCAP\_HEADER\_DATA} -- konštanty určujúce Qt UserRole pri ukladaní/načítaní jednotlivých QByteArray z QTableWidgetItem pomocou \texttt{setData()}/\texttt{data()}.
+\item \texttt{TRANSFER\_LEFTOVER\_DATA}, \texttt{TRANSFER\_OPTIONAL\_HEADER} a \newline \texttt{USBPCAP\_HEADER\_DATA} -- konštanty určujúce Qt UserRole pri ukladaní/\newline načítaní jednotlivých QByteArray z QTableWidgetItem pomocou \newline \texttt{setData()}/\texttt{data()}.
 \item \texttt{BYTES\_ON\_ROW} -- konštanta určujúca počet buniek na jeden riadok v hexdumpe.
-\item \texttt{DataColors} -- mapa ktorá priradzuje jednotlivému typu prenosu/descriptoru farebné zložky ktoroými budú jeho dáta zvýraznené v hexdumpe a Color Mape.
+\item \texttt{DataColors} -- mapa ktorá priradzuje jednotlivému typu prenosu/descripto\-ru farebné zložky ktoroými budú jeho dáta zvýraznené v hexdumpe a Color Mape.
 \item \texttt{FillDataColorMap()} -- metóda naplňujúca \textit{DataColors} fixnými hodnotami.
 \item Metódy, ktoré vracajú textovú reprezentáciu rôznych enum konštánt.
 \end{itemize}

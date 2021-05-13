@@ -36,7 +36,7 @@ Teraz si prejdeme niekoľko základných USB descriptorov a ich jednotlivé polo
 
 
 \subsection*{Configuration Descriptor}
-Configuration Descriptor~\cite{usb_chap9_conf_desc} opisuje informácie o konkrétnej konfigurácii USB zariadenia. Obsahuje položku \textit{bConfigurationValue} -- číslo reprezentujúce konkrétnu konfiguráciu, ktorú USB host použije ako parameter v \texttt{SetConfiguration()} requeste v prípade, že chce nastaviť práve túto konfiguráciu. Každé zariadenie má aspoň jeden Configuration Descriptor. Každá konfigurácia obsahuje aspoň jeden interface a každý interface má nula alebo viac endpointov. V prípade, že si host vyžiada od zariadenia Configuration Descriptor, dostane spolu s ním aj všetky súvisiace Interface a Endpoint descriptory.
+Configuration Descriptor~\cite{usb_chap9_conf_desc} opisuje informácie o konkrétnej konfigurácii USB zariadenia. Obsahuje položku \textit{bConfigurationValue} -- číslo reprezentujúce konkrétnu konfiguráciu, ktorú USB host použije ako parameter\newline v~\texttt{SetConfiguration()} requeste v prípade, že chce nastaviť práve túto konfiguráciu. Každé zariadenie má aspoň jeden Configuration Descriptor. Každá konfigurácia obsahuje aspoň jeden interface a každý interface má nula alebo viac endpointov. V prípade, že si host vyžiada od zariadenia Configuration Descriptor, dostane spolu s ním aj všetky súvisiace Interface a Endpoint descriptory.
 
 
 \subsection*{Interface Descriptor}

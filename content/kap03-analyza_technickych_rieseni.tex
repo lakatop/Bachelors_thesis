@@ -59,7 +59,7 @@ Ako sme už naznačili v kapitole~\ref{uvod:sec:HID}, na vykonanie sémantickej 
 
 \subsection*{Report Descriptor}
 \label{kap03:sec:report_desc}
-Celková štruktúra Report Descriptoru je opísaná v HID Class Specification~\cite{report_desc}. Descriptor sa skladá z tzv. itemov, ktoré obsahujú informácie o danom zariadení. Každý item obsahuje hlavičku, ktorá sa skladá z troch častí:
+Celková štruktúra Report Descriptoru je opísaná v HID Class Specifica\-tion~\cite{report_desc}. Descriptor sa skladá z tzv. itemov, ktoré obsahujú informácie o danom zariadení. Každý item obsahuje hlavičku, ktorá sa skladá z troch častí:
 \begin{itemize}
 \item Typ
 \item Tag
@@ -73,7 +73,7 @@ Main item má momentálne definovaných 5 tagov:
 \item Input -- udáva informácie o inpute zariadenia. Toto je veľmi podstatná časť, pretože práve na základe tohto itemu vieme, že v inpute zariadenia máme očakávať byty reprezentujúce konkrétnu časť zariadenia (bližšie informácie o konkrétnej časti inputu ako napríklad veľkosť a význam, sú poskytnuté Global a Local itemami pred týmto konkrétnym Input itemom)
 \item Output -- podobný význam ako Input item, ale reprezentuje dáta, ktoré sú posielané zariadeniu (napríklad nastavenie LED svetiel na klávesnici)
 \item Feature -- itemy ktoré môžu byť posielané ako input aj output a využívajú sa napríklad na kalibráciu konkrétneho zariadenia.
-\item Collection -- udáva akúsi logickú kolekciu/zoskupenie rôznych Input/Output/Feature itemov. Napríklad kolekcia myši by mohla obsahovať itemy reprezentujúce tlačidlá a súradnice pohybu myši.
+\item Collection -- udáva akúsi logickú kolekciu/zoskupenie rôznych Input/Out\-put/Feature itemov. Napríklad kolekcia myši by mohla obsahovať itemy reprezentujúce tlačidlá a súradnice pohybu myši.
 \item End Collection -- udáva koniec kolekcie Collection itemu.
 \end{itemize}
 
@@ -199,7 +199,7 @@ V riešení nám zase pomôže koncept dostupný v Qt -- \textit{QByteArray}~\ci
 
 
 \section{Spracovávanie live capture}
-Ako sme už spomínali vyššie v sekcii~\ref{ka03:sec:sprac_sub}, súbory spracovávame pomocou QFile. Ak máme fixný súbor, ktorý sa počas spracovávania a ani po ňom nemení, tak jeho spracovanie je priamočiare -- prechádzame \texttt{while} cyklom cez súbor až pokiaľ sa nedostaneme na jeho koniec a tým celé psracovanie končí. Počas live capturu to je o trochu komplikovanejšie, pretože potrebujeme neustále sledovať spracovávaný súbor na aktuálne zmeny. To môžeme riešiť viacerými spôsobmi:
+Ako sme už spomínali vyššie v sekcii~\ref{ka03:sec:sprac_sub}, súbory spracovávame pomocou QFile. Ak máme fixný súbor, ktorý sa počas spracovávania a ani po ňom nemení, tak jeho spracovanie je priamočiare -- prechádzame \texttt{while} cyklom cez súbor až pokiaľ sa nedostaneme na jeho koniec a tým celé spracovanie končí. Počas live capturu to je o trochu komplikovanejšie, pretože potrebujeme neustále sledovať spracovávaný súbor na aktuálne zmeny. To môžeme riešiť viacerými spôsobmi:
 
 \subsection*{Nekonečný cyklus}
 Jedno z riešení by bolo celý proces spracovávania súboru zabaliť do nekonečného \texttt{while(true)} cyklu. Toto riešenie nie je práve ideálne z dvoch hlavných dôvodov:
@@ -212,7 +212,7 @@ Jedno z riešení by bolo celý proces spracovávania súboru zabaliť do nekone
 QFileSystemWatcher~\cite{qfilesystemwatcher} Qt trieda ponúka interface na monitorovanie jednotlivých súborov a priečinkov. Pomocou \texttt{addPath(QString)} metódy si pridáme cestu k súboru, ktorý chceme sledovať a pokiaľ je daný súbor akýmsi spôsobom modifikovaný, QFileSystemWatcher emitne signál \texttt{fileChanged(QString)}. Museli by sme si teda spojiť tento signál s našim konkrétnym slotom (takže ak bude \texttt{fileChanged(QString)} signál emitnutý, zavolá sa naša slot funkcia), v ktorom by sme implementovali čítanie súboru po jeho prípadných zmenách. Toto riešenie sme bohužial nemohli implementovať z dôvodu, akým vo Wiresharku funguje zapisovanie do súboru počas zachytávania USB paketov. Zapisovanie prebieha až v momente keď máme Wireshark otvorený ako hlavné okno, a nie keď len beží na pozadí. To znamená, že by sme museli prepínať medzi našou aplikáciou a Wiresharkom aby bol súbor, do ktorého sa zapisuje modifikovaný a tým pádom by bol emitnutý signál \texttt{fileChanged(QString)}.
 
 \subsection*{Qtimer}
-Riešenie nám poskytne trieda QTimer~\cite{qtimer} a jej signál \texttt{timeout()}. Ten sa emitne v pravidelných intervaloch určených metódou \texttt{start(std::chrono::miliseconds)} (čím sa zároveň aj spustí daný timer). K tomuto signálu si pripojíme slot, ktorý skontroluje či nebol daný súbor modifikovaný a prípadne spracuje jeho zmeny. Z vyššie opísaných dôvodov pre ktoré sme nemohli použiť QFileSystemWatcher, je QTimer prijateľná alternatíva, ktorá netvorí záťaž procesora a neprejavuje sa ani čisto z užívateľského pohľadu.
+Riešenie nám poskytne trieda QTimer~\cite{qtimer} a jej signál \texttt{timeout()}. Ten sa emitne v pravidelných intervaloch určených metódou\newline \texttt{start(std::chrono::miliseconds)} (čím sa zároveň aj spustí daný timer). K~tomuto signálu si pripojíme slot, ktorý skontroluje či nebol daný súbor modifikovaný a prípadne spracuje jeho zmeny. Z vyššie opísaných dôvodov pre ktoré sme nemohli použiť QFileSystemWatcher, je QTimer prijateľná alternatíva, ktorá netvorí záťaž procesora a neprejavuje sa ani čisto z užívateľského pohľadu.
 
 
 
@@ -230,7 +230,7 @@ QListWidget~\cite{qlistwidget} poskytuje vzhľad na základe view triedy QListVi
 	\label{obr:kap3:ListViewLook}
 \end{figure}
 
-QListWidget zároveň podporuje signal \texttt{itemDoubleClicked(QListWidgetItem*)}, ktorý má ako parameter konkrétny QListWidgetItem na ktorý užívateľ dvojklikol. Keďže chceme po dvojkliku zobraziť detailnejšie informácie o danom pakete, musíme si ich najprv niekde uschovať a následne sa k nim vedieť ľahko dostať. Tu prichádza výhoda použitia QListWidgetItem -- ten je totiž schopný si v sebe uchovať dáta v podobe QVariantu. To nám úplne vyhovuje, pretože ako sme už spomínali vyššie v sekcii~\ref{kap03:sec:uch_dat:qbytearray}, dáta si uchovávame práve v QByteArray, ktorý sme schopní zabaliť do QVariantu. Uloženie konkrétneho QVariantu je vykonané pomocou metódy \texttt{setData(int role, const QVariant \&value)} -- \texttt{role} môže byť podľa Qt dokumentácie~\cite{qitemdatarole} hodnota 256 a vyššie, druhý parameter je práve QVariant, ktorý chceme uložiť. Odkázaním sa na rovnakú \texttt{role} hodnotu v metóde \texttt{data(int role)} dostaneme ako návratovú hodnotu QVariant ktorý sme si vyššie uložili. Ďalšou výhodou je, že jeden riadok reprezentuje práve jeden QListWidgetItem, takže presne vieme v ktorom iteme máme uložené dáta.
+QListWidget zároveň podporuje signal\newline \texttt{itemDoubleClicked(QListWidgetItem*)}, ktorý má ako parameter konkrétny QListWidgetItem na ktorý užívateľ dvojklikol. Keďže chceme po dvojkliku zobraziť detailnejšie informácie o danom pakete, musíme si ich najprv niekde uschovať a následne sa k nim vedieť ľahko dostať. Tu prichádza výhoda použitia QListWidgetItem -- ten je totiž schopný si v sebe uchovať dáta v podobe QVariantu. To nám úplne vyhovuje, pretože ako sme už spomínali vyššie v sekcii~\ref{kap03:sec:uch_dat:qbytearray}, dáta si uchovávame práve v QByteArray, ktorý sme schopní zabaliť do QVariantu. Uloženie konkrétneho QVariantu je vykonané pomocou metódy \texttt{setData(int role, const QVariant \&value)} -- \texttt{role} môže byť podľa Qt dokumentácie~\cite{qitemdatarole} hodnota 256 a vyššie, druhý parameter je práve QVariant, ktorý chceme uložiť. Odkázaním sa na rovnakú \texttt{role} hodnotu v metóde \texttt{data(int role)} dostaneme ako návratovú hodnotu QVariant ktorý sme si vyššie uložili. Ďalšou výhodou je, že jeden riadok reprezentuje práve jeden QListWidgetItem, takže presne vieme v ktorom iteme máme uložené dáta.
 
 Nevýhody sú naopak nepraktické rozšírenie o ďalšie stĺpčeky. Tým, že jeden riadok je práve jeden item, stĺpčeky sú tu len akási abstrakcia, pretože všetky informácie ktoré môžeme vidieť na obrázku~\ref{obr:kap3:ListViewLook} (napríklad index paketu na začiatku alebo typ prenosu), je len jeden dlhý string. Z toho vyplýva, že ak by sme sa v budúcnosti rozhodli rozšíriť funkcionalitu nášho programu na triedenie itemov na základe hodnoty v jednotlivých stĺpčekoch, nebolo by to možné.
 
@@ -278,7 +278,7 @@ Poďme si ale rozmyslieť, či je skutočne nutné všetky tieto veci implemento
 S QTableView~\cite{qtableview} sme sa už stretli vyššie v sekcii~\ref{kap03:sec:table_widget}. Hexdump si v podstate vieme predstaviť ako tabuľku dát, preto dáva zmysel skúsiť upraviť práve túto triedu. QTableView je súčasťou Qt model/view architektúry, takže nám umožňuje logicky oddeliť dáta a ich zobrazovanie. Na reprezentáciu dát máme vytvorený vlastný model, poďme sa preto venovať len ich zobrazeniu pomocou table view. Na kompletný hexdump budeme potrebovať 2 samostatné QTableView -- jeden pre hexa časť a jeden pre tlačiteľné znaky. Pre vyobrazenie hexdumpu tak, aby sa podobal tomu na čo je bežný užívateľ zvyknutý nám postačia len jednoduché úpravy ako napríklad:
 
 \begin{itemize}
-\item Odstránenie horizontálnej hlavičky (\texttt{horizontalHeader()->setVisible(false)}).
+\item Odstránenie horizontálnej hlavičky \newline(\texttt{horizontalHeader()->setVisible(false)}).
 \item Nastavenie veľkosti jednotlivých buniek (\texttt{resizeColumnsToContents()} a \texttt{resizeRowsToContents()}).
 \item Odstránenie mriežky medzi bunkami (\texttt{setShowGrid(false)}).
 \end{itemize}
@@ -316,8 +316,8 @@ Ako sme si definovali v požiadavkách~\ref{uvod:poz:descriptory}--~\ref{uvod:po
 \subsection*{QTreeView}
 Celkom používame až 3 QTreeView -- pre vyobrazenie hlavičky paketu, descriptorov a inputu zariadenia, a ako posledné už vyššie spomínaný Color Map. V našom konkrétnom prípade máme aj 3 odlišné modely -- jeden pre každý view. Vzhľadom na to, že sa opäť pohybujeme v Qt model/view architektúre, budeme sa teraz zaoberať iba vyobrazením dát. Keďže nám vyhovuje štandardný spôsob akým QTreeView zobrazuje svoje položky, definujeme len niekoľko základných vlastností pre jednotlivé viewery:
 \begin{itemize}
-\item Každému vieweru nastavíme jemu odpovedajúci model pomocou \texttt{setModel()}.
-\item Nastavíme šírku jednotlivých stĺpčekov buď pomocou \texttt{resizeColumnToContents()} alebo \texttt{setColumnWidth()}.
+\item Každému vieweru nastavíme jemu odpovedajúci model pomocou \newline\texttt{setModel()}.
+\item Nastavíme šírku jednotlivých stĺpčekov buď pomocou \newline\texttt{resizeColumnToContents()} alebo \texttt{setColumnWidth()}.
 \end{itemize}
 
 Príklad výslednej stromovej štruktúry môžeme vidieť na obrázku~\ref{obr:kap3:tree_view}.

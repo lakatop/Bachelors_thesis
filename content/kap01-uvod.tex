@@ -152,7 +152,7 @@ Je nutné upozorniť, že väčšina dnešných analyzátorov sú platené aplik
 
 Aplikácia, ktorá na prvý pohľad nesúvisí s USB zbernicou. Wireshark je pravdepodobne najznámejší analyzátor a sniffer sieťových paketov. Jeho funkcionalita je veľmi rozsiahla, a~vzhľadom na~to, že sa jedná o~open-source projekt, neustále rastie. Vďaka jeho obecnému návrhu podporuje spoluprácu s~rôznymi inými sniffermi (LANalyzer, NetXRay a pod.). Jeden z~takýchto snifferov je \textit{USBPcap}, ktorý zachytáva USB komunikáciu a tým pádom je Wireshark schopný analyzovať pakety aj nad~touto zbernicou. 
 
-Pre priblíženie niektorých funkcií Wiresharku si ukážeme analýzu komunikácie s USB myšou (Genius DX\=/120~\cite{genius_mouse}). Medzi tie úplne základné funkcie určite patrí hexdump dát nad~ktorými prebieha analýza, ktorý je vyobrazený na obrázku~\ref{obr:uvod:wireshark_hexdump}. 
+Pre priblíženie niektorých funkcií Wiresharku si ukážeme analýzu komunikácie s USB myšou (Genius DX\=/120~\cite{genius_mouse})~\footnote{Verzia Wiresharku použítá v tejto sekcii na priblíženie jeho funkcionality je 3.2.6.}. Medzi tie úplne základné funkcie určite patrí hexdump dát nad~ktorými prebieha analýza, ktorý je vyobrazený na obrázku~\ref{obr:uvod:wireshark_hexdump}. 
 
 \begin{figure}[!htb]
 	\centering
@@ -238,7 +238,7 @@ Obecné vyobrazenie pohybu paketov na zbernici bez hlbšej analýzy je ukázané
 
 Výhoda Wiresharku je hlavne v~tom, že podporuje širokú škálu descriptorov a~plná verzia programu je dostupná úplne zadarmo. Z~pohľadu užívateľa je až prekvapivé, že aj~napriek rozsiahlosti programu je aplikácia veľmi user-friendly orientovaná a~dopĺňa ju intuitívne užívateľské rozhranie.
 
-Naopak, jeho nevýhodou je sčasti neprehľadný hexdump. Ako môžeme vidieť na obrázku~\ref{obr:uvod:wireshark_hexdump}, jedná sa o obyčajný hexdump, ktorý nijakým spôsobom neoddeľuje význam dát bez interakcie užívateľa. Preto v momente ak by sme nemali stromovú štruktúru k odpovedajúcemu hexdumpu, museli by sme sa riadiť špecifikáciou a vlastnou analýzou. V prípade rozsiahlejšieho hexdumpu môže byť veľmi obtiažné sa v ňom potom zorientovať. Ďalšia vec ktorá nám nevyhovuje, je chýbajúca sémantická analýza inputu rôznych zariadení. Ten je vyobrazený len pomocou hexdumpu a popisu \uv{Leftover Capture Data} ako je ukázané na obrázku~\ref{obr:uvod:wireshark_input}. Zo sekcie~\ref{uvod:sec:HID} nám je teda jasné, že vôbec netušíme čo jednotlivé dáta znamenajú, pretože ich význam je definovaný v \textit{Report Descriptore}.
+Naopak, jeho nevýhodou je sčasti neprehľadný hexdump. Ako môžeme vidieť na obrázku~\ref{obr:uvod:wireshark_hexdump}, jedná sa o obyčajný hexdump, ktorý nijakým spôsobom neoddeľuje význam dát bez interakcie užívateľa. Preto v momente ak by sme nemali stromovú štruktúru k odpovedajúcemu hexdumpu, museli by sme sa riadiť špecifikáciou a vlastnou analýzou. V prípade rozsiahlejšieho hexdumpu môže byť veľmi obtiažné sa v ňom potom zorientovať. Ďalšia vec ktorá nám nevyhovuje, je chýbajúca sémantická analýza inputu rôznych zariadení. Ten je vyobrazený len pomocou hexdumpu a popisu \uv{Leftover Capture Data} ako je ukázané na obrázku~\ref{obr:uvod:wireshark_input}~\footnote{V čase dokončovania tejto práce bola k dispozícii verzia Wiresharku 3.4.5, ktorá ponúkala sémantickú analýzu inputu HID zariadení.}. Zo sekcie~\ref{uvod:sec:HID} nám je teda jasné, že vôbec netušíme čo jednotlivé dáta znamenajú, pretože ich význam je definovaný v \textit{Report Descriptore}.
 
 \begin{figure}[!htb]
 	\centering
@@ -251,7 +251,7 @@ Naopak, jeho nevýhodou je sčasti neprehľadný hexdump. Ako môžeme vidieť n
 
 Aplikácia ponúka analýzu sieťových a~USB paketov, tak ako aj~analýzu komunikácie prebiehajúcej cez~sériový port. Zároveň slúži aj ako sniffer na všetkých týchto portoch.
 
-Ako prvé na~aplikácii zaujme spôsob zvolenia si zariadenia s~ktorým bude sledovaná komunikácia. Je implementovaný štýlom stromovej štruktúry ako je ukázané na~obrázku~\ref{obr:uvod:hhd_treeview_foto}~nižšie, kde máme konkrétne označenú rovnakú myš s ktorou komunikáciu sme sledovali predchádzajúcim programom. 
+Ako prvé na~aplikácii zaujme spôsob zvolenia si zariadenia s~ktorým bude sledovaná komunikácia. Je implementovaný štýlom stromovej štruktúry ako je ukázané na~obrázku~\ref{obr:uvod:hhd_treeview_foto}~nižšie, kde máme konkrétne označenú rovnakú myš s ktorou komunikáciu sme sledovali predchádzajúcim programom~\footnote{Verzia programu použítá v tejto sekcii na priblíženie jeho funkcionality je 8.36.00.9618}. 
 
 \begin{figure}[!htb]
 	\centering
@@ -259,7 +259,7 @@ Ako prvé na~aplikácii zaujme spôsob zvolenia si zariadenia s~ktorým bude sle
 	\caption{Ukážka stromovej štruktúry na~zvolenie si zariadenia, s~ktorým bude zachytávaná komunikácia.}
 	\label{obr:uvod:hhd_treeview_foto}
 \end{figure}
-
+\newpage
 Základná verzia programu ponúka vizuálne zobrazenie \textit{URB}, tak ako aj analýzu jednotlivých paketov.
 Pod analýzou si tu môžeme predstaviť ale len obyčajný hexdump, ktorý neposkytuje žiadne významové oddelenie dát a tým pádom je obtiažnejšie sa v ňom zorientovať. Príklad môžeme vidieť na obrázku~\ref{obr:uvod:hhd_hexdump}.
 
