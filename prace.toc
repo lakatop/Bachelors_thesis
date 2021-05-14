@@ -89,21 +89,20 @@
 \contentsline {paragraph}{Formát výpisu}{60}{section*.120}%
 \contentsline {paragraph}{Rozhodnutie užívateľa, či bude danú analýzu ukladať do súboru alebo nie}{60}{section*.121}%
 \contentsline {section}{\numberline {5.2}Iná vizuálna reprezentácia dát}{61}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Pridávanie nových interpreterov pre descriptory}{62}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Pridanie intepreteru na interrupt tranfser}{62}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}Pridanie nových HID zariední}{62}{subsection.5.4.1}%
-\contentsline {section}{\numberline {5.5}Pridanie analýzy pre isochronous a bulk transfer}{62}{section.5.5}%
-\contentsline {section}{\numberline {5.6}?Možnosť rozšírenia na iné platformy?}{63}{section.5.6}%
-\contentsline {chapter}{\numberline {6}Užívateľská dokumentácia}{64}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Inštalácia}{64}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Orientácia v GUI aplikácie}{64}{section.6.2}%
-\contentsline {section}{\numberline {6.3}Používanie aplikácie}{64}{section.6.3}%
-\contentsline {chapter}{\numberline {7}Záver}{65}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Zhrnutie}{65}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Budúce plány}{65}{section.7.2}%
-\contentsline {chapter}{Zoznam použitej literatúry}{66}{chapter*.123}%
-\contentsline {chapter}{Zoznam obr\'azkov}{71}{chapter*.124}%
-\contentsline {chapter}{Zoznam tabuliek}{73}{chapter*.125}%
-\contentsline {chapter}{Seznam použitých zkratek}{74}{chapter*.126}%
-\contentsline {chapter}{Prílohy}{75}{appendix*.127}%
-\contentsline {section}{\numberline {.1}První příloha}{76}{section.Alph0.1}%
+\contentsline {section}{\numberline {5.3}Pridávanie nových Interpreterov pre descriptory}{62}{section.5.3}%
+\contentsline {section}{\numberline {5.4}Pridanie Intepreteru pre Interrupt Transfer}{63}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Pridanie analýzy pre Isochronous a Bulk \newline Transfer}{63}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Možnosť rozšírenia na iné platformy}{63}{section.5.6}%
+\contentsline {chapter}{\numberline {6}Užívateľská dokumentácia}{65}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Inštalácia}{65}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Orientácia v GUI aplikácie}{65}{section.6.2}%
+\contentsline {section}{\numberline {6.3}Používanie aplikácie}{65}{section.6.3}%
+\contentsline {chapter}{\numberline {7}Záver}{66}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Zhrnutie}{66}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Budúce plány}{66}{section.7.2}%
+\contentsline {chapter}{Zoznam použitej literatúry}{67}{chapter*.123}%
+\contentsline {chapter}{Zoznam obr\'azkov}{72}{chapter*.124}%
+\contentsline {chapter}{Zoznam tabuliek}{74}{chapter*.125}%
+\contentsline {chapter}{Seznam použitých zkratek}{75}{chapter*.126}%
+\contentsline {chapter}{Prílohy}{76}{appendix*.127}%
+\contentsline {section}{\numberline {.1}První příloha}{77}{section.Alph0.1}%
