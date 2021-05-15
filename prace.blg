@@ -26,45 +26,45 @@ Reallocating 'name_of_file' (item size: 1) to 18 items.
 A level-1 auxiliary file: outro/prilohy.aux
 Database file #1: outro/literatura.bib
 Warning--I didn't find a database entry for "qabstractitemmodel"
-You've used 91 entries,
+You've used 93 entries,
             1791 wiz_defined-function locations,
-            732 strings with 12932 characters,
-and the built_in function-call counts, 9365 in all, are:
-= -- 782
-> -- 91
+            738 strings with 13300 characters,
+and the built_in function-call counts, 9565 in all, are:
+= -- 798
+> -- 93
 < -- 0
-+ -- 91
++ -- 93
 - -- 0
 * -- 2
-:= -- 884
-add.period$ -- 209
-call.type$ -- 91
-change.case$ -- 91
+:= -- 902
+add.period$ -- 213
+call.type$ -- 93
+change.case$ -- 93
 chr.to.int$ -- 0
-cite$ -- 91
-duplicate$ -- 455
-empty$ -- 1639
+cite$ -- 93
+duplicate$ -- 465
+empty$ -- 1675
 format.name$ -- 0
-if$ -- 2512
+if$ -- 2566
 int.to.chr$ -- 0
-int.to.str$ -- 91
+int.to.str$ -- 93
 missing$ -- 0
-newline$ -- 394
+newline$ -- 402
 num.names$ -- 0
-pop$ -- 600
+pop$ -- 612
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 464
+skip$ -- 476
 stack$ -- 0
 substring$ -- 0
-swap$ -- 91
+swap$ -- 93
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
 while$ -- 0
-width$ -- 93
-write$ -- 693
+width$ -- 95
+write$ -- 707
 (There was 1 warning)
