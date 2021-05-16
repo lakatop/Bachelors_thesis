@@ -28,6 +28,7 @@ Momentálne vyobrazujeme dáta za pomoci viewerov -- QTableView, QTreeView. Ako 
 
 Zaujímavý spôsob vyobrazenia dát by bolo napríklad pomocou koláčového grafu. Vedeli by sme tak vizuálne zobraziť pomer rôznych dát ako napríklad:
 \begin{itemize}
+\label{sec:kap5:kol_graf_udaje}
 \item pomer rôznych typov prenosov (Control/Interrupt/Bulk/Isochronous) počas zachytávania paketov.
 \item pomer veľkosti dát hlavičky paketu a zvyškových dát.
 \item pomer veľkosti dát poslaných zariadením a USB hostom.
@@ -58,6 +59,7 @@ Vrámci rozšírenia programu by sme mohli chcieť pridať analýzu pre nové de
 \item Pridať do \textit{InterpreterFactory} možnosť vytvorenia Interpreteru pre daný descriptor.
 \end{itemize}
 \section{Pridanie Intepreteru pre Interrupt Transfer}
+\label{sec:kap5:prid_interrupt}
 O analýzu zariadení, ktoré svoje dáta posielajú cez Interrupt Transfer sa momentálne stará \textit{InterruptTransferInterpreter}, ktorý pôsobí skôr ako ďalšia factory než ako samotný interpreter. Pre pridanie nového zariadenia by sme sa museli postarať o nasledujúce:
 \begin{itemize}
 \item Číselne zareprezentovať dané zariadenie pridaním novej položky do \textit{SupportedDevices} enumu.
@@ -66,6 +68,7 @@ O analýzu zariadení, ktoré svoje dáta posielajú cez Interrupt Transfer sa m
 \item Naimplementovanie nového Interpreteru pre dané zariadenie.
 \end{itemize}
 \section{Pridanie analýzy pre Isochronous a Bulk \newline Transfer}
+\label{sec:kap5:prid_an_iso_bulk}
 Momentálne v aplikácii rozpoznávame Isochronous a Bulk transfer len na úrovni hexdumpu, kde jednotlivé bunky zafarbujeme im odpovedajúcim farbám. Aplikácia ale ponúka dostatočne obecný návrh, ktorý umožnuje možnosť pridania aj sémantickej analýzy práve pre tieto typy prenosov. Typ transferu máme uložený v hlavičke paketu a takisto si ho predávame ako parameter v prípade vytvárania novej inštancie \texttt{DataVieweru}. Následne pre interpretovanie zvyškových dát paketu vytvárame novú inštanciu \texttt{AdditionalDataModel}, ktorá používa \texttt{InterpreterFactory} na výber správneho interpreteru. V tejto factory máme definované položky aj pre Bulk a Isochronous transfer, ktoré ale momentálne vracajú \texttt{nullptr}. Stačí nám teda vytvoriť nový Interpreter práve pre tieto transfery a pridať ho do factory. Je celkom pravdepodobné, že by sme pred interpretovaním jednotlivých zariadení iných prenosov museli najprv zozbierať dáta o formáte ich inputu z descriptorov, ktoré posielajú USB hostovi počas konfigurácie. Pripojenie nového zariadenia na zbernicu a vytvorenie jemu odpovedajúcej štruktúry \texttt{BusDevice} riešime v \texttt{ItemManager::ProcessPacket()} pomocou metódy \texttt{CreateDevice()}. Tá momentálne sekvenčne prechádza dáta paketu a v prípade, že sa jedná o HID/Endpoint/Interface descriptor, vytiahne z nich potrebné dáta. V prípade rozšírenia o nový descriptor je nutné len pridať možnosť rozpoznania tohto typu descriptoru a následne jeho konkrétnu analýzu.
 \section{Možnosť rozšírenia na iné platformy}
 Hlavná podporovaná platforma našej aplikácie je Windows. V priebehu samotného návrhu sme chceli čo najviac obmedziť viazanie sa na jednu špecifickú platformu, pretože už vtedy sme mohli uvažovať nad prípadným neskôrším rozšírením na iné platformy. To malo za následok niektoré naše rozhodnutia, ako napríklad výber multiplatformového Qt frameworku, alebo manuálne spracovávanie pcap súborov pomocou QFile namiesto použitia Npcap API. S Windowsom nás ale bohužiaľ stále spája zopár vecí, ktoré by sme museli v prípade rozšírenia na iné platformy riešiť inak. Z hľadiska zdrojového kódu to je používanie Windows knižníc. Tie využívame v týchto prípadoch:

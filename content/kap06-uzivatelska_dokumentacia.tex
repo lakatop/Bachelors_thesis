@@ -4,10 +4,36 @@
 V tejto kapitole si ukážeme možnosti používania našej aplikácie, tak ako aj popis jej samotného užívateľského rozhrania. Predtým si ale ešte musíme nainštalovať niektoré aplikácie potrebné k jej plnému využitiu.
 
 \section{Inštalácia}
-Našu aplikáciu nie je potrebné nijakým spôsobom inštalovať. Stačí otvoriť súbor \textit{USB\_Packet\_Analyzer.exe} v priečinku \textit{Release}, ktorý je súčasťou prílohy tejto práce. Podporovaná platforma našej aplikácie je momentálne iba Windows 10 verzie 20H2. Pre vytváranie súborov na analýzu si ale budeme musieť nainštalovať aplikácie USBPcap a Wireshark. V prípade, že nemáme záujem o naalýzu paketov v reálnom čase, bude nám stačiť aplikácia USBPcap.
+Našu aplikáciu nie je potrebné nijakým spôsobom inštalovať. Stačí otvoriť súbor \textit{USB\_Packet\_Analyzer.exe} v priečinku \textit{Release}, ktorý je súčasťou prílohy tejto práce. Podporovaná platforma našej aplikácie je momentálne iba Windows 10 64-bit verzie 20H2. Pre vytváranie súborov na analýzu si ale budeme musieť nainštalovať aplikácie USBPcap a Wireshark. V prípade, že nemáme záujem o analýzu paketov v reálnom čase, bude nám stačiť aplikácia USBPcap.
 
 \subsection{USBPCap}
+Aplikáciu USBPcap nainštalujeme podľa nasledujúcich krokov:
+\begin{enumerate}
+\item Prejdeme na stránku \uv{https://desowin.org/usbpcap/}.
+\item V \textit{Download} časti klikneme na \uv{USBPcapSetup-1.5.4.0.exe}\footnote{Číslo sa môže líšť na základe aktuálnej verzie USBPCapu.}, čím začne sťahovanie USBPCap setupu.
+\item Spustíme USBPCapSetup, ktorý sme stiahli v predchádzajúcom kroku, čo nám otvorí dialógové okno inštalácie.
+\item Akceptujeme licenčné podmienky a klikneme na tlačidlo \uv{Next}. Opakujeme aj na ďalšej strane okna.
+\item Necháme zaškrtnuté všetky komponenty a klikneme na \uv{Next}.
+\item Zvolíme si priečinok do ktorého chceme USBPCap nainštalovať a klikneme na \uv{Install}.
+\item Po inštalácii klikneme na \uv{Close}, čím inštalácia končí. Následne musíme ešte reštartovať počítač.
+\end{enumerate}
 
+\subsection{Wireshark}
+Pre nainštalovanie Wiresharku budeme postupovať podľa nasledujúcich krokov:
+\begin{enumerate}
+\item Prejdeme na stránku \uv{https://www.wireshark.org/\#download}.
+\item V časti \textit{Stabe Release (3.4.5)\footnote{Číslo sa môže líšť na základe aktuálnej verzie Wiresharku.}} klikneme na položku \uv{Windows Installer (64-bit)} a stiahneme inštalačný súbor Wiresharku.
+\item Spustíme súbor, ktorý sme si stiahli v minulom kroku, čím sa nám otvorí dialógové okno inštalácie.
+\item Klikneme na tlačidlo \uv{Next} a následne na tlačidlo \uv{Noted}.
+\item Necháme zaškrtnuté všetky možnosti a klikneme na tlačidlo \uv{Next}.
+\item V časti \uv{Create Shortcuts} zaškrtneme možnosti podľa osobných preferencií a klikneme na tlačidlo \uv{Next}.
+\item Zvolíme si priečinok do ktorého chceme Wireshark nainštalovať a klikneme na tlačidlo \uv{Next}.
+\item V prípade, že nemáme nainštalovaý Npcap, zaškrtneme možnosť na jeho nainštalovania a klikneme na tlačidlo \uv{Next}.
+\item USBPCap by sme už mali mať nainštalovaný podľa predchádzajúceho návodu, takže len klikneme na tlačidlo \uv{Install}.
+\item Po dokončení inštalácie klikneme na tlačidlo \uv{Next} a následne na tlačidlo \uv{Finish}.
+\end{enumerate}
+
+Aby sme vedeli spustiť zachytávanie paketov pomocou USBPcapu cez interface Wiresharku, prejdeme do priečinku v ktorom sme nainštalovali USBPcap a skopírujeme odtiaľ súbor \uv{USBPcapCMD.exe} do priečinku \uv{extcap} v adresári kde máme nainštalovaný Wireshark.
 
 
 
@@ -184,7 +210,7 @@ Teraz si otvoríme našu aplikáciu, pomocou tlačilda \uv{Open} si vyberieme s�
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{img/kap06_uk_popup}
-	\caption{Ukážka užívateľského rozhrania aplikácie.}
+	\caption{Ukážka pop-up okna aplikácie.}
 	\label{obr:kap6:uk_popup}
 \end{figure}
 
@@ -231,43 +257,3 @@ Momentálne si už len ukážeme zopár obrázkov analýzy vyššie spomínanej 
 	\caption{Ukážka inputu joysticku.}
 	\label{obr:kap6:uk_input_joystick}
 \end{figure}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

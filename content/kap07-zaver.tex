@@ -1,6 +1,66 @@
 \chapter{Záver}
+V tejto kapitole si zhrnieme výsledok našej práce a zároveň sa pozrieme na to, akým spôsobom sa nám podarilo splniť všetky požiadavky a ciele, ktoré sme si definovali na začiatku v kapitole~\ref{uvod:sec:pozadovane_funkcie} a~\ref{uvod:sec:ciele_prace}. Následne si ešte zhrnieme budúce plány s aplikáciou.
+
+
+
 \section{Zhrnutie}
-celkove zhrnutie prace, ?praca s Qt?
+Celkový výsledok našej práce je Windows aplikácia určená na analýzu USB paketov, ktorá splňuje všetky ciele a požiadavky, ktoré sme si stanovili v úvode. Teraz si prejdeme všetky z nich a postupne si ukážeme, akým spôsobom sme ich splnili:
+\begin{itemize}
+\item Podporovaná platforma na ktorej je naša aplikácia schopná fungovať je Windows, čím sme splnili požiadavku~\ref{uvod:poz:platforma}.
+\item Aplikácia je schopná analýzy paketov uložených v pcap formáte zachytených pomocou USBPcap snifferu. Zároveň podporuje analýzu súborov do ktorých sú priebežne zapisované aktuálne zachytené pakety, čím je vykonávaná analýza v reálnom čase. Týmto sme splnili požiadavky~\ref{uvod:poz:analyza} a~\ref{uvod:poz:analyza_real_time}.
+\item Súčasťou analýzy aplikácie je vyobrazenie dát pomocou hexdumpu v ktorom je užívateľovi umožnené farebné oddelenie dát na základe ich významu, vďaka čomu sme splnili požiadavky~\ref{uvod:poz:hexdump} a~\ref{uvod:poz:data_highlight}.
+\item Aplikácia vyobrazuje sémantický význam dát pomocou stromovej štruktúry. Takýmto spôsobom je schopná poskytnúť sémantickú analýzu pre všetky základné USB descriptory (descriptory spomenuté v~USB 2.0 špecifikácii~\cite{usbdoc} v kapitole 9.6), hlavičku paketu a pre HID zariadenia typu myš, klávesnica a joystick. Z toho vyplýva splnenie požiadavok~\ref{uvod:poz:descriptory}, \ref{uvod:poz:hid_analyza} a~\ref{uvod:poz:paket_hlavicka}.
+\item Aplikácia je schopná poskytnúť sémantickú analýzu, na miestach kde to dáva zmysel, až na úrovni jednotlivých bitov. Na základe toho je splnená požiadavka~\ref{uvod:poz:show_bits}.
+\item Aplikácia na prvý pohľad zobrazuje len základné informácie k jednotlivým paketom a detailnejšia analýza konkrétneho paketu je vyobrazená až pri dvojkliku užívateľa na daný paket. Týmto sme splinili požiadavky~\ref{uvod:poz:zobrazenie_paketov} a~\ref{uvod:poz:paket_detail}.
+\item Súčasťou programu aplikácie je parsovanie HID Report Descriptoru na základe čoho sme neskôr schopní vykonávať sémantickú analýzu HID zariadení typu myš, klávesnica a joystick, čím sme splnili požiadavku~\ref{uvod:poz:report_desk_parser}.
+\item \ref{uvod:ciel:aplikacia} (\textit{Naprogramovať funkčný analyzátor, ktorý spĺňa všetky požadované funkcie~\ref{uvod:poz:platforma}\=/\ref{uvod:poz:report_desk_parser}}) -- Splnenie tohto cieľu sme popísali vyššie.
+\item \ref{uvod:ciel:roz_USB} (\textit{Jednoduché rozšírenie o~analýzu ďalších typov USB prenosov.}) -- k splneniu sme využili vlastnosti návrhového vzoru factory a bližšie opísaný spôsob rozšírenia sme opísali v kapitole~\ref{sec:kap5:prid_an_iso_bulk}.
+\item \ref{uvod:ciel:roz_HID} (\textit{Jednoduché pridanie sémantickej analýzy pre~ďalšie HID zariadenia.}) -- k splneniu sme opäť využili princípy návrhového vzoru factory a spôsob pridania nového zariadenia sme opísali v kapitole~\ref{sec:kap5:prid_interrupt}.
+\end{itemize}
+
+
+
 \section{Budúce plány}
+V budúcnosti by sme chceli našu prácu ďalej rozvíjať a postupne sa dopracovať k splneniu nasledujúcich bodov:
+\begin{itemize}
+\item Zbavenie sa závislosti na third-party aplikáciách a implementovať vlastný sniffer na získavanie paketov na analýzu.
+\item Postupné rozšírenie aplikácie na viaceré hlavné platformy ako Linux a macOS.
+\item Obecné rozšírenie aplikácie o podporu sémantickej analýzy nových zariadení/descriptorov/typov prenosov.
+\item Pridanie vyobrazenia rôznych štatistických údajov o zachytených paketoch, napríklad ako sme opísali v kapitole~\ref{sec:kap5:kol_graf_udaje}.
+\item Ukladanie výstupu analýzy do súboru.
+\end{itemize}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
