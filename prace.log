@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  16 MAY 2021 16:17
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.3.16)  17 MAY 2021 17:06
 entering extended mode
 **./prace.tex
 (prace.tex
@@ -1199,15 +1199,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 190--194
  []
 
 [48]
+Overfull \hbox (105.62874pt too wide) in paragraph at lines 209--210
+\T1/lmr/m/n/12 zís-kame po-mo-cou vy²-²ie spo-ní-na-nej me-tódy \T1/lmtt/m/n/12
+ ItemManager::GetDataType(QTableWidgetItem*, |
+ []
+
+
+Overfull \hbox (11.54176pt too wide) in paragraph at lines 213--214
+[]\T1/lmtt/m/n/12 QWidget* parent \T1/lmr/m/n/12 -- po-in-ter na ro-di£a tejto 
+triedy, ktorý je ale vºdy \T1/lmtt/m/n/12 Q_NULLPTR|
+ []
+
 
 Package natbib Warning: Citation `qabstractitemmodel' on page 49 undefined on i
-nput line 218.
+nput line 220.
 
-[49] [50] [51] [52] [53] [54] [55] [56] [57]) [58] [59]
+[49] [50] [51]
+Overfull \hbox (154.4886pt too wide) in paragraph at lines 287--289
+\T1/lmr/m/n/12 dely, ktoré fun-gujú nad stro-mo-vými ²truk-tú-rami. Ta-kisto v 
+sebe drºí \T1/lmtt/m/n/12 std::unique_ptr< TreeItem > rootItem|
+ []
+
+
+Overfull \hbox (0.22385pt too wide) in paragraph at lines 289--290
+[]\T1/lmtt/m/n/12 index(int row, int column, const QModelIndex& parent) \T1/lmr
+/m/n/12 -- vy-tvorí a|
+ []
+
+[52] [53] [54] [55] [56] [57] [58]) [59]
 \openout2 = `content/kap05-moznosti_rozsirenia.aux'.
 
-
-(content/kap05-moznosti_rozsirenia.tex
+ (content/kap05-moznosti_rozsirenia.tex
 Kapitola 5.
 [60
 
@@ -1215,7 +1237,7 @@ Kapitola 5.
 
 
 ]
-<img/kap05_graphics_packets.png, id=1218, 515.526pt x 430.0065pt>
+<img/kap05_graphics_packets.png, id=1219, 515.526pt x 430.0065pt>
 File: img/kap05_graphics_packets.png Graphic file (type png)
 <use img/kap05_graphics_packets.png>
 Package pdftex.def Info: img/kap05_graphics_packets.png  used on input line 42.
@@ -1237,13 +1259,13 @@ Kapitola 6.
 
 
 ]
-<img/kap06_gui.png, id=1260, 667.89525pt x 170.43675pt>
+<img/kap06_gui.png, id=1261, 667.89525pt x 170.43675pt>
 File: img/kap06_gui.png Graphic file (type png)
 <use img/kap06_gui.png>
 Package pdftex.def Info: img/kap06_gui.png  used on input line 45.
 (pdftex.def)             Requested size: 412.56496pt x 105.28218pt.
  [66 <./img/kap06_gui.png>] [67]
-<img/kap06_usbpcap_ports.png, id=1286, 398.6895pt x 242.1045pt>
+<img/kap06_usbpcap_ports.png, id=1287, 398.6895pt x 242.1045pt>
 File: img/kap06_usbpcap_ports.png Graphic file (type png)
 <use img/kap06_usbpcap_ports.png>
 Package pdftex.def Info: img/kap06_usbpcap_ports.png  used on input line 100.
@@ -1254,19 +1276,19 @@ Overfull \hbox (1.21898pt too wide) in paragraph at lines 117--118
  ved©a jeho názvu|
  []
 
-<img/kap06_wireshark_usbpcap_settings.png, id=1301, 284.262pt x 177.0615pt>
+<img/kap06_wireshark_usbpcap_settings.png, id=1302, 284.262pt x 177.0615pt>
 File: img/kap06_wireshark_usbpcap_settings.png Graphic file (type png)
 <use img/kap06_wireshark_usbpcap_settings.png>
 Package pdftex.def Info: img/kap06_wireshark_usbpcap_settings.png  used on inpu
 t line 121.
 (pdftex.def)             Requested size: 284.52756pt x 177.23123pt.
-<img/kap06_wireshark_options_input.png, id=1304, 570.33075pt x 286.06876pt>
+<img/kap06_wireshark_options_input.png, id=1305, 570.33075pt x 286.06876pt>
 File: img/kap06_wireshark_options_input.png Graphic file (type png)
 <use img/kap06_wireshark_options_input.png>
 Package pdftex.def Info: img/kap06_wireshark_options_input.png  used on input l
 ine 133.
 (pdftex.def)             Requested size: 412.56496pt x 206.93839pt.
-<img/kap06_wireshark_options_output.png, id=1305, 567.92175pt x 284.262pt>
+<img/kap06_wireshark_options_output.png, id=1306, 567.92175pt x 284.262pt>
 File: img/kap06_wireshark_options_output.png Graphic file (type png)
 <use img/kap06_wireshark_options_output.png>
 Package pdftex.def Info: img/kap06_wireshark_options_output.png  used on input 
@@ -1282,50 +1304,50 @@ File: img/genius_mys.jpg Graphic file (type jpg)
 <use img/genius_mys.jpg>
 Package pdftex.def Info: img/genius_mys.jpg  used on input line 163.
 (pdftex.def)             Requested size: 66.00836pt x 113.23926pt.
-<img/kap06_joystick.png, id=1324, 677.53125pt x 451.6875pt>
+<img/kap06_joystick.png, id=1325, 677.53125pt x 451.6875pt>
 File: img/kap06_joystick.png Graphic file (type png)
 <use img/kap06_joystick.png>
 Package pdftex.def Info: img/kap06_joystick.png  used on input line 169.
 (pdftex.def)             Requested size: 148.5264pt x 99.01315pt.
-<img/kap06_keyboard.png, id=1327, 451.6875pt x 257.46187pt>
+<img/kap06_keyboard.png, id=1328, 451.6875pt x 257.46187pt>
 File: img/kap06_keyboard.png Graphic file (type png)
 <use img/kap06_keyboard.png>
 Package pdftex.def Info: img/kap06_keyboard.png  used on input line 175.
 (pdftex.def)             Requested size: 412.56496pt x 235.17458pt.
 [70 <./img/kap06_wireshark_options_input.png> <./img/kap06_wireshark_options_ou
 tput.png>] [71 <./img/kap06_joystick.png> <./img/kap06_keyboard.png>]
-<img/kap06_uk_popup.png, id=1352, 882.29625pt x 534.798pt>
+<img/kap06_uk_popup.png, id=1353, 882.29625pt x 534.798pt>
 File: img/kap06_uk_popup.png Graphic file (type png)
 <use img/kap06_uk_popup.png>
 Package pdftex.def Info: img/kap06_uk_popup.png  used on input line 212.
 (pdftex.def)             Requested size: 412.56496pt x 250.07391pt.
-<img/kap06_device_desc.png, id=1353, 879.285pt x 564.30824pt>
+<img/kap06_device_desc.png, id=1354, 879.285pt x 564.30824pt>
 File: img/kap06_device_desc.png Graphic file (type png)
 <use img/kap06_device_desc.png>
 Package pdftex.def Info: img/kap06_device_desc.png  used on input line 221.
 (pdftex.def)             Requested size: 412.56496pt x 264.76854pt.
-<img/kap06_uk_string_descriptor.png, id=1354, 879.285pt x 564.30824pt>
+<img/kap06_uk_string_descriptor.png, id=1355, 879.285pt x 564.30824pt>
 File: img/kap06_uk_string_descriptor.png Graphic file (type png)
 <use img/kap06_uk_string_descriptor.png>
 Package pdftex.def Info: img/kap06_uk_string_descriptor.png  used on input line
  228.
 (pdftex.def)             Requested size: 412.56496pt x 264.76854pt.
-<img/kap06_uk_report_desc.png, id=1355, 882.8985pt x 563.10374pt>
+<img/kap06_uk_report_desc.png, id=1356, 882.8985pt x 563.10374pt>
 File: img/kap06_uk_report_desc.png Graphic file (type png)
 <use img/kap06_uk_report_desc.png>
 Package pdftex.def Info: img/kap06_uk_report_desc.png  used on input line 235.
 (pdftex.def)             Requested size: 412.56496pt x 263.12938pt.
-<img/kap06_uk_mouse.png, id=1356, 879.285pt x 564.30824pt>
+<img/kap06_uk_mouse.png, id=1357, 879.285pt x 564.30824pt>
 File: img/kap06_uk_mouse.png Graphic file (type png)
 <use img/kap06_uk_mouse.png>
 Package pdftex.def Info: img/kap06_uk_mouse.png  used on input line 242.
 (pdftex.def)             Requested size: 412.56496pt x 264.76854pt.
-<img/kap06_uk_keyboard.png, id=1357, 879.285pt x 564.30824pt>
+<img/kap06_uk_keyboard.png, id=1358, 879.285pt x 564.30824pt>
 File: img/kap06_uk_keyboard.png Graphic file (type png)
 <use img/kap06_uk_keyboard.png>
 Package pdftex.def Info: img/kap06_uk_keyboard.png  used on input line 249.
 (pdftex.def)             Requested size: 412.56496pt x 264.76854pt.
-<img/kap06_uk_joystick.png, id=1358, 879.285pt x 564.9105pt>
+<img/kap06_uk_joystick.png, id=1359, 879.285pt x 564.9105pt>
 File: img/kap06_uk_joystick.png Graphic file (type png)
 <use img/kap06_uk_joystick.png>
 Package pdftex.def Info: img/kap06_uk_joystick.png  used on input line 256.
@@ -1690,8 +1712,8 @@ Package rerunfilecheck Info: File `prace.out' has not changed.
 (rerunfilecheck)             Checksum: 6B3686B1FC92E87B5B548560A9DFBD0A;10352.
  ) 
 Here is how much of TeX's memory you used:
- 18658 strings out of 479334
- 287862 string characters out of 2857084
+ 18659 strings out of 479334
+ 287869 string characters out of 2857084
  596433 words of memory out of 3000000
  35117 multiletter control sequences out of 15000+200000
  508773 words of font info for 104 fonts, out of 3000000 for 9000
@@ -1711,9 +1733,9 @@ akat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmri12.pfb><C:/Users/l
 akat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy10.pfb><C:/Users/l
 akat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtk10.pfb><C:/Users/l
 akat/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmtt12.pfb>
-Output written on prace.pdf (94 pages, 2617556 bytes).
+Output written on prace.pdf (94 pages, 2618274 bytes).
 PDF statistics:
- 1885 PDF objects out of 2073 (max. 8388607)
- 493 named destinations out of 1000 (max. 500000)
+ 1886 PDF objects out of 2073 (max. 8388607)
+ 494 named destinations out of 1000 (max. 500000)
  890 words of extra memory for PDF output out of 10000 (max. 10000000)
 

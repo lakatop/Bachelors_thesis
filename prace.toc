@@ -49,7 +49,7 @@
 \contentsline {subsection}{\numberline {4.4.1}Model}{49}{subsection.4.4.1}%
 \contentsline {paragraph}{Číslo riadku a číslo stĺpca:}{49}{section*.97}%
 \contentsline {paragraph}{Model index rodičovského itemu:}{49}{section*.98}%
-\contentsline {subsection}{\numberline {4.4.2}Delegát}{49}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.2}Delegát}{50}{subsection.4.4.2}%
 \contentsline {subsection}{\numberline {4.4.3}Hexdump}{50}{subsection.4.4.3}%
 \contentsline {paragraph}{columnCount()}{50}{section*.99}%
 \contentsline {paragraph}{rowCount()}{50}{section*.100}%
@@ -65,12 +65,12 @@
 \contentsline {subsection}{\numberline {4.4.8}USBPCapHeaderModel}{53}{subsection.4.4.8}%
 \contentsline {subsection}{\numberline {4.4.9}AdditionalDataModel}{54}{subsection.4.4.9}%
 \contentsline {subsection}{\numberline {4.4.10}BaseInterpreter}{54}{subsection.4.4.10}%
-\contentsline {paragraph}{ConfigDescriptorsInterpreter}{54}{section*.106}%
+\contentsline {paragraph}{ConfigDescriptorsInterpreter}{55}{section*.106}%
 \contentsline {paragraph}{DeviceDescriptorInterpreter a DeviceQualifierDescriptorInterpreter}{55}{section*.107}%
 \contentsline {paragraph}{ReportDescriptorInterpreter}{55}{section*.108}%
 \contentsline {paragraph}{SetupPacketInterpreter}{55}{section*.109}%
 \contentsline {paragraph}{StringDescriptorIntepreter}{55}{section*.110}%
-\contentsline {paragraph}{InterruptTransferInterpreter}{55}{section*.111}%
+\contentsline {paragraph}{InterruptTransferInterpreter}{56}{section*.111}%
 \contentsline {subsection}{\numberline {4.4.11}InterpretFactory}{56}{subsection.4.4.11}%
 \contentsline {section}{\numberline {4.5}HIDDevices}{57}{section.4.5}%
 \contentsline {paragraph}{CreateDevice(QByteArray packetData)}{57}{section*.112}%
@@ -83,7 +83,7 @@
 \contentsline {paragraph}{HIDDescriptor}{58}{section*.116}%
 \contentsline {paragraph}{InputValues}{58}{section*.117}%
 \contentsline {paragraph}{HIDReportDescriptorInputParse}{58}{section*.118}%
-\contentsline {paragraph}{BusDevice}{58}{section*.119}%
+\contentsline {paragraph}{BusDevice}{59}{section*.119}%
 \contentsline {chapter}{\numberline {5}Možnosti rozšírenia}{60}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Ukladanie výstupu do súboru}{60}{section.5.1}%
 \contentsline {paragraph}{Formát výpisu}{60}{section*.120}%
