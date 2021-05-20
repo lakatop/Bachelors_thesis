@@ -46,10 +46,10 @@
 \contentsline {paragraph}{Pridanie jednotlivých riadkov.}{47}{section*.95}%
 \contentsline {paragraph}{Kontrola na Setup Paket.}{48}{section*.96}%
 \contentsline {section}{\numberline {4.4}DataViewer}{48}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Model}{49}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.1}Koncept modelov v Qt}{49}{subsection.4.4.1}%
 \contentsline {paragraph}{Číslo riadku a číslo stĺpca:}{49}{section*.97}%
 \contentsline {paragraph}{Model index rodičovského itemu:}{49}{section*.98}%
-\contentsline {subsection}{\numberline {4.4.2}Delegát}{50}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.2}Koncept delegátov v Qt}{50}{subsection.4.4.2}%
 \contentsline {subsection}{\numberline {4.4.3}Hexdump}{50}{subsection.4.4.3}%
 \contentsline {paragraph}{columnCount()}{50}{section*.99}%
 \contentsline {paragraph}{rowCount()}{50}{section*.100}%
@@ -71,7 +71,7 @@
 \contentsline {paragraph}{SetupPacketInterpreter}{55}{section*.109}%
 \contentsline {paragraph}{StringDescriptorIntepreter}{55}{section*.110}%
 \contentsline {paragraph}{InterruptTransferInterpreter}{56}{section*.111}%
-\contentsline {subsection}{\numberline {4.4.11}InterpretFactory}{56}{subsection.4.4.11}%
+\contentsline {subsection}{\numberline {4.4.11}InterpreterFactory}{56}{subsection.4.4.11}%
 \contentsline {section}{\numberline {4.5}HIDDevices}{57}{section.4.5}%
 \contentsline {paragraph}{CreateDevice(QByteArray packetData)}{57}{section*.112}%
 \contentsline {paragraph}{ParseHIDReportDescriptor(QByteArray packetData, USHORT interfaceIndex)}{57}{section*.113}%
@@ -106,18 +106,17 @@
 \contentsline {paragraph}{Stop}{67}{section*.129}%
 \contentsline {paragraph}{Pause}{67}{section*.130}%
 \contentsline {section}{\numberline {6.3}Používanie aplikácie}{67}{section.6.3}%
-\contentsline {subsection}{\numberline {6.3.1}Vytváranie pcap súborov}{68}{subsection.6.3.1}%
-\contentsline {subsubsection}{File Capture}{68}{section*.131}%
-\contentsline {paragraph}{USBPcap}{68}{section*.132}%
-\contentsline {paragraph}{Wireshark}{69}{section*.134}%
-\contentsline {subsubsection}{Live Capture}{70}{section*.137}%
-\contentsline {subsection}{\numberline {6.3.2}Príklad analýzy}{70}{subsection.6.3.2}%
-\contentsline {chapter}{\numberline {7}Záver}{76}{chapter.7}%
-\contentsline {section}{\numberline {7.1}Zhrnutie}{76}{section.7.1}%
-\contentsline {section}{\numberline {7.2}Budúce plány}{77}{section.7.2}%
-\contentsline {chapter}{Zoznam použitej literatúry}{78}{chapter*.146}%
-\contentsline {chapter}{Zoznam obr\'azkov}{84}{chapter*.147}%
-\contentsline {chapter}{Zoznam tabuliek}{86}{chapter*.148}%
-\contentsline {chapter}{Seznam použitých zkratek}{87}{chapter*.149}%
+\contentsline {subsection}{\numberline {6.3.1}Príklad analýzy}{68}{subsection.6.3.1}%
+\contentsline {subsection}{\numberline {6.3.2}Vytváranie pcap súborov}{74}{subsection.6.3.2}%
+\contentsline {subsubsection}{File Capture}{74}{section*.140}%
+\contentsline {paragraph}{USBPcap}{74}{section*.141}%
+\contentsline {paragraph}{Wireshark}{75}{section*.143}%
+\contentsline {subsubsection}{Live Capture}{76}{section*.146}%
+\contentsline {chapter}{\numberline {7}Záver}{78}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Zhrnutie}{78}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Budúce plány}{79}{section.7.2}%
+\contentsline {chapter}{Zoznam použitej literatúry}{80}{chapter*.147}%
+\contentsline {paragraph}{}{85}{section*.148}%
+\contentsline {chapter}{Zoznam obr\'azkov}{86}{chapter*.149}%
 \contentsline {chapter}{Prílohy}{88}{appendix*.150}%
-\contentsline {section}{\numberline {.1}První příloha}{89}{section.Alph0.1}%
+\contentsline {subsubsection}{Prehľad elektronických príloh}{88}{section*.151}%

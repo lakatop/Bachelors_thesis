@@ -85,7 +85,7 @@
 {USB Human Interface Device Class}.
 \newblock
   \url{https://www.usb.org/document-library/device-class-definition-hid-111}.
-\newblock [str. 9].
+\newblock [str. 1].
 
 \bibitem{genius_mouse}
 {Genius myš použitá v úvode pri porovnaní existujúcich analyzátorov}.
@@ -199,8 +199,7 @@
 \bibitem{hid_access}
 {Tabuľka HID zariadení a ich Access Mode}.
 \newblock
-  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture}.
-\newblock [sekcia \uv{HID Clients Supported in Windows}].
+  \url{https://docs.microsoft.com/en-us/windows-hardware/drivers/hid/hid-architecture#hid-clients-supported-in-windows}.
 
 \bibitem{libusb}
 {libusb knižnica}.
@@ -231,7 +230,7 @@
 \bibitem{report_desc}
 {Report Descriptor}.
 \newblock \url{https://www.usb.org/sites/default/files/hid1_11.pdf}.
-\newblock [str. 33].
+\newblock [str. 23].
 
 \bibitem{usage_pages}
 {HID Usage Tables pre USB}.
@@ -240,7 +239,7 @@
 \bibitem{report_desc_mouse}
 {Konkrétny príklad Report Descriptoru myši}.
 \newblock \url{https://www.usb.org/sites/default/files/hid1_11.pdf}.
-\newblock [str. 71].
+\newblock [str. 61].
 
 \bibitem{dearimgui}
 {Dear ImGui}.
@@ -308,7 +307,7 @@
 
 \bibitem{qlistwidget}
 {Qt QListWidget class}.
-\newblock \url{https://doc.qt.io/qt-5/qvariant.html}.
+\newblock \url{https://doc.qt.io/qt-5/qlistwidget.html}.
 
 \bibitem{qlistview}
 {Qt QListView class}.
@@ -385,9 +384,23 @@
 {Qt QFileDialog class}.
 \newblock \url{https://doc.qt.io/qt-5/qfiledialog.html}.
 
+\bibitem{qt_model}
+{Qt Model triedy}.
+\newblock
+  \url{https://doc.qt.io/qt-5/model-view-programming.html\#model-classes}.
+
+\bibitem{qabstractitemmodel}
+{Qt QAbstractItemModel class}.
+\newblock \url{https://doc.qt.io/qt-5/qabstractitemmodel.html}.
+
 \bibitem{qabstracttablemodel}
 {Qt QAbstractTableModel class}.
 \newblock \url{https://doc.qt.io/qt-5/qabstracttablemodel.html}.
+
+\bibitem{qt_delegate}
+{Qt Delegát triedy}.
+\newblock
+  \url{https://doc.qt.io/qt-5/model-view-programming.html\#delegate-classes}.
 
 \bibitem{qabstractitemdelegate}
 {Qt QAbstractItemDelegate class}.
@@ -426,7 +439,6 @@
 
 \bibitem{canyon_keyboard_pic}
 {Fotka CANYON klávesnica prevzatá zo stránky obchodu}.
-\newblock
-  \url{https://img3.asbis.sk/canyon-cne-ckey01-sk-klavesnica-usb-104-klaves-odolna-proti-poliatiu-tekutinou-stihla-cierna-sk_i260771.jpg}.
+\newblock \url{https://www.nay.sk/canyon-cne-ckey01-sk}.
 
 \end{thebibliography}

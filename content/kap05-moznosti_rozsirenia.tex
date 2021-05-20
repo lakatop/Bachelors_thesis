@@ -9,7 +9,7 @@ Akým spôsobom bude vyzerať výstup analýzy. Na výber máme viacero možnost
 
 \paragraph{Rozhodnutie užívateľa, či bude danú analýzu ukladať do súboru alebo nie}
 \hfill \break
-Musíme myslieť na to, v akej fáze programu umožníme užívateľovi sa najneskôr rozhodnúť o ukladaní danej analýzy do súboru. Momentálne si všetky dáta uchovávame v samostatných QTableWidgetItemoch uložených v QTableWidgete hlavného okna aplikácie. Užívateľ má ale možnosť toto okno \uv{vyčistiť} pomocou tlačidla Clear~\ref{kap04:sec:clear_button}, ktoré vymaže všetky QTableWidgetItemy a tým pádom stratíme referenciu na všetky dáta, ktoré v sebe dané itemy uchovávajú. Doteraz sme sa tým nemuseli zaoberať, pretože dané dáta sem potrebovali na analýzu paketov reprezentovaných riadkom v QTableWidgete, takže akonáhle bol riadok vymazaný pomocu Clear tlačidla, detailnejšia analýza daného paketu už nebola možná. Niektoré možné riešenia tohto problému by mohli byť nasledujúce:
+Musíme myslieť na to, v akej fáze programu umožníme užívateľovi sa najneskôr rozhodnúť o ukladaní danej analýzy do súboru. Momentálne si všetky dáta uchovávame v samostatných QTableWidgetItemoch uložených v QTableWidgete hlavného okna aplikácie. Užívateľ má ale možnosť toto okno \uv{vyčistiť} pomocou tlačidla Clear~\ref{kap04:sec:clear_button}, ktoré vymaže všetky QTableWidgetItemy a tým pádom stratíme referenciu na všetky dáta, ktoré v sebe dané itemy uchovávajú. Doteraz sme sa tým nemuseli zaoberať, pretože dané dáta sme potrebovali na analýzu paketov vyobrazených v QTableWidgete. Akonáhle bol riadok vymazaný pomocu Clear tlačidla, detailnejšia analýza daného paketu už nebola možná. Niektoré možné riešenia tohto problému by mohli byť nasledujúce:
 \begin{itemize}
 \item V prípade, že umožníme užívateľovi si uložiť analýzu do súboru len do momentu pokiaľ nestlačí tlačidlo Start, máme na výber prakticky 2 možnosti:
 \begin{enumerate}
@@ -51,25 +51,25 @@ Vrámci rozšírenia programu by sme mohli chcieť pridať analýzu pre nové de
 \item Definícia descriptoru -- musíme si rozmyslieť odkiaľ zoženieme definíciu daného descriptoru. Môžeme si ho buď nadefinovať sami alebo použiť stávajúce definície z rôznych knižníc. Momentálne si sami definujeme len jeden descriptor -- HID Descriptor a všetky ostatné descriptory ktorých analýzu podporujeme sú definované v súbore usbspec.h.
 \item Aby sme vedeli v programe tento druh descriptoru rozpoznať, musíme si pridať jeho číselnú reprezentáciu do enumov:
 \begin{enumerate}
-\item \textit{HeaderDataType} -- umožní novú položku v \textit{InterpreterFactory}.
-\item \textit{DesriptorTypes} -- umožní rozpoznanie daného descriptoru z údajov Setup Paketu. Táto hodnota sa bude musieť presne zhodovať s hodnotou descriptoru definovanou USB špecifikáciou.
+\item HeaderDataType -- umožní novú položku v InterpreterFactory.
+\item DesriptorTypes -- umožní rozpoznanie daného descriptoru z údajov Setup Paketu. Táto hodnota sa bude musieť presne zhodovať s hodnotou descriptoru definovanou USB špecifikáciou.
 \end{enumerate}
-\item Definovať v metóde \texttt{ItemManager::GetDataType()} prevod z \textit{DescriptorTypes} enumu na enum \text{HeaderDataType}.
+\item Definovať v metóde \texttt{ItemManager::GetDataType()} prevod z DescriptorTypes enumu na enum HeaderDataType.
 \item Naimplementovať nový Interpreter pre daný descriptor.
-\item Pridať do \textit{InterpreterFactory} možnosť vytvorenia Interpreteru pre daný descriptor.
+\item Pridať do InterpreterFactory možnosť vytvorenia Interpreteru pre daný descriptor.
 \end{itemize}
 \section{Pridanie Intepreteru pre Interrupt Transfer}
 \label{sec:kap5:prid_interrupt}
-O analýzu zariadení, ktoré svoje dáta posielajú cez Interrupt Transfer sa momentálne stará \textit{InterruptTransferInterpreter}, ktorý pôsobí skôr ako ďalšia factory než ako samotný interpreter. Pre pridanie nového zariadenia by sme sa museli postarať o nasledujúce:
+O analýzu zariadení, ktoré svoje dáta posielajú cez Interrupt Transfer sa momentálne stará InterruptTransferInterpreter, ktorý pôsobí skôr ako ďalšia factory než ako samotný interpreter. Pre pridanie nového zariadenia by sme sa museli postarať o nasledujúce:
 \begin{itemize}
-\item Číselne zareprezentovať dané zariadenie pridaním novej položky do \textit{SupportedDevices} enumu.
-\item Pridanie tohto zariadenia do našej mapy podporovaných zariadení \textit{deviceMap}.
+\item Číselne zareprezentovať dané zariadenie pridaním novej položky do SupportedDevices enumu.
+\item Pridanie tohto zariadenia do našej mapy podporovaných zariadení deviceMap.
 \item Pridanie novej položky v metóde \newline\texttt{InterruptTransferInterpreter::Interpret()} v časti kde sa určuje o aké zariadenie sa jedná a na základe toho sa volá daný interpreter.
 \item Naimplementovanie nového Interpreteru pre dané zariadenie.
 \end{itemize}
 \section{Pridanie analýzy pre Isochronous a Bulk \newline Transfer}
 \label{sec:kap5:prid_an_iso_bulk}
-Momentálne v aplikácii rozpoznávame Isochronous a Bulk transfer len na úrovni hexdumpu, kde jednotlivé bunky zafarbujeme im odpovedajúcim farbám. Aplikácia ale ponúka dostatočne obecný návrh, ktorý umožnuje možnosť pridania aj sémantickej analýzy práve pre tieto typy prenosov. Typ transferu máme uložený v hlavičke paketu a takisto si ho predávame ako parameter v prípade vytvárania novej inštancie \texttt{DataVieweru}. Následne pre interpretovanie zvyškových dát paketu vytvárame novú inštanciu \texttt{AdditionalDataModel}, ktorá používa \texttt{InterpreterFactory} na výber správneho interpreteru. V tejto factory máme definované položky aj pre Bulk a Isochronous transfer, ktoré ale momentálne vracajú \texttt{nullptr}. Stačí nám teda vytvoriť nový Interpreter práve pre tieto transfery a pridať ho do factory. Je celkom pravdepodobné, že by sme pred interpretovaním jednotlivých zariadení iných prenosov museli najprv zozbierať dáta o formáte ich inputu z descriptorov, ktoré posielajú USB hostovi počas konfigurácie. Pripojenie nového zariadenia na zbernicu a vytvorenie jemu odpovedajúcej štruktúry \texttt{BusDevice} riešime v \texttt{ItemManager::ProcessPacket()} pomocou metódy \texttt{CreateDevice()}. Tá momentálne sekvenčne prechádza dáta paketu a v prípade, že sa jedná o HID/Endpoint/Interface descriptor, vytiahne z nich potrebné dáta. V prípade rozšírenia o nový descriptor je nutné len pridať možnosť rozpoznania tohto typu descriptoru a následne jeho konkrétnu analýzu.
+Momentálne v aplikácii rozpoznávame Isochronous a Bulk transfer len na úrovni hexdumpu, kde jednotlivé bunky zafarbujeme im odpovedajúcim farbám. Aplikácia ale ponúka dostatočne obecný návrh, ktorý umožnuje možnosť pridania aj sémantickej analýzy práve pre tieto typy prenosov. Typ transferu máme uložený v hlavičke paketu a takisto si ho predávame ako parameter v prípade vytvárania novej inštancie \texttt{DataVieweru}. Následne pre interpretovanie zvyškových dát paketu vytvárame novú inštanciu \texttt{AdditionalDataModel}, ktorá používa \texttt{InterpreterFactory} na výber správneho Interpreteru. V tejto factory máme definované položky aj pre Bulk a Isochronous transfer, ktoré ale momentálne vracajú \texttt{nullptr}. Stačí nám teda vytvoriť nový Interpreter práve pre tieto transfery a pridať ho do factory. Je celkom pravdepodobné, že by sme pred interpretovaním jednotlivých zariadení iných prenosov museli najprv zozbierať dáta o formáte ich inputu z descriptorov, ktoré posielajú USB hostovi počas konfigurácie. Pripojenie nového zariadenia na zbernicu a vytvorenie jemu odpovedajúcej štruktúry \texttt{BusDevice} riešime v \texttt{ItemManager::ProcessPacket()} pomocou metódy \texttt{CreateDevice()}. Tá momentálne sekvenčne prechádza dáta paketu a v prípade, že sa jedná o HID/Endpoint/Interface descriptor, vytiahne z nich potrebné dáta. V prípade rozšírenia o nový descriptor je nutné len pridať možnosť rozpoznania tohto typu descriptoru a následne jeho konkrétnu analýzu.
 \section{Možnosť rozšírenia na iné platformy}
 Hlavná podporovaná platforma našej aplikácie je Windows. V priebehu samotného návrhu sme chceli čo najviac obmedziť viazanie sa na jednu špecifickú platformu, pretože už vtedy sme mohli uvažovať nad prípadným neskôrším rozšírením na iné platformy. To malo za následok niektoré naše rozhodnutia, ako napríklad výber multiplatformového Qt frameworku, alebo manuálne spracovávanie pcap súborov pomocou QFile namiesto použitia Npcap API. S Windowsom nás ale bohužiaľ stále spája zopár vecí, ktoré by sme museli v prípade rozšírenia na iné platformy riešiť inak. Z hľadiska zdrojového kódu to je používanie Windows knižníc. Tie využívame v týchto prípadoch:
 \begin{itemize}
@@ -77,4 +77,4 @@ Hlavná podporovaná platforma našej aplikácie je Windows. V priebehu samotné
 \item Štruktúry definované USBPcapom využívajú dátové typy ako napríklad \textit{USHORT}, \textit{USBD\_STATUS}, \textit{UINT32}, ktoré sú definované rôznymi Windows knižnicami.
 \end{itemize}
 
-Ďalší problém je s celkovou integráciou nášho programu s USBPcapom, čo je sniffer ktorý funguje iba na Windowse. Celkové spracovanie pcap súborov a formátovanie jednotlivých paketov úzko súvisi s formátom v akom ich USBPcap ukladá.
+Ďalší problém je s celkovou integráciou nášho programu s USBPcapom, čo je sniffer ktorý funguje iba na Windowse. Spracovanie pcap súborov a formátovanie jednotlivých paketov úzko súvisi s formátom v akom ich USBPcap ukladá.

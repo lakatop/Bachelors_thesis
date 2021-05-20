@@ -94,7 +94,7 @@ Všetky nasledujúce warningy sa nachádzajú len v zdrojových kódoch Qt:
 \paragraph{C26451}~\cite{warningc26451} -- \uv{Arithmetic overflow: Using operator 'operator' on a size-a byte value and then casting the result to a size-b byte value. Cast the value to the wider type before calling operator 'operator' to avoid overflow.}
 \paragraph{C26498}~\cite{warningc26498} -- \uv{Use constexpr for values that can be computed at compile time.}
 \paragraph{C26495}~\cite{warningc26495} -- \uv{Variable '\%variable\%' is uninitialized. Always initialize a member variable (type.6).}
-\paragraph{C6011}~\cite{warningc6011} -- \uv{Dereferencing NULL pointer \textless~name\textgreater.}
+\paragraph{C6011}~\cite{warningc6011} -- \uv{Dereferencing NULL pointer \textless~name~\textgreater.}
 
 \section{Architektúra aplikácie}
 
@@ -105,7 +105,7 @@ Všetky nasledujúce warningy sa nachádzajú len v zdrojových kódoch Qt:
 	\label{obr:kap4:architek}
 \end{figure}
 
-V tejto sekcii si prejdeme celkovú stavbu aplikácie a akým spôsobom sú jednotlivé komponenty prepojené. Ako vidíme na obrázku~\ref{obr:kap4:architek}, aplikáciu môžeme rozdeliť do dvoch hlavných komponent, ktoré tvoria logické jadro programu: \texttt{USB\_Packet\_Analyzer} a \texttt{DataViewer}, na ktoré sa viažu ďalšie komponenty a dopĺňajú ich funkcionalitu. Teraz si podrobnejšie opíšeme obe hlavné komponenty spolu s komponentami, ktoré sú na nich napojené.
+V tejto sekcii si prejdeme celkovú stavbu aplikácie a akým spôsobom sú jednotlivé komponenty prepojené. Ako vidíme na obrázku~\ref{obr:kap4:architek}, aplikáciu môžeme rozdeliť do dvoch hlavných komponent, ktoré tvoria logické jadro programu: \texttt{USB\_Packet\_Analyzer} a \texttt{DataViewer}, na ktoré sa viažu ďalšie komponenty a dopĺňajú ich funkcionalitu. Teraz si podrobnejšie opíšeme obe hlavné komponenty spolu s komponentami, ktoré sú na nich napojené. Všetky detailnejšie informácie o popise jednotlivých položiek, tried alebo metód nájdeme v prílohe tejto práce v zdrojových kódoch alebo poskytnutej dokumentácie vygenerovanej z dokumentačných komentárov.
 
 \section{USB\_Packet\_Analyzer}
 
@@ -121,7 +121,7 @@ USB\_Packet\_Analyzer tvorí hlavnú triedu programu, ktorá reprezentuje ok\-no
 Zároveň implementuje funkcie spojené s užívateľskou interakciou, od ktorej sa následne odvíja ďalšie správanie aplikácie.
 
 \subsection{Užívateľská interakcia}
-Ako sme už spomínali vyššie v kapitole~\ref{kap3:sec:model_view}, Qt využíva na komunikáciu medzi objektami tzv. \uv{Signals \& Slots}~\cite{signal_slot} mechanizmus, ktorý funguje ako alternatíva ku callback funkciám v iných frameworkoch. Qt widgety majú veľa preddefinovaných signálov (ku ktorým si môžeme dodefinovať ďalšie), ktoré sú emitované pri konkrétnom evente (napríklad QPushButton~\cite{qpushbutton} má signál \texttt{clicked()} ktorý je emitnutý pokiaľ je dané tlačidlo stlačené). Slot je funkcia, ktorá je zavolaná ako odpoveď na konkrétny signál. Prepojenie signálu so slotom prebieha pomocou metódy \texttt{QObject::connect(QObject* sender, signal, QObject* receiver, method)}, kde postupne definujeme inštanciu QObject spolu s jej konkrétnym signálom a následne inštanciu QObject spolu s jej metódou, ktorá sa má zavolať po emitovaní daného singálu. Qt má takisto možnosť \uv{Auto-Connect}~\cite{qt_autoconnect} pri ktorej stačí, že sa budeme držať štandardných konvencií a tým pádom nebudeme musieť manuálne prepájať jednotlivé signály a sloty pomocou \texttt{connect()} metódy. Toto využívame napríklad pri tlačidlách, konkrétne so signálom \texttt{clicked()}, kde stačí ak si vytvoríme slot pomocou nasledujúcej mennej konvencie: \texttt{void on\_\textless object name \textgreater\_clicked()}.
+Ako sme už spomínali vyššie v kapitole~\ref{kap3:sec:model_view}, Qt využíva na komunikáciu medzi objektami tzv. \uv{Signals \& Slots}~\cite{signal_slot} mechanizmus, ktorý funguje ako alternatíva ku callback funkciám v iných frameworkoch. Qt widgety majú veľa preddefinovaných signálov (ku ktorým si môžeme dodefinovať ďalšie), ktoré sú emitované pri konkrétnom evente (napríklad QPushButton~\cite{qpushbutton} má signál \texttt{clicked()} ktorý je emitnutý pokiaľ je dané tlačidlo stlačené). Slot je funkcia, ktorá je zavolaná ako odpoveď na konkrétny signál. Prepojenie signálu so slotom prebieha pomocou metódy \texttt{QObject::connect(QObject* sender, signal, QObject* receiver, method)}, kde postupne definujeme inštanciu QObject spolu s jej konkrétnym signálom a následne inštanciu QObject spolu s jej metódou, ktorá sa má zavolať po emitovaní daného singálu. Qt má takisto možnosť \uv{Auto-Connect}~\cite{qt_autoconnect} pri ktorej stačí, že sa budeme držať štandardných konvencií a tým pádom nebudeme musieť manuálne prepájať jednotlivé signály a sloty pomocou \texttt{connect()} metódy. Toto využívame napríklad pri tlačidlách, konkrétne so signálom \texttt{clicked()}, kde stačí ak si vytvoríme slot pomocou nasledujúcej mennej konvencie: \texttt{void on\_\textless~object name~\textgreater\_clicked()}.
 
 \begin{figure}[!htb]
 	\centering
@@ -206,27 +206,27 @@ Ako sme si vysvetlili vyššie v sekcii~\ref{kap04:sec:double_click}, nová inš
 \begin{enumerate}
 \item \texttt{QTableWidgetItem* item} -- pointer na QTableWidgetItem, ktorý v sebe obsahuje dáta daného paketu.
 
-\item \texttt{HeaderDataType additionalDataType} -- typ prenosu/descriptoru, ktorý získame pomocou vyššie sponínanej metódy \texttt{ItemManager::GetDataType(QTableWidgetItem*, \newline QTableWidgetItem*)}.
+\item \texttt{HeaderDataType additionalDataType} -- typ prenosu/descriptoru, ktorý získame pomocou vyššie sponínanej metódy \texttt{ItemManager::GetDataTy\-pe(QTableWidgetItem*, QTableWidgetItem*)}.
 
 \item \texttt{bool dataHighlight} -- bool hodnotu, ktorá určuje či budeme dáta v hexdumpe farebne zvýrazňovať alebo nie. Túto hodnotu získame z QCheckBoxu hlavného okna.
 
-\item \texttt{QWidget* parent} -- pointer na rodiča tejto triedy, ktorý je ale vždy \texttt{Q\_NULLPTR} z dôvodov aby sa nám pop-up okno zobrazilo v lište ako samostatný objekt.
+\item \texttt{QWidget* parent} -- pointer na rodiča tejto triedy, ktorý je ale vždy \newline\texttt{Q\_NULLPTR} z dôvodov aby sa nám pop-up okno zobrazilo v lište ako samostatný objekt.
 \end{enumerate}
 
 V konštruktore následne inicializujeme naše komponenty -- keďže využívame spôsob programovania pomocou Qt Model/View architektúry, inicializácia zahŕňa vytvorenie modelov a delegátov a ich následné priradenie k jednotlivým viewerom. Teraz si povieme obecný spôsob fungovania modelov a delegátov v Qt, a následne si priblížime našu konkrétnu implementáciu.
 
 
-\subsection{Model}
-Model je v Qt obyčajná trieda založená na QAbstractItemModel~\cite{qabstractitemmodel} triede, ktorá spĺňa preddefinovaný interface vďaka ktorému viewery a delegáti pristupujú k dátam. Naše modely môžu byť takisto odvodené od viac špecifických modelov, ktoré poskytuje Qt ako napríklad QAbstractTableModel~\cite{qabstracttablemodel}. Nezáleží na tom akým spôsobom budú naše dáta uložené, modely ich reprezentujú ako hierarchickú štruktúru obsahujúcu tabuľku itemov. Prístup k položkám modelu je potom zaistený pomocou tzv. \uv{model indexov}. Viewery a delegáti používajú tieto indexy aby sa odkázali na konkrétne dáta, ktoré neskôr vyobrazujú. Aby sme získali index na konkrétne dáta, potrebujeme špecifikovať tri veci: číslo riadku, číslo stĺpca a model index rodičovského itemu.
+\subsection{Koncept modelov v Qt}
+Model je v Qt~\cite{qt_model} obyčajná trieda založená na QAbstractItemModel~\cite{qabstractitemmodel} triede, ktorá spĺňa preddefinovaný interface vďaka ktorému viewery a delegáti pristupujú k dátam. Naše modely môžu byť takisto odvodené od viac špecifických modelov, ktoré poskytuje Qt ako napríklad QAbstractTableModel~\cite{qabstracttablemodel}. Nezáleží na tom akým spôsobom budú naše dáta uložené, modely ich reprezentujú ako hierarchickú štruktúru obsahujúcu tabuľku itemov. Prístup k položkám modelu je potom zaistený pomocou tzv. \uv{model indexov}. Viewery a delegáti používajú tieto indexy aby sa odkázali na konkrétne dáta, ktoré neskôr vyobrazujú. Aby sme získali index na konkrétne dáta, potrebujeme špecifikovať tri veci: číslo riadku, číslo stĺpca a model index rodičovského itemu.
 \paragraph{Číslo riadku a číslo stĺpca:} Ako sme už spomínali, modely reprezentujú itemy pomocou tabuľkovej štruktúry. Pomocou čísla riadku a stĺpca sa odkážeme na konkrétny item v tabuľke.
 \paragraph{Model index rodičovského itemu:}  Tabuľková štruktúra ponúka dobrú reprezentáciu v prípade tabuliek, avšak nie je úplne ideálna ak si dáta ukladáme a chceme ich vyobraziť v podobe stromovej štruktúry. V takejto štruktúre má prirodzene každý item (až na koreň stromu) rodiča a ľubovoľný počet synov. Na index konkrétneho vrcholu v strome nám tak bude stačiť poznať index jeho rodiča a ktorý syn v poradí to je (to môžeme reprezentovať číslom riadku).
 
 Každý item v modeli má definovanú tzv. \uv{role}, ktorá určuje ako sa na dané dáta máme pozerať. Napríklad \textit{Qt::DisplayRole} označuje dáta, ktoré majú byť vo vieweri vyobrazené ako text
 
 
-\subsection{Delegát}
+\subsection{Koncept delegátov v Qt}
 \label{kap04:sec:delegate}
-Delegáti obecne slúžia na vizualizáciu dát s možnosťou ich editácie. Štandardný interface pre delegátov je poskytnutý triedou QAbstractItemDelegate~\cite{qabstractitemdelegate}. Od delegátov sa predpokladá, že implementujú metódy \texttt{paint()} a \texttt{sizeHint()} na vyobrazenie kontentu.
+Delegáti~\cite{qt_delegate} obecne slúžia na vizualizáciu dát s možnosťou ich editácie. Štandardný interface pre delegátov je poskytnutý triedou QAbstractItemDelegate~\cite{qabstractitemdelegate}. Od delegátov sa predpokladá, že implementujú metódy \texttt{paint()} a \texttt{sizeHint()} na vyobrazenie kontentu.
 
 
 \subsection{Hexdump}
@@ -273,20 +273,20 @@ Momentálne nám ostávajú ešte modely pre 3 komponenty reprezentujúce Color 
 Reprezentuje jeden vrchol v stromovej štruktúre. Uchováva si v sebe nasledovné:
 \begin{itemize}
 \item \texttt{TreeItem* parent} -- pointer na svojho rodiča.
-\item \texttt{QVector\textless~std::shared\_ptr\textless~TreeItem\textgreater\textgreater childs} -- list svojich synov
-\item \texttt{QVector\textless~QVariant\textgreater data} -- dáta, ktoré budú následne vyobrazené v QTreeView. Viewer samotný ponúka možnosť viacerých stĺpcov v jednom iteme a preto si dáta ukladáme v QVectore. Každá položka QVariant vo vectore tak rerezentuje dáta v jednotlivých stĺpcoch.
+\item \texttt{QVector\textless~std::shared\_ptr~\textless~TreeItem~\textgreater~\textgreater~childs} -- list svojich synov
+\item \texttt{QVector\textless~QVariant~\textgreater~data} -- dáta, ktoré budú následne vyobrazené v QTreeView. Viewer samotný ponúka možnosť viacerých stĺpcov v jednom iteme a preto si dáta ukladáme v QVectore. Každá položka QVariant vo vectore tak rerezentuje dáta v jednotlivých stĺpcoch.
 \end{itemize} 
 
 Následne tu máme implemtované bežné funkcie potrebné pre prácu so stromovou štruktúrov ako napríklad \texttt{ChildCount()}, \texttt{AppendChild()} alebo \texttt{Column\-Count()}, ktorých význam a princíp fungovania je bližšie opísaný v zdrojových kódoch v súboroch \textit{TreeItem.hpp} a \textit{TreeItem.cpp}, ktoré boli poskytnuté ako príloha k tejto práci.
 Trochu podstatnejší je konštruktor, ktorý vyzerá nasledovne:
-\texttt{TreeItem(QVector\textless~QVariant\textgreater data\_, TreeItem* parent\_)} -- ako parameter dostávame dáta, ktoré si bude daný vrchol držať a pointer na svojho rodiča. V prípade že sa jedná o koreň stromu bude rodič nastavený na \texttt{nullptr}.
+\texttt{TreeItem(QVector\textless~QVariant~\textgreater~data\_, TreeItem* parent\_)} -- ako parameter dostávame dáta, ktoré si bude daný vrchol držať a pointer na svojho rodiča. V prípade že sa jedná o koreň stromu bude rodič nastavený na \texttt{nullptr}.
 
 
 
 \subsection{TreeItemBaseModel}
-Trieda dedí od QAbstractItemModel a poskytuje spoločný interface pre modely, ktoré fungujú nad stromovými štruktúrami. Takisto v sebe drží \texttt{std::unique\_ptr\textless~TreeItem~\textgreater~rootItem} reprezentujúci koreň stromu. Ako spoločný predok všetkých modelov pre stromové štruktúry implementuje niektoré metódy dedené od QAbstractItemModel, ktorých funkcionalita sa v nasledujúcich odvodených triedach nemení a patria medzi ne:
+Trieda dedí od QAbstractItemModel a poskytuje spoločný interface pre modely, ktoré fungujú nad stromovými štruktúrami. Takisto v sebe drží \newline\texttt{std::unique\_ptr\textless~TreeItem~\textgreater~rootItem} reprezentujúci koreň stromu. Ako \newline spoločný predok všetkých modelov pre stromové štruktúry implementuje niektoré metódy dedené od QAbstractItemModel, ktorých funkcionalita sa v nasledujúcich odvodených triedach nemení a patria medzi ne:
 \begin{itemize}
-\item \texttt{index(int row, int column, const QModelIndex\& parent)} -- vytvorí a vráti QModelIndex na základe parametrov (číslo riad\-ku, číslo stĺpca a model index rodičovského itemu).
+\item \texttt{index(int row, int column, const QModelIndex\& parent)} -- vytvorí \newline a vráti QModelIndex na základe parametrov (číslo riad\-ku, číslo stĺpca a model index rodičovského itemu).
 \item \texttt{parent(QModelIndex\& index)} -- na základe parametru QModelIndex vráti index rodiča daného vrcholu. Ak sa jedná o koreň stromu, podľa konvencie vrátime QModelIndex().
 \item \texttt{rowCount(QModelIndex\& parent)} -- vráti počet synov vrcholu.
 \item \texttt{columnCount(QModelIndex\& parent)} -- vráti počet stĺpcov dát vrcholu.
@@ -295,7 +295,7 @@ Trieda dedí od QAbstractItemModel a poskytuje spoločný interface pre modely, 
 Následne tu máme ešte implementované metódy, ktoré sa nám hodia pri vyobrazovaní dát v QTreeView ale nie sú súčasťou QAbstractItemModelu:
 \begin{itemize}
 \item \texttt{CharToHexConvert(char** addr, int len, QString\& data)} -- v parametri \textit{data} vráti hex reprezentáciu prvých \textit{len} znakov char poľa uloženého na adrese \textit{addr}.
-\item \texttt{ShowBits\textless~T\textgreater(uint32\_t start, size\_t size, T number)}  -- parametrizovaná metóda, ktorá bola vytvorená pre účel splnenia požiadavky~\ref{uvod:poz:show_bits} na vyobrazenie významu dát až na úrovni jednotlivých bitov. Výsledok zapisujeme do QStringu, ktorý na konci metódy vrátime. Ako parameter T dostaneme číslo, ktorého bity budeme chcieť ukázať. To prechádzame postupne bit po bite a v momente keď sa nachádzame v intervale \textless~\textit{start}, \textit{start} + \textit{size}) zapisujeme do QStringu hodnoty jednotlivých bitov. Ak sa nachádzame mimo intervalu, zapisujeme \uv{ . }.
+\item \texttt{ShowBits\textless~T~\textgreater(uint32\_t start, size\_t size, T number)}  -- parametrizovaná metóda, ktorá bola vytvorená pre účel splnenia požiadavky~\ref{uvod:poz:show_bits} na vyobrazenie významu dát až na úrovni jednotlivých bitov. Výsledok zapisujeme do QStringu, ktorý na konci metódy vrátime. Ako parameter T dostaneme číslo, ktorého bity budeme chcieť ukázať. To prechádzame postupne bit po bite a v momente keď sa nachádzame v intervale \textless~\textit{start}, \textit{start} + \textit{size}) zapisujeme do QStringu hodnoty jednotlivých bitov. Ak sa nachádzame mimo intervalu, zapisujeme \uv{ . }.
 \end{itemize}
 
 TreeItemBaseModel obsahuje ešte tzv. \uv{pure virtual} metódy \texttt{data()} a \newline\texttt{headerData()}, ktorých implementácia sa bude líšiť na základe dedenej triedy -- je teda ich povinnosťou tieto metódy implementovať.
@@ -304,7 +304,7 @@ TreeItemBaseModel obsahuje ešte tzv. \uv{pure virtual} metódy \texttt{data()} 
 \subsection{ColorMapModel}
 ColorMapModel je naša trieda odvodená od TreeItemBaseModel reprezentujúca model pre Color Map. Ako sme už vyššie spomínali, musí implementovať 2 metódy: \texttt{headerData()} a \texttt{data()}. Ešte predtým si ale musíme rozmyslieť odkiaľ zoberieme dáta, ktoré budeme chcieť v Color Mape zobrazovať. Vyššie sme si spomínali triedu \texttt{TreeItem}~\ref{kap04:sec:tree_item}, ktorá reprezentuje jeden vrchol v stromovej štruktúre, ktorá si bude udržiavať naše dáta. Celý strom si musíme najprv vytvoriť a naplniť ho dátami, a o to sa stará funkcia \texttt{SetupModelData()}.
 
-\paragraph{SetupModelData()} je metóda, ktorú voláme priamo v konštruktore ColorMapModel. Keďže dedíme od triedy TreeItemBaseModel, máme k dispozícii koreň stromu (\texttt{std::unique\_ptr\textless~TreeItem\textgreater rootItem}) pomocou ktorého budeme cez TreeItem metódy budovať strom. Dáta každého vrcholu budú pozostávať z 2 položiek:
+\paragraph{SetupModelData()} je metóda, ktorú voláme priamo v konštruktore ColorMapModel. Keďže dedíme od triedy TreeItemBaseModel, máme k dispozícii koreň stromu (\texttt{std::unique\_ptr\textless~TreeItem~\textgreater~rootItem}) pomocou ktorého budeme cez TreeItem metódy budovať strom. Dáta každého vrcholu budú pozostávať z 2 položiek:
 \begin{itemize}
 \item \texttt{HeaderDataType} -- položka určujúca presný typ prenosu/descriptoru. Vďa\-ka tejto položke budeme schopní priradiť odpovedajúcu farbu každému itemu v QTreeView.
 \item string reprezentujúci názov typu prenosu/descriptoru.
@@ -356,7 +356,7 @@ Keďže Interface/HID/Endpoint/unknown descriptory sú poslané v Control Tran\-
 
 \paragraph{DeviceDescriptorInterpreter a DeviceQualifierDescriptorInterpreter}
 \hfill \break
-Samostatné triedy, ktoré slúžia na interpretovanie Device Descriptoru a \newline Device\_Qualifier Descriptoru. Oba descriptory majú zo začiatku rovnakú štruktúru a preto máme metódu \newline \texttt{InterpretControlTransferDeviceDescriptorBase\textless~T\textgreater()}, ktorá ako parameter zoberie jeden z descriptorov a vyplní spoločnú časť.
+Samostatné triedy, ktoré slúžia na interpretovanie Device Descriptoru a \newline Device\_Qualifier Descriptoru. Oba descriptory majú zo začiatku rovnakú štruktúru a preto máme metódu \newline \texttt{InterpretControlTransferDeviceDescriptorBase\textless~T~\textgreater()}, ktorá ako parameter zoberie jeden z descriptorov a vyplní spoločnú časť.
 
 \paragraph{ReportDescriptorInterpreter} slúži na interpretovanie HID Report Descriptoru, ktoré prebieha v 2 fázach:
 \begin{enumerate}
@@ -378,9 +378,9 @@ Slúži na interpretovanie Interrupt Transferu, takže musí zároveň riešiť 
 \item \texttt{UnknownDeviceInterpreter} -- snaží sa o obecnú interpretáciu inputu zariadenia, ktoré nie je ani jedno z vyššie uvedených.
 \end{enumerate}
 
-Teraz už poznáme všetky Interpreter triedy nášho programu a musíme ešte vyriešiť ako si AdditionalDataModel vyberie ten správny. Ako sme už spomínali vyššie, budeme to riešiť pomocou návrhového vzoru factory, konkrétne nám na to bude slúžiť trieda InterpretFactory.
+Teraz už poznáme všetky Interpreter triedy nášho programu a musíme ešte vyriešiť ako si AdditionalDataModel vyberie ten správny. Ako sme už spomínali vyššie, budeme to riešiť pomocou návrhového vzoru factory, konkrétne nám na to bude slúžiť trieda InterpreterFactory.
 
-\subsection{InterpretFactory}
+\subsection{InterpreterFactory}
 Trieda pomocou ktorej zvolíme správny interpreter pre AdditionalDataModel. Keďže bude vytvárať inštancie jednotlivých interpreterov, obsahuje nasledujúce dátové položky:
 \begin{itemize}
 \item \texttt{TreeItem* rootItem} -- koreň stromu.
@@ -390,12 +390,12 @@ Trieda pomocou ktorej zvolíme správny interpreter pre AdditionalDataModel. Ke�
 \end{itemize}
 Následne obsahuje metódu \texttt{GetInterpreter()} v ktorej pomocou položky \textit{dataType} vráti novú inštanciu správneho interpreteru. 
 
-Takže jediné čo AdditionalDataModel musí urobiť keď chce vytvoriť strom pre konkrétny input je vytvoriť si novú inštanciu InterpretFactory, získať správny interpreter a na ňom zavolať metódu \texttt{Interpret()}.
+Takže jediné čo AdditionalDataModel musí urobiť keď chce vytvoriť strom pre konkrétny input je vytvoriť si novú inštanciu InterpreterFactory, získať správny interpreter a na ňom zavolať metódu \texttt{Interpret()}.
 
 Momentálne si povieme niečo ešte o triedach a štruktúrach, ktoré nijako priamo neriadia data-flow aplikácie, ale využívame ich všade naprieč naším programom.
 
 \section{HIDDevices}
-HIDDevice je trieda implementujúca logiku súvisiacu s HID zariadeniami. Trieda je implementovaná návrhovým vzorom singleton, pretože obsahuje viaceré dátové položky a metódy, ktoré by mali byť jednotné a chceme k nim mať prístup z viacerých častí programu. Obsahuje \texttt{std::vector\textless~BusDevice\textgreater devices} -- vector zariadení ktoré boli/sú pripojené na zbernicu počas zachytávania paketov. Zároveň v nej máme implementované veľmi dôležité metódy	 \texttt{CreateDevice} a \texttt{ParseHIDReportDescriptor}
+HIDDevice je trieda implementujúca logiku súvisiacu s HID zariadeniami. Trieda je implementovaná návrhovým vzorom singleton, pretože obsahuje viaceré dátové položky a metódy, ktoré by mali byť jednotné a chceme k nim mať prístup z viacerých častí programu. Obsahuje \texttt{std::vector\textless~BusDevice~\textgreater~devices} -- vector zariadení ktoré boli/sú pripojené na zbernicu počas zachytávania paketov. Zároveň v nej máme implementované veľmi dôležité metódy	 \texttt{CreateDevice} a \texttt{ParseHIDReportDescriptor}
 
 \paragraph{CreateDevice(QByteArray packetData)} funkcia sa volá z ItemManagera počas spracovávania paketu v momente, keď daný paket obsahuje Configuration Descriptor. Je zodpovedná za vytvorenie nového zariadenia a jeho pridanie do \textit{devices}.
 
@@ -435,5 +435,3 @@ Obsahuje definíciu všetkých štruktúr a enumov, ktoré používame v program
 \paragraph{HIDReportDescriptorInputParse}\label{kap04:sec:hid_report_input_parse} štruktúra reprezentuje jeden konkrétny input report zariadenia. Ako už vieme, zariadenie môže mať k jednému endpointu asociovaných viacero reportov a v takom prípade musia byť prefixované Report ID. V tejto štruktúre si všetky tieto informácie uchovávame a bližšie ich opisujeme v zdrojových kódoch, ktoré sú poskytnuté ako príloha k teto práci.
 
 \paragraph{BusDevice}\label{kap04:sec:bus_device} je štruktúra, ktorá reprezentuje jedno konkrétne zariadenie ktoré bolo pripojené na zbernicu počas zachytávania paketov. Najdôležitejšie položky sú adresa zariadenia, ktorú jej pridelil USB host počas konfigurácie a vector HIDReportDescriptorInputParse štruktúr aby sme vedeli interpretovať všetky druhy inputov daného zariadenia.
-
-Týmto sme si prešli celkovú stavbu našej aplikácie a mali by sme mať obecný prehľad akým spôsobom náš program funguje. Všetky detailnejšie informácie o popise jednotlivých položiek, tried alebo metód nájdeme v prílohe tejto práce v zdrojových kódoch alebo poskytnutej dokumentácie vygenerovanej z dokumentačných komentárov.

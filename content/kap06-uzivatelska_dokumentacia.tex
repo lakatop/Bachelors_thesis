@@ -38,7 +38,7 @@ Aby sme vedeli spustiť zachytávanie paketov pomocou USBPcapu cez interface Wir
 
 
 \section{Orientácia v GUI aplikácie}
-Teraz si predstavíme užívateľské rozhranie aplikácie (obrázok~\ref{obr:kap6:gui}) a funkcionalitu jednotlivých tlačidiel. 
+Teraz si predstavíme užívateľské rozhranie aplikácie (obrázok~\ref{obr:kap6:gui}) a funk\-cionalitu jednotlivých tlačidiel. 
 
 \begin{figure}[!htb]
 	\centering
@@ -47,7 +47,7 @@ Teraz si predstavíme užívateľské rozhranie aplikácie (obrázok~\ref{obr:ka
 	\label{obr:kap6:gui}
 \end{figure}
 
-Teraz si postupne predstavíme jednotlivé tlačidlá:
+Popis tlačidiel je nasledovný:
 
 \paragraph{Open} 
 \hfill\break
@@ -56,14 +56,15 @@ Po jeho stlačení sa nám otvorí dialógové okno pomocou ktorého si zvolíme
 
 \paragraph{Live Capture/File Capture}
 \hfill\break
-Nasleduje výber medzi Live Capture/File Capture pomocou RadioButtonov. File Capture reprezentuje analýzu ukončeného súboru, zatiaľ čo Live Capture podporuje analýzu súboru \uv{v reálnom čase}, takže je do súboru počas analýzy pripísať nové údaje, ktoré budú následne spracované aplikáciou.
+Nasleduje výber medzi Live Capture/File Capture pomocou RadioButtonov. File Capture reprezentuje analýzu ukončeného súboru, zatiaľ čo Live Capture podporuje analýzu súboru \uv{v reálnom čase}, takže je do súboru možné počas analýzy pripísať nové údaje, ktoré budú následne spracované aplikáciou.
 
 \paragraph{Data Highlight}
+\hfill\break
 Je CheckBox pomocou ktorého si užívateľ zvolí, či chce mať farebne zvýraznené položky v hexdumpe na základe ich významu alebo chce mať čistý hexdump bez farebného označenia. 
 
 \paragraph{Start}
 \hfill\break
-Týmto tlačidlom spustíme analýzu zvoleného súboru. Ak sa navyše jedná o File Capture, progress bar pod tlačidlami nám percentuálne ukazuje akú časť súboru už máme spracovanú. Akonáhle progress bar dosiahne 100\%, celý súbor máme úspešne spracovaný a všetky základné informácie jednotlivých paketov (index, dĺžka, typ prenosu, atď.) sa zobrazia nižšie, pričom automaticky nás to posunie na úroveň posledného paketu. V prípade Live Capture to bude vyzerať podobne, ale progress bar nám momentálne nebude ukazovať percentuálnu časť spracovania súboru (pretože tá sa môže neustále meniť). Takisto nás to po odkončení analýzy posunie na úroveň aktuálneho paketu a to sa deje vždy keď sú do analýzy pridané nové pakety.
+Týmto tlačidlom spustíme analýzu zvoleného súboru. Ak sa navyše jedná o File Capture, progress bar pod tlačidlami nám percentuálne ukazuje akú časť súboru už máme spracovanú. Akonáhle progress bar dosiahne 100\%, celý súbor máme úspešne spracovaný a všetky základné informácie jednotlivých paketov (index, dĺžka, typ prenosu, atď.) sa zobrazia nižšie, pričom nás to automaticky posunie na úroveň posledného paketu. V prípade Live Capture to bude vyzerať podobne, ale progress bar nám momentálne nebude ukazovať percentuálnu časť spracovania súboru (pretože tá sa môže neustále meniť). Takisto nás to po odkončení analýzy posunie na úroveň aktuálneho paketu a to sa deje vždy keď sú do analýzy pridané nové pakety.
 
 \paragraph{Clear}
 \hfill\break
@@ -81,77 +82,6 @@ Tlačidlo je tatiež navrhnuté na používanie pri Live Capture, kedy ním už�
 
 \section{Používanie aplikácie}
 V tejto sekcii si ukážeme prácu s aplikáciou a ako vykonať File aj Live Capture analýzu. 
-
-\subsection{Vytváranie pcap súborov}
-Postup vytvárania súboru sa bude líšiť vzhľadom na to o aký druh analýzy máme záujem. Obecne je intuitívnejšie pracovať v oboch prípadoch s Wiresharkom ale v prípade, že si ho nechceme nainštalovať a máme záujem využívať iba možnosť File Capture, ukážeme si aj prácu s USBPcapom.
-
-\subsubsection{File Capture}
-Na vytvorenie pcap súboru pre File Capture máme na výber použiť USBPCap alebo Wireshark.
-
-\paragraph{USBPcap}
-Ak sa rozhodneme použiť USBPCap, postupujeme nasledovne:
-\begin{enumerate}
-\item Do tých USB portov, ktoré budeme chcieť počas zachytávania paketov sledovať pripojíme ľubovoľné HID zariadenie.
-\item Zapneme USBPcap command line aplikáciu cez \textit{USBPcapCMD.exe}.
-\item\label{kap6:sec:usbpcap_vyber_portov} Pomocou čísel si zvolíme USB porty, v ktorých máme zapojené zariadenia. Príklad vidíme na obrázku~\ref{obr:kap6:usbpcap_ports}, kde sú to porty 1 a 3.
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=12cm]{img/kap06_usbpcap_ports}
-	\caption{Príklad vybratia portov 1 a 3 v aplikácii USBPcap.}
-	\label{obr:kap6:usbpcap_ports}
-\end{figure}
-
-\item Následne si zvolíme meno súboru do ktrého chceme pakety zachytiť a stlačíme Enter. Vybehne nám \textit{Kontrola používateľských kont} v ktorej musíme povoliť USBPcap aplikácii vykonávanie zmien v zariadení. Predtým než to ale potvrdíme, odpojíme zariadenia zo všetkých USB portov, ktoré sme si zvolili vyššie. Toto robíme z dôvodu toho, aby sme už pri zachytávaní komunikácie dostali od zariadenia paket obsahujúci jeho HID Report Descriptor. V prípade, že zariadenia neodpojíme budeme mať síce zachytené všetky ostatné descriptory poslané počas konfigurácie, ale nebudeme schopní vykonať sémantickú analýzu inputu zariadení.
-\item Po povolení vykonávaní zmien pripojíme do daných portov zariadenia, s ktorými chceme sledovať komunikáciu a môžeme s nimi vykonávať akcie, ktoré chceme mať zachytené.
-\item Akonáhle chceme s analýzou skončiť, stlačíme klávesu \uv{q} a tým zároveň uončíme USBPCap. Momentálne by sme mali nájť náš súbor v priečinku v ktorom sa nachádza \textit{USBPcapCMD.exe}.
-\end{enumerate}
-
-USBPCap má ešte jednu nevýhodu -- zachytí konfiguráciu zariadení na všetkých USB portoch (aj tých, ktoré sme si v kroku~\ref{kap6:sec:usbpcap_vyber_portov} nezvolili). Samotnú komunikáciu s nimi už ale nesleduje.
-
-\paragraph{Wireshark}
-\label{kap6:sec:wireshark:file_capture}
-V prípade použitia Wiresharku na vytváranie pcap sborov budeme nasledovať podľa týchto krokov:
-\begin{enumerate}
-\item Zapneme Wireshark aplikáciu cez \textit{Wireshark.exe}.
-\item Upravíme nastavenia USBPCapu stlačením na sivé koliesko vedľa jeho názvu v oblasti \textit{Capture} dole (obrázok~\ref{obr:kap6:wireshark_usbpcap_settings}).
-
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=10cm]{img/kap06_wireshark_usbpcap_settings}
-	\caption{Ikona nastavenia USBPcapu vo Wiresharku.}
-	\label{obr:kap6:wireshark_usbpcap_settings}
-\end{figure}
-
-\item Stlačíme tlačidlo \textit{Restore Defaults} a zašktrneme možnosť \textit{Capture from newly connected devices}. Bohužiaľ, pre uloženie týchto nastavení musíme spustiť jedno zachytávanie takže klikneme na tlačidlo \textit{Start} a potvrdíme \textit{Kontrolu používateľských kont}. Teraz môžeme toto zachytávanie zrušiť cez červený štvorec v hornej lište Wiresharku. Nastavenia sa nám týmto uložili a pokiaľ ich nebudeme chcieť zmeniť, nebudeme musieť tento krok už opakovať.
-\item Teraz si vo Wiresharku cez možnosť \textit{Capture}$\rightarrow$\textit{Options} zaškrtneme v položke \textit{Input} možnosť USBPcap (obrázok~\ref{obr:kap6:wireshark_options_input}) a v položke \textit{Output} zvolíme možnosť \textit{pcap} a cez tlačidlo \textit{Browse} si vyberieme kde chceme uložiť súbor do ktorého budeme zachytávať komunikáciu (obrázok~\ref{obr:kap6:wireshark_options_output}).
-
-\begin{figure}[!htb]
-\centering
-\begin{subfigure}{\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{img/kap06_wireshark_options_input}
-  \caption{Ukážka nastavenia inputu USBPcapu vo Wiresharku}
-  \label{obr:kap6:wireshark_options_input}
-\end{subfigure}
-\begin{subfigure}{\textwidth}
-  \centering
-  \includegraphics[width=\textwidth]{img/kap06_wireshark_options_output}
-  \caption{Ukážka nastavenia outputu USBPcapu vo Wiresharku}
-  \label{obr:kap6:wireshark_options_output}
-\end{subfigure}
-\caption{Ukážka nastavenia inputu a outputu USBPcapu vo Wiresharku}
-\label{obr:kap6:wireshark_options_input_output}
-\end{figure}
-
-\item Skontrolujeme, že máme odpojené všetky zariadenia s ktorými chceme zachytávať komunikáciu a stlačíme tlačidlo \textit{Start}.
-\item V momente keď budeme chcieť zachytávanie ukončiť, klikneme na červený štvorec v hornej lište Wiresharku.
-\end{enumerate}
-
-\subsubsection{Live Capture}
-Na vykonanie Live Capture analýzy budeme potrebovať použiť aplikáciu Wireshark. Budeme postupovať pomocou rovnakých krokov ako pri File Capture~\ref{kap6:sec:wireshark:file_capture} s tou výnimkou, že teraz budeme mať počas zachytávania zapnutú aj našu aplikáciu ktorá bude vyobrazovať aktuálny stav súboru spolu s Wiresharkom.
-
-
 
 \subsection{Príklad analýzy}
 Momentálne si ukážeme konkrétny príklad File Capture analýzy na súbore \textit{sample.pcap}, ktorý je súčasťou prílohy k tejto práci. Budeme postupne zachytávať komunikáciu s 3 zariadeniami ukázanými na obrázku~\ref{obr:kap6:devices}:
@@ -184,22 +114,22 @@ Momentálne si ukážeme konkrétny príklad File Capture analýzy na súbore \t
 Počas zachytávania sme vykonali nasledujúce:
 \begin{enumerate}
 \item Do USB portu sme pripojili zariadenie myši.
-\item Stlačili sme ľavé tlačidlo myši.
+\item \label{kap06:uz_dok:krok1} Stlačili sme ľavé tlačidlo myši.
 \item Stlačili sme pravé tlačidlo myši.
 \item Posunuli sme koliekom myši smerom dole.
-\item Vykonali sme pohyb s myšou a naásledne ju odpojili.
+\item Vykonali sme pohyb s myšou a následne ju odpojili.
 \item Pripojili sme zariadenie klávesnice.
 \item Stlačili a pustili sme tlačidlo \uv{A}.
-\item Stlačili a podržali sme tlačidlo \uv{C} a potom tlačidlo \uv{D}, následne sme pustili tlačidlo \uv{C} a potom \uv{D}.
+\item \label{kap06:uz_dok:krok7} Stlačili a podržali sme tlačidlo \uv{C} a potom tlačidlo \uv{D}, následne sme pustili tlačidlo \uv{C} a potom \uv{D}.
 \item Stlačili a pustili sme tlačidlo \uv{Tab}.
 \item Do druhého USB portu sme pripojili zariadenie joysticku.
-\item Na joysticku sme stlačili s pustili sme tlačidlo \uv{1} a následne tlačidlo \uv{8}.
+\item Na joysticku sme stlačili a pustili tlačidlo \uv{1} a následne tlačidlo \uv{8}.
 \item Stlačili a pustili sme niekoľko tlačidiel naraz.
-\item Vykonali sme pohyb analógom.
+\item \label{kap06:uz_dok:krok12} Vykonali sme pohyb analógom.
 \item Ukončili sme zachytávanie.
 \end{enumerate}
 
-Teraz si otvoríme našu aplikáciu, pomocou tlačilda \uv{Open} si vyberieme súbor s vyššie opísanou zachytenou komunikáciou a stlačíme tlačidlo \uv{Start}. Pre bližšiu analýzu jednotlivých paketov dvojklikneme na riadok, ktorý daný paket reprezentuje. To má za následok vytvorenie pop-up okna (obrázok~\ref{obr:kap6:uk_popup}), ktoré má nasledujúce rozloženie:
+Teraz si otvoríme našu aplikáciu, pomocou tlačilda \uv{Open} si vyberieme súbor \textit{sample.pcap} s vyššie opísanou zachytenou komunikáciou a stlačíme tlačidlo \uv{Start}. Po načítaní súboru by sme mali byť schopní vidieť základné informácie ku všetkým paketom. V obecnom zobrazení nascrollujeme úplne hore, čím by sme mali vidieť pakety vyobrazené na obrázku~\ref{obr:kap6:uk_general}. Pre bližšiu analýzu jednotlivých paketov dvojklikneme na riadok, ktorý daný paket reprezentuje. To má za následok vytvorenie pop-up okna, v ktorom si vieme niektoré položky rozkliknúť čím vyobrazujeme detailnejšiu analýzu. Príklad pop-up okna môžeme vidieť na obrázku~\ref{obr:kap6:uk_popup}, kde sme rozklikli konkrétny Endpoint Descriptor a následne jeho položku bEndpointAddress. Každé pop-up okno má nasledujúce rozloženie:
 \begin{itemize}
 \item Vľavo hore máme vyobrazenú stromovú štruktúru, ktorá detailnejšie opisuje hlavičku paketu.
 \item Vpravo hore je vyobrazená stromová štruktúra reprezentujúca sémantický význam zyvškových dát paketu.
@@ -209,12 +139,21 @@ Teraz si otvoríme našu aplikáciu, pomocou tlačilda \uv{Open} si vyberieme s�
 
 \begin{figure}[!htb]
 	\centering
+	\includegraphics[width=\textwidth]{img/kap06_uk_general}
+	\caption{Ukážka obecného vyobrazenia paketov.}
+	\label{obr:kap6:uk_general}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
 	\includegraphics[width=\textwidth]{img/kap06_uk_popup}
 	\caption{Ukážka pop-up okna aplikácie.}
 	\label{obr:kap6:uk_popup}
 \end{figure}
 
-Momentálne si už len ukážeme zopár obrázkov analýzy vyššie spomínanej komunikácie.
+\clearpage
+
+Momentálne si ešte ukážeme zopár obrázkov analýzy vyššie spomínanej komunikácie. V prípade, že rozklikneme paket s indexom 1, zobrazí sa nám Device Descriptor myši (obrázok~\ref{obr:kap6:uk_device_desc}). Ak si rozklikneme paket na indexe 15, mali by sme vidieť String Decriptor myši ukázaný na obrázku~\ref{obr:kap6:uk_string_desc}. Oba tieto descriptory boli poslané USB myšou počas jej konfigurácie po pripojení na zbernicu.
 
 \begin{figure}[!htb]
 	\centering
@@ -230,12 +169,16 @@ Momentálne si už len ukážeme zopár obrázkov analýzy vyššie spomínanej 
 	\label{obr:kap6:uk_string_desc}
 \end{figure}
 
+Teraz sa v obecnom zobrazení posunieme trochu nižšie a rozklikneme si paket s indexom 173, čím sa nám zobrazí analýza Report Descriptoru joystiku (obrázok~\ref{obr:kap6:uk_report_desc}).
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{img/kap06_uk_report_desc}
 	\caption{Ukážka Report Descriptoru joysticku.}
 	\label{obr:kap6:uk_report_desc}
 \end{figure}
+
+Ukážeme si ešte analýzu inputu jednotlivých zariadení. V prípade myši si môžeme rozkliknúť napríklad paket s indexom 32, čo je prvý paket poslaný zariadením po jeho konfigurácii. Ak sa pozrieme vyššie na kroky, ktoré sme vykonávali počas zachytávania paketov do súboru, mal by tento paket reprezentovať krok číslo~\ref{kap06:uz_dok:krok1} čo značilo stlačenie ľavého tlačidla myši. Ukážku analýzy môžeme vidieť na obrázku~\ref{obr:kap6:uk_input_mouse}.
 
 \begin{figure}[!htb]
 	\centering
@@ -244,6 +187,8 @@ Momentálne si už len ukážeme zopár obrázkov analýzy vyššie spomínanej 
 	\label{obr:kap6:uk_input_mouse}
 \end{figure}
 
+Ak by sme si chceli pozrieť analýzu inputu klávesnice, môžeme roztvoriť napríklad paket s indexom , čo reprezentuje v našom zachytávaní krok číslo~\ref{kap06:uz_dok:krok7} -- konkrétne len jeho prvú časť, čo bola stlačenie a podržanie tlačidla \uv{C} a potom tlačidla \uv{D}. Ukážka analýzy je vyobrazená na obrázku~\ref{obr:kap6:uk_input_keyboard}.
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{img/kap06_uk_keyboard}
@@ -251,9 +196,85 @@ Momentálne si už len ukážeme zopár obrázkov analýzy vyššie spomínanej 
 	\label{obr:kap6:uk_input_keyboard}
 \end{figure}
 
+Ako posledné sa pozrieme na input joysticku, konkrétne na krok~\ref{kap06:uz_dok:krok12} kde sme vykonali pohyb analógom. Výsledok analýzy vidíme na obrázku~\ref{obr:kap6:uk_input_joystick}
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\textwidth]{img/kap06_uk_joystick}
 	\caption{Ukážka inputu joysticku.}
 	\label{obr:kap6:uk_input_joystick}
 \end{figure}
+
+\newpage
+\hfill \break
+
+\subsection{Vytváranie pcap súborov}
+Postup vytvárania súboru sa bude líšiť vzhľadom na to o aký druh analýzy máme záujem. Obecne je intuitívnejšie pracovať v oboch prípadoch s Wiresharkom ale v prípade, že si ho nechceme nainštalovať a máme záujem využívať iba možnosť File Capture, ukážeme si aj prácu s USBPcapom.
+
+\subsubsection{File Capture}
+Na vytvorenie pcap súboru pre File Capture máme na výber použiť USBPCap alebo Wireshark.
+
+\paragraph{USBPcap}
+\hfill\break
+Ak sa rozhodneme použiť USBPCap, postupujeme nasledovne:
+\begin{enumerate}
+\item Do tých USB portov, ktoré budeme chcieť počas zachytávania paketov sledovať pripojíme ľubovoľné HID zariadenie.
+\item Zapneme USBPcap command line aplikáciu cez \textit{USBPcapCMD.exe}.
+\item\label{kap6:sec:usbpcap_vyber_portov} Pomocou čísel si zvolíme USB porty, v ktorých máme zapojené zariadenia. Príklad vidíme na obrázku~\ref{obr:kap6:usbpcap_ports}, kde sú to porty 1 a 3.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=12cm]{img/kap06_usbpcap_ports}
+	\caption{Príklad vybratia portov 1 a 3 v aplikácii USBPcap.}
+	\label{obr:kap6:usbpcap_ports}
+\end{figure}
+
+\item Následne si zvolíme meno súboru do ktorého chceme pakety zachytiť a stlačíme Enter. Vybehne nám \textit{Kontrola používateľských kont} v ktorej musíme povoliť USBPcap aplikácii vykonávanie zmien v zariadení. Predtým než to ale potvrdíme, odpojíme zariadenia zo všetkých USB portov, ktoré sme si zvolili vyššie. Toto robíme z dôvodu toho, aby sme už pri zachytávaní komunikácie dostali od zariadenia paket obsahujúci jeho HID Report Descriptor. V prípade, že zariadenia neodpojíme budeme mať síce zachytené všetky ostatné descriptory poslané počas konfigurácie, ale nebudeme schopní vykonať sémantickú analýzu inputu zariadení.
+\item Po povolení vykonávaní zmien pripojíme do daných portov zariadenia, s ktorými chceme sledovať komunikáciu a môžeme s nimi vykonávať akcie, ktoré chceme mať zachytené.
+\item Akonáhle chceme s analýzou skončiť, stlačíme klávesu \uv{q} a tým zároveň ukončíme USBPCap. Momentálne by sme mali nájť náš súbor v priečinku v ktorom sa nachádza \textit{USBPcapCMD.exe}.
+\end{enumerate}
+
+USBPCap má ešte jednu nevýhodu -- zachytí konfiguráciu zariadení na všetkých USB portoch (aj tých, ktoré sme si v kroku~\ref{kap6:sec:usbpcap_vyber_portov} nezvolili). Samotnú komunikáciu s nimi už ale nesleduje.
+
+\paragraph{Wireshark}
+\label{kap6:sec:wireshark:file_capture}
+\hfill\break
+V prípade použitia Wiresharku na vytváranie pcap súborov budeme postupovať podľa týchto krokov:
+\begin{enumerate}
+\item Zapneme Wireshark aplikáciu cez \textit{Wireshark.exe}.
+\item Upravíme nastavenia USBPCapu stlačením na sivé koliesko vedľa jeho náz\-vu v oblasti \textit{Capture} dole (obrázok~\ref{obr:kap6:wireshark_usbpcap_settings}).
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=10cm]{img/kap06_wireshark_usbpcap_settings}
+	\caption{Ikona nastavenia USBPcapu vo Wiresharku.}
+	\label{obr:kap6:wireshark_usbpcap_settings}
+\end{figure}
+
+\item Stlačíme tlačidlo \textit{Restore Defaults} a zašktrneme možnosť \textit{Capture from newly connected devices}. Bohužiaľ, pre uloženie týchto nastavení musíme spustiť jedno zachytávanie, takže klikneme na tlačidlo \textit{Start} a potvrdíme \textit{Kontrolu používateľských kont}. Teraz môžeme toto zachytávanie zrušiť cez červený štvorec v hornej lište Wiresharku. Nastavenia sa nám týmto uložili a pokiaľ ich nebudeme chcieť zmeniť, nebudeme musieť tento krok už opakovať.
+\item Teraz si vo Wiresharku cez možnosť \textit{Capture}$\rightarrow$\textit{Options} zaškrtneme v položke \textit{Input} možnosť USBPcap (obrázok~\ref{obr:kap6:wireshark_options_input}) a v položke \textit{Output} zvolíme možnosť \textit{pcap} a cez tlačidlo \textit{Browse} si vyberieme kde chceme uložiť súbor do ktorého budeme zachytávať komunikáciu (obrázok~\ref{obr:kap6:wireshark_options_output}).
+
+\begin{figure}[!htb]
+\centering
+\begin{subfigure}{\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{img/kap06_wireshark_options_input}
+  \caption{Ukážka nastavenia inputu USBPcapu vo Wiresharku}
+  \label{obr:kap6:wireshark_options_input}
+\end{subfigure}
+\begin{subfigure}{\textwidth}
+  \centering
+  \includegraphics[width=\textwidth]{img/kap06_wireshark_options_output}
+  \caption{Ukážka nastavenia outputu USBPcapu vo Wiresharku}
+  \label{obr:kap6:wireshark_options_output}
+\end{subfigure}
+\caption{Ukážka nastavenia inputu a outputu USBPcapu vo Wiresharku}
+\label{obr:kap6:wireshark_options_input_output}
+\end{figure}
+
+\item Skontrolujeme, že máme odpojené všetky zariadenia s ktorými chceme zachytávať komunikáciu a stlačíme tlačidlo \textit{Start}.
+\item V momente keď budeme chcieť zachytávanie ukončiť, klikneme na červený štvorec v hornej lište Wiresharku.
+\end{enumerate}
+
+\subsubsection{Live Capture}
+Na vykonanie Live Capture analýzy budeme potrebovať použiť aplikáciu Wireshark. Budeme postupovať pomocou rovnakých krokov ako pri File Capture~\ref{kap6:sec:wireshark:file_capture} s tou výnimkou, že teraz budeme mať počas zachytávania zapnutú aj našu aplikáciu ktorá bude vyobrazovať aktuálny stav súboru spolu s Wiresharkom.

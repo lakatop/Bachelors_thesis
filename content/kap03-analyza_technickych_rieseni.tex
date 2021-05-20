@@ -59,7 +59,7 @@ Ako sme už naznačili v kapitole~\ref{uvod:sec:HID}, na vykonanie sémantickej 
 
 \subsection*{Report Descriptor}
 \label{kap03:sec:report_desc}
-Celková štruktúra Report Descriptoru je opísaná v HID Class Specifica\-tion~\cite{report_desc}. Descriptor sa skladá z tzv. itemov, ktoré obsahujú informácie o danom zariadení. Každý item obsahuje hlavičku, ktorá sa skladá z troch častí:
+\overfullrule=0mm{Celková štruktúra Report Descriptoru je opísaná v HID Class Specifica\-tion~\cite{report_desc}}. Descriptor sa skladá z tzv. itemov, ktoré obsahujú informácie o danom zariadení. Každý item obsahuje hlavičku, ktorá sa skladá z troch častí:
 \begin{itemize}
 \item Typ
 \item Tag
@@ -187,7 +187,7 @@ Počas spracovávania pcap súborov máme k dispozícii dáta popisujúce jednot
 Metóda \texttt{read(char*, qint64)} pomocou ktorej čítame zo súboru špecifikuje prvým parametrom miesto do ktorého sa majú zapísať prečítané dáta a druhým parametrom akú veľkosť dát chceme prečítať. Musíme si teda dopredu pripraviť buffer do ktorého budeme zapisovať. Keďže konkrétnu veľkosť jednotlivých paketov zistíme až za run-timu, budeme musieť buffer dynamicky alokovať na halde. Na to existujú 2 hlavné spôsoby ako niečo také dosiahnuť:
 \begin{itemize}
 \item Pomocou \texttt{new char[paket\_size]} -- tento spôsob by sa dal v dnešnom C++ považovať za zastaralý a nebezpečný. Je nutné pečlivo sledovať životnosť takto alokovanej pamäte, musíme si na ňu držať odkaz a keď už ju nebudeme potrebovať, je potrebné na nej zavolať delete aby nám nevznikali žiadne memory leaky.
-\item Pomocou \texttt{std::unique\_ptr\textless char[]\textgreater} -- tento spôsob je určite lepší ako ten predchádzajúci, pretože nám odpadá starosť o memory leaky. Na druhú stranu tu vzniká menší problém s uskladnením alebo s predávaním dát po programe v podobe parametru. Museli by sme sa starať o to, kto je vlastníkom daného objektu a či je ešte korektné ho používať.
+\item Pomocou \texttt{std::unique\_ptr\textless~char[]~\textgreater} -- tento spôsob je určite lepší ako ten predchádzajúci, pretože nám odpadá starosť o memory leaky. Na druhú stranu tu vzniká menší problém s uskladnením alebo s predávaním dát po programe v podobe parametru. Museli by sme sa starať o to, kto je vlastníkom daného objektu a či je ešte korektné ho používať.
 \end{itemize}
 
 Skúsime sa pozrieť na to, čo nám ponúka samotné Qt.
@@ -199,7 +199,7 @@ V riešení nám zase pomôže koncept dostupný v Qt -- \textit{QByteArray}~\ci
 
 
 \section{Spracovávanie live capture}
-Ako sme už spomínali vyššie v sekcii~\ref{ka03:sec:sprac_sub}, súbory spracovávame pomocou QFile. Ak máme fixný súbor, ktorý sa počas spracovávania a ani po ňom nemení, tak jeho spracovanie je priamočiare -- prechádzame \texttt{while} cyklom cez súbor až pokiaľ sa nedostaneme na jeho koniec a tým celé spracovanie končí. Počas live capturu to je o trochu komplikovanejšie, pretože potrebujeme neustále sledovať spracovávaný súbor na aktuálne zmeny. To môžeme riešiť viacerými spôsobmi:
+Ako sme už spomínali vyššie v sekcii~\ref{kap03:sec:sprac_sub}, súbory spracovávame pomocou QFile. Ak máme fixný súbor, ktorý sa počas spracovávania a ani po ňom nemení, tak jeho spracovanie je priamočiare -- prechádzame \texttt{while} cyklom cez súbor až pokiaľ sa nedostaneme na jeho koniec a tým celé spracovanie končí. Počas live capturu to je o trochu komplikovanejšie, pretože potrebujeme neustále sledovať spracovávaný súbor na aktuálne zmeny. To môžeme riešiť viacerými spôsobmi:
 
 \subsection*{Nekonečný cyklus}
 Jedno z riešení by bolo celý proces spracovávania súboru zabaliť do nekonečného \texttt{while(true)} cyklu. Toto riešenie nie je práve ideálne z dvoch hlavných dôvodov:

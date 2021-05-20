@@ -6,23 +6,23 @@
 \contentsline {figure}{\numberline {1.4}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Logitech myši.\relax }}{7}{figure.caption.6}%
 \contentsline {figure}{\numberline {1.5}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Genius myši s významom.\relax }}{7}{figure.caption.7}%
 \contentsline {figure}{\numberline {1.6}{\ignorespaces Ukážka hexdumpu so zvýrazneným inputom Logitech myši s významom.\relax }}{7}{figure.caption.8}%
-\contentsline {figure}{\numberline {1.7}{\ignorespaces Ukážka hexdumpu vo Wiresharku.\relax }}{8}{figure.caption.10}%
-\contentsline {figure}{\numberline {1.8}{\ignorespaces Ukážka hexdumpu so zvýrazneným endpoint descriptorom.\relax }}{8}{figure.caption.11}%
-\contentsline {figure}{\numberline {1.9}{\ignorespaces Ukážka hexdumpu s farebným oddelením na základe významu.\relax }}{9}{figure.caption.12}%
-\contentsline {figure}{\numberline {1.10}{\ignorespaces Ukážka reprezentácie dát pomocou stromovej štruktúry.\relax }}{9}{figure.caption.13}%
-\contentsline {figure}{\numberline {1.11}{\ignorespaces Endpoint descriptor reprezentovaný dátami zvýraznenými na obrázku~\ref {obr:uvod:wireshark_hexdump} vyššie.\relax }}{9}{figure.caption.14}%
-\contentsline {figure}{\numberline {1.12}{\ignorespaces Ukážka vyobrazenia jednotlivých bytov.\relax }}{10}{figure.caption.15}%
-\contentsline {figure}{\numberline {1.13}{\ignorespaces Ukážka kliknutia na položku v hexdumpe.\relax }}{10}{figure.caption.16}%
-\contentsline {figure}{\numberline {1.14}{\ignorespaces Ukážka kliknutia na položku \textit {endpoint descriptoru} v stromovej štruktúre.\relax }}{10}{figure.caption.17}%
-\contentsline {figure}{\numberline {1.15}{\ignorespaces Príklad obecného vyobrazenia jednotlivých paketov vo Wiresharku.\relax }}{10}{figure.caption.18}%
-\contentsline {figure}{\numberline {1.16}{\ignorespaces Príklad inputu myši vo Wiresharku.\relax }}{11}{figure.caption.19}%
-\contentsline {figure}{\numberline {1.17}{\ignorespaces Ukážka stromovej štruktúry na~zvolenie si zariadenia, s~ktorým bude zachytávaná komunikácia.\relax }}{11}{figure.caption.21}%
-\contentsline {figure}{\numberline {1.18}{\ignorespaces Príklad hexdumpu v Device Monitoring Studio.\relax }}{12}{figure.caption.22}%
-\contentsline {figure}{\numberline {1.19}{\ignorespaces Príklad analýzy paketov.\relax }}{12}{figure.caption.23}%
-\contentsline {figure}{\numberline {1.20}{\ignorespaces Ukážka vyobrazenia URB.\relax }}{12}{figure.caption.24}%
-\contentsline {figure}{\numberline {1.21}{\ignorespaces Príklad inputu myši v Device Monitoring Studio.\relax }}{12}{figure.caption.25}%
-\contentsline {figure}{\numberline {1.22}{\ignorespaces Príklad obecného vyobrazenia jednotlivých paketov v Device Monitoring Studio.\relax }}{13}{figure.caption.26}%
-\contentsline {figure}{\numberline {1.23}{\ignorespaces Užívateľské rozhranie Device Monitoring Studio.\relax }}{13}{figure.caption.27}%
+\contentsline {figure}{\numberline {1.7}{\ignorespaces Wireshark: Ukážka hexdumpu.\relax }}{8}{figure.caption.10}%
+\contentsline {figure}{\numberline {1.8}{\ignorespaces Wireshark: Ukážka hexdumpu so zvýrazneným endpoint descriptorom.\relax }}{8}{figure.caption.11}%
+\contentsline {figure}{\numberline {1.9}{\ignorespaces Wireshark: Ukážka hexdumpu s farebným oddelením na základe významu.\relax }}{9}{figure.caption.12}%
+\contentsline {figure}{\numberline {1.10}{\ignorespaces Wireshark: Ukážka reprezentácie dát pomocou stromovej štruktúry.\relax }}{9}{figure.caption.13}%
+\contentsline {figure}{\numberline {1.11}{\ignorespaces Wireshark: Endpoint descriptor reprezentovaný dátami zvýraznenými na obrázku~\ref {obr:uvod:wireshark_hexdump} vyššie.\relax }}{9}{figure.caption.14}%
+\contentsline {figure}{\numberline {1.12}{\ignorespaces Wireshark: Ukážka vyobrazenia jednotlivých bytov.\relax }}{10}{figure.caption.15}%
+\contentsline {figure}{\numberline {1.13}{\ignorespaces Wireshark: Ukážka kliknutia na položku v hexdumpe.\relax }}{10}{figure.caption.16}%
+\contentsline {figure}{\numberline {1.14}{\ignorespaces Wireshark: Ukážka kliknutia na položku \textit {endpoint descriptoru} v stromovej štruktúre.\relax }}{10}{figure.caption.17}%
+\contentsline {figure}{\numberline {1.15}{\ignorespaces Wireshark: Príklad obecného vyobrazenia jednotlivých paketov.\relax }}{10}{figure.caption.18}%
+\contentsline {figure}{\numberline {1.16}{\ignorespaces Wireshark: Príklad inputu myši.\relax }}{11}{figure.caption.19}%
+\contentsline {figure}{\numberline {1.17}{\ignorespaces Device Monitoring Studio: Ukážka stromovej štruktúry na~zvolenie si zariadenia, s~ktorým bude zachytávaná komunikácia.\relax }}{12}{figure.caption.21}%
+\contentsline {figure}{\numberline {1.18}{\ignorespaces Device Monitoring Studio: Príklad hexdumpu.\relax }}{12}{figure.caption.22}%
+\contentsline {figure}{\numberline {1.19}{\ignorespaces Device Monitoring Studio: Príklad analýzy paketov.\relax }}{12}{figure.caption.23}%
+\contentsline {figure}{\numberline {1.20}{\ignorespaces Device Monitoring Studio: Ukážka vyobrazenia URB.\relax }}{13}{figure.caption.24}%
+\contentsline {figure}{\numberline {1.21}{\ignorespaces Device Monitoring Studio: Príklad inputu myši.\relax }}{13}{figure.caption.25}%
+\contentsline {figure}{\numberline {1.22}{\ignorespaces Device Monitoring Studio: Príklad obecného vyobrazenia jednotlivých paketov.\relax }}{13}{figure.caption.26}%
+\contentsline {figure}{\numberline {1.23}{\ignorespaces Device Monitoring Studio: Užívateľské rozhranie.\relax }}{14}{figure.caption.27}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Ukážka device tree. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_device_node_stack}\relax }}{19}{figure.caption.33}%
 \contentsline {figure}{\numberline {2.2}{\ignorespaces Ukážka konkrétnych device nodov. Obrázok prevzatý z Microsoft dokumentácie~\cite {usb_msdn_device_node_stack}\relax }}{19}{figure.caption.34}%
@@ -55,15 +55,16 @@
 \contentsline {figure}{\numberline {5.1}{\ignorespaces Ukážka grafického vyobrazenia paketov. Obrázok prevzatý zo stránky USB Made Simple~\cite {usbmadesimple_graphics}\relax }}{62}{figure.caption.122}%
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {6.1}{\ignorespaces Ukážka užívateľského rozhrania aplikácie.\relax }}{66}{figure.caption.123}%
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Príklad vybratia portov 1 a 3 v aplikácii USBPcap.\relax }}{68}{figure.caption.133}%
-\contentsline {figure}{\numberline {6.3}{\ignorespaces Ikona nastavenia USBPcapu vo Wiresharku.\relax }}{69}{figure.caption.135}%
-\contentsline {figure}{\numberline {6.4}{\ignorespaces Ukážka nastavenia inputu a outputu USBPcapu vo Wiresharku\relax }}{70}{figure.caption.136}%
-\contentsline {figure}{\numberline {6.5}{\ignorespaces Ukážka zariadení s ktorými budeme zachytávať komunikáciu.\relax }}{71}{figure.caption.138}%
-\contentsline {figure}{\numberline {6.6}{\ignorespaces Ukážka pop-up okna aplikácie.\relax }}{72}{figure.caption.139}%
-\contentsline {figure}{\numberline {6.7}{\ignorespaces Ukážka Device Descriptoru myši.\relax }}{73}{figure.caption.140}%
-\contentsline {figure}{\numberline {6.8}{\ignorespaces Ukážka String Descriptoru myši.\relax }}{73}{figure.caption.141}%
-\contentsline {figure}{\numberline {6.9}{\ignorespaces Ukážka Report Descriptoru joysticku.\relax }}{74}{figure.caption.142}%
-\contentsline {figure}{\numberline {6.10}{\ignorespaces Ukážka inputu myši.\relax }}{74}{figure.caption.143}%
-\contentsline {figure}{\numberline {6.11}{\ignorespaces Ukážka inputu klávesnice.\relax }}{75}{figure.caption.144}%
-\contentsline {figure}{\numberline {6.12}{\ignorespaces Ukážka inputu joysticku.\relax }}{75}{figure.caption.145}%
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Ukážka zariadení s ktorými budeme zachytávať komunikáciu.\relax }}{68}{figure.caption.131}%
+\contentsline {figure}{\numberline {6.3}{\ignorespaces Ukážka obecného vyobrazenia paketov.\relax }}{70}{figure.caption.132}%
+\contentsline {figure}{\numberline {6.4}{\ignorespaces Ukážka pop-up okna aplikácie.\relax }}{70}{figure.caption.133}%
+\contentsline {figure}{\numberline {6.5}{\ignorespaces Ukážka Device Descriptoru myši.\relax }}{71}{figure.caption.134}%
+\contentsline {figure}{\numberline {6.6}{\ignorespaces Ukážka String Descriptoru myši.\relax }}{71}{figure.caption.135}%
+\contentsline {figure}{\numberline {6.7}{\ignorespaces Ukážka Report Descriptoru joysticku.\relax }}{72}{figure.caption.136}%
+\contentsline {figure}{\numberline {6.8}{\ignorespaces Ukážka inputu myši.\relax }}{73}{figure.caption.137}%
+\contentsline {figure}{\numberline {6.9}{\ignorespaces Ukážka inputu klávesnice.\relax }}{73}{figure.caption.138}%
+\contentsline {figure}{\numberline {6.10}{\ignorespaces Ukážka inputu joysticku.\relax }}{74}{figure.caption.139}%
+\contentsline {figure}{\numberline {6.11}{\ignorespaces Príklad vybratia portov 1 a 3 v aplikácii USBPcap.\relax }}{75}{figure.caption.142}%
+\contentsline {figure}{\numberline {6.12}{\ignorespaces Ikona nastavenia USBPcapu vo Wiresharku.\relax }}{76}{figure.caption.144}%
+\contentsline {figure}{\numberline {6.13}{\ignorespaces Ukážka nastavenia inputu a outputu USBPcapu vo Wiresharku\relax }}{77}{figure.caption.145}%
 \addvspace {10\p@ }
